@@ -10,7 +10,27 @@
       "mcp__claude-in-chrome__read_page",
       "mcp__claude-in-chrome__browser_batch",
       "Bash(npm -v)",
-      "Bash(npx --yes create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --use-npm --no-turbopack)"
+      "Bash(npx --yes create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --use-npm --no-turbopack)",
+      "Bash(mkdir -p /Users/luka/Desktop/blankd/src/app/browse-spaces/[slug])",
+      "Bash(mkdir -p \"/Users/luka/Desktop/blankd/src/app/browse-spaces/[slug]\")",
+      "mcp__claude-in-chrome__find",
+      "Bash(mkdir -p \"/Users/luka/Desktop/blankd/src/app/events/[slug]\")",
+      "Bash(mkdir -p \"/Users/luka/Desktop/blankd/src/app/chefs/[slug]\")",
+      "Bash(npm run *)",
+      "Bash(git -C /Users/luka/Desktop/blankd status --short)",
+      "Bash(git -C /Users/luka/Desktop/blankd log --oneline)",
+      "Bash(rm -rf images_in)",
+      "Bash(mkdir images_in)",
+      "Bash(unzip -o -q \"/Users/luka/Downloads/images.zip\" -d images_in)",
+      "Bash(perl -pi -e 's|\\(/images/[a-z-]+\\\\.jpg\\)|$1?v=2|g' src/lib/mock-data.ts)",
+      "Bash(perl -pi -e 's|\\\\?v=2|?v=3|g' src/lib/mock-data.ts next.config.ts)",
+      "Bash(curl -s -o opt-loft.webp -w \"%{http_code} %{content_type} \" \"http://localhost:3000/_next/image?url=%2Fimages%2Fspace-brick-loft.jpg%3Fv%3D3&w=1920&q=75\")",
+      "Bash(curl -s -o opt-terrace.webp -w \"%{http_code} %{content_type} \" \"http://localhost:3000/_next/image?url=%2Fimages%2Fspace-night-terrace.jpg%3Fv%3D3&w=1920&q=75\")",
+      "Bash(npm install *)",
+      "Bash(git mv *)",
+      "Bash(perl -pi -e 's/export default function MyProfilePage\\\\\\(\\\\\\)/export function ProfileDemo\\(\\)/' src/app/profile/profile-demo.tsx)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)"
     ]
   }
 }
