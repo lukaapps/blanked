@@ -38,19 +38,6 @@ export function HomeHero({ images }: { images: string[] }) {
           Find your pop-up space in Melbourne
         </p>
       </div>
-
-      <div className="absolute bottom-8 left-1/2 flex -translate-x-1/2 gap-2">
-        {images.map((src, i) => (
-          <button
-            key={src}
-            aria-label={`Show slide ${i + 1}`}
-            onClick={() => setIndex(i)}
-            className={`h-1.5 transition-all ${
-              i === index ? "w-6 bg-accent" : "w-1.5 bg-[#F0F0EE]/50"
-            }`}
-          />
-        ))}
-      </div>
     </div>
   );
 }
