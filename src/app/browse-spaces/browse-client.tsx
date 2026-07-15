@@ -118,7 +118,7 @@ export function BrowseSpacesClient({ spaces }: { spaces: Space[] }) {
           <h2 className="text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
             Featured
           </h2>
-          <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-14 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-6 grid grid-cols-1 gap-1 sm:grid-cols-2 lg:grid-cols-4">
             {featured.map((space) => (
               <SpaceCard key={space.slug} space={space} />
             ))}
@@ -135,7 +135,7 @@ export function BrowseSpacesClient({ spaces }: { spaces: Space[] }) {
             No spaces match those filters yet. Try widening your search.
           </p>
         ) : (
-          <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-14 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-6 grid grid-cols-1 gap-1 sm:grid-cols-2 lg:grid-cols-4">
             {filtered.map((space) => (
               <SpaceCard key={space.slug} space={space} />
             ))}
