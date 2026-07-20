@@ -123,6 +123,14 @@ export function SpaceDetailAccordion({ space }: { space: Space }) {
                         <p className="mt-2">{space.whatCanYouDo}</p>
                       </div>
                     )}
+                    {space.availability && (
+                      <div>
+                        <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-ink/40">
+                          Availability
+                        </p>
+                        <p className="mt-2">{space.availability}</p>
+                      </div>
+                    )}
                     <p className="text-ink/50">
                       Minimum booking: {space.minBookingDuration}
                     </p>

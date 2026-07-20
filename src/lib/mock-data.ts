@@ -28,6 +28,8 @@ export const spaces: Space[] = [
       "A raw, industrial loft space in the heart of Flinders Lane with exposed brick, skylights, and a flexible open floor plan — perfect for intimate dining experiences.",
     whatCanYouDo:
       "You will have full access to the event space and kitchen during your booked hours, and are welcome to bring your own equipment and staff. The space is yours to configure as you see fit — seating, stations, and layout can all be adjusted. AV equipment is available for your use. You keep all food and beverage revenue generated during your event. The space must be returned to its original condition at the end of your booking, and any breakages will be charged to the operator.",
+    availability:
+      "This venue operates as a café from 9am–3pm, Monday to Friday. Outside these hours, the space is fully vacant and available for hire on evenings and weekends. Hirers are also welcome to share the kitchen during opening hours for prep.",
     amenities: ["kitchen", "bar", "seating", "wifi", "AV equipment"],
     kitchenFacilities: ["Full commercial kitchen"],
     equipmentIncluded: ["Tables and chairs", "AV equipment"],

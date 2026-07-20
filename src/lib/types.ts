@@ -27,6 +27,7 @@ export type Space = {
   minBookingDuration: string;
   description: string;
   whatCanYouDo: string;
+  availability?: string;
   amenities: string[];
   kitchenFacilities: string[];
   equipmentIncluded: string[];
