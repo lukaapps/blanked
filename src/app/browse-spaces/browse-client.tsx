@@ -2,7 +2,6 @@
 
 import { useMemo, useState } from "react";
 import { SpaceCard } from "@/components/space-card";
-import { PageHeader, RedDot } from "@/components/page-header";
 import { suburbs, spaceTypes } from "@/lib/mock-data";
 import type { Space } from "@/lib/types";
 
@@ -29,92 +28,116 @@ export function BrowseSpacesClient({ spaces }: { spaces: Space[] }) {
 
   return (
     <div className="px-1.5 pb-24 pt-20">
-      <PageHeader title="Browse Spaces" caption="Available venues" />
+      <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-0">
+        <div className="shrink-0">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+            Available venues
+          </p>
+          <h1 className="mt-2 text-6xl font-bold leading-[0.95] tracking-tight sm:text-7xl lg:text-[100px]">
+            Browse
+            <br />
+            Spaces
+          </h1>
+        </div>
 
-      <div className="relative mt-14">
-        <RedDot className="absolute -left-1 top-1/2 hidden -translate-y-1/2 lg:block" />
-        <div className="mx-auto flex max-w-4xl flex-col divide-y divide-divider border border-divider bg-white sm:flex-row sm:divide-x sm:divide-y-0">
-          <label className="flex-1 px-6 py-4">
-            <span className={cellLabel}>Where</span>
-            <select
-              value={suburb}
-              onChange={(e) => setSuburb(e.target.value)}
-              className={`mt-1 w-full bg-transparent text-sm outline-none ${
-                suburb ? "" : "text-ink/40"
-              }`}
-            >
-              <option value="">City or neighbourhood</option>
-              {suburbs.map((s) => (
-                <option key={s} value={s}>
-                  {s}
-                </option>
-              ))}
-            </select>
-          </label>
+        <div className="flex w-full flex-1 lg:justify-center lg:mt-[26px]">
+        <div className="w-full lg:max-w-[54rem]">
+          <div className="border border-divider bg-white">
+            <div className="flex divide-x divide-divider">
+              <label className="flex-1 px-6 py-4">
+                <span className={cellLabel}>Where</span>
+                <select
+                  value={suburb}
+                  onChange={(e) => setSuburb(e.target.value)}
+                  className={`mt-1 w-full bg-transparent text-sm outline-none ${
+                    suburb ? "" : "text-ink/40"
+                  }`}
+                >
+                  <option value="">City or neighbourhood</option>
+                  {suburbs.map((s) => (
+                    <option key={s} value={s}>
+                      {s}
+                    </option>
+                  ))}
+                </select>
+              </label>
 
-          <label className="flex-1 px-6 py-4">
-            <span className={cellLabel}>When</span>
-            <input
-              type="date"
-              value={when}
-              onChange={(e) => setWhen(e.target.value)}
-              className={`mt-1 w-full bg-transparent text-sm outline-none ${
-                when ? "" : "text-ink/40"
-              }`}
-            />
-          </label>
+              <label className="flex-1 px-6 py-4">
+                <span className={cellLabel}>When</span>
+                <input
+                  type="date"
+                  value={when}
+                  onChange={(e) => setWhen(e.target.value)}
+                  className={`mt-1 w-full bg-transparent text-sm outline-none ${
+                    when ? "" : "text-ink/40"
+                  }`}
+                />
+              </label>
 
-          <label className="flex-1 px-6 py-4">
-            <span className={cellLabel}>What</span>
-            <select
-              value={type}
-              onChange={(e) => setType(e.target.value)}
-              className={`mt-1 w-full bg-transparent text-sm outline-none ${
-                type ? "" : "text-ink/40"
-              }`}
-            >
-              <option value="">Any type</option>
-              {spaceTypes.map((t) => (
-                <option key={t} value={t}>
-                  {t}
-                </option>
-              ))}
-            </select>
-          </label>
+              <button
+                type="button"
+                aria-label="Search"
+                className="flex w-16 shrink-0 items-center justify-center bg-accent transition-opacity hover:opacity-90 sm:w-20"
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#FFFFFF"
+                  strokeWidth="2"
+                >
+                  <circle cx="11" cy="11" r="7" />
+                  <path d="M21 21l-4.35-4.35" />
+                </svg>
+              </button>
+            </div>
 
-          <label className="flex-1 px-6 py-4">
-            <span className={cellLabel}>
-              How much — ${maxPrice === 1000 ? "1000+" : maxPrice}/day
-            </span>
-            <input
-              type="range"
-              min={0}
-              max={1000}
-              step={50}
-              value={maxPrice}
-              onChange={(e) => setMaxPrice(Number(e.target.value))}
-              className="mt-3 w-full accent-accent"
-            />
-          </label>
+            <div className="flex divide-x divide-divider border-t border-divider">
+              <label className="flex-1 px-6 py-4">
+                <span className={cellLabel}>What</span>
+                <select
+                  value={type}
+                  onChange={(e) => setType(e.target.value)}
+                  className={`mt-1 w-full bg-transparent text-sm outline-none ${
+                    type ? "" : "text-ink/40"
+                  }`}
+                >
+                  <option value="">Any type</option>
+                  {spaceTypes.map((t) => (
+                    <option key={t} value={t}>
+                      {t}
+                    </option>
+                  ))}
+                </select>
+              </label>
 
-          <div className="hidden items-center justify-center px-5 sm:flex">
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="#CA0000"
-              strokeWidth="2"
-            >
-              <circle cx="11" cy="11" r="7" />
-              <path d="M21 21l-4.35-4.35" />
-            </svg>
+              <label className="flex-1 px-6 py-4">
+                <span className={cellLabel}>
+                  How much — ${maxPrice === 1000 ? "1000+" : maxPrice}/day
+                </span>
+                <input
+                  type="range"
+                  min={0}
+                  max={1000}
+                  step={50}
+                  value={maxPrice}
+                  onChange={(e) => setMaxPrice(Number(e.target.value))}
+                  className="mt-3 w-full accent-accent"
+                />
+              </label>
+            </div>
           </div>
+
+          <p className="mt-3 text-sm text-ink/50">
+            {spaces.length} spaces live across Melbourne right now
+          </p>
+        </div>
         </div>
       </div>
 
       {!isFiltering && featured.length > 0 && (
-        <div className="mt-20 border-t border-divider pt-8">
+        <div className="mt-20 border-t border-divider pt-8 lg:mt-8">
           <h2 className="text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
             Featured
           </h2>
