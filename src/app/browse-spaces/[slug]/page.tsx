@@ -28,7 +28,7 @@ export default async function SpaceDetailPage({
           {space.images.map((src, i) => (
             <div
               key={src}
-              className="relative aspect-[4/5] w-full shrink-0 snap-center overflow-hidden bg-divider"
+              className="relative aspect-square w-full shrink-0 snap-center overflow-hidden bg-divider"
             >
               <Image
                 src={src}
