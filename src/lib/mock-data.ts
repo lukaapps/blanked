@@ -83,6 +83,8 @@ export const spaces: Space[] = [
       "A warm, brick-walled bistro on Gertrude Street with a full working kitchen and an established regular crowd looking for something new.",
     whatCanYouDo:
       "Take over the full dining room and kitchen for your residency. Existing bookings system, POS, and front-of-house staff can be made available on request. Keep 100% of food and beverage revenue.",
+    availability:
+      "This venue operates as a bistro under its own brand most nights of the week. Residencies take over the full dining room and kitchen for a minimum one-week block, so the space isn't available for single-day bookings.",
     amenities: ["kitchen", "bar", "seating", "wifi"],
     kitchenFacilities: ["Full commercial kitchen", "Coffee equipment"],
     equipmentIncluded: ["Tables and chairs", "Bar setup", "POS"],
@@ -124,6 +126,8 @@ export const spaces: Space[] = [
       "A compact prep kitchen and dining nook ideal for supper clubs, tasting menus, and collaborative pop-ups with another chef.",
     whatCanYouDo:
       "Share the space with one other operator per booking window. Prep kitchen access included, plus a small dining area for up to 20 guests.",
+    availability:
+      "This is a shared prep kitchen used by multiple operators across the week. Booking windows are coordinated with a co-operator sharing the same slot, so exact days and hours are confirmed at the time of booking.",
     amenities: ["kitchen", "seating", "wifi"],
     kitchenFacilities: ["Prep kitchen only"],
     equipmentIncluded: ["Tables and chairs"],
@@ -156,6 +160,8 @@ export const spaces: Space[] = [
       "Moody laneway bar with arched windows and a full bar setup, ready for a late-night residency or one-off event.",
     whatCanYouDo:
       "Full bar and small kitchen access. Ideal for cocktail-led pop-ups, tasting nights and small-format dinners.",
+    availability:
+      "This venue operates as a licensed bar most evenings. Daytime and early-evening slots are generally available for hire, with bookings needing to wrap by midnight in line with the venue's music curfew.",
     amenities: ["bar", "seating", "wifi", "AV equipment"],
     kitchenFacilities: ["No kitchen", "Coffee equipment"],
     equipmentIncluded: ["Bar setup", "AV equipment"],
@@ -195,6 +201,8 @@ export const spaces: Space[] = [
       "An open-air courtyard spot with market stall infrastructure, great foot traffic on weekends.",
     whatCanYouDo:
       "Set up a stall for a single trading day. Power and water access included. Bring your own marquee and equipment.",
+    availability:
+      "This is an open-air market courtyard booked one trading day at a time, most popular on weekends when foot traffic peaks. Stalls must be packed down the same day — there's no overnight storage.",
     amenities: ["seating", "parking"],
     kitchenFacilities: ["No kitchen"],
     equipmentIncluded: ["None"],
@@ -227,6 +235,8 @@ export const spaces: Space[] = [
       "A sprawling rooftop with skyline views, built for large-format events, brand activations and long lunch residencies.",
     whatCanYouDo:
       "Full rooftop access including bar, DJ booth, and covered dining area. Ideal for launch events and large pop-up dinners.",
+    availability:
+      "This rooftop is available for single and multi-day bookings year-round, weather permitting. As an open-air space, a wet-weather contingency plan is required before confirming a date, and amplified music must end by 11pm.",
     amenities: ["bar", "seating", "wifi", "AV equipment"],
     kitchenFacilities: ["Prep kitchen only"],
     equipmentIncluded: ["Tables and chairs", "Bar setup", "AV equipment"],
@@ -267,6 +277,8 @@ export const spaces: Space[] = [
       "A daylight-filled corner cafe with a loyal breakfast crowd, available for weekday residencies.",
     whatCanYouDo:
       "Run breakfast and lunch service using the existing kitchen and coffee setup. Great for chefs testing a daytime concept.",
+    availability:
+      "This venue operates as a cafe serving breakfast and lunch on weekdays. It's available for residencies of three days or more, with kitchen access until 3pm each day — evenings and weekends are not available.",
     amenities: ["kitchen", "seating", "wifi"],
     kitchenFacilities: ["Full commercial kitchen", "Coffee equipment"],
     equipmentIncluded: ["Tables and chairs", "POS"],
@@ -299,6 +311,8 @@ export const spaces: Space[] = [
       "Beachside function space with a wraparound deck, ten minutes from the city — a favourite for weekend supper clubs.",
     whatCanYouDo:
       "Full access to the dining room, deck, and kitchen. Ocean views make this a strong pick for seasonal or celebratory pop-ups.",
+    availability:
+      "This beachside function space is available for single-day and weekend bookings throughout the week. As it sits close to residential neighbours, a sound curfew of 10pm applies to all bookings.",
     amenities: ["kitchen", "bar", "seating", "parking"],
     kitchenFacilities: ["Full commercial kitchen"],
     equipmentIncluded: ["Tables and chairs", "Bar setup"],
