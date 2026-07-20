@@ -28,7 +28,7 @@ export function BrowseSpacesClient({ spaces }: { spaces: Space[] }) {
     "block text-[10px] font-semibold uppercase tracking-[0.2em] text-ink/40";
 
   return (
-    <div className="mx-auto max-w-7xl px-1.5 pb-24 pt-20">
+    <div className="px-1.5 pb-24 pt-20">
       <PageHeader title="Browse Spaces" caption="Available venues" />
 
       <div className="relative mt-14">
