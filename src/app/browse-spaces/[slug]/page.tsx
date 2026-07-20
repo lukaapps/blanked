@@ -24,7 +24,7 @@ export default async function SpaceDetailPage({
         >
           ←
         </Link>
-        <div className="no-scrollbar flex snap-x snap-mandatory overflow-x-auto lg:flex-col lg:gap-1.5 lg:overflow-x-visible lg:overflow-y-auto lg:snap-none">
+        <div className="no-scrollbar flex snap-x snap-mandatory overflow-x-auto lg:flex-col lg:gap-px lg:overflow-x-visible lg:overflow-y-auto lg:snap-none">
           {space.images.map((src, i) => (
             <div
               key={src}
