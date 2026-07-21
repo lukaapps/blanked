@@ -12,7 +12,7 @@
   --color-ink: var(--color-ink);
   --color-accent: var(--color-accent);
   --color-divider: var(--color-divider);
-  --font-sans: var(--font-epilogue);
+  --font-sans: var(--font-dm-sans);
 }
 
 body {
