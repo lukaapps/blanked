@@ -13,42 +13,42 @@ values
    'Blanked let me stop chasing landlords and start cooking.',
    'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=1400&q=80',
    'https://instagram.com',
-   array['Restaurant Residency','Shared Space'], array['Fitzroy','Collingwood','CBD'], true),
+   array['Restaurant','Kitchen only'], array['Fitzroy','Collingwood','CBD'], true),
 
   ('leo-nakamura', 'Leo Nakamura', 'Chef / Brand Founder',
    'Leo runs a Japanese-Australian fusion brand that started as a market stall and has grown into one of the city''s most talked-about pop-ups. He''s cooked residencies in three states and is currently focused on bringing his concept to a permanent home in Melbourne.',
    'Every space we''ve booked through Blanked has come with zero drama.',
    'https://images.unsplash.com/photo-1595273670150-bd0c3c392e46?auto=format&fit=crop&w=1400&q=80',
    'https://instagram.com',
-   array['Market Spot','Restaurant Residency'], array['Brunswick','CBD'], true),
+   array['Market','Restaurant'], array['Brunswick','CBD'], true),
 
   ('amara-osei', 'Amara Osei', 'Chef / Caterer',
    'Amara''s West African-inspired dinners have built a cult following through word of mouth alone. She''s now scaling up with residencies and larger event bookings, bringing her food to rooms that seat sixty instead of six.',
    'Landlords take me seriously the moment I mention Blanked.',
    'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1400&q=80',
    'https://instagram.com',
-   array['Event & Retail Space','Restaurant Residency'], array['Richmond','St Kilda'], true),
+   array['Event','Restaurant'], array['Richmond','St Kilda'], true),
 
   ('tom-whitfield', 'Tom Whitfield', 'Chef',
    'Tom trained in fine dining before pivoting to casual, produce-led pop-ups. He runs short residencies of one to two weeks at a time, testing new menus in front of a live audience before deciding what sticks.',
    'I book, I cook, I move on to the next room.',
    'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=1400&q=80',
    'https://instagram.com',
-   array['Restaurant Residency'], array['Carlton','CBD'], true),
+   array['Restaurant'], array['Carlton','CBD'], true),
 
   ('priya-chandra', 'Priya Chandra', 'Chef / Brand Founder',
    'Priya''s modern Indian dining concept has run pop-ups across six Melbourne suburbs in the last year. She''s known for pairing regional Indian dishes with natural wine.',
    'The booking flow is faster than texting a landlord back and forth.',
    'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=1400&q=80',
    'https://instagram.com',
-   array['Shared Space','Restaurant Residency'], array['Fitzroy','Brunswick'], false),
+   array['Kitchen only','Restaurant'], array['Fitzroy','Brunswick'], false),
 
   ('jordan-reyes', 'Jordan Reyes', 'Chef',
    'Jordan''s late-night noodle bar concept started as a one-off collab and has since become a recurring residency, moving between speakeasies and laneway bars across the city.',
    'Blanked found me spaces I never would have known existed.',
    'https://images.unsplash.com/photo-1568602471122-7832951cc4c5?auto=format&fit=crop&w=1400&q=80',
    'https://instagram.com',
-   array['Event & Retail Space','Shared Space'], array['CBD','Richmond'], false);
+   array['Bar','Kitchen only'], array['CBD','Richmond'], false);
 
 -- ============================================================
 -- Spaces (all live; landlord_id null until real landlords sign up)
@@ -59,7 +59,7 @@ insert into public.spaces
    min_booking_duration, description, what_can_you_do, amenities, kitchen_facilities,
    equipment_included, images, cover_image, featured, space_rules, status)
 values
-  ('the-loft-at-flinders-lane', 'The Loft at Flinders Lane', 'CBD', 'Event & Retail Space',
+  ('the-loft-at-flinders-lane', 'The Loft at Flinders Lane', 'CBD', 'Event',
    80, 2200, 1800, 9500, null, '1 day',
    'A raw, industrial loft space in the heart of Flinders Lane with exposed brick, skylights, and a flexible open floor plan — perfect for intimate dining experiences.',
    'You will have full access to the event space and kitchen during your booked hours, and are welcome to bring your own equipment and staff. The space is yours to configure as you see fit — seating, stations, and layout can all be adjusted. AV equipment is available for your use. You keep all food and beverage revenue generated during your event. The space must be returned to its original condition at the end of your booking, and any breakages will be charged to the operator.',
@@ -73,7 +73,7 @@ values
    array['No smoking indoors','Music must end by 11pm','Space returned to original condition'],
    'live'),
 
-  ('gertrude-street-bistro', 'Gertrude Street Bistro', 'Fitzroy', 'Restaurant Residency',
+  ('gertrude-street-bistro', 'Gertrude Street Bistro', 'Fitzroy', 'Restaurant',
    60, 1500, 1500, 8000, 28000, '1 week',
    'A warm, brick-walled bistro on Gertrude Street with a full working kitchen and an established regular crowd looking for something new.',
    'Take over the full dining room and kitchen for your residency. Existing bookings system, POS, and front-of-house staff can be made available on request. Keep 100% of food and beverage revenue.',
@@ -87,7 +87,7 @@ values
    array['No smoking indoors','Kitchen closed by 11:30pm'],
    'live'),
 
-  ('smith-street-kitchen', 'Smith Street Kitchen', 'Collingwood', 'Shared Space',
+  ('smith-street-kitchen', 'Smith Street Kitchen', 'Collingwood', 'Kitchen only',
    20, 800, 800, 4200, null, '1 day',
    'A compact prep kitchen and dining nook ideal for supper clubs, tasting menus, and collaborative pop-ups with another chef.',
    'Share the space with one other operator per booking window. Prep kitchen access included, plus a small dining area for up to 20 guests.',
@@ -100,7 +100,7 @@ values
    array['Shared space — coordinate with co-operator','Clean as you go'],
    'live'),
 
-  ('little-collins-speakeasy', 'Little Collins Speakeasy', 'CBD', 'Event & Retail Space',
+  ('little-collins-speakeasy', 'Little Collins Speakeasy', 'CBD', 'Bar',
    45, 1100, 950, 5000, null, '1 day',
    'Moody laneway bar with arched windows and a full bar setup, ready for a late-night residency or one-off event.',
    'Full bar and small kitchen access. Ideal for cocktail-led pop-ups, tasting nights and small-format dinners.',
@@ -114,7 +114,7 @@ values
    array['Licensed venue — RSA required','Music must end by midnight'],
    'live'),
 
-  ('brunswick-yard-market', 'Brunswick Yard Market', 'Brunswick', 'Market Spot',
+  ('brunswick-yard-market', 'Brunswick Yard Market', 'Brunswick', 'Market',
    30, 400, 450, null, null, '1 day',
    'An open-air courtyard spot with market stall infrastructure, great foot traffic on weekends.',
    'Set up a stall for a single trading day. Power and water access included. Bring your own marquee and equipment.',
@@ -127,7 +127,7 @@ values
    array['Pack down same day','No open flames without approval'],
    'live'),
 
-  ('richmond-rooftop', 'Richmond Rooftop', 'Richmond', 'Event & Retail Space',
+  ('richmond-rooftop', 'Richmond Rooftop', 'Richmond', 'Event',
    120, 3000, 2500, 13000, null, '1 day',
    'A sprawling rooftop with skyline views, built for large-format events, brand activations and long lunch residencies.',
    'Full rooftop access including bar, DJ booth, and covered dining area. Ideal for launch events and large pop-up dinners.',
@@ -140,7 +140,7 @@ values
    array['Weather contingency required','Music must end by 11pm'],
    'live'),
 
-  ('carlton-corner-cafe', 'Carlton Corner Cafe', 'Carlton', 'Restaurant Residency',
+  ('carlton-corner-cafe', 'Carlton Corner Cafe', 'Carlton', 'Cafe',
    35, 900, 700, 3800, 13500, '3 days',
    'A daylight-filled corner cafe with a loyal breakfast crowd, available for weekday residencies.',
    'Run breakfast and lunch service using the existing kitchen and coffee setup. Great for chefs testing a daytime concept.',
@@ -153,7 +153,7 @@ values
    array['Available weekdays only','Kitchen closed by 3pm'],
    'live'),
 
-  ('st-kilda-beach-house', 'St Kilda Beach House', 'St Kilda', 'Event & Retail Space',
+  ('st-kilda-beach-house', 'St Kilda Beach House', 'St Kilda', 'Event',
    90, 2000, 1200, 6500, null, '1 day',
    'Beachside function space with a wraparound deck, ten minutes from the city — a favourite for weekend supper clubs.',
    'Full access to the dining room, deck, and kitchen. Ocean views make this a strong pick for seasonal or celebratory pop-ups.',

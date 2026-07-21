@@ -76,7 +76,7 @@ export default function ListASpacePage() {
       landlord_id: user.id,
       slug: slugify(form.name || "space"),
       name: form.name,
-      type: "Event & Retail Space", // confirmed with landlord during review call
+      type: "Event", // confirmed with landlord during review call
       suburb: "Other", // confirmed during review call
       full_address: form.address,
       description: form.description,

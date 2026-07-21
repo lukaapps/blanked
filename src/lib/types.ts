@@ -1,8 +1,11 @@
 export type SpaceType =
-  | "Restaurant Residency"
-  | "Shared Space"
-  | "Market Spot"
-  | "Event & Retail Space";
+  | "Restaurant"
+  | "Bar"
+  | "Cafe"
+  | "Event"
+  | "Retail"
+  | "Market"
+  | "Kitchen only";
 
 export type Review = {
   author: string;

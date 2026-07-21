@@ -5,10 +5,13 @@
 export type AccountType = "chef" | "landlord";
 export type SpaceStatus = "pending" | "live" | "inactive";
 export type SpaceTypeDb =
-  | "Restaurant Residency"
-  | "Shared Space"
-  | "Market Spot"
-  | "Event & Retail Space";
+  | "Restaurant"
+  | "Bar"
+  | "Cafe"
+  | "Event"
+  | "Retail"
+  | "Market"
+  | "Kitchen only";
 export type BookingStatus =
   | "pending"
   | "accepted"

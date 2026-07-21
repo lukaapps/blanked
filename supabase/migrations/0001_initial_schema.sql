@@ -8,10 +8,13 @@
 create type account_type as enum ('chef', 'landlord');
 create type space_status as enum ('pending', 'live', 'inactive');
 create type space_type as enum (
-  'Restaurant Residency',
-  'Shared Space',
-  'Market Spot',
-  'Event & Retail Space'
+  'Restaurant',
+  'Bar',
+  'Cafe',
+  'Event',
+  'Retail',
+  'Market',
+  'Kitchen only'
 );
 create type booking_status as enum (
   'pending', 'accepted', 'declined', 'confirmed', 'completed', 'cancelled'
