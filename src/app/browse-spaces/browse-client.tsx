@@ -30,17 +30,14 @@ export function BrowseSpacesClient({ spaces }: { spaces: Space[] }) {
     <div className="px-1.5 pb-24 pt-20">
       <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-0">
         <div className="shrink-0">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
-            Available venues
-          </p>
-          <h1 className="mt-2 text-6xl font-bold leading-[0.95] tracking-tight sm:text-7xl lg:text-[100px]">
+          <h1 className="text-6xl font-bold leading-[0.95] tracking-tight sm:text-7xl lg:text-[100px]">
             Browse
             <br />
             Spaces
           </h1>
         </div>
 
-        <div className="flex w-full flex-1 lg:justify-center lg:mt-[26px]">
+        <div className="flex w-full flex-1 lg:justify-center lg:mt-[1px]">
         <div className="w-full lg:max-w-[54rem]">
           <div className="border border-divider bg-white">
             <div className="flex divide-x divide-divider">
@@ -149,7 +146,7 @@ export function BrowseSpacesClient({ spaces }: { spaces: Space[] }) {
         </div>
       )}
 
-      <div className="mt-20 border-t border-divider pt-8">
+      <div className="mt-8 border-t border-divider pt-8">
         <h2 className="text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
           {isFiltering ? `${filtered.length} spaces` : "All spaces"}
         </h2>
