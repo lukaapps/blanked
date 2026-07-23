@@ -82,7 +82,11 @@ export function RequestSpace({ space }: { space: Space }) {
   if (stage === "idle") {
     return (
       <>
-        <Button variant="secondary" className="w-full py-4" onClick={openForm}>
+        <Button
+          variant="secondary"
+          className="w-full !bg-[#442220] py-4 hover:!bg-[#442220]/90"
+          onClick={openForm}
+        >
           Request This Space
         </Button>
         <p className="mt-3 text-center text-xs text-ink/40">
@@ -137,7 +141,7 @@ export function RequestSpace({ space }: { space: Space }) {
       <Button
         variant="secondary"
         type="submit"
-        className="w-full py-4"
+        className="w-full !bg-[#442220] py-4 hover:!bg-[#442220]/90"
         disabled={stage === "sending"}
       >
         {stage === "sending" ? "Sending…" : "Send Request"}
