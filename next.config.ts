@@ -7,6 +7,10 @@ const nextConfig: NextConfig = {
         pathname: "/images/**",
         search: "?v=3",
       },
+      {
+        pathname: "/images/**",
+        search: "?v=4",
+      },
     ],
     remotePatterns: [
       {

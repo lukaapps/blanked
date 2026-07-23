@@ -1,8 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { PageHeader } from "@/components/page-header";
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
 
 function slugify(name: string) {
@@ -25,6 +26,7 @@ const howItWorks = [
 ];
 
 export default function ListASpacePage() {
+  const router = useRouter();
   const [step, setStep] = useState(0);
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({
@@ -50,6 +52,22 @@ export default function ListASpacePage() {
   const next = () => setStep((s) => Math.min(s + 1, steps.length - 1));
   const back = () => setStep((s) => Math.max(s - 1, 0));
   const canSubmit = form.photos >= 3 && form.agreed && !submitting;
+
+  async function handleGetStarted() {
+    if (!isSupabaseConfigured()) {
+      document.getElementById("space-form")?.scrollIntoView();
+      return;
+    }
+    const supabase = createClient();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    if (!user) {
+      router.push("/login?next=/list-a-space");
+      return;
+    }
+    document.getElementById("space-form")?.scrollIntoView();
+  }
 
   async function handleSubmit() {
     setSubmitError(null);
@@ -113,12 +131,37 @@ export default function ListASpacePage() {
   }
 
   return (
-    <div className="mx-auto max-w-3xl px-6 pb-24 pt-20">
-      <PageHeader
-        title="List Your Space"
-        caption="Share your space with pop-up operators"
-      />
+    <>
+      <div className="flex min-h-screen flex-col lg:flex-row">
+        <div className="flex flex-col justify-center gap-6 px-6 py-16 sm:px-10 lg:w-1/2 lg:px-14 lg:py-0">
+          <h1 className="text-6xl font-bold uppercase leading-[0.95] tracking-tight sm:text-7xl lg:text-[100px]">
+            List your
+            <br />
+            space
+          </h1>
+          <p className="max-w-sm text-lg text-ink/60">Share your space.</p>
+          <button
+            type="button"
+            onClick={handleGetStarted}
+            className="w-fit bg-[#442220] px-10 py-4 text-xs font-semibold uppercase tracking-widest text-white transition-opacity hover:opacity-90"
+          >
+            List space
+          </button>
+        </div>
 
+        <div className="relative w-full flex-1 lg:w-1/2">
+          <Image
+            src="/images/list-space-hero.jpg?v=4"
+            alt="Shopfront available to list on Blanked"
+            fill
+            priority
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            className="object-cover"
+          />
+        </div>
+      </div>
+
+      <div id="space-form" className="mx-auto max-w-3xl px-6 pb-24 pt-20">
       <div className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-3">
         {howItWorks.map((item, i) => (
           <div key={item.title} className="bg-white p-6">
@@ -339,7 +382,8 @@ export default function ListASpacePage() {
           </div>
         )}
       </div>
-    </div>
+      </div>
+    </>
   );
 }
 
