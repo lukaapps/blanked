@@ -57,7 +57,7 @@ export function Footer() {
               Connect
             </span>
             <a
-              href="https://www.instagram.com/blankedbrand_/"
+              href="https://www.instagram.com/by.blanked/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm hover:text-accent"

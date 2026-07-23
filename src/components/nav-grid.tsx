@@ -14,7 +14,7 @@ const centerLinks: { href: string; label: string; external?: boolean }[][] = [
     { href: "/chefs", label: "Blanked Chefs" },
     { href: "/about", label: "About" },
     {
-      href: "https://www.instagram.com/blankedbrand_/",
+      href: "https://www.instagram.com/by.blanked/",
       label: "Instagram",
       external: true,
     },

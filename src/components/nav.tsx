@@ -11,7 +11,7 @@ const centerLinks: { href: string; label: string; external?: boolean }[] = [
   { href: "/list-a-space", label: "List a Space" },
   { href: "/about", label: "About" },
   {
-    href: "https://www.instagram.com/blankedbrand_/",
+    href: "https://www.instagram.com/by.blanked/",
     label: "Instagram",
     external: true,
   },

@@ -51,7 +51,7 @@ export default function AboutPage() {
               hello@blanked.melbourne
             </a>
             <a
-              href="https://www.instagram.com/blankedbrand_/"
+              href="https://www.instagram.com/by.blanked/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm transition-colors hover:text-accent"
