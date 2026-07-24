@@ -30,7 +30,7 @@ export function BrowseSpacesClient({ spaces }: { spaces: Space[] }) {
     <div className="px-1.5 pb-24 pt-20">
       <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-0">
         <div className="shrink-0">
-          <h1 className="text-6xl font-bold leading-[0.95] tracking-tight sm:text-7xl lg:text-[100px]">
+          <h1 className="text-6xl font-bold uppercase leading-[0.95] tracking-tight sm:text-7xl lg:text-[100px]">
             Browse
             <br />
             Spaces
