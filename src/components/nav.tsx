@@ -85,17 +85,8 @@ export function Nav() {
               isActive("/by-blanked") ? "text-accent" : "text-ink/70"
             }`}
           >
-            by<span className="text-accent">.</span>BL
-            <span className="relative inline-block leading-none">
-              A
-              <span className="absolute left-[12%] right-[12%] bottom-[0.1em] h-[0.22em] bg-white" />
-            </span>
-            NK
-            <span className="relative inline-block leading-none">
-              E
-              <span className="absolute left-[24%] right-[25%] bottom-[0.245em] h-[0.22em] bg-white" />
-            </span>
-            D<span className="text-accent">.</span>
+            by<span className="text-accent">.</span>BLANKED
+            <span className="text-accent">.</span>
           </Link>
         </nav>
 
