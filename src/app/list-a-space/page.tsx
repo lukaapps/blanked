@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
 
 function slugify(name: string) {
@@ -27,6 +27,7 @@ const howItWorks = [
 
 export default function ListASpacePage() {
   const router = useRouter();
+  const [formVisible, setFormVisible] = useState(false);
   const [step, setStep] = useState(0);
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({
@@ -55,7 +56,7 @@ export default function ListASpacePage() {
 
   async function handleGetStarted() {
     if (!isSupabaseConfigured()) {
-      document.getElementById("space-form")?.scrollIntoView();
+      setFormVisible(true);
       return;
     }
     const supabase = createClient();
@@ -66,8 +67,14 @@ export default function ListASpacePage() {
       router.push("/login?next=/list-a-space");
       return;
     }
-    document.getElementById("space-form")?.scrollIntoView();
+    setFormVisible(true);
   }
+
+  useEffect(() => {
+    if (formVisible) {
+      document.getElementById("space-form")?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [formVisible]);
 
   async function handleSubmit() {
     setSubmitError(null);
@@ -161,6 +168,7 @@ export default function ListASpacePage() {
         </div>
       </div>
 
+      {formVisible && (
       <div id="space-form" className="mx-auto max-w-3xl px-6 pb-24 pt-20">
       <div className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-3">
         {howItWorks.map((item, i) => (
@@ -383,6 +391,7 @@ export default function ListASpacePage() {
         )}
       </div>
       </div>
+      )}
     </>
   );
 }
