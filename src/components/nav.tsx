@@ -79,6 +79,24 @@ export function Nav() {
               </Link>
             )
           )}
+          <Link
+            href="/by-blanked"
+            className={`whitespace-nowrap text-[9px] font-semibold tracking-[0.1em] transition-colors hover:text-accent sm:text-[11px] sm:tracking-[0.2em] ${
+              isActive("/by-blanked") ? "text-accent" : "text-ink/70"
+            }`}
+          >
+            by<span className="text-accent">.</span>BL
+            <span className="relative inline-block leading-none">
+              A
+              <span className="absolute left-[12%] right-[12%] bottom-[0.1em] h-[0.22em] bg-white" />
+            </span>
+            NK
+            <span className="relative inline-block leading-none">
+              E
+              <span className="absolute left-[24%] right-[25%] bottom-[0.245em] h-[0.22em] bg-white" />
+            </span>
+            D<span className="text-accent">.</span>
+          </Link>
         </nav>
 
         <div className="ml-3 grid shrink-0 flex-1 grid-cols-[1fr_auto] items-center gap-x-4">
