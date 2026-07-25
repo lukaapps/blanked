@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -13,9 +14,13 @@ export function Footer() {
     <footer className="border-t border-divider">
       <div className="mx-auto max-w-7xl px-6 py-16 flex flex-col gap-10 sm:flex-row sm:justify-between">
         <div>
-          <div className="text-xl font-bold uppercase tracking-wide">
-            Blanked
-          </div>
+          <Image
+            src="/images/logo-blanked.jpg?v=3"
+            alt="Blanked"
+            width={1107}
+            height={184}
+            className="h-5 w-auto"
+          />
           <p className="mt-3 max-w-xs text-sm text-ink/60">
             Melbourne&rsquo;s marketplace for short-term hospitality space.
           </p>
