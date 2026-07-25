@@ -20,7 +20,7 @@ const centerLinks: { href: string; label: string; external?: boolean }[][] = [
     },
   ],
   [
-    { href: "/profile", label: "My Profile" },
+    { href: "/by-blanked", label: "by.Blanked" },
     { href: "/login", label: "Log In" },
   ],
 ];
@@ -51,7 +51,7 @@ export function NavGrid({
         onClick={onNavigate}
         className={`${cell} shrink-0 border-r ${border}`}
       >
-        Blanked
+        Blanked<span className="text-accent">.</span>
       </Link>
 
       <div className="flex flex-1 flex-col">
@@ -83,7 +83,18 @@ export function NavGrid({
                     j > 0 ? `border-l ${border}` : ""
                   } ${isActive(link.href) ? "text-accent" : ""}`}
                 >
-                  {link.label}
+                  {link.href === "/by-blanked" ? (
+                    <>
+                      by<span className="text-accent">.</span>Blanked
+                      <span className="text-accent">.</span>
+                    </>
+                  ) : link.href === "/chefs" ? (
+                    <>
+                      Blanked<span className="text-accent">.</span> Chefs
+                    </>
+                  ) : (
+                    link.label
+                  )}
                 </Link>
               )
             )}
