@@ -1,142 +1,87 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
+import { RedDot } from "@/components/page-header";
 
-function slugify(name: string) {
-  return (
-    name
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-+|-+$/g, "") +
-    "-" +
-    Math.random().toString(36).slice(2, 6)
-  );
-}
+export const metadata = {
+  title: "List a Space | Blanked",
+  description:
+    "List your venue on Blanked and start receiving booking requests from vetted chefs and hospitality brands.",
+};
 
-const steps = ["Space Basics", "Space Details", "Pricing & Availability", "Photos & Submission"];
+const steps = [
+  {
+    n: "01",
+    title: "Submit your space",
+    body: "Tell us the basics — name, address, and what makes it work for hospitality talent.",
+    image: "/images/space-brick-loft.jpg?v=3",
+  },
+  {
+    n: "02",
+    title: "We review & publish",
+    body: "We review your listing, get in touch and get it live, usually within 3 business days.",
+    image: "/images/space-timber-lounge.jpg?v=3",
+  },
+  {
+    n: "03",
+    title: "Chefs & brands find and book",
+    body: "Vetted hospitality talent browse, filter, and send you booking requests. You approve every one. You get to meet everyone.",
+    image: "/images/space-dark-dining.jpg?v=3",
+  },
+  {
+    n: "04",
+    title: "Agreement & payment, handled",
+    body: "Once you accept, Blanked generates the agreement and processes payment. Rent earned is deposited into your bank account every week.",
+    image: "/images/space-bar-shelves.jpg?v=3",
+  },
+];
 
-const howItWorks = [
-  { title: "Submit your space", body: "Tell us the basics — name, address, and what makes it work for a pop-up." },
-  { title: "We review and publish", body: "We review your listing and get it live, usually within 3 business days." },
-  { title: "Chefs find and book", body: "Vetted chefs and brands browse, filter, and send you booking requests." },
+const advantages = [
+  {
+    title: "Extra income and earn more",
+    body: "Turn empty hours and quiet weeks into paid bookings instead of downtime.",
+  },
+  {
+    title: "Full control",
+    body: "Set your own daily rate and choose exactly when your space is available.",
+  },
+  {
+    title: "Find new partners",
+    body: "Meet chefs and brands you’d never cross paths with on Instagram DMs.",
+  },
+  {
+    title: "Fast to list",
+    body: "Submit your space in under ten minutes.",
+  },
+];
+
+const trust = [
+  {
+    title: "You approve every request",
+    body: "Nothing books automatically — you accept or decline each request before it’s confirmed.",
+  },
+  {
+    title: "Address kept private",
+    body: "Your full address is internal only, and isn’t shown publicly until a booking is confirmed.",
+  },
+  {
+    title: "Agreements & payment handled",
+    body: "Once confirmed, Blanked generates the agreement and processes payment — no invoices to chase.",
+  },
+  {
+    title: "Deposits held by Blanked",
+    body: "Set your own damage deposit — Blanked holds it and it’s there if something goes wrong.",
+  },
+  {
+    title: "Vetted chefs & brands",
+    body: "Everyone requesting to book has been vetted before they can send a request.",
+  },
+  {
+    title: "Service",
+    body: "Blanked is always on hand to make sure you are fully supported and making the most out of the platform.",
+  },
 ];
 
 export default function ListASpacePage() {
-  const router = useRouter();
-  const [formVisible, setFormVisible] = useState(false);
-  const [step, setStep] = useState(0);
-  const [submitted, setSubmitted] = useState(false);
-  const [form, setForm] = useState({
-    name: "",
-    address: "",
-    licence: "",
-    description: "",
-    minDuration: "1 day",
-    dailyRate: "",
-    availableFrom: "",
-    availabilityNote: "",
-    photos: 0,
-    agreed: false,
-  });
-
-  const update = <K extends keyof typeof form>(key: K, value: (typeof form)[K]) =>
-    setForm((f) => ({ ...f, [key]: value }));
-
-  const [needsAccount, setNeedsAccount] = useState(false);
-  const [submitError, setSubmitError] = useState<string | null>(null);
-  const [submitting, setSubmitting] = useState(false);
-
-  const next = () => setStep((s) => Math.min(s + 1, steps.length - 1));
-  const back = () => setStep((s) => Math.max(s - 1, 0));
-  const canSubmit = form.photos >= 3 && form.agreed && !submitting;
-
-  async function handleGetStarted() {
-    if (!isSupabaseConfigured()) {
-      setFormVisible(true);
-      return;
-    }
-    const supabase = createClient();
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-    if (!user) {
-      router.push("/login?next=/list-a-space");
-      return;
-    }
-    setFormVisible(true);
-  }
-
-  useEffect(() => {
-    if (formVisible) {
-      document.getElementById("space-form")?.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [formVisible]);
-
-  async function handleSubmit() {
-    setSubmitError(null);
-
-    if (!isSupabaseConfigured()) {
-      setSubmitted(true); // demo mode
-      return;
-    }
-
-    setSubmitting(true);
-    const supabase = createClient();
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-
-    // Spec: user is prompted to create a Landlord account at submission.
-    if (!user) {
-      setSubmitting(false);
-      setNeedsAccount(true);
-      return;
-    }
-
-    const { error } = await supabase.from("spaces").insert({
-      landlord_id: user.id,
-      slug: slugify(form.name || "space"),
-      name: form.name,
-      type: "Event", // confirmed with landlord during review call
-      suburb: "Other", // confirmed during review call
-      full_address: form.address,
-      description: form.description,
-      min_booking_duration: form.minDuration,
-      daily_rate_landlord: form.dailyRate ? Number(form.dailyRate) : null,
-      available_from: form.availableFrom || null,
-      availability_note: form.availabilityNote || null,
-      status: "pending",
-    });
-    setSubmitting(false);
-    if (error) {
-      setSubmitError(error.message);
-      return;
-    }
-    setSubmitted(true);
-  }
-
-  if (submitted) {
-    return (
-      <div className="mx-auto max-w-2xl px-6 pb-24 pt-32 text-center">
-        <h1 className="text-4xl font-medium tracking-tight sm:text-5xl">
-          Thanks — we&rsquo;ve got your space.
-        </h1>
-        <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
-          Pending review
-        </p>
-        <p className="mx-auto mt-6 max-w-md text-sm leading-relaxed text-ink/60">
-          We&rsquo;ll review {form.name || "your space"} and follow up within 3
-          business days. Check your email for confirmation — we&rsquo;ll be in
-          touch to gather a few more details before it goes live.
-        </p>
-      </div>
-    );
-  }
-
   return (
     <>
       <div className="flex min-h-screen flex-col lg:flex-row">
@@ -147,13 +92,12 @@ export default function ListASpacePage() {
             space
           </h1>
           <p className="max-w-sm text-lg text-ink/60">Share your space.</p>
-          <button
-            type="button"
-            onClick={handleGetStarted}
+          <Link
+            href="/list-a-space/apply"
             className="w-fit bg-[#442220] px-10 py-4 text-xs font-semibold uppercase tracking-widest text-white transition-opacity hover:opacity-90"
           >
-            List space
-          </button>
+            List Space
+          </Link>
         </div>
 
         <div className="relative w-full flex-1 lg:w-1/2">
@@ -168,250 +112,122 @@ export default function ListASpacePage() {
         </div>
       </div>
 
-      {formVisible && (
-      <div id="space-form" className="mx-auto max-w-3xl px-6 pb-24 pt-20">
-      <div className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-3">
-        {howItWorks.map((item, i) => (
-          <div key={item.title} className="bg-white p-6">
-            <span className="text-xs font-semibold text-accent">0{i + 1}</span>
-            <h3 className="mt-2 text-sm font-semibold">{item.title}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-ink/50">
-              {item.body}
-            </p>
-          </div>
-        ))}
-      </div>
-
-      <div className="mt-4 bg-white p-6">
-        <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
-          What it costs
+      <div className="mx-auto max-w-6xl px-6 py-24">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+          How it works
         </p>
-        <p className="mt-2 text-sm text-ink/70">
-          Either a <strong className="text-ink">$650 one-off listing fee</strong>,
-          or a <strong className="text-ink">$75/month trial for 4 months</strong>.
-        </p>
-      </div>
+        <h2 className="mt-3 text-3xl font-medium tracking-tight sm:text-5xl">
+          List your space in four steps
+        </h2>
 
-      <div className="mt-16">
-        <div className="flex items-center justify-between">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
-            Step {step + 1} of {steps.length}
-          </p>
-          <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
-            {steps[step]}
-          </p>
-        </div>
-        <div className="mt-3 flex gap-1.5">
-          {steps.map((s, i) => (
+        <div className="mt-16 flex flex-col gap-16">
+          {steps.map((step, i) => (
             <div
-              key={s}
-              className={`h-1 flex-1 ${i <= step ? "bg-accent" : "bg-divider"}`}
-            />
+              key={step.n}
+              className={`flex flex-col gap-8 lg:items-center lg:gap-16 ${
+                i % 2 === 1 ? "lg:flex-row-reverse" : "lg:flex-row"
+              }`}
+            >
+              <div className="relative aspect-[4/3] w-full overflow-hidden bg-divider lg:w-1/2">
+                <Image
+                  src={step.image}
+                  alt=""
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover"
+                />
+              </div>
+              <div className="lg:w-1/2">
+                <span className="text-xs font-semibold text-accent">
+                  {step.n}
+                </span>
+                <h3 className="mt-2 text-2xl font-medium tracking-tight">
+                  {step.title}
+                </h3>
+                <p className="mt-3 max-w-md text-base leading-relaxed text-ink/60">
+                  {step.body}
+                </p>
+              </div>
+            </div>
           ))}
         </div>
+      </div>
 
-        <div className="mt-6 bg-white p-6 sm:p-10">
-          {step === 0 && (
-            <div className="flex flex-col gap-6">
-              <Field label="Space Name">
-                <input
-                  value={form.name}
-                  onChange={(e) => update("name", e.target.value)}
-                  placeholder="e.g. The Loft on 5th"
-                  className="input"
-                />
-              </Field>
-              <Field label="Full Address" hint="Internal only — not shown publicly until booking confirmed.">
-                <input
-                  value={form.address}
-                  onChange={(e) => update("address", e.target.value)}
-                  placeholder="Street address, suburb"
-                  className="input"
-                />
-              </Field>
-              <Field label="Licence">
-                <select
-                  value={form.licence}
-                  onChange={(e) => update("licence", e.target.value)}
-                  className="input"
-                >
-                  <option value="">Select licence type</option>
-                  <option>No licence</option>
-                  <option>On-premises licence</option>
-                  <option>General licence</option>
-                  <option>Not sure</option>
-                </select>
-              </Field>
+      <div className="border-y border-divider bg-white">
+        <div className="mx-auto flex max-w-6xl flex-col items-start gap-2 px-6 py-10 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+            What it costs
+          </p>
+          <p className="text-sm font-semibold uppercase tracking-wide text-accent">
+            Free to list until January 2027
+          </p>
+        </div>
+      </div>
+
+      <div className="mx-auto max-w-6xl px-6 py-24">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+          Why list with Blanked
+        </p>
+        <h2 className="mt-3 text-3xl font-medium tracking-tight sm:text-5xl">
+          Built for landlords
+        </h2>
+
+        <div className="mt-16 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {advantages.map((a) => (
+            <div key={a.title} className="bg-white p-6">
+              <h3 className="text-sm font-semibold">{a.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-ink/50">
+                {a.body}
+              </p>
             </div>
-          )}
+          ))}
+        </div>
+      </div>
 
-          {step === 1 && (
-            <div className="flex flex-col gap-6">
-              <Field label="Description">
-                <textarea
-                  value={form.description}
-                  onChange={(e) => update("description", e.target.value)}
-                  placeholder="Describe your space to chefs. What makes it special?"
-                  rows={5}
-                  className="input"
-                />
-              </Field>
-              <Field label="Minimum Booking Duration">
-                <select
-                  value={form.minDuration}
-                  onChange={(e) => update("minDuration", e.target.value)}
-                  className="input"
-                >
-                  <option>1 day</option>
-                  <option>3 days</option>
-                  <option>1 week</option>
-                  <option>1 month</option>
-                  <option>3 months</option>
-                </select>
-              </Field>
-            </div>
-          )}
+      <div className="mx-auto max-w-6xl px-6 py-24">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+          Safety & trust
+        </p>
+        <h2 className="mt-3 text-3xl font-medium tracking-tight sm:text-5xl">
+          You stay in control
+        </h2>
 
-          {step === 2 && (
-            <div className="flex flex-col gap-6">
-              <Field label="Daily Rate" hint="How much you want to receive per day.">
-                <input
-                  type="number"
-                  value={form.dailyRate}
-                  onChange={(e) => update("dailyRate", e.target.value)}
-                  placeholder="500"
-                  className="input"
-                />
-              </Field>
-              <Field label="Available From">
-                <input
-                  type="date"
-                  value={form.availableFrom}
-                  onChange={(e) => update("availableFrom", e.target.value)}
-                  className="input"
-                />
-              </Field>
-              <Field label="Or describe your availability">
-                <textarea
-                  value={form.availabilityNote}
-                  onChange={(e) => update("availabilityNote", e.target.value)}
-                  placeholder="e.g. Free for takeovers Tuesday–Thursday night and all day Sunday"
-                  rows={3}
-                  className="input"
-                />
-              </Field>
-            </div>
-          )}
-
-          {step === 3 && (
-            <div className="flex flex-col gap-6">
-              <Field label="Photos" hint="Minimum 3, maximum 10.">
-                <button
-                  type="button"
-                  onClick={() => update("photos", Math.min(form.photos + 1, 10))}
-                  className="flex h-32 w-32 flex-col items-center justify-center gap-2 border border-dashed border-divider text-xs text-ink/40 transition-colors hover:border-ink hover:text-ink"
-                >
-                  <span className="text-xl">+</span>
-                  Upload
-                </button>
-                <p className="mt-2 text-xs text-ink/40">
-                  {form.photos} photo{form.photos === 1 ? "" : "s"} added
+        <div className="mt-16 grid grid-cols-1 gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+          {trust.map((t) => (
+            <div key={t.title} className="flex gap-3">
+              <RedDot className="mt-2 shrink-0" />
+              <div>
+                <h3 className="text-sm font-semibold">{t.title}</h3>
+                <p className="mt-1 text-sm leading-relaxed text-ink/50">
+                  {t.body}
                 </p>
-              </Field>
-              <label className="flex items-start gap-3 text-sm text-ink/70">
-                <input
-                  type="checkbox"
-                  checked={form.agreed}
-                  onChange={(e) => update("agreed", e.target.checked)}
-                  className="mt-1 accent-accent"
-                />
-                I confirm this space is available for short-term hire and I
-                have the right to list it.
-              </label>
+              </div>
             </div>
-          )}
+          ))}
         </div>
+      </div>
 
-        <div className="mt-1 flex items-stretch gap-1">
-          {step > 0 && (
-            <button
-              onClick={back}
-              className="bg-white px-8 text-[11px] font-semibold uppercase tracking-[0.2em] text-ink/50 transition-colors hover:text-ink"
-            >
-              ← Back
-            </button>
-          )}
-          {step < steps.length - 1 ? (
-            <button
-              onClick={next}
-              className="flex-1 bg-ink py-5 text-[11px] font-semibold uppercase tracking-[0.25em] text-background transition-opacity hover:opacity-90"
-            >
-              Continue
-            </button>
-          ) : (
-            <button
-              onClick={handleSubmit}
-              disabled={!canSubmit}
-              className="flex-1 bg-ink py-5 text-[11px] font-semibold uppercase tracking-[0.25em] text-background transition-opacity hover:opacity-90 disabled:opacity-30"
-            >
-              {submitting ? "Submitting…" : "✓ Submit My Space"}
-            </button>
-          )}
+      <div className="relative flex min-h-[60vh] items-center justify-center overflow-hidden">
+        <Image
+          src="/images/space-night-terrace.jpg?v=3"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-black/50" />
+        <div className="relative flex flex-col items-center gap-6 px-6 text-center">
+          <h2 className="text-4xl font-bold uppercase leading-[0.95] tracking-tight text-white sm:text-6xl">
+            Ready to list your space?
+          </h2>
+          <Link
+            href="/list-a-space/apply"
+            className="bg-[#442220] px-10 py-4 text-xs font-semibold uppercase tracking-widest text-white transition-opacity hover:opacity-90"
+          >
+            List Space
+          </Link>
         </div>
-
-        {submitError && (
-          <p className="mt-4 text-sm text-accent">{submitError}</p>
-        )}
-
-        {needsAccount && (
-          <div className="mt-4 bg-white p-6">
-            <p className="text-sm font-medium">
-              One last thing — create your landlord account.
-            </p>
-            <p className="mt-1 text-sm text-ink/50">
-              Your listing needs an account so you can manage booking
-              requests. Sign up, confirm your email, then come back and
-              submit.
-            </p>
-            <div className="mt-4 flex gap-2">
-              <Link
-                href="/signup?type=landlord"
-                className="bg-accent px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-white transition-opacity hover:opacity-90"
-              >
-                Create Landlord Account
-              </Link>
-              <Link
-                href="/login?next=/list-a-space"
-                className="border border-ink px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-ink transition-colors hover:bg-ink hover:text-background"
-              >
-                Log In
-              </Link>
-            </div>
-          </div>
-        )}
       </div>
-      </div>
-      )}
     </>
-  );
-}
-
-function Field({
-  label,
-  hint,
-  children,
-}: {
-  label: string;
-  hint?: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div>
-      <label className="block text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
-        {label}
-      </label>
-      {hint && <p className="mt-1 text-xs text-ink/35">{hint}</p>}
-      <div className="mt-2">{children}</div>
-    </div>
   );
 }
