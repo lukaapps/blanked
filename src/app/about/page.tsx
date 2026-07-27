@@ -56,10 +56,10 @@ export default function AboutPage() {
           </div>
           <div className="mt-4 flex flex-col gap-2">
             <a
-              href="mailto:hello@blanked.melbourne"
+              href="mailto:jamie@blanked.melbourne"
               className="text-sm transition-colors hover:text-accent"
             >
-              hello@blanked.melbourne
+              jamie@blanked.melbourne
             </a>
             <a
               href="https://www.instagram.com/by.blanked/"
