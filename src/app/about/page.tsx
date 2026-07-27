@@ -15,19 +15,19 @@ export default function AboutPage() {
         />
       </div>
 
-      <div className="flex flex-col px-[16px] py-16 lg:py-0 lg:w-1/2">
-        <div className="flex-[1] lg:flex" />
-        <div className="flex flex-col gap-6">
-        <h1 className="whitespace-nowrap text-4xl font-bold uppercase leading-[0.71] tracking-tight sm:text-5xl lg:text-6xl">
-          About Blanked
+      <div className="flex flex-col justify-center gap-6 px-1.5 py-16 lg:w-1/2 lg:py-0">
+        <h1 className="text-6xl font-bold uppercase leading-[0.95] tracking-tight sm:text-7xl lg:text-[100px]">
+          About
+          <br />
+          Blanked
         </h1>
 
         <p className="text-justify text-[13.3px] leading-relaxed text-ink/60 sm:text-[15.3px]">
-          Blanked is a marketplace for short-term hospitality space — aka a
-          pop-up. Venues list their space. Chefs and food brands find and
-          book it. Customers discover what&rsquo;s on. The whole thing
-          happens in one place — browsing, booking, legals, payment, and
-          promotion. No back-and-forth. No middlemen. No wasted time.
+          Blanked is a marketplace for hospitality space. Venues list their
+          space. Anyone with something to cook, pour, or serve finds and
+          books it. Customers discover what&rsquo;s on. The whole thing
+          happens in one place — browsing, booking, agreements, payment, and
+          promotion.
         </p>
         <p className="text-justify text-[13.3px] leading-relaxed text-ink/60 sm:text-[15.3px]">
           Create a profile, browse available spaces by location, type, and
@@ -39,12 +39,17 @@ export default function AboutPage() {
           links to book your spot — all on Blanked.
         </p>
         <p className="text-justify text-[13.3px] leading-relaxed text-ink/60 sm:text-[15.3px]">
-          We exist because the infrastructure didn&rsquo;t. Every pop-up in
-          this city has been built on Instagram DMs and word of mouth.
-          Blanked is what comes next — a platform that gives chefs the
-          tools to trade independently, gives venues a simple way to
-          activate their space, and gives Melbourne somewhere to find out
-          what&rsquo;s happening and book a seat at the table.
+          Every pop-up in this city has been built on Instagram DMs and word
+          of mouth.
+        </p>
+        <p className="text-justify text-[13.3px] leading-relaxed text-ink/60 sm:text-[15.3px]">
+          Blanked is what comes next. A platform that gives hospitality
+          talent the tools to trade independently, gives venues a simple way
+          to activate their space, and gives Melbourne somewhere to find out
+          what&rsquo;s on and get a seat at it.
+        </p>
+        <p className="text-justify text-[13.3px] leading-relaxed text-ink/60 sm:text-[15.3px]">
+          We exist because the infrastructure didn&rsquo;t.
         </p>
 
         <div>
@@ -71,8 +76,6 @@ export default function AboutPage() {
             </a>
           </div>
         </div>
-        </div>
-        <div className="flex-[3] lg:flex" />
       </div>
     </div>
   );
