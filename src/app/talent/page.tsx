@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ChefCard } from "@/components/chef-card";
-import { ButtonLink } from "@/components/ui/button";
 import { getChefs } from "@/lib/data";
 
 export const metadata = {
@@ -40,8 +39,8 @@ export default async function ChefsPage() {
               Blanked works with an ever-growing community of hospitality
               talent, food brands, and supper club hosts who&rsquo;d rather
               cook than chase landlords. Some are testing a concept for the
-              first time. Others are running their fourth residency this
-              year.
+              first time. Others are running residencies. And the rest are
+              somewhere in between.
             </p>
             <p className="mt-4 text-base leading-relaxed text-ink/60">
               Pop-ups matter because they let good food move faster than a
@@ -53,9 +52,12 @@ export default async function ChefsPage() {
               get to see exactly who they&rsquo;re letting into their space,
               and what they&rsquo;ve done before.
             </p>
-            <ButtonLink href="#directory" variant="primary" className="mt-8">
+            <Link
+              href="#directory"
+              className="mt-8 inline-block w-fit bg-[#442220] px-10 py-4 text-xs font-semibold uppercase tracking-widest text-white transition-opacity hover:opacity-90"
+            >
               Meet All Our Talent
-            </ButtonLink>
+            </Link>
           </div>
         </div>
       </div>
@@ -73,7 +75,8 @@ export default async function ChefsPage() {
       <div className="mx-auto max-w-7xl px-6">
         <div className="mt-16 flex flex-col items-center gap-6 border-t border-divider pt-16 text-center">
           <h2 className="text-2xl font-medium tracking-tight sm:text-4xl">
-            Get in touch with Melbourne&rsquo;s best
+            Enquire about profiles and availability of Melbourne&rsquo;s
+            best food talents
           </h2>
           <Link
             href="/contact#contact-form"
@@ -94,7 +97,7 @@ export default async function ChefsPage() {
               <Link
                 key={chef.slug}
                 href="/events/coming-soon"
-                className="text-sm font-medium tracking-tight text-white/50 transition-colors hover:text-white"
+                className="text-sm font-medium uppercase tracking-tight text-white/50 transition-colors hover:text-white"
               >
                 {chef.name}
               </Link>
