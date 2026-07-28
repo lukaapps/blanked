@@ -99,7 +99,7 @@ function ProfileHeaderCard({
         <div>
           <p className="text-xl font-medium tracking-tight">{profile.name}</p>
           <span className="mt-1 inline-block bg-accent px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.15em] text-white">
-            {profile.accountType === "chef" ? "Chef / Brand" : "Landlord"}
+            {profile.accountType === "chef" ? "Talent / Brand" : "Landlord"}
           </span>
         </div>
       </div>
@@ -219,7 +219,7 @@ export function ChefProfileLive({
             Make my profile visible to landlords
           </p>
           <p className="mt-0.5 text-sm text-ink/50">
-            Appears in the Blanked Chefs directory when on.
+            Appears in the Blanked Talent directory when on.
           </p>
         </div>
         <button
@@ -316,8 +316,8 @@ export function LandlordProfileLive({
         <p className={sectionLabel}>Booking requests</p>
         {requests.length === 0 ? (
           <p className="mt-4 text-sm text-ink/50">
-            No incoming requests yet. We&rsquo;ll email you when a chef wants
-            your space.
+            No incoming requests yet. We&rsquo;ll email you when hospitality
+            talent wants your space.
           </p>
         ) : (
           <div className="mt-4 flex flex-col gap-1">

@@ -37,8 +37,8 @@ export function Footer() {
             <Link href="/events" className="text-sm hover:text-accent">
               Events
             </Link>
-            <Link href="/chefs" className="text-sm hover:text-accent">
-              Blanked Chefs
+            <Link href="/talent" className="text-sm hover:text-accent">
+              Talent
             </Link>
           </div>
 

@@ -5,7 +5,7 @@ import { RedDot } from "@/components/page-header";
 export const metadata = {
   title: "List a Space | Blanked",
   description:
-    "List your venue on Blanked and start receiving booking requests from vetted chefs and hospitality brands.",
+    "List your venue on Blanked and start receiving booking requests from vetted hospitality talent.",
 };
 
 const steps = [
@@ -23,7 +23,7 @@ const steps = [
   },
   {
     n: "03",
-    title: "Chefs & brands find and book",
+    title: "Hospitality talent find and book",
     body: "Vetted hospitality talent browse, filter, and send you booking requests. You approve every one. You get to meet everyone.",
     image: "/images/space-dark-dining.jpg?v=3",
   },
@@ -46,7 +46,7 @@ const advantages = [
   },
   {
     title: "Find new partners",
-    body: "Meet chefs and brands you’d never cross paths with on Instagram DMs.",
+    body: "Meet hospitality talent you’d never cross paths with on Instagram DMs.",
   },
   {
     title: "Fast to list",
@@ -72,7 +72,7 @@ const trust = [
     body: "Set your own damage deposit — Blanked holds it and it’s there if something goes wrong.",
   },
   {
-    title: "Vetted chefs & brands",
+    title: "Vetted hospitality talent",
     body: "Everyone requesting to book has been vetted before they can send a request.",
   },
   {

@@ -13,7 +13,7 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   title: "Blanked | Pop-up spaces, Melbourne",
   description:
-    "Blanked connects Melbourne chefs and brands with short-term hospitality space. Browse spaces, list your venue, discover pop-up events.",
+    "Blanked connects Melbourne hospitality talent with short-term hospitality space. Browse spaces, list your venue, discover pop-up events.",
 };
 
 export default function RootLayout({

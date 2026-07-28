@@ -47,21 +47,21 @@ export const spaces: Space[] = [
     reviews: [
       {
         author: "Mia Thornton",
-        authorRole: "Chef / Supper Club Host",
+        authorRole: "Talent / Supper Club Host",
         rating: 5,
         date: "May 2026",
         text: "Ran a two-night supper club here and the room did half the work for me. Kitchen is genuinely commercial-grade and the landlord was easy about bump-in.",
       },
       {
         author: "Jordan Reyes",
-        authorRole: "Chef",
+        authorRole: "Talent",
         rating: 5,
         date: "April 2026",
         text: "Beautiful raw space, great light for content, zero drama on the day. Would book again without thinking.",
       },
       {
         author: "Priya Chandra",
-        authorRole: "Chef / Brand Founder",
+        authorRole: "Talent / Brand Founder",
         rating: 4,
         date: "February 2026",
         text: "Loved the room. Only note is load-in via the laneway takes a while — plan an extra half hour.",
@@ -98,14 +98,14 @@ export const spaces: Space[] = [
     reviews: [
       {
         author: "Tom Whitfield",
-        authorRole: "Chef",
+        authorRole: "Talent",
         rating: 5,
         date: "June 2026",
         text: "A week-long residency that ran like clockwork. The regulars showed up, the kitchen never missed, and the handover was painless.",
       },
       {
         author: "Priya Chandra",
-        authorRole: "Chef / Brand Founder",
+        authorRole: "Talent / Brand Founder",
         rating: 5,
         date: "March 2026",
         text: "The existing crowd is the real asset here — we sold out two nights on their foot traffic alone.",
@@ -123,7 +123,7 @@ export const spaces: Space[] = [
     weeklyRate: 4200,
     minBookingDuration: "1 day",
     description:
-      "A compact prep kitchen and dining nook ideal for supper clubs, tasting menus, and collaborative pop-ups with another chef.",
+      "A compact prep kitchen and dining nook ideal for supper clubs, tasting menus, and collaborative pop-ups with other talent.",
     whatCanYouDo:
       "Share the space with one other operator per booking window. Prep kitchen access included, plus a small dining area for up to 20 guests.",
     availability:
@@ -139,7 +139,7 @@ export const spaces: Space[] = [
     reviews: [
       {
         author: "Amara Osei",
-        authorRole: "Chef / Caterer",
+        authorRole: "Talent / Caterer",
         rating: 4,
         date: "May 2026",
         text: "Tight but well thought out. Perfect for a 16-cover tasting menu — wouldn't push it past 20.",
@@ -174,14 +174,14 @@ export const spaces: Space[] = [
     reviews: [
       {
         author: "Jordan Reyes",
-        authorRole: "Chef",
+        authorRole: "Talent",
         rating: 5,
         date: "June 2026",
         text: "My noodle bar has popped up here three times now. Late crowd is built in, bar staff know the drill.",
       },
       {
         author: "Leo Nakamura",
-        authorRole: "Chef / Brand Founder",
+        authorRole: "Talent / Brand Founder",
         rating: 4,
         date: "January 2026",
         text: "Great vibe, no kitchen though — you're prepping off-site. Know that going in and it's a brilliant room.",
@@ -214,7 +214,7 @@ export const spaces: Space[] = [
     reviews: [
       {
         author: "Leo Nakamura",
-        authorRole: "Chef / Brand Founder",
+        authorRole: "Talent / Brand Founder",
         rating: 5,
         date: "April 2026",
         text: "Where the brand started. Saturday foot traffic is unreal — bring more stock than you think you need.",
@@ -248,14 +248,14 @@ export const spaces: Space[] = [
     reviews: [
       {
         author: "Mia Thornton",
-        authorRole: "Chef / Supper Club Host",
+        authorRole: "Talent / Supper Club Host",
         rating: 5,
         date: "March 2026",
         text: "Golden hour up here is worth the rate on its own. We shot an entire campaign during service.",
       },
       {
         author: "Amara Osei",
-        authorRole: "Chef / Caterer",
+        authorRole: "Talent / Caterer",
         rating: 4,
         date: "February 2026",
         text: "Stunning venue for events. Have a wet-weather plan locked before you commit to a date.",
@@ -276,7 +276,7 @@ export const spaces: Space[] = [
     description:
       "A daylight-filled corner cafe with a loyal breakfast crowd, available for weekday residencies.",
     whatCanYouDo:
-      "Run breakfast and lunch service using the existing kitchen and coffee setup. Great for chefs testing a daytime concept.",
+      "Run breakfast and lunch service using the existing kitchen and coffee setup. Great for hospitality talent testing a daytime concept.",
     availability:
       "This venue operates as a cafe serving breakfast and lunch on weekdays. It's available for residencies of three days or more, with kitchen access until 3pm each day — evenings and weekends are not available.",
     amenities: ["kitchen", "seating", "wifi"],
@@ -290,7 +290,7 @@ export const spaces: Space[] = [
     reviews: [
       {
         author: "Tom Whitfield",
-        authorRole: "Chef",
+        authorRole: "Talent",
         rating: 4,
         date: "May 2026",
         text: "Ideal weekday test bed. Uni crowd is honest feedback — if it sells here, it sells anywhere.",
@@ -329,7 +329,7 @@ export const chefs: Chef[] = [
   {
     slug: "mia-thornton",
     name: "Mia Thornton",
-    role: "Chef / Supper Club Host",
+    role: "Talent / Supper Club Host",
     bio: "Mia has spent the past six years cooking across Melbourne's best kitchens before striking out on her own with a rotating supper club focused on modern Australian produce. She's run pop-ups from Fitzroy to the Yarra Valley and is known for menus that change with the season and never repeat.",
     quote: "Blanked let me stop chasing landlords and start cooking.",
     portrait: unsplash("photo-1494790108377-be9c29b29330"),
@@ -341,7 +341,7 @@ export const chefs: Chef[] = [
   {
     slug: "leo-nakamura",
     name: "Leo Nakamura",
-    role: "Chef / Brand Founder",
+    role: "Talent / Brand Founder",
     bio: "Leo runs a Japanese-Australian fusion brand that started as a market stall and has grown into one of the city's most talked-about pop-ups. He's cooked residencies in three states and is currently focused on bringing his concept to a permanent home in Melbourne.",
     quote: "Every space we've booked through Blanked has come with zero drama.",
     portrait: unsplash("photo-1595273670150-bd0c3c392e46"),
@@ -353,7 +353,7 @@ export const chefs: Chef[] = [
   {
     slug: "amara-osei",
     name: "Amara Osei",
-    role: "Chef / Caterer",
+    role: "Talent / Caterer",
     bio: "Amara's West African-inspired dinners have built a cult following through word of mouth alone. She's now scaling up with residencies and larger event bookings, bringing her food to rooms that seat sixty instead of six.",
     quote: "Landlords take me seriously the moment I mention Blanked.",
     portrait: unsplash("photo-1524504388940-b1c1722653e1"),
@@ -365,7 +365,7 @@ export const chefs: Chef[] = [
   {
     slug: "tom-whitfield",
     name: "Tom Whitfield",
-    role: "Chef",
+    role: "Talent",
     bio: "Tom trained in fine dining before pivoting to casual, produce-led pop-ups. He runs short residencies of one to two weeks at a time, testing new menus in front of a live audience before deciding what sticks.",
     quote: "I book, I cook, I move on to the next room.",
     portrait: unsplash("photo-1500648767791-00dcc994a43e"),
@@ -377,7 +377,7 @@ export const chefs: Chef[] = [
   {
     slug: "priya-chandra",
     name: "Priya Chandra",
-    role: "Chef / Brand Founder",
+    role: "Talent / Brand Founder",
     bio: "Priya's modern Indian dining concept has run pop-ups across six Melbourne suburbs in the last year. She's known for pairing regional Indian dishes with natural wine.",
     quote: "The booking flow is faster than texting a landlord back and forth.",
     portrait: unsplash("photo-1544005313-94ddf0286df2"),
@@ -388,7 +388,7 @@ export const chefs: Chef[] = [
   {
     slug: "jordan-reyes",
     name: "Jordan Reyes",
-    role: "Chef",
+    role: "Talent",
     bio: "Jordan's late-night noodle bar concept started as a one-off collab and has since become a recurring residency, moving between speakeasies and laneway bars across the city.",
     quote: "Blanked found me spaces I never would have known existed.",
     portrait: unsplash("photo-1568602471122-7832951cc4c5"),

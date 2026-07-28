@@ -68,9 +68,9 @@ export default async function EventDetailPage({
 
           {chef && (
             <>
-              <h2 className="mt-10 text-lg font-semibold">The chef</h2>
+              <h2 className="mt-10 text-lg font-semibold">The talent</h2>
               <Link
-                href={`/chefs/${chef.slug}`}
+                href={`/talent/${chef.slug}`}
                 className="mt-4 flex items-center gap-4 bg-white p-4 transition-colors hover:text-accent"
               >
                 <div className="relative h-16 w-16 shrink-0 overflow-hidden bg-divider">

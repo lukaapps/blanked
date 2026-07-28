@@ -15,7 +15,7 @@ const centerLinks: { href: string; label: string; external?: boolean }[] = [
     label: "Instagram",
     external: true,
   },
-  { href: "/chefs", label: "Blanked Chefs" },
+  { href: "/talent", label: "Talent" },
 ];
 
 export function Nav() {

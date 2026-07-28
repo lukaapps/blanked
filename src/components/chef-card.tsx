@@ -4,7 +4,7 @@ import type { Chef } from "@/lib/types";
 
 export function ChefCard({ chef, large = false }: { chef: Chef; large?: boolean }) {
   return (
-    <Link href={`/chefs/${chef.slug}`} className="group block">
+    <Link href={`/talent/${chef.slug}`} className="group block">
       <div
         className={`relative w-full overflow-hidden bg-divider ${
           large ? "aspect-[3/4]" : "aspect-square"
@@ -21,7 +21,11 @@ export function ChefCard({ chef, large = false }: { chef: Chef; large?: boolean 
       <div className="mt-3">
         <h3 className="text-base font-semibold">{chef.name}</h3>
         <p className="text-sm text-accent">{chef.role}</p>
-        {large && <p className="mt-2 text-sm text-ink/70 italic">&ldquo;{chef.quote}&rdquo;</p>}
+        {large && (
+          <p className="mt-3 border-l-2 border-accent pl-3 text-sm italic text-ink/70">
+            &ldquo;{chef.quote}&rdquo;
+          </p>
+        )}
       </div>
     </Link>
   );

@@ -190,7 +190,7 @@ export default function ListASpaceApplyPage() {
                 <textarea
                   value={form.description}
                   onChange={(e) => update("description", e.target.value)}
-                  placeholder="Describe your space to chefs. What makes it special?"
+                  placeholder="Describe your space to hospitality talent. What makes it special?"
                   rows={5}
                   className="input"
                 />

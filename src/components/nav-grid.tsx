@@ -11,7 +11,7 @@ const centerLinks: { href: string; label: string; external?: boolean }[][] = [
     { href: "/list-a-space", label: "List a Space" },
   ],
   [
-    { href: "/chefs", label: "Blanked Chefs" },
+    { href: "/talent", label: "Talent" },
     { href: "/about", label: "About" },
     {
       href: "https://www.instagram.com/by.blanked/",
@@ -87,10 +87,6 @@ export function NavGrid({
                     <>
                       by<span className="text-accent">.</span>Blanked
                       <span className="text-accent">.</span>
-                    </>
-                  ) : link.href === "/chefs" ? (
-                    <>
-                      Blanked<span className="text-accent">.</span> Chefs
                     </>
                   ) : (
                     link.label

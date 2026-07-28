@@ -34,7 +34,7 @@ export default function AboutPage() {
           price, and submit a booking request in minutes. Once confirmed,
           Blanked handles the agreement and payment. If you&rsquo;re a
           venue, list your space in under ten minutes and start receiving
-          booking requests from vetted chefs and brands. If you&rsquo;re a
+          booking requests from vetted hospitality talent. If you&rsquo;re a
           customer, find what&rsquo;s on, pick your date, and follow the
           links to book your spot — all on Blanked.
         </p>

@@ -19,10 +19,10 @@ export default async function ChefDetailPage({
   return (
     <div className="mx-auto max-w-6xl px-6 pb-24 pt-20">
       <Link
-        href="/chefs"
+        href="/talent"
         className="text-sm text-ink/50 transition-colors hover:text-accent"
       >
-        ← Back to all chefs
+        ← Back to all talent
       </Link>
 
       <div className="mt-6 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
@@ -72,7 +72,7 @@ export default async function ChefDetailPage({
 
           <a href={chef.instagram} target="_blank" rel="noopener noreferrer">
             <Button variant="secondary" className="mt-10">
-              Follow This Chef
+              Follow This Talent
             </Button>
           </a>
         </div>

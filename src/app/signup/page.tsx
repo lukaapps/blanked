@@ -54,7 +54,7 @@ function SignupForm() {
         <p className="mt-6 text-sm leading-relaxed text-ink/60">
           We&rsquo;ve sent a confirmation link to{" "}
           <strong className="text-ink">{email}</strong>. Click it to activate
-          your {accountType === "chef" ? "Chef / Brand" : "Landlord"} account —
+          your {accountType === "chef" ? "Talent / Brand" : "Landlord"} account —
           you&rsquo;ll land straight in your profile.
         </p>
       </div>
@@ -97,7 +97,7 @@ function SignupForm() {
             I am a…
           </label>
           <div className="mt-2 flex gap-2">
-            {typeButton("chef", "Chef / Brand", "I want to find and book spaces")}
+            {typeButton("chef", "Talent / Brand", "I want to find and book spaces")}
             {typeButton("landlord", "Landlord", "I have a space to list")}
           </div>
         </div>

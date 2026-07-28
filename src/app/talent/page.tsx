@@ -5,9 +5,9 @@ import { ButtonLink } from "@/components/ui/button";
 import { getChefs } from "@/lib/data";
 
 export const metadata = {
-  title: "Blanked Chefs | Blanked",
+  title: "Talent | Blanked",
   description:
-    "The people cooking Melbourne's pop-ups. Meet the chefs behind Blanked.",
+    "The people behind Melbourne's pop-ups. Meet the hospitality talent behind Blanked.",
 };
 
 export default async function ChefsPage() {
@@ -18,19 +18,17 @@ export default async function ChefsPage() {
     <div className="mx-auto max-w-7xl px-6 pb-24 pt-20">
       <div>
         <h1 className="text-6xl font-bold uppercase leading-[0.95] tracking-tight sm:text-7xl lg:text-[100px]">
-          Blanked
-          <br />
-          Chefs
+          Talent
         </h1>
         <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
-          The people cooking Melbourne&rsquo;s pop-ups
+          The people behind Melbourne&rsquo;s pop-ups
         </p>
       </div>
 
-      <div className="mt-16 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
+      <div className="mt-24 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
         <div className="relative aspect-[4/5] w-full overflow-hidden bg-divider">
           <Image
-            src={featured[0].portrait}
+            src="/images/space-brick-loft.jpg?v=3"
             alt=""
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"
@@ -39,13 +37,13 @@ export default async function ChefsPage() {
         </div>
         <div>
           <h2 className="text-2xl font-medium tracking-tight sm:text-4xl">
-            The chefs behind Blanked
+            The talent behind Blanked
           </h2>
           <p className="mt-6 text-base leading-relaxed text-ink/60">
-            Blanked works with an ever-growing community of chefs, food
-            brands, and supper club hosts who&rsquo;d rather cook than chase
-            landlords. Some are testing a concept for the first time. Others
-            are running their fourth residency this year.
+            Blanked works with an ever-growing community of hospitality
+            talent, food brands, and supper club hosts who&rsquo;d rather
+            cook than chase landlords. Some are testing a concept for the
+            first time. Others are running their fourth residency this year.
           </p>
           <p className="mt-4 text-base leading-relaxed text-ink/60">
             Pop-ups matter because they let good food move faster than a
@@ -53,12 +51,12 @@ export default async function ChefsPage() {
             a kitchen, a room, and a night to prove the idea works.
           </p>
           <p className="mt-4 text-base leading-relaxed text-ink/60">
-            Every chef on Blanked is vetted before they can book. Landlords
+            Everyone on Blanked is vetted before they can book. Landlords
             get to see exactly who they&rsquo;re letting into their space,
             and what they&rsquo;ve done before.
           </p>
           <ButtonLink href="#directory" variant="primary" className="mt-8">
-            Meet All Our Chefs
+            Meet All Our Talent
           </ButtonLink>
         </div>
       </div>
@@ -71,13 +69,13 @@ export default async function ChefsPage() {
 
       <div id="directory" className="mt-24 border-t border-divider pt-8">
         <h2 className="text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
-          Directory — All chefs
+          Directory — All talent
         </h2>
         <div className="mt-6 flex flex-col gap-1">
           {chefs.map((chef) => (
             <Link
               key={chef.slug}
-              href={`/chefs/${chef.slug}`}
+              href={`/talent/${chef.slug}`}
               className="group flex items-center justify-between bg-white px-6 py-5 transition-colors hover:text-accent"
             >
               <span className="text-lg font-medium tracking-tight sm:text-2xl">

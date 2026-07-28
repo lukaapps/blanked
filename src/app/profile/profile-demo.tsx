@@ -66,7 +66,7 @@ export function ProfileDemo() {
           onClick={() => setAccountType("chef")}
           className={accountType === "chef" ? "text-accent" : "hover:text-ink"}
         >
-          Chef
+          Talent
         </button>
         <span>/</span>
         <button
@@ -109,7 +109,7 @@ function ChefView({
           <div>
             <p className="text-xl font-medium tracking-tight">{mockChef.name}</p>
             <span className="mt-1 inline-block bg-accent px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.15em] text-white">
-              Chef
+              Talent
             </span>
           </div>
         </div>
@@ -173,7 +173,7 @@ function ChefView({
         <div>
           <p className="text-sm font-medium">Make my profile visible to landlords</p>
           <p className="mt-0.5 text-sm text-ink/50">
-            Appears in the Blanked Chefs directory when on.
+            Appears in the Blanked Talent directory when on.
           </p>
         </div>
         <button
