@@ -15,18 +15,9 @@ export default async function ChefsPage() {
   const featured = chefs.filter((c) => c.featured);
 
   return (
-    <div className="mx-auto max-w-7xl px-6 pb-24 pt-20">
-      <div>
-        <h1 className="text-6xl font-bold uppercase leading-[0.95] tracking-tight sm:text-7xl lg:text-[100px]">
-          Talent
-        </h1>
-        <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
-          The people behind Melbourne&rsquo;s pop-ups
-        </p>
-      </div>
-
-      <div className="mt-24 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
-        <div className="relative aspect-[4/5] w-full overflow-hidden bg-divider">
+    <>
+      <div className="flex min-h-screen flex-col-reverse lg:flex-row">
+        <div className="relative min-h-[50vh] w-full flex-1 lg:min-h-0 lg:w-1/2">
           <Image
             src="/images/space-brick-loft.jpg?v=3"
             alt=""
@@ -35,59 +26,82 @@ export default async function ChefsPage() {
             className="object-cover"
           />
         </div>
-        <div>
-          <h2 className="text-2xl font-medium tracking-tight sm:text-4xl">
-            The talent behind Blanked
-          </h2>
-          <p className="mt-6 text-base leading-relaxed text-ink/60">
-            Blanked works with an ever-growing community of hospitality
-            talent, food brands, and supper club hosts who&rsquo;d rather
-            cook than chase landlords. Some are testing a concept for the
-            first time. Others are running their fourth residency this year.
+
+        <div className="flex flex-col justify-center gap-6 px-1.5 py-16 lg:w-1/2 lg:py-0">
+          <h1 className="text-6xl font-bold uppercase leading-[0.95] tracking-tight sm:text-7xl lg:text-[100px]">
+            Talent
+          </h1>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+            The people behind Melbourne&rsquo;s pop-ups
           </p>
-          <p className="mt-4 text-base leading-relaxed text-ink/60">
-            Pop-ups matter because they let good food move faster than a
-            lease ever could. No five-year commitment, no fit-out debt — just
-            a kitchen, a room, and a night to prove the idea works.
-          </p>
-          <p className="mt-4 text-base leading-relaxed text-ink/60">
-            Everyone on Blanked is vetted before they can book. Landlords
-            get to see exactly who they&rsquo;re letting into their space,
-            and what they&rsquo;ve done before.
-          </p>
-          <ButtonLink href="#directory" variant="primary" className="mt-8">
-            Meet All Our Talent
-          </ButtonLink>
+
+          <div>
+            <p className="text-base leading-relaxed text-ink/60">
+              Blanked works with an ever-growing community of hospitality
+              talent, food brands, and supper club hosts who&rsquo;d rather
+              cook than chase landlords. Some are testing a concept for the
+              first time. Others are running their fourth residency this
+              year.
+            </p>
+            <p className="mt-4 text-base leading-relaxed text-ink/60">
+              Pop-ups matter because they let good food move faster than a
+              lease ever could. No five-year commitment, no fit-out debt —
+              just a kitchen, a room, and a night to prove the idea works.
+            </p>
+            <p className="mt-4 text-base leading-relaxed text-ink/60">
+              Everyone on Blanked is vetted before they can book. Landlords
+              get to see exactly who they&rsquo;re letting into their space,
+              and what they&rsquo;ve done before.
+            </p>
+            <ButtonLink href="#directory" variant="primary" className="mt-8">
+              Meet All Our Talent
+            </ButtonLink>
+          </div>
         </div>
       </div>
 
-      <div className="mt-20 grid grid-cols-1 gap-x-6 gap-y-14 sm:grid-cols-2 lg:grid-cols-4">
-        {featured.map((chef) => (
-          <ChefCard key={chef.slug} chef={chef} large />
-        ))}
-      </div>
-
-      <div id="directory" className="mt-24 border-t border-divider pt-8">
-        <h2 className="text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
-          Directory — All talent
-        </h2>
-        <div className="mt-6 flex flex-col gap-1">
-          {chefs.map((chef) => (
-            <Link
-              key={chef.slug}
-              href={`/talent/${chef.slug}`}
-              className="group flex items-center justify-between bg-white px-6 py-5 transition-colors hover:text-accent"
-            >
-              <span className="text-lg font-medium tracking-tight sm:text-2xl">
-                {chef.name}
-              </span>
-              <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-ink/40 transition-colors group-hover:text-accent">
-                {chef.role}
-              </span>
-            </Link>
+      <div className="pt-24">
+        <div className="no-scrollbar -mx-6 flex gap-1 overflow-x-auto px-6 sm:gap-1.5">
+          {featured.map((chef) => (
+            <div key={chef.slug} className="shrink-0">
+              <ChefCard chef={chef} />
+            </div>
           ))}
         </div>
       </div>
-    </div>
+
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="mt-16 flex flex-col items-center gap-6 border-t border-divider pt-16 text-center">
+          <h2 className="text-2xl font-medium tracking-tight sm:text-4xl">
+            Get in touch with Melbourne&rsquo;s best
+          </h2>
+          <Link
+            href="/contact#contact-form"
+            className="bg-[#442220] px-10 py-4 text-xs font-semibold uppercase tracking-widest text-white transition-opacity hover:opacity-90"
+          >
+            Get in touch
+          </Link>
+        </div>
+      </div>
+
+      <div id="directory" className="mt-24 bg-[#442220] py-10 text-white">
+        <div className="mx-auto max-w-7xl px-6 text-center">
+          <h2 className="text-left text-[11px] font-semibold uppercase tracking-[0.25em] text-white/50">
+            Collaborators
+          </h2>
+          <div className="mx-auto mt-6 grid max-w-3xl grid-cols-1 justify-items-center gap-x-8 gap-y-4 sm:grid-cols-3">
+            {chefs.map((chef) => (
+              <Link
+                key={chef.slug}
+                href="/events/coming-soon"
+                className="text-sm font-medium tracking-tight text-white/50 transition-colors hover:text-white"
+              >
+                {chef.name}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
