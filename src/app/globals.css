@@ -15,6 +15,10 @@
   --font-sans: var(--font-dm-sans);
 }
 
+html {
+  scrollbar-gutter: stable;
+}
+
 body {
   background: var(--color-background);
   color: var(--color-ink);

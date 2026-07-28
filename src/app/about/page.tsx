@@ -4,7 +4,7 @@ import { heroImages } from "@/lib/mock-data";
 
 export default function AboutPage() {
   return (
-    <div className="flex min-h-screen flex-col-reverse gap-1 lg:flex-row">
+    <div className="flex min-h-screen flex-col-reverse lg:flex-row">
       <div className="relative min-h-[50vh] w-full flex-1 lg:min-h-0 lg:w-1/2">
         <Image
           src={heroImages[1]}
