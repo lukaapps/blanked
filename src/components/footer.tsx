@@ -69,9 +69,9 @@ export function Footer() {
             >
               Instagram
             </a>
-            <a href="mailto:jamie@blanked.melbourne" className="text-sm hover:text-accent">
-              jamie@blanked.melbourne
-            </a>
+            <Link href="/contact" className="text-sm hover:text-accent">
+              Contact Us
+            </Link>
           </div>
         </div>
       </div>

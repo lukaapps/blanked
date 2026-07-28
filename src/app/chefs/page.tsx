@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ChefCard } from "@/components/chef-card";
-import { PageHeader } from "@/components/page-header";
 import { ButtonLink } from "@/components/ui/button";
 import { getChefs } from "@/lib/data";
 
@@ -17,10 +16,16 @@ export default async function ChefsPage() {
 
   return (
     <div className="mx-auto max-w-7xl px-6 pb-24 pt-20">
-      <PageHeader
-        title="Blanked Chefs"
-        caption="The people cooking Melbourne's pop-ups"
-      />
+      <div>
+        <h1 className="text-6xl font-bold uppercase leading-[0.95] tracking-tight sm:text-7xl lg:text-[100px]">
+          Blanked
+          <br />
+          Chefs
+        </h1>
+        <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+          The people cooking Melbourne&rsquo;s pop-ups
+        </p>
+      </div>
 
       <div className="mt-16 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
         <div className="relative aspect-[4/5] w-full overflow-hidden bg-divider">

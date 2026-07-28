@@ -2,7 +2,6 @@
 
 import { useMemo, useState } from "react";
 import { EventCard } from "@/components/event-card";
-import { PageHeader } from "@/components/page-header";
 import type { Event } from "@/lib/types";
 
 const filters = ["All", "This Week", "This Month", "Free", "Past"] as const;
@@ -36,10 +35,14 @@ export function EventsClient({
 
   return (
     <div className="mx-auto max-w-7xl px-6 pb-24 pt-20">
-      <PageHeader
-        title="Events"
-        caption="Melbourne's best pop-up dining, presented by Blanked"
-      />
+      <div>
+        <h1 className="text-6xl font-bold uppercase leading-[0.95] tracking-tight sm:text-7xl lg:text-[100px]">
+          Events
+        </h1>
+        <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+          Melbourne&rsquo;s best pop-up dining, presented by Blanked
+        </p>
+      </div>
 
       <div className="mt-12 flex flex-wrap gap-2">
         {filters.map((f) => (
