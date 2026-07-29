@@ -186,7 +186,7 @@ export default function ListASpacePage() {
         </div>
       </div>
 
-      <div className="px-6 py-24">
+      <div className="px-6 pb-24 pt-8">
         <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
           Safety & trust
         </p>

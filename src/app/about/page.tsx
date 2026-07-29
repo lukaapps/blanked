@@ -31,9 +31,8 @@ export default function AboutPage() {
         <p className="text-justify text-[13.3px] leading-relaxed text-ink/60 sm:text-[15.3px]">
           Blanked is a marketplace for hospitality space. Venues list their
           space. Anyone with something to cook, pour, or serve finds and
-          books it. Customers discover what&rsquo;s on. The whole thing
-          happens in one place — browsing, booking, agreements, payment, and
-          promotion.
+          books it. Customers discover what&rsquo;s on. End to end it happens
+          here — browsing, booking, agreements, payment, and promotion.
         </p>
         <p className="text-justify text-[13.3px] leading-relaxed text-ink/60 sm:text-[15.3px]">
           Create a profile, browse available spaces by location, type, and
@@ -63,10 +62,10 @@ export default function AboutPage() {
           </div>
           <div className="mt-4 flex flex-col gap-2">
             <a
-              href="mailto:jamie@blanked.melbourne"
+              href="mailto:Jamie@blanked.melbourne"
               className="text-sm transition-colors hover:text-accent"
             >
-              jamie@blanked.melbourne
+              Jamie@blanked.melbourne
             </a>
             <a
               href="https://www.instagram.com/by.blanked/"
