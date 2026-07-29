@@ -56,7 +56,7 @@ export default async function ChefsPage() {
               href="#directory"
               className="mt-8 inline-block w-fit bg-[#442220] px-10 py-4 text-xs font-semibold uppercase tracking-widest text-white transition-opacity hover:opacity-90"
             >
-              Meet All Our Talent
+              Meet the community
             </Link>
           </div>
         </div>
@@ -90,7 +90,7 @@ export default async function ChefsPage() {
       <div id="directory" className="mt-24 bg-[#442220] py-10 text-white">
         <div className="mx-auto max-w-7xl px-6 text-center">
           <h2 className="text-left text-[11px] font-semibold uppercase tracking-[0.25em] text-white/50">
-            Collaborators
+            The Community
           </h2>
           <div className="mx-auto mt-6 grid max-w-3xl grid-cols-1 justify-items-center gap-x-8 gap-y-4 sm:grid-cols-3">
             {chefs.map((chef) => (
