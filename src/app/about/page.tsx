@@ -35,8 +35,8 @@ export default function AboutPage() {
           here — browsing, booking, agreements, payment, and promotion.
         </p>
         <p className="text-justify text-[13.3px] leading-relaxed text-ink/60 sm:text-[15.3px]">
-          Create a profile, browse available spaces by location, type, and
-          price, and submit a booking request in minutes. Once confirmed,
+          Create a profile, browse available spaces by location, type, price,
+          and submit a booking request in minutes. Once confirmed,
           Blanked handles the agreement and payment. If you&rsquo;re a
           venue, list your space in under ten minutes and start receiving
           booking requests from vetted hospitality talent. If you&rsquo;re a

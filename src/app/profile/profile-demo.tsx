@@ -5,9 +5,9 @@ import Link from "next/link";
 import { useState } from "react";
 import { Button, ButtonLink } from "@/components/ui/button";
 import { PageHeader } from "@/components/page-header";
-import { spaces, chefs } from "@/lib/mock-data";
+import { spaces, chefs, events } from "@/lib/mock-data";
 
-type AccountType = "chef" | "landlord";
+type AccountType = "chef" | "landlord" | "customer";
 
 const mockChef = {
   name: "Mia Thornton",
@@ -33,6 +33,11 @@ const mockLandlord = {
   ],
 };
 
+const mockCustomer = {
+  name: "Alex Chen",
+  savedSlugs: [events[0].slug, events[2].slug],
+};
+
 const sectionLabel =
   "text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40";
 
@@ -41,6 +46,7 @@ export function ProfileDemo() {
   const [visible, setVisible] = useState(true);
 
   const savedSpaces = spaces.filter((s) => mockChef.savedSlugs.includes(s.slug));
+  const savedEvents = events.filter((e) => mockCustomer.savedSlugs.includes(e.slug));
 
   return (
     <div className="mx-auto max-w-5xl px-6 pb-24 pt-20">
@@ -49,12 +55,18 @@ export function ProfileDemo() {
         caption={
           accountType === "chef"
             ? "Manage your bookings and public profile"
-            : "Manage your spaces and listings"
+            : accountType === "landlord"
+            ? "Manage your spaces and listings"
+            : "Manage your saved events"
         }
         action={
           accountType === "landlord" ? (
             <ButtonLink href="/list-a-space" variant="secondary">
               + List a Space
+            </ButtonLink>
+          ) : accountType === "customer" ? (
+            <ButtonLink href="/events" variant="secondary">
+              Browse Events
             </ButtonLink>
           ) : undefined
         }
@@ -75,6 +87,13 @@ export function ProfileDemo() {
         >
           Landlord
         </button>
+        <span>/</span>
+        <button
+          onClick={() => setAccountType("customer")}
+          className={accountType === "customer" ? "text-accent" : "hover:text-ink"}
+        >
+          Customer
+        </button>
       </div>
 
       {accountType === "chef" ? (
@@ -83,8 +102,10 @@ export function ProfileDemo() {
           setVisible={setVisible}
           savedSpaces={savedSpaces}
         />
-      ) : (
+      ) : accountType === "landlord" ? (
         <LandlordView />
+      ) : (
+        <CustomerView savedEvents={savedEvents} />
       )}
     </div>
   );
@@ -268,6 +289,58 @@ function LandlordView() {
             </div>
           ))}
         </div>
+      </div>
+    </div>
+  );
+}
+
+function CustomerView({ savedEvents }: { savedEvents: typeof events }) {
+  return (
+    <div>
+      <div className="mt-10 flex flex-wrap items-center justify-between gap-6 bg-white p-6">
+        <div className="flex items-center gap-4">
+          <div className="flex h-16 w-16 items-center justify-center bg-divider">
+            <span className="text-xl font-semibold text-ink/40">
+              {mockCustomer.name.charAt(0)}
+            </span>
+          </div>
+          <div>
+            <p className="text-xl font-medium tracking-tight">{mockCustomer.name}</p>
+            <span className="mt-1 inline-block bg-accent px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.15em] text-white">
+              Customer
+            </span>
+          </div>
+        </div>
+        <Button variant="primary">Edit Profile</Button>
+      </div>
+
+      <div className="mt-12">
+        <p className={sectionLabel}>Saved events</p>
+        {savedEvents.length === 0 ? (
+          <p className="mt-4 text-sm text-ink/50">
+            Nothing saved yet. Tap the heart on any event to keep it here.
+          </p>
+        ) : (
+          <div className="mt-4 grid grid-cols-1 gap-6 sm:grid-cols-3">
+            {savedEvents.map((event) => (
+              <Link key={event.slug} href={`/events/${event.slug}`} className="group block">
+                <div className="relative aspect-[4/3] w-full overflow-hidden bg-divider">
+                  <Image
+                    src={event.images[0]}
+                    alt={event.name}
+                    fill
+                    sizes="33vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <p className="mt-2 text-sm font-medium">{event.name}</p>
+                <p className="mt-0.5 text-[11px] font-medium uppercase tracking-[0.15em] text-ink/45">
+                  {event.suburb} · {event.date}
+                </p>
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

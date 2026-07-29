@@ -5,6 +5,7 @@ import { getChef, getEvent, getEvents } from "@/lib/data";
 import { StatusTag } from "@/components/ui/pill";
 import { Button } from "@/components/ui/button";
 import { EventDetailAccordion } from "@/components/event-detail-accordion";
+import { SaveEventButton } from "@/components/save-event-button";
 
 export async function generateMetadata({
   params,
@@ -73,6 +74,10 @@ export default async function EventDetailPage({
           <StatusTag status={event.status} />
         </div>
         <p className="mt-3 text-sm text-ink/50">{event.suburb}, Melbourne</p>
+
+        <div className="mt-4">
+          <SaveEventButton eventId={event.id} />
+        </div>
 
         <div className="mt-8">
           <p className="text-3xl font-light tracking-tight">

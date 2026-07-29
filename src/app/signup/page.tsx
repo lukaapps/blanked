@@ -5,12 +5,17 @@ import { useSearchParams } from "next/navigation";
 import { Suspense, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 
-type AccountType = "chef" | "landlord";
+type AccountType = "chef" | "landlord" | "customer";
 
 function SignupForm() {
   const searchParams = useSearchParams();
-  const initialType =
-    searchParams.get("type") === "landlord" ? "landlord" : "chef";
+  const typeParam = searchParams.get("type");
+  const initialType: AccountType =
+    typeParam === "landlord"
+      ? "landlord"
+      : typeParam === "customer"
+      ? "customer"
+      : "chef";
 
   const [accountType, setAccountType] = useState<AccountType>(initialType);
   const [name, setName] = useState("");
@@ -54,7 +59,13 @@ function SignupForm() {
         <p className="mt-6 text-sm leading-relaxed text-ink/60">
           We&rsquo;ve sent a confirmation link to{" "}
           <strong className="text-ink">{email}</strong>. Click it to activate
-          your {accountType === "chef" ? "Talent / Brand" : "Landlord"} account —
+          your{" "}
+          {accountType === "chef"
+            ? "Talent / Brand"
+            : accountType === "landlord"
+            ? "Landlord"
+            : "Customer"}{" "}
+          account —
           you&rsquo;ll land straight in your profile.
         </p>
       </div>
@@ -67,7 +78,7 @@ function SignupForm() {
       onClick={() => setAccountType(value)}
       className={`flex-1 border px-4 py-4 text-left transition-colors ${
         accountType === value
-          ? "border-ink bg-ink text-background"
+          ? "border-[#442220] bg-[#442220] text-white"
           : "border-divider bg-white text-ink hover:border-ink"
       }`}
     >
@@ -76,7 +87,7 @@ function SignupForm() {
       </span>
       <span
         className={`mt-1 block text-xs ${
-          accountType === value ? "text-background/70" : "text-ink/50"
+          accountType === value ? "text-white/70" : "text-ink/50"
         }`}
       >
         {hint}
@@ -86,7 +97,9 @@ function SignupForm() {
 
   return (
     <div className="mx-auto max-w-md px-6 pb-24 pt-24">
-      <h1 className="text-4xl font-medium tracking-tight">Sign up</h1>
+      <h1 className="text-6xl font-bold uppercase leading-[0.95] tracking-tight sm:text-7xl">
+        Sign up
+      </h1>
       <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
         Join Blanked
       </p>
@@ -96,22 +109,23 @@ function SignupForm() {
           <label className="block text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
             I am a…
           </label>
-          <div className="mt-2 flex gap-2">
+          <div className="mt-2 flex flex-col gap-2 sm:flex-row">
             {typeButton("chef", "Talent / Brand", "I want to find and book spaces")}
             {typeButton("landlord", "Landlord", "I have a space to list")}
+            {typeButton("customer", "Customer", "I want to find events in the city")}
           </div>
         </div>
 
         <div>
           <label className="block text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
-            {accountType === "chef" ? "Name" : "Name / Business name"}
+            {accountType === "landlord" ? "Name / Business name" : "Name"}
           </label>
           <input
             required
             value={name}
             onChange={(e) => setName(e.target.value)}
             className="input mt-2"
-            placeholder={accountType === "chef" ? "Your name" : "Business name"}
+            placeholder={accountType === "landlord" ? "Business name" : "Your name"}
           />
         </div>
 
@@ -149,7 +163,7 @@ function SignupForm() {
         <button
           type="submit"
           disabled={loading}
-          className="bg-ink py-4 text-[11px] font-semibold uppercase tracking-[0.25em] text-background transition-opacity hover:opacity-90 disabled:opacity-40"
+          className="bg-[#442220] py-4 text-[11px] font-semibold uppercase tracking-[0.25em] text-white transition-opacity hover:opacity-90 disabled:opacity-40"
         >
           {loading ? "Creating account…" : "Create Account"}
         </button>

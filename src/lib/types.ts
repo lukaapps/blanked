@@ -43,6 +43,7 @@ export type Space = {
 export type EventStatus = "Available" | "Selling Fast" | "Sold Out";
 
 export type Event = {
+  id?: string; // Supabase uuid; absent on mock data
   slug: string;
   name: string;
   chefSlug: string;

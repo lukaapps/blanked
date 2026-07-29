@@ -43,7 +43,7 @@ export default async function ChefsPage() {
               somewhere in between.
             </p>
             <p className="mt-4 text-base leading-relaxed text-ink/60">
-              Pop-ups matter because they let good food move faster than a
+              Pop-ups matter because they allow good food to move faster than a
               lease ever could. No five-year commitment, no fit-out debt —
               just a kitchen, a room, and a night to prove the idea works.
             </p>

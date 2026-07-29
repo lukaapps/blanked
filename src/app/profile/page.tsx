@@ -4,11 +4,13 @@ import { isSupabaseConfigured } from "@/lib/supabase/client";
 import { ProfileDemo } from "./profile-demo";
 import {
   ChefProfileLive,
+  CustomerProfileLive,
   LandlordProfileLive,
   type ChefBooking,
   type LandlordRequest,
   type LandlordSpace,
   type ProfileData,
+  type SavedEvent,
   type SavedSpace,
 } from "./profile-live";
 
@@ -38,6 +40,35 @@ export default async function MyProfilePage() {
     photoUrl: profileRow.photo_url,
     visibleToLandlords: profileRow.visible_to_landlords,
   };
+
+  if (profile.accountType === "customer") {
+    const { data: savedRows } = await supabase
+      .from("saved_events")
+      .select("events(slug, name, suburb, date, hero_image)")
+      .eq("user_id", user.id);
+
+    const savedEvents: SavedEvent[] = (savedRows ?? []).flatMap((row) => {
+      const e = row.events as unknown as {
+        slug: string;
+        name: string;
+        suburb: string | null;
+        date: string | null;
+        hero_image: string | null;
+      } | null;
+      if (!e) return [];
+      return [
+        {
+          slug: e.slug,
+          name: e.name,
+          suburb: e.suburb ?? "",
+          date: e.date ?? "",
+          image: e.hero_image ?? "",
+        },
+      ];
+    });
+
+    return <CustomerProfileLive profile={profile} savedEvents={savedEvents} />;
+  }
 
   if (profile.accountType === "chef") {
     const [{ data: bookingRows }, { data: savedRows }] = await Promise.all([

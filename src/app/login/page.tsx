@@ -51,7 +51,9 @@ function LoginForm() {
 
   return (
     <div className="mx-auto max-w-md px-6 pb-24 pt-24">
-      <h1 className="text-4xl font-medium tracking-tight">Log in</h1>
+      <h1 className="text-6xl font-bold uppercase leading-[0.95] tracking-tight sm:text-7xl">
+        Log in
+      </h1>
       <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
         Welcome back to Blanked
       </p>
@@ -101,7 +103,7 @@ function LoginForm() {
         <button
           type="submit"
           disabled={loading}
-          className="bg-ink py-4 text-[11px] font-semibold uppercase tracking-[0.25em] text-background transition-opacity hover:opacity-90 disabled:opacity-40"
+          className="bg-[#442220] py-4 text-[11px] font-semibold uppercase tracking-[0.25em] text-white transition-opacity hover:opacity-90 disabled:opacity-40"
         >
           {loading ? "Logging in…" : "Log In"}
         </button>

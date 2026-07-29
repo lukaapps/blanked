@@ -94,6 +94,7 @@ function mapEvent(
   spaceSlugById: Map<string, string>
 ): Event {
   return {
+    id: row.id,
     slug: row.slug,
     name: row.name,
     chefSlug: row.chef_profile_id

@@ -25,7 +25,7 @@ export type ProfileData = {
   id: string;
   name: string;
   email: string;
-  accountType: "chef" | "landlord";
+  accountType: "chef" | "landlord" | "customer";
   photoUrl: string | null;
   visibleToLandlords: boolean;
 };
@@ -42,6 +42,14 @@ export type SavedSpace = {
   slug: string;
   name: string;
   suburb: string;
+  image: string;
+};
+
+export type SavedEvent = {
+  slug: string;
+  name: string;
+  suburb: string;
+  date: string;
   image: string;
 };
 
@@ -99,7 +107,11 @@ function ProfileHeaderCard({
         <div>
           <p className="text-xl font-medium tracking-tight">{profile.name}</p>
           <span className="mt-1 inline-block bg-accent px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.15em] text-white">
-            {profile.accountType === "chef" ? "Talent / Brand" : "Landlord"}
+            {profile.accountType === "chef"
+              ? "Talent / Brand"
+              : profile.accountType === "landlord"
+              ? "Landlord"
+              : "Customer"}
           </span>
         </div>
       </div>
@@ -365,6 +377,64 @@ export function LandlordProfileLive({
                   </div>
                 )}
               </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+export function CustomerProfileLive({
+  profile,
+  savedEvents,
+}: {
+  profile: ProfileData;
+  savedEvents: SavedEvent[];
+}) {
+  return (
+    <div className="mx-auto max-w-5xl px-6 pb-24 pt-20">
+      <PageHeader
+        title="My Profile"
+        caption="Manage your saved events"
+        action={
+          <ButtonLink href="/events" variant="secondary">
+            Browse Events
+          </ButtonLink>
+        }
+      />
+      <ProfileHeaderCard profile={profile} />
+
+      <div className="mt-12">
+        <p className={sectionLabel}>Saved events</p>
+        {savedEvents.length === 0 ? (
+          <p className="mt-4 text-sm text-ink/50">
+            Nothing saved yet. Tap the heart on any event to keep it here.
+          </p>
+        ) : (
+          <div className="mt-4 grid grid-cols-1 gap-6 sm:grid-cols-3">
+            {savedEvents.map((event) => (
+              <Link
+                key={event.slug}
+                href={`/events/${event.slug}`}
+                className="group block"
+              >
+                <div className="relative aspect-[4/3] w-full overflow-hidden bg-divider">
+                  {event.image && (
+                    <Image
+                      src={event.image}
+                      alt={event.name}
+                      fill
+                      sizes="33vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  )}
+                </div>
+                <p className="mt-2 text-sm font-medium">{event.name}</p>
+                <p className="mt-0.5 text-[11px] font-medium uppercase tracking-[0.15em] text-ink/45">
+                  {event.suburb} · {event.date}
+                </p>
+              </Link>
             ))}
           </div>
         )}

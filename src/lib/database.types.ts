@@ -2,7 +2,7 @@
 // Replace with generated types once the project is linked:
 //   npx supabase gen types typescript --project-id <ref> > src/lib/database.types.ts
 
-export type AccountType = "chef" | "landlord";
+export type AccountType = "chef" | "landlord" | "customer";
 export type SpaceStatus = "pending" | "live" | "inactive";
 export type SpaceTypeDb =
   | "Restaurant"
