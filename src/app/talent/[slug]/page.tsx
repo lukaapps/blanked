@@ -104,7 +104,7 @@ export default async function ChefDetailPage({
               >
                 <div className="relative aspect-[4/3] w-full overflow-hidden bg-divider">
                   <Image
-                    src={event.image}
+                    src={event.images[0]}
                     alt={event.name}
                     fill
                     sizes="(max-width: 768px) 100vw, 33vw"

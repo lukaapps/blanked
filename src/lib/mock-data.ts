@@ -469,7 +469,7 @@ export const events: Event[] = [
     suburb: "CBD",
     price: 145,
     status: "Available",
-    image: "/images/food-plated-duo.jpg?v=3",
+    images: ["/images/food-plated-duo.jpg?v=3"],
     description:
       "A five-course seasonal menu built around Victorian winter produce, hosted in the raw industrial space at The Loft at Flinders Lane.",
     ticketUrl: "https://instagram.com",
@@ -484,7 +484,7 @@ export const events: Event[] = [
     suburb: "Brunswick",
     price: "Free",
     status: "Available",
-    image: unsplash("photo-1555396273-367ea4eb4db5"),
+    images: [unsplash("photo-1555396273-367ea4eb4db5")],
     description:
       "A casual weekend market stall serving Leo's Japanese-Australian fusion snacks. Free entry, food available for purchase.",
     ticketUrl: "https://instagram.com",
@@ -499,7 +499,7 @@ export const events: Event[] = [
     suburb: "Richmond",
     price: 120,
     status: "Selling Fast",
-    image: "/images/food-prawn.jpg?v=3",
+    images: ["/images/food-prawn.jpg?v=3"],
     description:
       "Amara opens a two-week rooftop residency with a launch night set menu inspired by West African home cooking.",
     ticketUrl: "https://instagram.com",
@@ -514,7 +514,7 @@ export const events: Event[] = [
     suburb: "Carlton",
     price: 65,
     status: "Available",
-    image: unsplash("photo-1466978913421-dad2ebd01d17"),
+    images: [unsplash("photo-1466978913421-dad2ebd01d17")],
     description:
       "Tom trials three new dishes for lunch service ahead of his next residency. Limited covers.",
     ticketUrl: "https://instagram.com",
@@ -529,7 +529,7 @@ export const events: Event[] = [
     suburb: "Fitzroy",
     price: 95,
     status: "Sold Out",
-    image: unsplash("photo-1517248135467-4c7edcad34c4"),
+    images: [unsplash("photo-1517248135467-4c7edcad34c4")],
     description:
       "A six-dish regional Indian tasting menu paired with a natural wine list curated for the evening.",
     ticketUrl: "https://instagram.com",
@@ -544,7 +544,7 @@ export const events: Event[] = [
     suburb: "CBD",
     price: 40,
     status: "Available",
-    image: "/images/drink-cocktail.jpg?v=3",
+    images: ["/images/drink-cocktail.jpg?v=3"],
     description:
       "Jordan's late-night noodle bar pops up in the laneway speakeasy for one night only.",
     ticketUrl: "https://instagram.com",

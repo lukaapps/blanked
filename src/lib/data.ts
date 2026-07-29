@@ -105,7 +105,7 @@ function mapEvent(
     suburb: row.suburb ?? "",
     price: row.price === null ? "Free" : Number(row.price),
     status: mapEventStatus(row),
-    image: row.hero_image ?? "",
+    images: row.hero_image ? [row.hero_image] : [],
     description: row.description ?? "",
     ticketUrl: row.ticket_url ?? "#",
   };

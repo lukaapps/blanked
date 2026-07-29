@@ -52,7 +52,7 @@ export type Event = {
   suburb: string;
   price: number | "Free";
   status: EventStatus;
-  image: string;
+  images: string[];
   description: string;
   ticketUrl: string;
 };

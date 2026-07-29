@@ -1,19 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getChef, getEvent, getSpace } from "@/lib/data";
+import { getChef, getEvent, getEvents } from "@/lib/data";
 import { StatusTag } from "@/components/ui/pill";
 import { Button } from "@/components/ui/button";
-
-function formatDate(date: string) {
-  const d = new Date(date);
-  return d.toLocaleDateString("en-AU", {
-    weekday: "long",
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
-}
+import { EventDetailAccordion } from "@/components/event-detail-accordion";
 
 export async function generateMetadata({
   params,
@@ -36,134 +27,88 @@ export default async function EventDetailPage({
   const event = await getEvent(slug);
   if (!event) notFound();
 
-  const [chef, space] = await Promise.all([
+  const [chef, allEvents] = await Promise.all([
     event.chefSlug ? getChef(event.chefSlug) : null,
-    event.spaceSlug ? getSpace(event.spaceSlug) : null,
+    getEvents(),
   ]);
 
-  return (
-    <div className="mx-auto max-w-6xl px-6 pb-24 pt-20">
-      <Link
-        href="/events"
-        className="text-sm text-ink/50 transition-colors hover:text-accent"
-      >
-        ← Back to all events
-      </Link>
+  const otherEvents = allEvents.filter(
+    (e) => e.chefSlug === event.chefSlug && e.slug !== event.slug
+  );
 
-      <div className="relative mt-6 aspect-[21/10] w-full overflow-hidden bg-divider">
-        <Image
-          src={event.image}
-          alt={event.name}
-          fill
-          priority
-          sizes="(max-width: 1152px) 100vw, 1152px"
-          className="object-cover"
-        />
+  return (
+    <div className="lg:flex lg:h-screen">
+      <div className="relative lg:h-full lg:w-1/2 lg:overflow-y-auto">
+        <Link
+          href="/events"
+          aria-label="Back to all events"
+          className="absolute left-4 top-4 z-10 flex h-9 w-9 items-center justify-center bg-white/90 text-ink transition-colors hover:bg-white"
+        >
+          ←
+        </Link>
+        <div className="no-scrollbar flex snap-x snap-mandatory overflow-x-auto lg:flex-col lg:gap-px lg:overflow-x-visible lg:overflow-y-auto lg:snap-none">
+          {event.images.map((src, i) => (
+            <div
+              key={src}
+              className="relative aspect-square w-full shrink-0 snap-center overflow-hidden bg-divider"
+            >
+              <Image
+                src={src}
+                alt={i === 0 ? event.name : ""}
+                fill
+                priority={i === 0}
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+              />
+            </div>
+          ))}
+        </div>
       </div>
 
-      <div className="mt-12 grid grid-cols-1 gap-12 lg:grid-cols-[1fr_340px]">
-        <div>
-          <div className="flex flex-wrap items-center gap-4">
-            <h1 className="text-3xl font-medium tracking-tight sm:text-5xl">
-              {event.name}
-            </h1>
-            <StatusTag status={event.status} />
-          </div>
-          <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
-            {formatDate(event.date)} · {event.time} · {event.suburb}
+      <div className="px-6 py-12 sm:px-10 lg:h-full lg:w-1/2 lg:overflow-y-auto lg:px-8 lg:py-16">
+        <div className="flex flex-wrap items-center gap-3">
+          <h1 className="text-4xl font-medium tracking-tight sm:text-4xl">
+            {event.name}
+          </h1>
+          <StatusTag status={event.status} />
+        </div>
+        <p className="mt-3 text-sm text-ink/50">{event.suburb}, Melbourne</p>
+
+        <div className="mt-8">
+          <p className="text-3xl font-light tracking-tight">
+            {event.price === "Free" ? (
+              "Free"
+            ) : (
+              <>
+                ${event.price}
+                <span className="text-base font-normal text-ink/45">
+                  {" "}
+                  /person
+                </span>
+              </>
+            )}
           </p>
-
-          <h2 className="mt-10 text-lg font-semibold">About this event</h2>
-          <p className="mt-3 text-sm leading-relaxed text-ink/60">
-            {event.description}
-          </p>
-
-          {chef && (
-            <>
-              <h2 className="mt-10 text-lg font-semibold">The talent</h2>
-              <Link
-                href={`/talent/${chef.slug}`}
-                className="mt-4 flex items-center gap-4 bg-white p-4 transition-colors hover:text-accent"
-              >
-                <div className="relative h-16 w-16 shrink-0 overflow-hidden bg-divider">
-                  <Image
-                    src={chef.portrait}
-                    alt={chef.name}
-                    fill
-                    sizes="64px"
-                    className="object-cover"
-                  />
-                </div>
-                <div>
-                  <p className="font-medium">{chef.name}</p>
-                  <p className="text-[11px] font-medium uppercase tracking-[0.15em] text-ink/45">
-                    {chef.role}
-                  </p>
-                </div>
-              </Link>
-            </>
-          )}
-
-          {space && (
-            <>
-              <h2 className="mt-10 text-lg font-semibold">The space</h2>
-              <Link
-                href={`/browse-spaces/${space.slug}`}
-                className="mt-4 flex items-center gap-4 bg-white p-4 transition-colors hover:text-accent"
-              >
-                <div className="relative h-16 w-16 shrink-0 overflow-hidden bg-divider">
-                  <Image
-                    src={space.images[0]}
-                    alt={space.name}
-                    fill
-                    sizes="64px"
-                    className="object-cover"
-                  />
-                </div>
-                <div>
-                  <p className="font-medium">{space.name}</p>
-                  <p className="text-[11px] font-medium uppercase tracking-[0.15em] text-ink/45">
-                    {space.suburb}, Melbourne
-                  </p>
-                </div>
-              </Link>
-            </>
-          )}
         </div>
 
-        <div className="flex flex-col gap-4 lg:sticky lg:top-24 lg:self-start">
-          <div className="bg-white p-7">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
-              Tickets
-            </p>
-            <p className="mt-1 text-4xl font-medium tracking-tight">
-              {event.price === "Free" ? (
-                "Free"
-              ) : (
-                <>
-                  ${event.price}
-                  <span className="text-base font-normal text-ink/45">
-                    {" "}
-                    /person
-                  </span>
-                </>
-              )}
-            </p>
-            <a
-              href={event.ticketUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block"
+        <div className="mt-6">
+          <a href={event.ticketUrl} target="_blank" rel="noopener noreferrer">
+            <Button
+              variant="secondary"
+              className="w-full !bg-[#442220] py-4 hover:!bg-[#442220]/90"
             >
-              <Button variant="secondary" className="mt-6 w-full py-4">
-                Get Tickets
-              </Button>
-            </a>
-            <p className="mt-3 text-center text-xs text-ink/40">
-              Ticketing handled externally at launch.
-            </p>
-          </div>
+              Get Tickets
+            </Button>
+          </a>
+          <p className="mt-3 text-center text-xs text-ink/40">
+            Ticketing handled externally at launch.
+          </p>
         </div>
+
+        <EventDetailAccordion
+          event={event}
+          chef={chef}
+          otherEvents={otherEvents}
+        />
       </div>
     </div>
   );
