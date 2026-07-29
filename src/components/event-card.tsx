@@ -19,7 +19,7 @@ export function EventCard({
 }) {
   return (
     <Link href={`/events/${event.slug}`} className="group block">
-      <div className="relative aspect-[4/3] w-full overflow-hidden bg-divider">
+      <div className="relative aspect-square w-full overflow-hidden bg-divider">
         <Image
           src={event.image}
           alt={event.name}
@@ -39,7 +39,7 @@ export function EventCard({
           {formatDate(event.date)} · {event.time} · {event.suburb}
         </p>
       </div>
-      <p className="mt-2 text-right text-2xl font-medium tracking-tight">
+      <p className="mt-2 text-right text-2xl font-light tracking-tight">
         {event.price === "Free" ? (
           "Free"
         ) : (

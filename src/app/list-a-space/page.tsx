@@ -91,7 +91,9 @@ export default function ListASpacePage() {
             <br />
             space
           </h1>
-          <p className="max-w-sm text-lg text-ink/60">Share your space.</p>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+            Share your space.
+          </p>
           <Link
             href="/list-a-space/apply"
             className="w-fit bg-[#442220] px-10 py-4 text-xs font-semibold uppercase tracking-widest text-white transition-opacity hover:opacity-90"

@@ -2,6 +2,12 @@ import Image from "next/image";
 import { RedDot } from "@/components/page-header";
 import { heroImages } from "@/lib/mock-data";
 
+export const metadata = {
+  title: "About | Blanked",
+  description:
+    "Blanked is a marketplace for hospitality space in Melbourne — pop-ups, residencies, and long term.",
+};
+
 export default function AboutPage() {
   return (
     <div className="flex min-h-screen flex-col-reverse lg:flex-row">

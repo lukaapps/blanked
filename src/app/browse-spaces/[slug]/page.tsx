@@ -5,6 +5,18 @@ import { getSpace } from "@/lib/data";
 import { RequestSpace } from "@/components/request-space";
 import { SpaceDetailAccordion } from "@/components/space-detail-accordion";
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const space = await getSpace(slug);
+  return {
+    title: space ? `${space.name} | Blanked` : "Space Not Found | Blanked",
+  };
+}
+
 export default async function SpaceDetailPage({
   params,
 }: {

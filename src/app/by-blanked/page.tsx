@@ -1,5 +1,10 @@
 import { PageHeader } from "@/components/page-header";
 
+export const metadata = {
+  title: "by.Blanked | Blanked",
+  description: "Our events brand — coming soon.",
+};
+
 export default function ByBlankedPage() {
   return (
     <div className="mx-auto max-w-3xl px-6 pb-24 pt-20 text-center">

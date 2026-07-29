@@ -4,6 +4,18 @@ import { notFound } from "next/navigation";
 import { getChef, getEvents } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const chef = await getChef(slug);
+  return {
+    title: chef ? `${chef.name} | Blanked` : "Talent Not Found | Blanked",
+  };
+}
+
 export default async function ChefDetailPage({
   params,
 }: {

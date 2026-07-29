@@ -34,7 +34,7 @@ export function EventsClient({
   }, [events, filter]);
 
   return (
-    <div className="mx-auto max-w-7xl px-6 pb-24 pt-20">
+    <div className="px-1.5 pb-24 pt-20">
       <div>
         <h1 className="text-6xl font-bold uppercase leading-[0.95] tracking-tight sm:text-7xl lg:text-[100px]">
           Events
@@ -51,7 +51,7 @@ export function EventsClient({
             onClick={() => setFilter(f)}
             className={`px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.2em] transition-colors ${
               filter === f
-                ? "bg-ink text-background"
+                ? "bg-[#442220] text-white"
                 : "bg-white text-ink/50 hover:text-ink"
             }`}
           >
@@ -60,21 +60,26 @@ export function EventsClient({
         ))}
       </div>
 
-      {filtered.length === 0 ? (
-        <p className="mt-16 text-sm text-ink/50">
-          No events in this window yet — check back soon.
-        </p>
-      ) : (
-        <div className="mt-16 grid grid-cols-1 gap-x-6 gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
-          {filtered.map((event) => (
-            <EventCard
-              key={event.slug}
-              event={event}
-              chefName={chefNames[event.chefSlug]}
-            />
-          ))}
-        </div>
-      )}
+      <div className="mt-12 border-t border-divider pt-8">
+        <h2 className="text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+          {filter === "All" ? "All events" : `${filtered.length} events`}
+        </h2>
+        {filtered.length === 0 ? (
+          <p className="mt-6 text-sm text-ink/50">
+            No events in this window yet — check back soon.
+          </p>
+        ) : (
+          <div className="mt-6 grid grid-cols-1 gap-1 sm:grid-cols-2 lg:grid-cols-4">
+            {filtered.map((event) => (
+              <EventCard
+                key={event.slug}
+                event={event}
+                chefName={chefNames[event.chefSlug]}
+              />
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
