@@ -54,10 +54,6 @@ export default function AboutPage() {
           to activate their space, and gives Melbourne somewhere to find out
           what&rsquo;s on and get a seat at it.
         </p>
-        <p className="text-justify text-[13.3px] leading-relaxed text-ink/60 sm:text-[15.3px]">
-          We exist because the infrastructure didn&rsquo;t.
-        </p>
-
         <div>
           <div className="flex items-center gap-3">
             <RedDot />

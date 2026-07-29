@@ -114,7 +114,7 @@ export default function ListASpacePage() {
         </div>
       </div>
 
-      <div className="mx-auto max-w-6xl px-6 py-24">
+      <div className="px-6 py-24">
         <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
           How it works
         </p>
@@ -156,7 +156,7 @@ export default function ListASpacePage() {
       </div>
 
       <div className="border-y border-divider bg-white">
-        <div className="mx-auto flex max-w-6xl flex-col items-start gap-2 px-6 py-10 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col items-start gap-2 px-6 py-10 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
             What it costs
           </p>
@@ -166,7 +166,7 @@ export default function ListASpacePage() {
         </div>
       </div>
 
-      <div className="mx-auto max-w-6xl px-6 py-24">
+      <div className="px-6 py-24">
         <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
           Why list with Blanked
         </p>
@@ -186,7 +186,7 @@ export default function ListASpacePage() {
         </div>
       </div>
 
-      <div className="mx-auto max-w-6xl px-6 py-24">
+      <div className="px-6 py-24">
         <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
           Safety & trust
         </p>

@@ -74,7 +74,7 @@ export function ContactForm() {
       </Field>
       <button
         type="submit"
-        className="bg-ink py-5 text-[11px] font-semibold uppercase tracking-[0.25em] text-background transition-opacity hover:opacity-90"
+        className="bg-[#442220] py-5 text-[11px] font-semibold uppercase tracking-[0.25em] text-white transition-opacity hover:opacity-90"
       >
         Send
       </button>
