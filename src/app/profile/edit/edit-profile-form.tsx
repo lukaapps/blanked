@@ -14,6 +14,13 @@ import {
 } from "@/lib/demo-profile";
 
 const roleOptions = ["Owner", "Manager", "Head Chef", "Event Coordinator", "Other"];
+const knownRoles = roleOptions.filter((r) => r !== "Other");
+
+function splitRole(role: string | null) {
+  if (!role) return { role: "", roleOther: "" };
+  if (knownRoles.includes(role)) return { role, roleOther: "" };
+  return { role: "Other", roleOther: role };
+}
 
 type AccountType = "chef" | "landlord" | "customer";
 
@@ -48,7 +55,9 @@ export function EditProfileForm(props: Props) {
   const [photo, setPhoto] = useState(props.initialPhoto ?? "");
   const [photos, setPhotos] = useState(props.initialPhotos);
   const [bio, setBio] = useState(props.initialBio ?? "");
-  const [role, setRole] = useState(props.initialRole ?? "");
+  const initialRoleSplit = splitRole(props.initialRole);
+  const [role, setRole] = useState(initialRoleSplit.role);
+  const [roleOther, setRoleOther] = useState(initialRoleSplit.roleOther);
   const [instagram, setInstagram] = useState(props.initialInstagram ?? "");
   const [website, setWebsite] = useState(props.initialWebsite ?? "");
   const [addressLine, setAddressLine] = useState(props.initialAddressLine ?? "");
@@ -71,7 +80,9 @@ export function EditProfileForm(props: Props) {
       setPhoto(override.photo ?? "");
       setPhotos(override.photos ?? []);
       setBio(override.bio ?? "");
-      setRole(override.role ?? "");
+      const overrideRoleSplit = splitRole(override.role ?? null);
+      setRole(overrideRoleSplit.role);
+      setRoleOther(overrideRoleSplit.roleOther);
       setInstagram(override.instagram ?? "");
       setWebsite(override.website ?? "");
       setAddressLine(override.addressLine ?? "");
@@ -104,9 +115,18 @@ export function EditProfileForm(props: Props) {
     e.preventDefault();
     setSaving(true);
 
+    const finalRole = role === "Other" ? roleOther.trim() || "Other" : role;
     const avatarPhoto = isBusiness ? photos[0] ?? null : photo || null;
     const businessFields = isBusiness
-      ? { role, website, addressLine, addressSuburb, addressState, addressPostcode, photos }
+      ? {
+          role: finalRole,
+          website,
+          addressLine,
+          addressSuburb,
+          addressState,
+          addressPostcode,
+          photos,
+        }
       : {};
     const chefFields = isChef ? { bio, instagram, spaceTypePreferences } : {};
 
@@ -119,7 +139,7 @@ export function EditProfileForm(props: Props) {
           photo_url: avatarPhoto,
           ...(isBusiness
             ? {
-                role: role || null,
+                role: finalRole || null,
                 website: website || null,
                 address_line: addressLine || null,
                 address_suburb: addressSuburb || null,
@@ -235,6 +255,14 @@ export function EditProfileForm(props: Props) {
                     </option>
                   ))}
                 </select>
+                {role === "Other" && (
+                  <input
+                    value={roleOther}
+                    onChange={(e) => setRoleOther(e.target.value)}
+                    className="input mt-2"
+                    placeholder="What's your role?"
+                  />
+                )}
               </div>
 
               <div>

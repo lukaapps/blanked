@@ -39,6 +39,7 @@ function SignupForm() {
   const [password, setPassword] = useState("");
   const [photos, setPhotos] = useState<string[]>([]);
   const [role, setRole] = useState("");
+  const [roleOther, setRoleOther] = useState("");
   const [website, setWebsite] = useState("");
   const [addressLine, setAddressLine] = useState("");
   const [addressSuburb, setAddressSuburb] = useState("");
@@ -54,6 +55,7 @@ function SignupForm() {
     if (!accountType) return;
     setError(null);
     setLoading(true);
+    const finalRole = role === "Other" ? roleOther.trim() || "Other" : role;
     const supabase = createClient();
     const { error } = await supabase.auth.signUp({
       email,
@@ -65,7 +67,7 @@ function SignupForm() {
           how_heard: howHeard || null,
           ...(isBusiness
             ? {
-                role: role || null,
+                role: finalRole || null,
                 website: website || null,
                 address_line: addressLine || null,
                 address_suburb: addressSuburb || null,
@@ -247,6 +249,14 @@ function SignupForm() {
                   </option>
                 ))}
               </select>
+              {role === "Other" && (
+                <input
+                  value={roleOther}
+                  onChange={(e) => setRoleOther(e.target.value)}
+                  className="input mt-2"
+                  placeholder="What's your role?"
+                />
+              )}
             </div>
 
             <div>
