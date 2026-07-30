@@ -574,6 +574,7 @@ export const spaceTypes: Space["type"][] = [
 
 export const mockChefProfile = {
   name: "Mia Thornton",
+  businessName: "Mia Thornton Kitchen",
   photo: chefs[0].portrait,
   bio: chefs[0].bio,
   role: "Owner",
@@ -594,10 +595,12 @@ export const mockChefProfile = {
 
 export const mockLandlordProfile = {
   name: "Richmond Rooftop Pty Ltd",
+  businessName: "Richmond Rooftop",
   photo: spaces[5].images[0],
   role: "Owner",
   email: "richmond@blanked.melbourne",
   website: "https://richmondrooftop.com.au",
+  instagram: "https://instagram.com/richmondrooftop",
   addressLine: "88 Bridge Road",
   addressSuburb: "Richmond",
   addressState: "VIC",

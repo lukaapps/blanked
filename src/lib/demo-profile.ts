@@ -4,6 +4,7 @@ export type DemoProfileOverride = {
   name: string;
   photo: string | null;
   email?: string;
+  businessName?: string;
   bio?: string;
   role?: string;
   instagram?: string;

@@ -27,6 +27,7 @@ type AccountType = "chef" | "landlord" | "customer";
 type CommonFields = {
   accountType: AccountType;
   initialName: string;
+  initialBusinessName: string | null;
   initialEmail: string;
   initialPhoto: string | null;
   initialPhotos: string[];
@@ -51,6 +52,7 @@ export function EditProfileForm(props: Props) {
   const isChef = props.accountType === "chef";
 
   const [name, setName] = useState(props.initialName);
+  const [businessName, setBusinessName] = useState(props.initialBusinessName ?? "");
   const [email, setEmail] = useState(props.initialEmail);
   const [photo, setPhoto] = useState(props.initialPhoto ?? "");
   const [photos, setPhotos] = useState(props.initialPhotos);
@@ -76,6 +78,7 @@ export function EditProfileForm(props: Props) {
     if (override) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setName(override.name);
+      setBusinessName(override.businessName ?? "");
       setEmail(override.email ?? "");
       setPhoto(override.photo ?? "");
       setPhotos(override.photos ?? []);
@@ -119,8 +122,10 @@ export function EditProfileForm(props: Props) {
     const avatarPhoto = isBusiness ? photos[0] ?? null : photo || null;
     const businessFields = isBusiness
       ? {
+          businessName,
           role: finalRole,
           website,
+          instagram,
           addressLine,
           addressSuburb,
           addressState,
@@ -128,7 +133,7 @@ export function EditProfileForm(props: Props) {
           photos,
         }
       : {};
-    const chefFields = isChef ? { bio, instagram, spaceTypePreferences } : {};
+    const chefFields = isChef ? { bio, spaceTypePreferences } : {};
 
     if (props.mode === "live") {
       await createClient()
@@ -139,8 +144,10 @@ export function EditProfileForm(props: Props) {
           photo_url: avatarPhoto,
           ...(isBusiness
             ? {
+                business_name: businessName || null,
                 role: finalRole || null,
                 website: website || null,
+                instagram: instagram || null,
                 address_line: addressLine || null,
                 address_suburb: addressSuburb || null,
                 address_state: addressState || null,
@@ -151,7 +158,6 @@ export function EditProfileForm(props: Props) {
           ...(isChef
             ? {
                 bio: bio || null,
-                instagram: instagram || null,
                 space_type_preferences: spaceTypePreferences,
               }
             : {}),
@@ -189,14 +195,14 @@ export function EditProfileForm(props: Props) {
         >
           <div>
             <label className="block text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
-              {isBusiness ? "Display / Brand Name" : "Name"}
+              {isBusiness ? "Full Name" : "Name"}
             </label>
             <input
               required
               value={name}
               onChange={(e) => setName(e.target.value)}
               className="input mt-2"
-              placeholder={isBusiness ? "Your display or brand name" : "Your name"}
+              placeholder={isBusiness ? "Your full name" : "Your name"}
             />
           </div>
 
@@ -213,6 +219,21 @@ export function EditProfileForm(props: Props) {
               placeholder="you@example.com"
             />
           </div>
+
+          {isBusiness && (
+            <div className="sm:col-span-2">
+              <label className="block text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+                Display / Brand Name
+              </label>
+              <input
+                required
+                value={businessName}
+                onChange={(e) => setBusinessName(e.target.value)}
+                className="input mt-2"
+                placeholder="Your display or brand name"
+              />
+            </div>
+          )}
 
           {isBusiness ? (
             <div className="sm:col-span-2">
@@ -276,6 +297,18 @@ export function EditProfileForm(props: Props) {
                   placeholder="https://..."
                 />
               </div>
+
+              <div className="sm:col-span-2">
+                <label className="block text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+                  Instagram URL
+                </label>
+                <input
+                  value={instagram}
+                  onChange={(e) => setInstagram(e.target.value)}
+                  className="input mt-2"
+                  placeholder="https://instagram.com/..."
+                />
+              </div>
             </>
           )}
 
@@ -291,18 +324,6 @@ export function EditProfileForm(props: Props) {
                   rows={4}
                   className="input mt-2 resize-none"
                   placeholder="Tell landlords a bit about you and your food"
-                />
-              </div>
-
-              <div>
-                <label className="block text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
-                  Instagram handle
-                </label>
-                <input
-                  value={instagram}
-                  onChange={(e) => setInstagram(e.target.value)}
-                  className="input mt-2"
-                  placeholder="@yourhandle"
                 />
               </div>
 

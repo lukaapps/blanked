@@ -13,6 +13,7 @@ export const metadata = { title: "Edit Profile | Blanked" };
 
 type DemoDefaults = {
   name: string;
+  businessName: string | null;
   email: string;
   photo: string | null;
   photos: string[];
@@ -30,6 +31,7 @@ type DemoDefaults = {
 const demoDefaults: Record<DemoProfileType, DemoDefaults> = {
   chef: {
     name: mockChefProfile.name,
+    businessName: mockChefProfile.businessName,
     email: mockChefProfile.email,
     photo: mockChefProfile.photo,
     photos: mockChefProfile.photos,
@@ -45,12 +47,13 @@ const demoDefaults: Record<DemoProfileType, DemoDefaults> = {
   },
   landlord: {
     name: mockLandlordProfile.name,
+    businessName: mockLandlordProfile.businessName,
     email: mockLandlordProfile.email,
     photo: mockLandlordProfile.photo,
     photos: mockLandlordProfile.photos,
     bio: null,
     role: mockLandlordProfile.role,
-    instagram: null,
+    instagram: mockLandlordProfile.instagram,
     website: mockLandlordProfile.website,
     addressLine: mockLandlordProfile.addressLine,
     addressSuburb: mockLandlordProfile.addressSuburb,
@@ -60,6 +63,7 @@ const demoDefaults: Record<DemoProfileType, DemoDefaults> = {
   },
   customer: {
     name: mockCustomerProfile.name,
+    businessName: null,
     email: mockCustomerProfile.email,
     photo: mockCustomerProfile.photo,
     photos: [],
@@ -91,6 +95,7 @@ export default async function EditProfilePage({
         demoType={demoType}
         accountType={demoType}
         initialName={defaults.name}
+        initialBusinessName={defaults.businessName}
         initialEmail={defaults.email}
         initialPhoto={defaults.photo}
         initialPhotos={defaults.photos}
@@ -126,6 +131,7 @@ export default async function EditProfilePage({
       profileId={profileRow.id}
       accountType={profileRow.account_type}
       initialName={profileRow.name || ""}
+      initialBusinessName={profileRow.business_name}
       initialEmail={profileRow.email || ""}
       initialPhoto={profileRow.photo_url}
       initialPhotos={profileRow.photos ?? []}
