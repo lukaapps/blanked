@@ -42,6 +42,7 @@ function SignupForm() {
   const [role, setRole] = useState("");
   const [roleOther, setRoleOther] = useState("");
   const [website, setWebsite] = useState("");
+  const [instagram, setInstagram] = useState("");
   const [addressLine, setAddressLine] = useState("");
   const [addressSuburb, setAddressSuburb] = useState("");
   const [addressState, setAddressState] = useState("");
@@ -71,6 +72,7 @@ function SignupForm() {
                 business_name: businessName || null,
                 role: finalRole || null,
                 website: website || null,
+                instagram: instagram || null,
                 address_line: addressLine || null,
                 address_suburb: addressSuburb || null,
                 address_state: addressState || null,
@@ -265,6 +267,18 @@ function SignupForm() {
                 onChange={(e) => setWebsite(e.target.value)}
                 className="input mt-2"
                 placeholder="https://..."
+              />
+            </div>
+
+            <div className="sm:col-span-2">
+              <label className="block text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+                Instagram URL
+              </label>
+              <input
+                value={instagram}
+                onChange={(e) => setInstagram(e.target.value)}
+                className="input mt-2"
+                placeholder="https://instagram.com/..."
               />
             </div>
 
