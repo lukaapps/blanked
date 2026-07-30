@@ -40,19 +40,16 @@ export function NavGrid({
   const bg =
     variant === "dark" ? "bg-zinc-500/20 backdrop-blur-[2px]" : "bg-white";
 
-  const cell = `flex items-center justify-center whitespace-nowrap px-2 py-3 sm:px-4 text-[8px] sm:text-[11px] font-semibold uppercase tracking-[0.1em] sm:tracking-[0.2em] text-center transition-colors hover:text-accent`;
+  const cellBase = `flex items-center justify-center whitespace-nowrap px-2 py-3 sm:px-4 text-[8px] sm:text-[11px] font-semibold uppercase tracking-[0.1em] sm:tracking-[0.2em] text-center transition-colors`;
+  const cell = `${cellBase} hover:text-accent`;
   const isActive = (href: string) =>
     href !== "/" && pathname.startsWith(href);
 
   return (
     <div className={`flex ${bg} ${text} border ${border}`}>
-      <Link
-        href="/"
-        onClick={onNavigate}
-        className={`${cell} shrink-0 border-r ${border}`}
-      >
+      <div className={`${cellBase} shrink-0 border-r ${border}`}>
         Blanked<span className="text-accent">.</span>
-      </Link>
+      </div>
 
       <div className="flex flex-1 flex-col">
         {centerLinks.map((row, i) => (
