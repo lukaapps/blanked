@@ -22,15 +22,17 @@ const hearAboutOptions = [
 function SignupForm() {
   const searchParams = useSearchParams();
   const typeParam = searchParams.get("type");
-  const initialType: AccountType =
+  const initialType: AccountType | null =
     typeParam === "landlord"
       ? "landlord"
       : typeParam === "customer"
       ? "customer"
-      : "chef";
+      : typeParam === "chef"
+      ? "chef"
+      : null;
 
-  const [accountType, setAccountType] = useState<AccountType>(initialType);
-  const isBusiness = accountType !== "customer";
+  const [accountType, setAccountType] = useState<AccountType | null>(initialType);
+  const isBusiness = accountType !== null && accountType !== "customer";
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -49,6 +51,7 @@ function SignupForm() {
 
   async function handleSignup(e: React.FormEvent) {
     e.preventDefault();
+    if (!accountType) return;
     setError(null);
     setLoading(true);
     const supabase = createClient();
@@ -109,21 +112,21 @@ function SignupForm() {
     );
   }
 
-  const typeButton = (value: AccountType, label: string, hint: string) => (
+  const typeTile = (value: AccountType, label: string, hint: string) => (
     <button
       type="button"
       onClick={() => setAccountType(value)}
-      className={`flex-1 border px-4 py-4 text-left transition-colors ${
+      className={`flex min-h-[200px] flex-1 flex-col items-start justify-end gap-2 border p-6 text-left transition-colors sm:p-8 ${
         accountType === value
           ? "border-[#442220] bg-[#442220] text-white"
           : "border-divider bg-white text-ink hover:border-ink"
       }`}
     >
-      <span className="block text-[11px] font-semibold uppercase tracking-[0.2em]">
+      <span className="text-xl font-bold uppercase tracking-tight sm:text-2xl">
         {label}
       </span>
       <span
-        className={`mt-1 block text-xs ${
+        className={`text-sm ${
           accountType === value ? "text-white/70" : "text-ink/50"
         }`}
       >
@@ -141,21 +144,22 @@ function SignupForm() {
         Join Blanked
       </p>
 
+      <div className="mt-10">
+        <label className="block text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+          I am a…
+        </label>
+        <div className="mt-2 grid grid-cols-1 gap-3 sm:grid-cols-3">
+          {typeTile("chef", "Talent / Brand", "I want to find and book spaces")}
+          {typeTile("landlord", "Landlord", "I have a space to list")}
+          {typeTile("customer", "Customer", "I want to find events in the city")}
+        </div>
+      </div>
+
+      {accountType && (
       <form
         onSubmit={handleSignup}
-        className="mt-10 grid grid-cols-1 gap-5 bg-white p-6 sm:grid-cols-2 sm:p-8"
+        className="mt-6 grid grid-cols-1 gap-5 bg-white p-6 sm:grid-cols-2 sm:p-8"
       >
-        <div className="sm:col-span-2">
-          <label className="block text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
-            I am a…
-          </label>
-          <div className="mt-2 flex flex-col gap-2 sm:flex-row">
-            {typeButton("chef", "Talent / Brand", "I want to find and book spaces")}
-            {typeButton("landlord", "Landlord", "I have a space to list")}
-            {typeButton("customer", "Customer", "I want to find events in the city")}
-          </div>
-        </div>
-
         <div>
           <label className="block text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
             {isBusiness ? "Display / Brand Name" : "Name"}
@@ -301,6 +305,7 @@ function SignupForm() {
           {loading ? "Creating account…" : "Create Account"}
         </button>
       </form>
+      )}
 
       <p className="mt-6 text-sm text-ink/60">
         Already have an account?{" "}
