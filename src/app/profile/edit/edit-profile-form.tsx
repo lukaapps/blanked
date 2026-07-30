@@ -184,8 +184,10 @@ export function EditProfileForm(props: Props) {
         <PageHeader
           title="Edit Profile"
           caption={
-            isBusiness
+            isChef
               ? "Your profile is shared with potential landlords of the spaces as a representation of your business. See it as your opportunity to show exactly what you do and why they should host you."
+              : isLandlord
+              ? "Blanked will support in creating your listing"
               : "Update your name and photo"
           }
         />
@@ -301,7 +303,7 @@ export function EditProfileForm(props: Props) {
 
               <div className="sm:col-span-2">
                 <label className="block text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
-                  Instagram URL
+                  Instagram URL{isLandlord ? " (if applicable)" : ""}
                 </label>
                 <input
                   value={instagram}

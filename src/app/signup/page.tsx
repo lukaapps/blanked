@@ -276,7 +276,7 @@ function SignupForm() {
 
             <div className="sm:col-span-2">
               <label className="block text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
-                Instagram URL
+                Instagram URL{accountType === "landlord" ? " (if applicable)" : ""}
               </label>
               <input
                 value={instagram}
