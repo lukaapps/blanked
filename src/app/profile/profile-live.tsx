@@ -116,7 +116,9 @@ function ProfileHeaderCard({
         </div>
       </div>
       <div className="flex items-center gap-4">
-        <Button variant="primary">Edit Profile</Button>
+        <ButtonLink href="/profile/edit" variant="primary">
+          Edit Profile
+        </ButtonLink>
         <SignOutButton />
       </div>
     </div>

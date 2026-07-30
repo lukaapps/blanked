@@ -571,3 +571,18 @@ export const spaceTypes: Space["type"][] = [
   "Market",
   "Kitchen only",
 ];
+
+export const mockChefProfile = {
+  name: "Mia Thornton",
+  photo: chefs[0].portrait,
+};
+
+export const mockLandlordProfile = {
+  name: "Richmond Rooftop Pty Ltd",
+  photo: spaces[5].images[0],
+};
+
+export const mockCustomerProfile = {
+  name: "Alex Chen",
+  photo: null as string | null,
+};

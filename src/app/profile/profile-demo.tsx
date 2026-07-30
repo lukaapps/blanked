@@ -2,16 +2,22 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, ButtonLink } from "@/components/ui/button";
 import { PageHeader } from "@/components/page-header";
-import { spaces, chefs, events } from "@/lib/mock-data";
+import {
+  spaces,
+  events,
+  mockChefProfile,
+  mockLandlordProfile,
+  mockCustomerProfile,
+} from "@/lib/mock-data";
+import { readDemoProfileOverride } from "@/lib/demo-profile";
 
 type AccountType = "chef" | "landlord" | "customer";
 
 const mockChef = {
-  name: "Mia Thornton",
-  photo: chefs[0].portrait,
+  ...mockChefProfile,
   bookings: [
     { space: "The Loft at Flinders Lane", dates: "12–13 Aug 2026", status: "Confirmed" },
     { space: "Smith Street Kitchen", dates: "2 Sep 2026", status: "Pending" },
@@ -21,8 +27,7 @@ const mockChef = {
 };
 
 const mockLandlord = {
-  name: "Richmond Rooftop Pty Ltd",
-  photo: spaces[5].images[0],
+  ...mockLandlordProfile,
   mySpaces: [
     { name: "Richmond Rooftop", status: "Live", requests: 4, dailyRate: 2500 },
     { name: "St Kilda Beach House", status: "Pending Review", requests: 0, dailyRate: 1200 },
@@ -34,7 +39,7 @@ const mockLandlord = {
 };
 
 const mockCustomer = {
-  name: "Alex Chen",
+  ...mockCustomerProfile,
   savedSlugs: [events[0].slug, events[2].slug],
 };
 
@@ -45,8 +50,30 @@ export function ProfileDemo() {
   const [accountType, setAccountType] = useState<AccountType>("chef");
   const [visible, setVisible] = useState(true);
 
-  const savedSpaces = spaces.filter((s) => mockChef.savedSlugs.includes(s.slug));
-  const savedEvents = events.filter((e) => mockCustomer.savedSlugs.includes(e.slug));
+  const [chefProfile, setChefProfile] = useState(mockChef);
+  const [landlordProfile, setLandlordProfile] = useState(mockLandlord);
+  const [customerProfile, setCustomerProfile] = useState(mockCustomer);
+
+  useEffect(() => {
+    // Overrides live in localStorage (written by /profile/edit) and can only
+    // be read after mount, so this syncs them in once the client is ready.
+    const chefOverride = readDemoProfileOverride("chef");
+    if (chefOverride) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setChefProfile((p) => ({ ...p, name: chefOverride.name, photo: chefOverride.photo ?? p.photo }));
+    }
+    const landlordOverride = readDemoProfileOverride("landlord");
+    if (landlordOverride) {
+      setLandlordProfile((p) => ({ ...p, name: landlordOverride.name, photo: landlordOverride.photo ?? p.photo }));
+    }
+    const customerOverride = readDemoProfileOverride("customer");
+    if (customerOverride) {
+      setCustomerProfile((p) => ({ ...p, name: customerOverride.name, photo: customerOverride.photo }));
+    }
+  }, []);
+
+  const savedSpaces = spaces.filter((s) => chefProfile.savedSlugs.includes(s.slug));
+  const savedEvents = events.filter((e) => customerProfile.savedSlugs.includes(e.slug));
 
   return (
     <div className="mx-auto max-w-5xl px-6 pb-24 pt-20">
@@ -98,24 +125,27 @@ export function ProfileDemo() {
 
       {accountType === "chef" ? (
         <ChefView
+          profile={chefProfile}
           visible={visible}
           setVisible={setVisible}
           savedSpaces={savedSpaces}
         />
       ) : accountType === "landlord" ? (
-        <LandlordView />
+        <LandlordView profile={landlordProfile} />
       ) : (
-        <CustomerView savedEvents={savedEvents} />
+        <CustomerView profile={customerProfile} savedEvents={savedEvents} />
       )}
     </div>
   );
 }
 
 function ChefView({
+  profile,
   visible,
   setVisible,
   savedSpaces,
 }: {
+  profile: typeof mockChef;
   visible: boolean;
   setVisible: (v: boolean) => void;
   savedSpaces: typeof spaces;
@@ -125,22 +155,24 @@ function ChefView({
       <div className="mt-10 flex flex-wrap items-center justify-between gap-6 bg-white p-6">
         <div className="flex items-center gap-4">
           <div className="relative h-16 w-16 overflow-hidden bg-divider">
-            <Image src={mockChef.photo} alt="" fill sizes="64px" className="object-cover" />
+            <Image src={profile.photo} alt="" fill sizes="64px" className="object-cover" />
           </div>
           <div>
-            <p className="text-xl font-medium tracking-tight">{mockChef.name}</p>
+            <p className="text-xl font-medium tracking-tight">{profile.name}</p>
             <span className="mt-1 inline-block bg-accent px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.15em] text-white">
               Talent
             </span>
           </div>
         </div>
-        <Button variant="primary">Edit Profile</Button>
+        <ButtonLink href="/profile/edit?demo=chef" variant="primary">
+          Edit Profile
+        </ButtonLink>
       </div>
 
       <div className="mt-12">
         <p className={sectionLabel}>My bookings</p>
         <div className="mt-4 flex flex-col gap-1">
-          {mockChef.bookings.map((b) => (
+          {profile.bookings.map((b) => (
             <div
               key={b.space}
               className="flex items-center justify-between bg-white px-6 py-5"
@@ -215,28 +247,30 @@ function ChefView({
   );
 }
 
-function LandlordView() {
+function LandlordView({ profile }: { profile: typeof mockLandlord }) {
   return (
     <div>
       <div className="mt-10 flex flex-wrap items-center justify-between gap-6 bg-white p-6">
         <div className="flex items-center gap-4">
           <div className="relative h-16 w-16 overflow-hidden bg-divider">
-            <Image src={mockLandlord.photo} alt="" fill sizes="64px" className="object-cover" />
+            <Image src={profile.photo} alt="" fill sizes="64px" className="object-cover" />
           </div>
           <div>
-            <p className="text-xl font-medium tracking-tight">{mockLandlord.name}</p>
+            <p className="text-xl font-medium tracking-tight">{profile.name}</p>
             <span className="mt-1 inline-block bg-accent px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.15em] text-white">
               Landlord
             </span>
           </div>
         </div>
-        <Button variant="primary">Edit Profile</Button>
+        <ButtonLink href="/profile/edit?demo=landlord" variant="primary">
+          Edit Profile
+        </ButtonLink>
       </div>
 
       <div className="mt-12">
         <p className={sectionLabel}>My spaces</p>
         <div className="mt-4 flex flex-col gap-1">
-          {mockLandlord.mySpaces.map((s) => (
+          {profile.mySpaces.map((s) => (
             <div
               key={s.name}
               className="flex flex-wrap items-center justify-between gap-2 bg-white px-6 py-5"
@@ -262,7 +296,7 @@ function LandlordView() {
       <div className="mt-12">
         <p className={sectionLabel}>Booking requests</p>
         <div className="mt-4 flex flex-col gap-1">
-          {mockLandlord.requests.map((r) => (
+          {profile.requests.map((r) => (
             <div key={r.chef + r.dates} className="bg-white px-6 py-5">
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <p className="font-medium">
@@ -294,24 +328,36 @@ function LandlordView() {
   );
 }
 
-function CustomerView({ savedEvents }: { savedEvents: typeof events }) {
+function CustomerView({
+  profile,
+  savedEvents,
+}: {
+  profile: typeof mockCustomer;
+  savedEvents: typeof events;
+}) {
   return (
     <div>
       <div className="mt-10 flex flex-wrap items-center justify-between gap-6 bg-white p-6">
         <div className="flex items-center gap-4">
-          <div className="flex h-16 w-16 items-center justify-center bg-divider">
-            <span className="text-xl font-semibold text-ink/40">
-              {mockCustomer.name.charAt(0)}
-            </span>
+          <div className="relative flex h-16 w-16 items-center justify-center overflow-hidden bg-divider">
+            {profile.photo ? (
+              <Image src={profile.photo} alt="" fill sizes="64px" className="object-cover" />
+            ) : (
+              <span className="text-xl font-semibold text-ink/40">
+                {profile.name.charAt(0)}
+              </span>
+            )}
           </div>
           <div>
-            <p className="text-xl font-medium tracking-tight">{mockCustomer.name}</p>
+            <p className="text-xl font-medium tracking-tight">{profile.name}</p>
             <span className="mt-1 inline-block bg-accent px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.15em] text-white">
               Customer
             </span>
           </div>
         </div>
-        <Button variant="primary">Edit Profile</Button>
+        <ButtonLink href="/profile/edit?demo=customer" variant="primary">
+          Edit Profile
+        </ButtonLink>
       </div>
 
       <div className="mt-12">
