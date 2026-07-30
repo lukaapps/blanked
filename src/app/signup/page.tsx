@@ -164,7 +164,7 @@ function SignupForm() {
         onSubmit={handleSignup}
         className="mt-6 grid grid-cols-1 gap-5 bg-white p-6 sm:grid-cols-2 sm:p-8"
       >
-        <div>
+        <div className="sm:col-span-2">
           <label className="block text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
             {isBusiness ? "Full Name" : "Name"}
           </label>
@@ -191,7 +191,7 @@ function SignupForm() {
           />
         </div>
 
-        <div className="sm:col-span-2">
+        <div>
           <label className="block text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
             Password
           </label>
