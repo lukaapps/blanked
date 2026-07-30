@@ -37,6 +37,13 @@ export type ProfileRow = {
   contact_phone: string | null;
   abn: string | null;
   licence: string | null;
+  website: string | null;
+  address_line: string | null;
+  address_suburb: string | null;
+  address_state: string | null;
+  address_postcode: string | null;
+  how_heard: string | null;
+  photos: string[];
   created_at: string;
   last_login: string | null;
 };

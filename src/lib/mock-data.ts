@@ -576,17 +576,37 @@ export const mockChefProfile = {
   name: "Mia Thornton",
   photo: chefs[0].portrait,
   bio: chefs[0].bio,
-  role: chefs[0].role,
+  role: "Owner",
   instagram: chefs[0].instagram,
   spaceTypePreferences: chefs[0].spaceTypePreferences,
+  email: "mia@blanked.melbourne",
+  website: "https://miathornton.com",
+  addressLine: "12 Smith Street",
+  addressSuburb: "Fitzroy",
+  addressState: "VIC",
+  addressPostcode: "3065",
+  photos: [
+    chefs[0].portrait,
+    "/images/food-plated-duo.jpg?v=3",
+    "/images/drink-cocktail.jpg?v=3",
+  ],
 };
 
 export const mockLandlordProfile = {
   name: "Richmond Rooftop Pty Ltd",
   photo: spaces[5].images[0],
+  role: "Owner",
+  email: "richmond@blanked.melbourne",
+  website: "https://richmondrooftop.com.au",
+  addressLine: "88 Bridge Road",
+  addressSuburb: "Richmond",
+  addressState: "VIC",
+  addressPostcode: "3121",
+  photos: [spaces[5].images[0], spaces[5].images[1]],
 };
 
 export const mockCustomerProfile = {
   name: "Alex Chen",
   photo: null as string | null,
+  email: "alex.chen@blanked.melbourne",
 };
