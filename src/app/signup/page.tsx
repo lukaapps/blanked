@@ -35,6 +35,7 @@ function SignupForm() {
   const isBusiness = accountType !== null && accountType !== "customer";
 
   const [name, setName] = useState("");
+  const [businessName, setBusinessName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [photos, setPhotos] = useState<string[]>([]);
@@ -67,6 +68,7 @@ function SignupForm() {
           how_heard: howHeard || null,
           ...(isBusiness
             ? {
+                business_name: businessName || null,
                 role: finalRole || null,
                 website: website || null,
                 address_line: addressLine || null,
@@ -164,14 +166,14 @@ function SignupForm() {
       >
         <div>
           <label className="block text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
-            {isBusiness ? "Display / Brand Name" : "Name"}
+            {isBusiness ? "Full Name" : "Name"}
           </label>
           <input
             required
             value={name}
             onChange={(e) => setName(e.target.value)}
             className="input mt-2"
-            placeholder={isBusiness ? "Your display or brand name" : "Your name"}
+            placeholder={isBusiness ? "Your full name" : "Your name"}
           />
         </div>
 
@@ -206,6 +208,19 @@ function SignupForm() {
 
         {isBusiness && (
           <>
+            <div className="sm:col-span-2">
+              <label className="block text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+                Display / Brand Name
+              </label>
+              <input
+                required
+                value={businessName}
+                onChange={(e) => setBusinessName(e.target.value)}
+                className="input mt-2"
+                placeholder="Your display or brand name"
+              />
+            </div>
+
             <div className="sm:col-span-2">
               <label className="block text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
                 Photos
