@@ -212,14 +212,18 @@ function SignupForm() {
           <>
             <div className="sm:col-span-2">
               <label className="block text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
-                Display / Brand Name
+                {accountType === "landlord" ? "Business Name" : "Display / Brand Name"}
               </label>
               <input
                 required
                 value={businessName}
                 onChange={(e) => setBusinessName(e.target.value)}
                 className="input mt-2"
-                placeholder="Your display or brand name"
+                placeholder={
+                  accountType === "landlord"
+                    ? "Your business name"
+                    : "Your display or brand name"
+                }
               />
             </div>
 

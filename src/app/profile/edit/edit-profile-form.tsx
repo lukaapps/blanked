@@ -50,6 +50,7 @@ export function EditProfileForm(props: Props) {
   const router = useRouter();
   const isBusiness = props.accountType !== "customer";
   const isChef = props.accountType === "chef";
+  const isLandlord = props.accountType === "landlord";
 
   const [name, setName] = useState(props.initialName);
   const [businessName, setBusinessName] = useState(props.initialBusinessName ?? "");
@@ -223,14 +224,14 @@ export function EditProfileForm(props: Props) {
           {isBusiness && (
             <div className="sm:col-span-2">
               <label className="block text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
-                Display / Brand Name
+                {isLandlord ? "Business Name" : "Display / Brand Name"}
               </label>
               <input
                 required
                 value={businessName}
                 onChange={(e) => setBusinessName(e.target.value)}
                 className="input mt-2"
-                placeholder="Your display or brand name"
+                placeholder={isLandlord ? "Your business name" : "Your display or brand name"}
               />
             </div>
           )}
