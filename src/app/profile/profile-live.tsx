@@ -53,6 +53,15 @@ export type SavedEvent = {
   image: string;
 };
 
+export type MyEvent = {
+  slug: string;
+  name: string;
+  suburb: string;
+  date: string;
+  image: string;
+  status: string;
+};
+
 export type LandlordSpace = {
   id: string;
   slug: string;
@@ -125,16 +134,26 @@ function ProfileHeaderCard({
   );
 }
 
+const chefTabs = [
+  { key: "bookings", label: "My Bookings" },
+  { key: "spaces", label: "Saved Spaces" },
+  { key: "events", label: "My Events" },
+] as const;
+type ChefTabKey = (typeof chefTabs)[number]["key"];
+
 export function ChefProfileLive({
   profile,
   bookings,
   savedSpaces,
+  myEvents,
 }: {
   profile: ProfileData;
   bookings: ChefBooking[];
   savedSpaces: SavedSpace[];
+  myEvents: MyEvent[];
 }) {
   const [visible, setVisible] = useState(profile.visibleToLandlords);
+  const [tab, setTab] = useState<ChefTabKey>("bookings");
 
   async function toggleVisibility() {
     const next = !visible;
@@ -146,86 +165,144 @@ export function ChefProfileLive({
   }
 
   return (
-    <div className="mx-auto max-w-5xl px-6 pb-24 pt-20">
+    <div className="px-6 pb-24 pt-20">
       <PageHeader
         title="My Profile"
         caption="Manage your bookings and public profile"
       />
       <ProfileHeaderCard profile={profile} />
 
-      <div className="mt-12">
-        <p className={sectionLabel}>My bookings</p>
-        {bookings.length === 0 ? (
-          <p className="mt-4 text-sm text-ink/50">
-            No booking requests yet —{" "}
-            <Link href="/browse-spaces" className="text-accent hover:underline">
-              browse spaces
-            </Link>{" "}
-            to send your first one.
-          </p>
-        ) : (
-          <div className="mt-4 flex flex-col gap-1">
-            {bookings.map((b) => (
-              <div
-                key={b.id}
-                className="flex items-center justify-between bg-white px-6 py-5"
-              >
-                <div>
-                  <Link
-                    href={`/browse-spaces/${b.spaceSlug}`}
-                    className="font-medium hover:text-accent"
-                  >
-                    {b.spaceName}
-                  </Link>
-                  <p className="mt-0.5 text-[11px] font-medium uppercase tracking-[0.15em] text-ink/45">
-                    {b.dates}
-                  </p>
-                </div>
-                <span
-                  className={`text-[10px] font-semibold uppercase tracking-[0.2em] ${statusColor(b.status)}`}
-                >
-                  {b.status}
-                </span>
-              </div>
-            ))}
-          </div>
-        )}
+      <div className="mt-10 flex flex-wrap gap-2">
+        {chefTabs.map((t) => (
+          <button
+            key={t.key}
+            onClick={() => setTab(t.key)}
+            className={`px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.2em] transition-colors ${
+              tab === t.key
+                ? "bg-[#442220] text-white"
+                : "bg-white text-ink/50 hover:text-ink"
+            }`}
+          >
+            {t.label}
+          </button>
+        ))}
       </div>
 
-      <div className="mt-12">
-        <p className={sectionLabel}>Saved spaces</p>
-        {savedSpaces.length === 0 ? (
-          <p className="mt-4 text-sm text-ink/50">
-            Nothing saved yet. Tap the heart on any space to keep it here.
-          </p>
-        ) : (
-          <div className="mt-4 grid grid-cols-1 gap-6 sm:grid-cols-3">
-            {savedSpaces.map((space) => (
-              <Link
-                key={space.slug}
-                href={`/browse-spaces/${space.slug}`}
-                className="group block"
-              >
-                <div className="relative aspect-[4/3] w-full overflow-hidden bg-divider">
-                  {space.image && (
-                    <Image
-                      src={space.image}
-                      alt={space.name}
-                      fill
-                      sizes="33vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                  )}
+      {tab === "bookings" && (
+        <div className="mt-8">
+          {bookings.length === 0 ? (
+            <p className="text-sm text-ink/50">
+              No booking requests yet —{" "}
+              <Link href="/browse-spaces" className="text-accent hover:underline">
+                browse spaces
+              </Link>{" "}
+              to send your first one.
+            </p>
+          ) : (
+            <div className="flex flex-col gap-1">
+              {bookings.map((b) => (
+                <div
+                  key={b.id}
+                  className="flex flex-wrap items-center justify-between gap-3 bg-white px-6 py-5"
+                >
+                  <div>
+                    <p className="font-medium">{b.spaceName}</p>
+                    <p className="mt-0.5 text-[11px] font-medium uppercase tracking-[0.15em] text-ink/45">
+                      {b.dates}
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <span
+                      className={`text-[10px] font-semibold uppercase tracking-[0.2em] ${statusColor(b.status)}`}
+                    >
+                      {b.status}
+                    </span>
+                    <Link
+                      href={`/browse-spaces/${b.spaceSlug}`}
+                      className="text-[11px] font-semibold uppercase tracking-[0.15em] text-accent hover:underline"
+                    >
+                      View Details
+                    </Link>
+                  </div>
                 </div>
-                <p className="mt-2 text-sm font-medium">{space.name}</p>
-                <p className="mt-0.5 text-[11px] font-medium uppercase tracking-[0.15em] text-ink/45">
-                  {space.suburb}
-                </p>
-              </Link>
-            ))}
-          </div>
-        )}
-      </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
+      {tab === "spaces" && (
+        <div className="mt-8">
+          {savedSpaces.length === 0 ? (
+            <p className="text-sm text-ink/50">
+              Nothing saved yet. Tap the heart on any space to keep it here.
+            </p>
+          ) : (
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-3 lg:grid-cols-4">
+              {savedSpaces.map((space) => (
+                <Link
+                  key={space.slug}
+                  href={`/browse-spaces/${space.slug}`}
+                  className="group block"
+                >
+                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-divider">
+                    {space.image && (
+                      <Image
+                        src={space.image}
+                        alt={space.name}
+                        fill
+                        sizes="25vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    )}
+                  </div>
+                  <p className="mt-2 text-sm font-medium">{space.name}</p>
+                  <p className="mt-0.5 text-[11px] font-medium uppercase tracking-[0.15em] text-ink/45">
+                    {space.suburb}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
+      {tab === "events" && (
+        <div className="mt-8">
+          {myEvents.length === 0 ? (
+            <p className="text-sm text-ink/50">
+              No events linked to your profile yet. The Blanked team adds
+              these once your event is confirmed.
+            </p>
+          ) : (
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-3 lg:grid-cols-4">
+              {myEvents.map((event) => (
+                <Link
+                  key={event.slug}
+                  href={`/events/${event.slug}`}
+                  className="group block"
+                >
+                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-divider">
+                    {event.image && (
+                      <Image
+                        src={event.image}
+                        alt={event.name}
+                        fill
+                        sizes="25vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    )}
+                  </div>
+                  <p className="mt-2 text-sm font-medium">{event.name}</p>
+                  <p className="mt-0.5 text-[11px] font-medium uppercase tracking-[0.15em] text-ink/45">
+                    {event.suburb} · {event.date}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
 
       <div className="mt-12 flex items-center justify-between bg-white p-6">
         <div>

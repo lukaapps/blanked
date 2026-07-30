@@ -11,10 +11,41 @@ import { EditProfileForm } from "./edit-profile-form";
 
 export const metadata = { title: "Edit Profile | Blanked" };
 
-const demoDefaults: Record<DemoProfileType, { name: string; photo: string | null }> = {
-  chef: mockChefProfile,
-  landlord: mockLandlordProfile,
-  customer: mockCustomerProfile,
+const demoDefaults: Record<
+  DemoProfileType,
+  {
+    name: string;
+    photo: string | null;
+    bio: string | null;
+    role: string | null;
+    instagram: string | null;
+    spaceTypePreferences: string[];
+  }
+> = {
+  chef: {
+    name: mockChefProfile.name,
+    photo: mockChefProfile.photo,
+    bio: mockChefProfile.bio,
+    role: mockChefProfile.role,
+    instagram: mockChefProfile.instagram,
+    spaceTypePreferences: mockChefProfile.spaceTypePreferences,
+  },
+  landlord: {
+    name: mockLandlordProfile.name,
+    photo: mockLandlordProfile.photo,
+    bio: null,
+    role: null,
+    instagram: null,
+    spaceTypePreferences: [],
+  },
+  customer: {
+    name: mockCustomerProfile.name,
+    photo: mockCustomerProfile.photo,
+    bio: null,
+    role: null,
+    instagram: null,
+    spaceTypePreferences: [],
+  },
 };
 
 export default async function EditProfilePage({
@@ -31,8 +62,13 @@ export default async function EditProfilePage({
       <EditProfileForm
         mode="demo"
         demoType={demoType}
+        isChef={demoType === "chef"}
         initialName={defaults.name}
         initialPhoto={defaults.photo}
+        initialBio={defaults.bio}
+        initialRole={defaults.role}
+        initialInstagram={defaults.instagram}
+        initialSpaceTypePreferences={defaults.spaceTypePreferences}
       />
     );
   }
@@ -54,8 +90,13 @@ export default async function EditProfilePage({
     <EditProfileForm
       mode="live"
       profileId={profileRow.id}
+      isChef={profileRow.account_type === "chef"}
       initialName={profileRow.name || ""}
       initialPhoto={profileRow.photo_url}
+      initialBio={profileRow.bio}
+      initialRole={profileRow.role}
+      initialInstagram={profileRow.instagram}
+      initialSpaceTypePreferences={profileRow.space_type_preferences ?? []}
     />
   );
 }

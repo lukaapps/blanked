@@ -19,11 +19,12 @@ type AccountType = "chef" | "landlord" | "customer";
 const mockChef = {
   ...mockChefProfile,
   bookings: [
-    { space: "The Loft at Flinders Lane", dates: "12–13 Aug 2026", status: "Confirmed" },
-    { space: "Smith Street Kitchen", dates: "2 Sep 2026", status: "Pending" },
-    { space: "Gertrude Street Bistro", dates: "18–24 Jul 2026", status: "Completed" },
+    { space: "The Loft at Flinders Lane", spaceSlug: "the-loft-at-flinders-lane", dates: "12–13 Aug 2026", status: "Confirmed" },
+    { space: "Smith Street Kitchen", spaceSlug: "smith-street-kitchen", dates: "2 Sep 2026", status: "Pending" },
+    { space: "Gertrude Street Bistro", spaceSlug: "gertrude-street-bistro", dates: "18–24 Jul 2026", status: "Completed" },
   ],
   savedSlugs: [spaces[1].slug, spaces[4].slug],
+  eventChefSlug: "mia-thornton",
 };
 
 const mockLandlord = {
@@ -74,9 +75,16 @@ export function ProfileDemo() {
 
   const savedSpaces = spaces.filter((s) => chefProfile.savedSlugs.includes(s.slug));
   const savedEvents = events.filter((e) => customerProfile.savedSlugs.includes(e.slug));
+  const myEvents = events.filter((e) => e.chefSlug === chefProfile.eventChefSlug);
 
   return (
-    <div className="mx-auto max-w-5xl px-6 pb-24 pt-20">
+    <div
+      className={
+        accountType === "chef"
+          ? "px-6 pb-24 pt-20"
+          : "mx-auto max-w-5xl px-6 pb-24 pt-20"
+      }
+    >
       <PageHeader
         title="My Profile"
         caption={
@@ -129,6 +137,7 @@ export function ProfileDemo() {
           visible={visible}
           setVisible={setVisible}
           savedSpaces={savedSpaces}
+          myEvents={myEvents}
         />
       ) : accountType === "landlord" ? (
         <LandlordView profile={landlordProfile} />
@@ -139,17 +148,28 @@ export function ProfileDemo() {
   );
 }
 
+const chefTabs = [
+  { key: "bookings", label: "My Bookings" },
+  { key: "spaces", label: "Saved Spaces" },
+  { key: "events", label: "My Events" },
+] as const;
+type ChefTabKey = (typeof chefTabs)[number]["key"];
+
 function ChefView({
   profile,
   visible,
   setVisible,
   savedSpaces,
+  myEvents,
 }: {
   profile: typeof mockChef;
   visible: boolean;
   setVisible: (v: boolean) => void;
   savedSpaces: typeof spaces;
+  myEvents: typeof events;
 }) {
+  const [tab, setTab] = useState<ChefTabKey>("bookings");
+
   return (
     <div>
       <div className="mt-10 flex flex-wrap items-center justify-between gap-6 bg-white p-6">
@@ -169,13 +189,28 @@ function ChefView({
         </ButtonLink>
       </div>
 
-      <div className="mt-12">
-        <p className={sectionLabel}>My bookings</p>
-        <div className="mt-4 flex flex-col gap-1">
+      <div className="mt-10 flex flex-wrap gap-2">
+        {chefTabs.map((t) => (
+          <button
+            key={t.key}
+            onClick={() => setTab(t.key)}
+            className={`px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.2em] transition-colors ${
+              tab === t.key
+                ? "bg-[#442220] text-white"
+                : "bg-white text-ink/50 hover:text-ink"
+            }`}
+          >
+            {t.label}
+          </button>
+        ))}
+      </div>
+
+      {tab === "bookings" && (
+        <div className="mt-8 flex flex-col gap-1">
           {profile.bookings.map((b) => (
             <div
               key={b.space}
-              className="flex items-center justify-between bg-white px-6 py-5"
+              className="flex flex-wrap items-center justify-between gap-3 bg-white px-6 py-5"
             >
               <div>
                 <p className="font-medium">{b.space}</p>
@@ -183,25 +218,32 @@ function ChefView({
                   {b.dates}
                 </p>
               </div>
-              <span
-                className={`text-[10px] font-semibold uppercase tracking-[0.2em] ${
-                  b.status === "Confirmed"
-                    ? "text-green-700"
-                    : b.status === "Pending"
-                    ? "text-amber-600"
-                    : "text-ink/35"
-                }`}
-              >
-                {b.status}
-              </span>
+              <div className="flex items-center gap-4">
+                <span
+                  className={`text-[10px] font-semibold uppercase tracking-[0.2em] ${
+                    b.status === "Confirmed"
+                      ? "text-green-700"
+                      : b.status === "Pending"
+                      ? "text-amber-600"
+                      : "text-ink/35"
+                  }`}
+                >
+                  {b.status}
+                </span>
+                <Link
+                  href={`/browse-spaces/${b.spaceSlug}`}
+                  className="text-[11px] font-semibold uppercase tracking-[0.15em] text-accent hover:underline"
+                >
+                  View Details
+                </Link>
+              </div>
             </div>
           ))}
         </div>
-      </div>
+      )}
 
-      <div className="mt-12">
-        <p className={sectionLabel}>Saved spaces</p>
-        <div className="mt-4 grid grid-cols-1 gap-6 sm:grid-cols-3">
+      {tab === "spaces" && (
+        <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-3 lg:grid-cols-4">
           {savedSpaces.map((space) => (
             <Link key={space.slug} href={`/browse-spaces/${space.slug}`} className="group block">
               <div className="relative aspect-[4/3] w-full overflow-hidden bg-divider">
@@ -209,7 +251,7 @@ function ChefView({
                   src={space.images[0]}
                   alt={space.name}
                   fill
-                  sizes="33vw"
+                  sizes="25vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
@@ -220,7 +262,38 @@ function ChefView({
             </Link>
           ))}
         </div>
-      </div>
+      )}
+
+      {tab === "events" && (
+        <div className="mt-8">
+          {myEvents.length === 0 ? (
+            <p className="text-sm text-ink/50">
+              No events linked to your profile yet. The Blanked team adds
+              these once your event is confirmed.
+            </p>
+          ) : (
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-3 lg:grid-cols-4">
+              {myEvents.map((event) => (
+                <Link key={event.slug} href={`/events/${event.slug}`} className="group block">
+                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-divider">
+                    <Image
+                      src={event.images[0]}
+                      alt={event.name}
+                      fill
+                      sizes="25vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                  <p className="mt-2 text-sm font-medium">{event.name}</p>
+                  <p className="mt-0.5 text-[11px] font-medium uppercase tracking-[0.15em] text-ink/45">
+                    {event.suburb} · {event.date}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
 
       <div className="mt-12 flex items-center justify-between bg-white p-6">
         <div>

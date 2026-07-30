@@ -3,6 +3,10 @@ export type DemoProfileType = "chef" | "landlord" | "customer";
 export type DemoProfileOverride = {
   name: string;
   photo: string | null;
+  bio?: string;
+  role?: string;
+  instagram?: string;
+  spaceTypePreferences?: string[];
 };
 
 function demoProfileKey(type: DemoProfileType) {

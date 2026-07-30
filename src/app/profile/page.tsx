@@ -9,6 +9,7 @@ import {
   type ChefBooking,
   type LandlordRequest,
   type LandlordSpace,
+  type MyEvent,
   type ProfileData,
   type SavedEvent,
   type SavedSpace,
@@ -71,17 +72,23 @@ export default async function MyProfilePage() {
   }
 
   if (profile.accountType === "chef") {
-    const [{ data: bookingRows }, { data: savedRows }] = await Promise.all([
-      supabase
-        .from("booking_requests")
-        .select("id, requested_dates, status, spaces(name, slug)")
-        .eq("chef_id", user.id)
-        .order("created_at", { ascending: false }),
-      supabase
-        .from("saved_spaces")
-        .select("spaces(slug, name, suburb, cover_image, images)")
-        .eq("user_id", user.id),
-    ]);
+    const [{ data: bookingRows }, { data: savedRows }, { data: chefProfileRow }] =
+      await Promise.all([
+        supabase
+          .from("booking_requests")
+          .select("id, requested_dates, status, spaces(name, slug)")
+          .eq("chef_id", user.id)
+          .order("created_at", { ascending: false }),
+        supabase
+          .from("saved_spaces")
+          .select("spaces(slug, name, suburb, cover_image, images)")
+          .eq("user_id", user.id),
+        supabase
+          .from("chef_profiles")
+          .select("id")
+          .eq("user_id", user.id)
+          .maybeSingle(),
+      ]);
 
     const bookings: ChefBooking[] = (bookingRows ?? []).map((b) => {
       const space = b.spaces as unknown as { name: string; slug: string } | null;
@@ -113,11 +120,29 @@ export default async function MyProfilePage() {
       ];
     });
 
+    let myEvents: MyEvent[] = [];
+    if (chefProfileRow) {
+      const { data: eventRows } = await supabase
+        .from("events")
+        .select("slug, name, suburb, date, hero_image, status")
+        .eq("chef_profile_id", chefProfileRow.id)
+        .order("date", { ascending: true });
+      myEvents = (eventRows ?? []).map((e) => ({
+        slug: e.slug,
+        name: e.name,
+        suburb: e.suburb ?? "",
+        date: e.date ?? "",
+        image: e.hero_image ?? "",
+        status: e.status,
+      }));
+    }
+
     return (
       <ChefProfileLive
         profile={profile}
         bookings={bookings}
         savedSpaces={savedSpaces}
+        myEvents={myEvents}
       />
     );
   }

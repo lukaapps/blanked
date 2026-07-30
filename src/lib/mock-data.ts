@@ -575,6 +575,10 @@ export const spaceTypes: Space["type"][] = [
 export const mockChefProfile = {
   name: "Mia Thornton",
   photo: chefs[0].portrait,
+  bio: chefs[0].bio,
+  role: chefs[0].role,
+  instagram: chefs[0].instagram,
+  spaceTypePreferences: chefs[0].spaceTypePreferences,
 };
 
 export const mockLandlordProfile = {
