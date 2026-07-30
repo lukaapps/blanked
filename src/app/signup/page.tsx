@@ -189,7 +189,7 @@ function SignupForm() {
           />
         </div>
 
-        <div>
+        <div className="sm:col-span-2">
           <label className="block text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
             Password
           </label>
@@ -202,24 +202,6 @@ function SignupForm() {
             className="input mt-2"
             placeholder="At least 8 characters"
           />
-        </div>
-
-        <div>
-          <label className="block text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
-            How did you hear about us?
-          </label>
-          <select
-            value={howHeard}
-            onChange={(e) => setHowHeard(e.target.value)}
-            className="input mt-2"
-          >
-            <option value="">Select an option</option>
-            {hearAboutOptions.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
         </div>
 
         {isBusiness && (
@@ -304,6 +286,24 @@ function SignupForm() {
             </div>
           </>
         )}
+
+        <div className="sm:col-span-2">
+          <label className="block text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+            How did you hear about us?
+          </label>
+          <select
+            value={howHeard}
+            onChange={(e) => setHowHeard(e.target.value)}
+            className="input mt-2"
+          >
+            <option value="">Select an option</option>
+            {hearAboutOptions.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+        </div>
 
         {error && <p className="text-sm text-accent sm:col-span-2">{error}</p>}
 
