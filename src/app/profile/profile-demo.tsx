@@ -172,12 +172,13 @@ function ChefView({
           </div>
           <div>
             <p className="text-xl font-medium tracking-tight">{profile.name}</p>
-            <span className="mt-1 inline-block bg-accent px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.15em] text-white">
-              Talent
-            </span>
           </div>
         </div>
-        <ButtonLink href="/profile/edit?demo=chef" variant="primary">
+        <ButtonLink
+          href="/profile/edit?demo=chef"
+          variant="primary"
+          className="!border-[#442220] !bg-[#442220] !text-white hover:!bg-[#442220]/90 hover:!text-white"
+        >
           Edit Profile
         </ButtonLink>
       </div>

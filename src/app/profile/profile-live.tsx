@@ -114,17 +114,23 @@ function ProfileHeaderCard({
         </div>
         <div>
           <p className="text-xl font-medium tracking-tight">{profile.name}</p>
-          <span className="mt-1 inline-block bg-accent px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.15em] text-white">
-            {profile.accountType === "chef"
-              ? "Talent / Brand"
-              : profile.accountType === "landlord"
-              ? "Landlord"
-              : "Customer"}
-          </span>
+          {profile.accountType !== "chef" && (
+            <span className="mt-1 inline-block bg-accent px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.15em] text-white">
+              {profile.accountType === "landlord" ? "Landlord" : "Customer"}
+            </span>
+          )}
         </div>
       </div>
       <div className="flex items-center gap-4">
-        <ButtonLink href="/profile/edit" variant="primary">
+        <ButtonLink
+          href="/profile/edit"
+          variant="primary"
+          className={
+            profile.accountType === "chef"
+              ? "!border-[#442220] !bg-[#442220] !text-white hover:!bg-[#442220]/90 hover:!text-white"
+              : ""
+          }
+        >
           Edit Profile
         </ButtonLink>
         <SignOutButton />
