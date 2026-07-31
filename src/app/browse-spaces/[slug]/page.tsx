@@ -1,7 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getSpace } from "@/lib/data";
+import { BackButton } from "@/components/back-button";
 import { RequestSpace } from "@/components/request-space";
 import { SpaceDetailAccordion } from "@/components/space-detail-accordion";
 
@@ -29,13 +29,11 @@ export default async function SpaceDetailPage({
   return (
     <div className="lg:flex lg:h-screen">
       <div className="relative lg:h-full lg:w-1/2 lg:overflow-y-auto">
-        <Link
-          href="/browse-spaces"
-          aria-label="Back to all spaces"
+        <BackButton
+          fallbackHref="/browse-spaces"
+          ariaLabel="Back to all spaces"
           className="absolute left-4 top-4 z-10 flex h-9 w-9 items-center justify-center bg-white/90 text-ink transition-colors hover:bg-white"
-        >
-          ←
-        </Link>
+        />
         <div className="no-scrollbar flex snap-x snap-mandatory overflow-x-auto lg:flex-col lg:gap-px lg:overflow-x-visible lg:overflow-y-auto lg:snap-none">
           {space.images.map((src, i) => (
             <div

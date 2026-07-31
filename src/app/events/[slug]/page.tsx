@@ -1,9 +1,9 @@
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getChef, getEvent, getEvents } from "@/lib/data";
 import { StatusTag } from "@/components/ui/pill";
 import { Button } from "@/components/ui/button";
+import { BackButton } from "@/components/back-button";
 import { EventDetailAccordion } from "@/components/event-detail-accordion";
 import { SaveEventButton } from "@/components/save-event-button";
 
@@ -40,13 +40,11 @@ export default async function EventDetailPage({
   return (
     <div className="lg:flex lg:h-screen">
       <div className="relative lg:h-full lg:w-1/2 lg:overflow-y-auto">
-        <Link
-          href="/events"
-          aria-label="Back to all events"
+        <BackButton
+          fallbackHref="/events"
+          ariaLabel="Back to all events"
           className="absolute left-4 top-4 z-10 flex h-9 w-9 items-center justify-center bg-white/90 text-ink transition-colors hover:bg-white"
-        >
-          ←
-        </Link>
+        />
         <div className="no-scrollbar flex snap-x snap-mandatory overflow-x-auto lg:flex-col lg:gap-px lg:overflow-x-visible lg:overflow-y-auto lg:snap-none">
           {event.images.map((src, i) => (
             <div
