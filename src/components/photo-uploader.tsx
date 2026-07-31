@@ -2,24 +2,25 @@
 
 import { useRef, useState } from "react";
 
-const MAX_PHOTOS = 5;
 const MAX_FILE_BYTES = 5 * 1024 * 1024;
 
 export function PhotoUploader({
   photos,
   onChange,
   uploadFile,
+  max = 5,
 }: {
   photos: string[];
   onChange: (photos: string[]) => void;
   uploadFile: (file: File) => Promise<string>;
+  max?: number;
 }) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   async function handleFiles(fileList: FileList) {
-    const remaining = MAX_PHOTOS - photos.length;
+    const remaining = max - photos.length;
     if (remaining <= 0) return;
     const files = Array.from(fileList).slice(0, remaining);
     setError(null);
@@ -61,7 +62,7 @@ export function PhotoUploader({
             </button>
           </div>
         ))}
-        {photos.length < MAX_PHOTOS && (
+        {photos.length < max && (
           <button
             type="button"
             onClick={() => inputRef.current?.click()}
@@ -76,13 +77,15 @@ export function PhotoUploader({
         ref={inputRef}
         type="file"
         accept="image/*"
-        multiple
+        multiple={max > 1}
         hidden
         onChange={(e) => e.target.files && handleFiles(e.target.files)}
       />
-      <p className="mt-2 text-[11px] text-ink/40">
-        {photos.length}/{MAX_PHOTOS} photos
-      </p>
+      {max > 1 && (
+        <p className="mt-2 text-[11px] text-ink/40">
+          {photos.length}/{max} photos
+        </p>
+      )}
       {error && <p className="mt-1 text-[11px] text-accent">{error}</p>}
     </div>
   );

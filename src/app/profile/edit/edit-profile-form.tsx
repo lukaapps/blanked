@@ -250,14 +250,16 @@ export function EditProfileForm(props: Props) {
           ) : (
             <div className="sm:col-span-2">
               <label className="block text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
-                Photo URL
+                Display Picture
               </label>
-              <input
-                value={photo}
-                onChange={(e) => setPhoto(e.target.value)}
-                className="input mt-2"
-                placeholder="https://..."
-              />
+              <div className="mt-2">
+                <PhotoUploader
+                  photos={photo ? [photo] : []}
+                  onChange={(next) => setPhoto(next[0] ?? "")}
+                  uploadFile={uploadPhoto}
+                  max={1}
+                />
+              </div>
             </div>
           )}
 
