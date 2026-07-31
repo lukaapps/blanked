@@ -49,7 +49,6 @@ const sectionLabel =
 
 export function ProfileDemo() {
   const [accountType, setAccountType] = useState<AccountType>("chef");
-  const [visible, setVisible] = useState(true);
 
   const [chefProfile, setChefProfile] = useState(mockChef);
   const [landlordProfile, setLandlordProfile] = useState(mockLandlord);
@@ -134,8 +133,6 @@ export function ProfileDemo() {
       {accountType === "chef" ? (
         <ChefView
           profile={chefProfile}
-          visible={visible}
-          setVisible={setVisible}
           savedSpaces={savedSpaces}
           myEvents={myEvents}
         />
@@ -157,14 +154,10 @@ type ChefTabKey = (typeof chefTabs)[number]["key"];
 
 function ChefView({
   profile,
-  visible,
-  setVisible,
   savedSpaces,
   myEvents,
 }: {
   profile: typeof mockChef;
-  visible: boolean;
-  setVisible: (v: boolean) => void;
   savedSpaces: typeof spaces;
   myEvents: typeof events;
 }) {
@@ -295,27 +288,6 @@ function ChefView({
         </div>
       )}
 
-      <div className="mt-12 flex items-center justify-between bg-white p-6">
-        <div>
-          <p className="text-sm font-medium">Make my profile visible to landlords</p>
-          <p className="mt-0.5 text-sm text-ink/50">
-            Appears in the Blanked Talent directory when on.
-          </p>
-        </div>
-        <button
-          onClick={() => setVisible(!visible)}
-          className={`h-7 w-12 shrink-0 border border-ink transition-colors ${
-            visible ? "bg-ink" : "bg-transparent"
-          }`}
-          aria-label="Toggle profile visibility"
-        >
-          <span
-            className={`block h-5 w-5 bg-background transition-transform ${
-              visible ? "translate-x-6" : "translate-x-1"
-            }`}
-          />
-        </button>
-      </div>
     </div>
   );
 }

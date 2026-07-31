@@ -27,7 +27,6 @@ export type ProfileData = {
   email: string;
   accountType: "chef" | "landlord" | "customer";
   photoUrl: string | null;
-  visibleToLandlords: boolean;
 };
 
 export type ChefBooking = {
@@ -152,17 +151,7 @@ export function ChefProfileLive({
   savedSpaces: SavedSpace[];
   myEvents: MyEvent[];
 }) {
-  const [visible, setVisible] = useState(profile.visibleToLandlords);
   const [tab, setTab] = useState<ChefTabKey>("bookings");
-
-  async function toggleVisibility() {
-    const next = !visible;
-    setVisible(next);
-    await createClient()
-      .from("profiles")
-      .update({ visible_to_landlords: next })
-      .eq("id", profile.id);
-  }
 
   return (
     <div className="px-6 pb-24 pt-20">
@@ -304,29 +293,6 @@ export function ChefProfileLive({
         </div>
       )}
 
-      <div className="mt-12 flex items-center justify-between bg-white p-6">
-        <div>
-          <p className="text-sm font-medium">
-            Make my profile visible to landlords
-          </p>
-          <p className="mt-0.5 text-sm text-ink/50">
-            Appears in the Blanked Talent directory when on.
-          </p>
-        </div>
-        <button
-          onClick={toggleVisibility}
-          className={`h-7 w-12 shrink-0 border border-ink transition-colors ${
-            visible ? "bg-ink" : "bg-transparent"
-          }`}
-          aria-label="Toggle profile visibility"
-        >
-          <span
-            className={`block h-5 w-5 bg-background transition-transform ${
-              visible ? "translate-x-6" : "translate-x-1"
-            }`}
-          />
-        </button>
-      </div>
     </div>
   );
 }

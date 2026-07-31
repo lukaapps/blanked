@@ -39,7 +39,6 @@ export default async function MyProfilePage() {
     email: profileRow.email,
     accountType: profileRow.account_type,
     photoUrl: profileRow.photo_url,
-    visibleToLandlords: profileRow.visible_to_landlords,
   };
 
   if (profile.accountType === "customer") {
