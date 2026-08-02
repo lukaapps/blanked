@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { getSpace } from "@/lib/data";
 import { BackButton } from "@/components/back-button";
 import { RequestSpace } from "@/components/request-space";
+import { SaveSpaceButton } from "@/components/save-space-button";
 import { SpaceDetailAccordion } from "@/components/space-detail-accordion";
 
 export async function generateMetadata({
@@ -73,6 +74,10 @@ export default async function SpaceDetailPage({
                 `$${space.monthlyRate.toLocaleString()} /month`}
             </p>
           )}
+        </div>
+
+        <div className="mt-4">
+          <SaveSpaceButton spaceId={space.id} />
         </div>
 
         <div className="mt-6">
