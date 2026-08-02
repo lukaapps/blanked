@@ -28,7 +28,7 @@ export default function ListASpaceApplyPage() {
     address: "",
     licence: "",
     description: "",
-    minDuration: "1 day",
+    minDuration: "",
     dailyRate: "",
     availableFrom: "",
     availabilityNote: "",
@@ -91,7 +91,7 @@ export default function ListASpaceApplyPage() {
       suburb: "Other", // confirmed during review call
       full_address: form.address,
       description: form.description,
-      min_booking_duration: form.minDuration,
+      min_booking_duration: form.minDuration || null,
       daily_rate_landlord: form.dailyRate ? Number(form.dailyRate) : null,
       available_from: form.availableFrom || null,
       availability_note: form.availabilityNote || null,
@@ -195,18 +195,13 @@ export default function ListASpaceApplyPage() {
                   className="input"
                 />
               </Field>
-              <Field label="Minimum Booking Duration">
-                <select
+              <Field label="Minimum Booking Duration (if applicable)">
+                <input
                   value={form.minDuration}
                   onChange={(e) => update("minDuration", e.target.value)}
+                  placeholder="e.g. 1 day"
                   className="input"
-                >
-                  <option>1 day</option>
-                  <option>3 days</option>
-                  <option>1 week</option>
-                  <option>1 month</option>
-                  <option>3 months</option>
-                </select>
+                />
               </Field>
             </div>
           )}
@@ -230,7 +225,7 @@ export default function ListASpaceApplyPage() {
                   className="input"
                 />
               </Field>
-              <Field label="Or describe your availability">
+              <Field label="Describe your availability">
                 <textarea
                   value={form.availabilityNote}
                   onChange={(e) => update("availabilityNote", e.target.value)}
