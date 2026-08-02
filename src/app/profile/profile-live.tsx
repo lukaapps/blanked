@@ -342,9 +342,10 @@ export function LandlordProfileLive({
         ) : (
           <div className="mt-4 flex flex-col gap-1">
             {spaces.map((s) => (
-              <div
+              <Link
                 key={s.id}
-                className="flex flex-wrap items-center justify-between gap-2 bg-white px-6 py-5"
+                href={`/browse-spaces/${s.slug}`}
+                className="flex flex-wrap items-center justify-between gap-2 bg-white px-6 py-5 transition-colors hover:bg-divider/40"
               >
                 <div>
                   <p className="font-medium">{s.name}</p>
@@ -360,7 +361,7 @@ export function LandlordProfileLive({
                 >
                   {s.status === "pending" ? "Pending Review" : s.status}
                 </span>
-              </div>
+              </Link>
             ))}
           </div>
         )}

@@ -30,8 +30,8 @@ const mockChef = {
 const mockLandlord = {
   ...mockLandlordProfile,
   mySpaces: [
-    { name: "Richmond Rooftop", status: "Live", requests: 4, dailyRate: 2500 },
-    { name: "St Kilda Beach House", status: "Pending Review", requests: 0, dailyRate: 1200 },
+    { name: "Richmond Rooftop", slug: "richmond-rooftop", status: "Live", requests: 4, dailyRate: 2500 },
+    { name: "St Kilda Beach House", slug: "st-kilda-beach-house", status: "Pending Review", requests: 0, dailyRate: 1200 },
   ],
   requests: [
     { chef: "Mia Thornton", space: "Richmond Rooftop", dates: "26 Jul 2026", message: "Launching a two-week residency — keen to lock in the date.", status: "Pending" },
@@ -314,9 +314,10 @@ function LandlordView({ profile }: { profile: typeof mockLandlord }) {
         <p className={sectionLabel}>My spaces</p>
         <div className="mt-4 flex flex-col gap-1">
           {profile.mySpaces.map((s) => (
-            <div
+            <Link
               key={s.name}
-              className="flex flex-wrap items-center justify-between gap-2 bg-white px-6 py-5"
+              href={`/browse-spaces/${s.slug}`}
+              className="flex flex-wrap items-center justify-between gap-2 bg-white px-6 py-5 transition-colors hover:bg-divider/40"
             >
               <div>
                 <p className="font-medium">{s.name}</p>
@@ -331,7 +332,7 @@ function LandlordView({ profile }: { profile: typeof mockLandlord }) {
               >
                 {s.status}
               </span>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
