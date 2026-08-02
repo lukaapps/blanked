@@ -98,10 +98,6 @@ export function ProfileDemo() {
             <ButtonLink href="/list-a-space" variant="secondary">
               + List a Space
             </ButtonLink>
-          ) : accountType === "customer" ? (
-            <ButtonLink href="/events" variant="secondary">
-              Browse Events
-            </ButtonLink>
           ) : undefined
         }
       />

@@ -436,15 +436,7 @@ export function CustomerProfileLive({
 }) {
   return (
     <div className="mx-auto max-w-5xl px-6 pb-24 pt-20">
-      <PageHeader
-        title="My Profile"
-        caption="Manage your saved events"
-        action={
-          <ButtonLink href="/events" variant="secondary">
-            Browse Events
-          </ButtonLink>
-        }
-      />
+      <PageHeader title="My Profile" caption="Manage your saved events" />
       <ProfileHeaderCard profile={profile} />
 
       <div className="mt-12">
