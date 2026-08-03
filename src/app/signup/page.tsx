@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Suspense, useState } from "react";
-import { createClient } from "@/lib/supabase/client";
+import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
 import { PhotoUploader } from "@/components/photo-uploader";
 import { fileToDataUrl } from "@/lib/demo-profile";
 
@@ -56,6 +56,10 @@ function SignupForm() {
     e.preventDefault();
     if (!accountType) return;
     setError(null);
+    if (!isSupabaseConfigured()) {
+      setError("Sign up isn't connected yet in this environment.");
+      return;
+    }
     setLoading(true);
     const finalRole = role === "Other" ? roleOther.trim() || "Other" : role;
     const supabase = createClient();

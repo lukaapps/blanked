@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useState } from "react";
-import { createClient } from "@/lib/supabase/client";
+import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
 
 function LoginForm() {
   const router = useRouter();
@@ -20,6 +20,10 @@ function LoginForm() {
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
+    if (!isSupabaseConfigured()) {
+      setError("Login isn't connected yet in this environment.");
+      return;
+    }
     setLoading(true);
     const supabase = createClient();
     const { error } = await supabase.auth.signInWithPassword({
@@ -41,6 +45,10 @@ function LoginForm() {
       return;
     }
     setError(null);
+    if (!isSupabaseConfigured()) {
+      setError("Password reset isn't connected yet in this environment.");
+      return;
+    }
     const supabase = createClient();
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
       redirectTo: `${window.location.origin}/auth/callback?next=/profile`,
