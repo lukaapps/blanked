@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
+import { PhotoUploader } from "@/components/photo-uploader";
+import { fileToDataUrl } from "@/lib/demo-profile";
 
 function slugify(name: string) {
   return (
@@ -32,7 +34,7 @@ export default function ListASpaceApplyPage() {
     dailyRate: "",
     availableFrom: "",
     availabilityNote: "",
-    photos: 0,
+    photos: [] as string[],
     agreed: false,
   });
 
@@ -42,10 +44,11 @@ export default function ListASpaceApplyPage() {
   const [needsAccount, setNeedsAccount] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  const [userId, setUserId] = useState<string | null>(null);
 
   const next = () => setStep((s) => Math.min(s + 1, steps.length - 1));
   const back = () => setStep((s) => Math.max(s - 1, 0));
-  const canSubmit = form.photos >= 3 && form.agreed && !submitting;
+  const canSubmit = form.photos.length >= 3 && form.agreed && !submitting;
 
   useEffect(() => {
     if (!isSupabaseConfigured()) {
@@ -58,9 +61,21 @@ export default function ListASpaceApplyPage() {
         router.push("/login?next=/list-a-space/apply");
         return;
       }
+      setUserId(data.user.id);
       setChecking(false);
     });
   }, [router]);
+
+  async function uploadPhoto(file: File): Promise<string> {
+    if (!isSupabaseConfigured() || !userId) return fileToDataUrl(file);
+    const supabase = createClient();
+    const path = `${userId}/${crypto.randomUUID()}-${file.name}`;
+    const { error } = await supabase.storage
+      .from("space-photos")
+      .upload(path, file, { upsert: true });
+    if (error) throw error;
+    return supabase.storage.from("space-photos").getPublicUrl(path).data.publicUrl;
+  }
 
   async function handleSubmit() {
     setSubmitError(null);
@@ -95,6 +110,8 @@ export default function ListASpaceApplyPage() {
       daily_rate_landlord: form.dailyRate ? Number(form.dailyRate) : null,
       available_from: form.availableFrom || null,
       availability_note: form.availabilityNote || null,
+      images: form.photos,
+      cover_image: form.photos[0] ?? null,
       status: "pending",
     });
     setSubmitting(false);
@@ -240,17 +257,18 @@ export default function ListASpaceApplyPage() {
           {step === 3 && (
             <div className="flex flex-col gap-6">
               <Field label="Photos" hint="Minimum 3, maximum 10.">
-                <button
-                  type="button"
-                  onClick={() => update("photos", Math.min(form.photos + 1, 10))}
-                  className="flex h-32 w-32 flex-col items-center justify-center gap-2 border border-dashed border-divider text-xs text-ink/40 transition-colors hover:border-ink hover:text-ink"
-                >
-                  <span className="text-xl">+</span>
-                  Upload
-                </button>
-                <p className="mt-2 text-xs text-ink/40">
-                  {form.photos} photo{form.photos === 1 ? "" : "s"} added
-                </p>
+                <PhotoUploader
+                  photos={form.photos}
+                  onChange={(photos) => update("photos", photos)}
+                  uploadFile={uploadPhoto}
+                  max={10}
+                />
+                {form.photos.length < 3 && (
+                  <p className="mt-2 text-xs text-ink/40">
+                    Add at least {3 - form.photos.length} more photo
+                    {3 - form.photos.length === 1 ? "" : "s"} to continue.
+                  </p>
+                )}
               </Field>
               <label className="flex items-start gap-3 text-sm text-ink/70">
                 <input

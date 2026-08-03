@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getChef, getEvents } from "@/lib/data";
+import { BackButton } from "@/components/back-button";
 import { Button } from "@/components/ui/button";
 
 export async function generateMetadata({
@@ -30,12 +31,13 @@ export default async function ChefDetailPage({
 
   return (
     <div className="mx-auto max-w-6xl px-6 pb-24 pt-20">
-      <Link
-        href="/talent"
+      <BackButton
+        fallbackHref="/talent"
+        ariaLabel="Back to all talent"
         className="text-sm text-ink/50 transition-colors hover:text-accent"
       >
         ← Back to all talent
-      </Link>
+      </BackButton>
 
       <div className="mt-6 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
         <div className="relative aspect-[4/5] w-full overflow-hidden bg-divider">
