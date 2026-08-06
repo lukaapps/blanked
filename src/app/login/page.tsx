@@ -8,7 +8,8 @@ import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
 function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const next = searchParams.get("next") ?? "/profile";
+  const nextParam = searchParams.get("next");
+  const next = nextParam && nextParam.startsWith("/") ? nextParam : "/profile";
   const confirmError = searchParams.get("error") === "confirm";
 
   const [email, setEmail] = useState("");
@@ -87,7 +88,10 @@ function LoginForm() {
             type="email"
             required
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              setError(null);
+            }}
             className="input mt-2"
             placeholder="you@example.com"
           />

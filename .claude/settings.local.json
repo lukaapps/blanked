@@ -30,7 +30,10 @@
       "Bash(git mv *)",
       "Bash(perl -pi -e 's/export default function MyProfilePage\\\\\\(\\\\\\)/export function ProfileDemo\\(\\)/' src/app/profile/profile-demo.tsx)",
       "Bash(git add *)",
-      "Bash(git commit -m ' *)"
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(git remote *)",
+      "Bash(gh pr *)"
     ]
   }
 }

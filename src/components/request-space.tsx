@@ -33,6 +33,17 @@ export function RequestSpace({ space }: { space: Space }) {
     setStage("form");
   }
 
+  async function checkAuth(): Promise<boolean> {
+    if (!isSupabaseConfigured()) return true;
+    const supabase = createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) {
+      router.push(`/login?next=${encodeURIComponent(pathname)}`);
+      return false;
+    }
+    return true;
+  }
+
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
@@ -43,12 +54,19 @@ export function RequestSpace({ space }: { space: Space }) {
     }
 
     setStage("sending");
+    const isAuthed = await checkAuth();
+    if (!isAuthed) {
+      setStage("form");
+      return;
+    }
+
     const supabase = createClient();
     const {
       data: { user },
     } = await supabase.auth.getUser();
     if (!user) {
-      router.push(`/login?next=${encodeURIComponent(pathname)}`);
+      setError("Session expired. Please log in again.");
+      setStage("form");
       return;
     }
     const { error } = await supabase.from("booking_requests").insert({
