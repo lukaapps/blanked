@@ -4,8 +4,6 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Suspense, useState } from "react";
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
-import { PhotoUploader } from "@/components/photo-uploader";
-import { fileToDataUrl } from "@/lib/demo-profile";
 
 type AccountType = "chef" | "landlord" | "customer";
 
@@ -38,7 +36,6 @@ function SignupForm() {
   const [businessName, setBusinessName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [photos, setPhotos] = useState<string[]>([]);
   const [role, setRole] = useState("");
   const [roleOther, setRoleOther] = useState("");
   const [website, setWebsite] = useState("");
@@ -63,7 +60,7 @@ function SignupForm() {
     setLoading(true);
     const finalRole = role === "Other" ? roleOther.trim() || "Other" : role;
     const supabase = createClient();
-    const { error } = await supabase.auth.signUp({
+    const { error, data } = await supabase.auth.signUp({
       email,
       password,
       options: {
@@ -81,11 +78,11 @@ function SignupForm() {
                 address_suburb: addressSuburb || null,
                 address_state: addressState || null,
                 address_postcode: addressPostcode || null,
-                photos,
               }
             : {}),
         },
-        emailRedirectTo: `${window.location.origin}/auth/callback?next=/profile`,
+        // Don't use Supabase's email auth; we'll send via Resend instead
+        skipEmailVerification: true,
       },
     });
     setLoading(false);
@@ -93,6 +90,40 @@ function SignupForm() {
       setError(error.message);
       return;
     }
+
+    // Send confirmation and admin notification emails via Resend
+    if (data.user?.email) {
+      try {
+        const confirmationLink = `${window.location.origin}/auth/callback?next=/profile`;
+        await Promise.all([
+          fetch("/api/email/confirmation", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              email: data.user.email,
+              name: name,
+              confirmationLink,
+            }),
+          }),
+          fetch("/api/email/admin-notification", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              name,
+              email: data.user.email,
+              accountType,
+              businessName: businessName || null,
+              addressLine: addressLine || null,
+              addressSuburb: addressSuburb || null,
+            }),
+          }),
+        ]);
+      } catch (emailError) {
+        console.error("Failed to send emails:", emailError);
+        // Don't fail the signup if emails fail
+      }
+    }
+
     setSubmitted(true);
   }
 
@@ -235,9 +266,9 @@ function SignupForm() {
               <label className="block text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
                 Photos
               </label>
-              <div className="mt-2">
-                <PhotoUploader photos={photos} onChange={setPhotos} uploadFile={fileToDataUrl} />
-              </div>
+              <p className="mt-2 text-xs text-ink/50">
+                You can upload photos after creating your account in your profile settings.
+              </p>
             </div>
 
             <div>

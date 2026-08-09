@@ -107,12 +107,13 @@ export function EditProfileForm(props: Props) {
   async function uploadPhoto(file: File): Promise<string> {
     if (props.mode === "demo") return fileToDataUrl(file);
     const supabase = createClient();
+    const bucket = props.accountType === "chef" ? "chef-portraits" : "space-photos";
     const path = `${props.profileId}/${crypto.randomUUID()}-${file.name}`;
     const { error } = await supabase.storage
-      .from("profile-photos")
+      .from(bucket)
       .upload(path, file, { upsert: true });
     if (error) throw error;
-    return supabase.storage.from("profile-photos").getPublicUrl(path).data.publicUrl;
+    return supabase.storage.from(bucket).getPublicUrl(path).data.publicUrl;
   }
 
   async function handleSubmit(e: React.FormEvent) {
