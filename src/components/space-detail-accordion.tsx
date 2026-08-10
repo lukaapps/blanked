@@ -133,6 +133,7 @@ export function SpaceDetailAccordion({ space }: { space: Space }) {
                     <p className="text-ink/50">
                       Minimum booking: {space.minBookingDuration}
                     </p>
+                    <p className="text-ink/50">Damage deposit: $500</p>
                   </div>
                 )}
 
