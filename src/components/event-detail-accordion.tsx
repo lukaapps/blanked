@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { LocationMap } from "@/components/location-map";
 import type { Chef, Event } from "@/lib/types";
 
 type SectionKey = "about" | "chef" | "previous" | "location";
@@ -34,8 +35,6 @@ export function EventDetailAccordion({
   otherEvents: Event[];
 }) {
   const [open, setOpen] = useState<SectionKey | null>("about");
-
-  const mapQuery = encodeURIComponent(`${event.suburb}, Melbourne`);
 
   return (
     <div className="mt-10 border-t border-divider">
@@ -134,17 +133,15 @@ export function EventDetailAccordion({
                 {section.key === "location" && (
                   <div className="flex flex-col gap-3">
                     <p>{event.suburb}, Melbourne</p>
-                    <div className="aspect-[4/3] w-full overflow-hidden bg-divider">
-                      <iframe
-                        title="Map"
-                        src={`https://www.google.com/maps?q=${mapQuery}&output=embed`}
-                        className="h-full w-full border-0"
-                        loading="lazy"
+                    <div className="aspect-[4/3] w-full overflow-hidden border border-divider bg-divider">
+                      <LocationMap
+                        suburb={event.suburb}
+                        seed={event.id ?? event.slug}
                       />
                     </div>
                     <p className="text-xs text-ink/40">
-                      Approximate location shown. Exact address shared upon
-                      booking.
+                      Shaded area shows the approximate location. Exact
+                      address shared upon booking.
                     </p>
                   </div>
                 )}
