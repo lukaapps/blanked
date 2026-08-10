@@ -44,7 +44,7 @@ export function PhotoUploader({
 
   return (
     <div>
-      <div className="grid grid-cols-5 gap-2">
+      <div className="grid grid-cols-3 gap-2 sm:grid-cols-4 lg:grid-cols-5">
         {photos.map((url, i) => (
           <div
             key={`${url}-${i}`}
@@ -56,7 +56,7 @@ export function PhotoUploader({
               type="button"
               onClick={() => onChange(photos.filter((_, idx) => idx !== i))}
               aria-label="Remove photo"
-              className="absolute right-1 top-1 flex h-5 w-5 items-center justify-center bg-ink/70 text-xs text-white opacity-0 transition-opacity group-hover:opacity-100"
+              className="absolute right-1 top-1 flex h-6 w-6 items-center justify-center bg-ink/70 text-sm text-white transition-opacity sm:h-5 sm:w-5 sm:text-xs sm:opacity-0 sm:group-hover:opacity-100"
             >
               ×
             </button>

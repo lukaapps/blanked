@@ -127,7 +127,7 @@ function SignupForm() {
     <button
       type="button"
       onClick={() => setAccountType(value)}
-      className={`flex min-h-[200px] flex-1 flex-col items-start justify-end gap-2 border p-6 text-left transition-colors sm:p-8 ${
+      className={`flex min-h-[100px] flex-1 flex-col items-start justify-end gap-2 border p-6 text-left transition-colors sm:min-h-[200px] sm:p-8 ${
         accountType === value
           ? "border-[#442220] bg-[#442220] text-white"
           : "border-divider bg-white text-ink hover:border-ink"

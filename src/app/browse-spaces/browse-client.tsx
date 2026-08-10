@@ -40,7 +40,7 @@ export function BrowseSpacesClient({ spaces }: { spaces: Space[] }) {
         <div className="flex w-full flex-1 lg:justify-center lg:mt-[1px]">
         <div className="w-full lg:max-w-[54rem]">
           <div className="border border-divider bg-white">
-            <div className="flex divide-x divide-divider">
+            <div className="flex flex-col divide-y divide-divider sm:flex-row sm:divide-x sm:divide-y-0">
               <label className="flex-1 px-6 py-4">
                 <span className={cellLabel}>Where</span>
                 <select
@@ -74,7 +74,7 @@ export function BrowseSpacesClient({ spaces }: { spaces: Space[] }) {
               <button
                 type="button"
                 aria-label="Search"
-                className="flex w-16 shrink-0 items-center justify-center bg-accent transition-opacity hover:opacity-90 sm:w-20"
+                className="hidden shrink-0 items-center justify-center bg-accent transition-opacity hover:opacity-90 sm:flex sm:w-20"
               >
                 <svg
                   width="18"
@@ -90,7 +90,7 @@ export function BrowseSpacesClient({ spaces }: { spaces: Space[] }) {
               </button>
             </div>
 
-            <div className="flex divide-x divide-divider border-t border-divider">
+            <div className="flex flex-col divide-y divide-divider border-t border-divider sm:flex-row sm:divide-x sm:divide-y-0">
               <label className="flex-1 px-6 py-4">
                 <span className={cellLabel}>What</span>
                 <select
@@ -124,6 +124,25 @@ export function BrowseSpacesClient({ spaces }: { spaces: Space[] }) {
                 />
               </label>
             </div>
+
+            <button
+              type="button"
+              aria-label="Search"
+              className="flex w-full items-center justify-center gap-2 border-t border-divider bg-accent py-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-white transition-opacity hover:opacity-90 sm:hidden"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#FFFFFF"
+                strokeWidth="2"
+              >
+                <circle cx="11" cy="11" r="7" />
+                <path d="M21 21l-4.35-4.35" />
+              </svg>
+              Search
+            </button>
           </div>
 
           <div className="mt-3 flex items-center justify-between">

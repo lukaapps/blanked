@@ -40,7 +40,7 @@ export function NavGrid({
   const bg =
     variant === "dark" ? "bg-zinc-500/20 backdrop-blur-[2px]" : "bg-white";
 
-  const cellBase = `flex items-center justify-center whitespace-nowrap px-2 py-3 sm:px-4 text-[8px] sm:text-[11px] font-semibold uppercase tracking-[0.1em] sm:tracking-[0.2em] text-center transition-colors`;
+  const cellBase = `flex items-center justify-center px-2 py-5 text-[10px] leading-tight sm:whitespace-nowrap sm:px-4 sm:py-3 sm:text-[11px] font-semibold uppercase tracking-[0.1em] sm:tracking-[0.2em] text-center transition-colors`;
   const cell = `${cellBase} hover:text-accent`;
   const isActive = (href: string) =>
     href !== "/" && pathname.startsWith(href);
