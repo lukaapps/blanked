@@ -562,6 +562,17 @@ export const suburbs = [
   "Other",
 ];
 
+export const australianStates = [
+  "ACT",
+  "NSW",
+  "NT",
+  "QLD",
+  "SA",
+  "TAS",
+  "VIC",
+  "WA",
+];
+
 export const spaceTypes: Space["type"][] = [
   "Restaurant",
   "Bar",

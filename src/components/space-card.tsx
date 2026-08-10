@@ -7,7 +7,7 @@ import { RatingBadge } from "@/components/rating";
 
 export function SpaceCard({ space }: { space: Space }) {
   return (
-    <Link href={`/browse-spaces/${space.slug}`} className="group block">
+    <Link href={`/browse-spaces/${space.slug}`} className="group flex h-full flex-col">
       <div className="relative aspect-square w-full overflow-hidden bg-divider">
         <Image
           src={space.images[0]}
@@ -44,7 +44,7 @@ export function SpaceCard({ space }: { space: Space }) {
           )}
         </div>
       </div>
-      <p className="mt-2 text-right text-2xl font-light tracking-tight">
+      <p className="mt-auto pt-2 text-right text-2xl font-light tracking-tight">
         ${space.dailyRate.toLocaleString()}
         <span className="text-sm font-normal text-ink/45">/day</span>
       </p>

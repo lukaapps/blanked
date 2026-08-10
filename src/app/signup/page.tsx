@@ -6,10 +6,11 @@ import { Suspense, useState } from "react";
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
 import { PhotoUploader } from "@/components/photo-uploader";
 import { fileToDataUrl } from "@/lib/demo-profile";
+import { australianStates } from "@/lib/mock-data";
 
 type AccountType = "chef" | "landlord" | "customer";
 
-const roleOptions = ["Owner", "Manager", "Head Chef", "Event Coordinator", "Other"];
+const roleOptions = ["Owner", "Manager", "Chef", "Event Coordinator", "Other"];
 const hearAboutOptions = [
   "Instagram",
   "Word of mouth",
@@ -111,7 +112,7 @@ function SignupForm() {
           <strong className="text-ink">{email}</strong>. Click it to activate
           your{" "}
           {accountType === "chef"
-            ? "Talent / Brand"
+            ? "Chef / Talent / Brand"
             : accountType === "landlord"
             ? "Landlord"
             : "Customer"}{" "}
@@ -159,7 +160,7 @@ function SignupForm() {
           I am a…
         </label>
         <div className="mt-2 grid grid-cols-1 gap-3 sm:grid-cols-3">
-          {typeTile("chef", "Talent / Brand", "I want to find and book spaces")}
+          {typeTile("chef", "Chef / Talent / Brand", "I want to find and book spaces")}
           {typeTile("landlord", "Landlord", "I have a space to list")}
           {typeTile("customer", "Customer", "I want to find events in the city")}
         </div>
@@ -307,12 +308,18 @@ function SignupForm() {
                   className="input"
                   placeholder="City / Suburb"
                 />
-                <input
+                <select
                   value={addressState}
                   onChange={(e) => setAddressState(e.target.value)}
                   className="input"
-                  placeholder="State"
-                />
+                >
+                  <option value="">State</option>
+                  {australianStates.map((s) => (
+                    <option key={s} value={s}>
+                      {s}
+                    </option>
+                  ))}
+                </select>
                 <input
                   value={addressPostcode}
                   onChange={(e) => setAddressPostcode(e.target.value)}
