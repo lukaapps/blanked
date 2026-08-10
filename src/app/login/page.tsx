@@ -58,7 +58,7 @@ function LoginForm() {
   }
 
   return (
-    <div className="mx-auto max-w-md px-6 pb-24 pt-24">
+    <div className="mx-auto max-w-md px-[27px] pb-24 pt-24">
       <h1 className="text-6xl font-bold uppercase leading-[0.95] tracking-tight sm:text-7xl">
         Log in
       </h1>

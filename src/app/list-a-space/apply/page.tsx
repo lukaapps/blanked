@@ -126,7 +126,7 @@ export default function ListASpaceApplyPage() {
 
   if (submitted) {
     return (
-      <div className="mx-auto max-w-2xl px-6 pb-24 pt-32 text-center">
+      <div className="mx-auto max-w-2xl px-[27px] pb-24 pt-32 text-center">
         <h1 className="text-4xl font-medium tracking-tight sm:text-5xl">
           Thanks — we&rsquo;ve got your space.
         </h1>
@@ -143,7 +143,7 @@ export default function ListASpaceApplyPage() {
   }
 
   return (
-    <div className="mx-auto max-w-3xl px-6 pb-24 pt-20">
+    <div className="mx-auto max-w-3xl px-[27px] pb-24 pt-20">
       <h1 className="text-3xl font-bold uppercase tracking-tight sm:text-4xl">
         List your space
       </h1>

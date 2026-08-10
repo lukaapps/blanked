@@ -80,8 +80,8 @@ export function ProfileDemo() {
     <div
       className={
         accountType === "chef"
-          ? "px-6 pb-24 pt-20"
-          : "mx-auto max-w-5xl px-6 pb-24 pt-20"
+          ? "px-[27px] pb-24 pt-20"
+          : "mx-auto max-w-5xl px-[27px] pb-24 pt-20"
       }
     >
       <PageHeader
@@ -233,7 +233,7 @@ function ChefView({
       )}
 
       {tab === "spaces" && (
-        <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-3 lg:grid-cols-4">
+        <div className="-mx-[3px] mt-8 grid grid-cols-1 gap-6 sm:grid-cols-3 lg:grid-cols-4">
           {savedSpaces.map((space) => (
             <Link key={space.slug} href={`/browse-spaces/${space.slug}`} className="group block">
               <div className="relative aspect-[4/3] w-full overflow-hidden bg-divider">
@@ -262,7 +262,7 @@ function ChefView({
               these once your event is confirmed.
             </p>
           ) : (
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-3 lg:grid-cols-4">
+            <div className="-mx-[3px] grid grid-cols-1 gap-6 sm:grid-cols-3 lg:grid-cols-4">
               {myEvents.map((event) => (
                 <Link key={event.slug} href={`/events/${event.slug}`} className="group block">
                   <div className="relative aspect-[4/3] w-full overflow-hidden bg-divider">
@@ -412,7 +412,7 @@ function CustomerView({
             Nothing saved yet. Tap the heart on any event to keep it here.
           </p>
         ) : (
-          <div className="mt-4 grid grid-cols-1 gap-6 sm:grid-cols-3">
+          <div className="-mx-[3px] mt-4 grid grid-cols-1 gap-6 sm:grid-cols-3">
             {savedEvents.map((event) => (
               <Link key={event.slug} href={`/events/${event.slug}`} className="group block">
                 <div className="relative aspect-[4/3] w-full overflow-hidden bg-divider">

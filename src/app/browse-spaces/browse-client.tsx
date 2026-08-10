@@ -27,7 +27,7 @@ export function BrowseSpacesClient({ spaces }: { spaces: Space[] }) {
     "block text-[10px] font-semibold uppercase tracking-[0.2em] text-ink/40";
 
   return (
-    <div className="px-1.5 pb-24 pt-20">
+    <div className="px-[9px] pb-24 pt-20">
       <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-0">
         <div className="shrink-0">
           <h1 className="text-6xl font-bold uppercase leading-[0.95] tracking-tight sm:text-7xl lg:text-[100px]">
@@ -152,7 +152,7 @@ export function BrowseSpacesClient({ spaces }: { spaces: Space[] }) {
           <h2 className="text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
             Featured
           </h2>
-          <div className="mt-6 grid grid-cols-1 gap-1 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="-mx-[3px] mt-6 grid grid-cols-1 gap-1 sm:grid-cols-2 lg:grid-cols-4">
             {featured.map((space) => (
               <SpaceCard key={space.slug} space={space} />
             ))}
@@ -169,7 +169,7 @@ export function BrowseSpacesClient({ spaces }: { spaces: Space[] }) {
             No spaces match those filters yet. Try widening your search.
           </p>
         ) : (
-          <div className="mt-6 grid grid-cols-1 gap-1 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="-mx-[3px] mt-6 grid grid-cols-1 gap-1 sm:grid-cols-2 lg:grid-cols-4">
             {filtered.map((space) => (
               <SpaceCard key={space.slug} space={space} />
             ))}

@@ -26,7 +26,7 @@ export default async function ChefsPage() {
           />
         </div>
 
-        <div className="flex flex-col justify-center gap-6 px-1.5 py-16 lg:w-1/2 lg:py-0">
+        <div className="flex flex-col justify-center gap-6 px-[9px] py-16 lg:w-1/2 lg:py-0">
           <h1 className="text-6xl font-bold uppercase leading-[0.95] tracking-tight sm:text-7xl lg:text-[100px]">
             Talent
           </h1>
@@ -72,7 +72,7 @@ export default async function ChefsPage() {
         </div>
       </div>
 
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="mx-auto max-w-7xl px-[27px]">
         <div className="mt-16 flex flex-col items-center gap-6 border-t border-divider pt-16 text-center">
           <h2 className="text-2xl font-medium tracking-tight sm:text-4xl">
             Enquire about profiles and availability of Melbourne&rsquo;s
@@ -88,7 +88,7 @@ export default async function ChefsPage() {
       </div>
 
       <div id="directory" className="mt-24 bg-[#442220] py-10 text-white">
-        <div className="mx-auto max-w-7xl px-6 text-center">
+        <div className="mx-auto max-w-7xl px-[27px] text-center">
           <h2 className="text-left text-[11px] font-semibold uppercase tracking-[0.25em] text-white/50">
             The Community
           </h2>

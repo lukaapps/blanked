@@ -151,7 +151,7 @@ export function ChefProfileLive({
   const [tab, setTab] = useState<ChefTabKey>("bookings");
 
   return (
-    <div className="px-6 pb-24 pt-20">
+    <div className="px-[27px] pb-24 pt-20">
       <PageHeader
         title="My Profile"
         caption="Manage your bookings and public profile"
@@ -224,7 +224,7 @@ export function ChefProfileLive({
               Nothing saved yet. Tap the heart on any space to keep it here.
             </p>
           ) : (
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-3 lg:grid-cols-4">
+            <div className="-mx-[3px] grid grid-cols-1 gap-6 sm:grid-cols-3 lg:grid-cols-4">
               {savedSpaces.map((space) => (
                 <Link
                   key={space.slug}
@@ -261,7 +261,7 @@ export function ChefProfileLive({
               these once your event is confirmed.
             </p>
           ) : (
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-3 lg:grid-cols-4">
+            <div className="-mx-[3px] grid grid-cols-1 gap-6 sm:grid-cols-3 lg:grid-cols-4">
               {myEvents.map((event) => (
                 <Link
                   key={event.slug}
@@ -317,7 +317,7 @@ export function LandlordProfileLive({
   }
 
   return (
-    <div className="mx-auto max-w-5xl px-6 pb-24 pt-20">
+    <div className="mx-auto max-w-5xl px-[27px] pb-24 pt-20">
       <PageHeader
         title="My Profile"
         caption="Manage your spaces and listings"
@@ -436,7 +436,7 @@ export function CustomerProfileLive({
   savedEvents: SavedEvent[];
 }) {
   return (
-    <div className="mx-auto max-w-5xl px-6 pb-24 pt-20">
+    <div className="mx-auto max-w-5xl px-[27px] pb-24 pt-20">
       <PageHeader title="My Profile" caption="Manage your saved events" />
       <ProfileHeaderCard profile={profile} />
 
@@ -447,7 +447,7 @@ export function CustomerProfileLive({
             Nothing saved yet. Tap the heart on any event to keep it here.
           </p>
         ) : (
-          <div className="mt-4 grid grid-cols-1 gap-6 sm:grid-cols-3">
+          <div className="-mx-[3px] mt-4 grid grid-cols-1 gap-6 sm:grid-cols-3">
             {savedEvents.map((event) => (
               <Link
                 key={event.slug}

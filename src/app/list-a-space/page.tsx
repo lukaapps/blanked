@@ -85,7 +85,7 @@ export default function ListASpacePage() {
   return (
     <>
       <div className="flex min-h-screen flex-col lg:flex-row">
-        <div className="flex flex-col justify-center gap-6 px-1.5 py-16 lg:w-1/2 lg:py-0">
+        <div className="flex flex-col justify-center gap-6 px-[9px] py-16 lg:w-1/2 lg:py-0">
           <h1 className="text-6xl font-bold uppercase leading-[0.95] tracking-tight sm:text-7xl lg:text-[100px]">
             List your
             <br />
@@ -114,7 +114,7 @@ export default function ListASpacePage() {
         </div>
       </div>
 
-      <div className="px-6 py-24">
+      <div className="px-[27px] py-24">
         <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
           How it works
         </p>
@@ -130,7 +130,7 @@ export default function ListASpacePage() {
                 i % 2 === 1 ? "lg:flex-row-reverse" : "lg:flex-row"
               }`}
             >
-              <div className="relative aspect-[4/3] w-full overflow-hidden bg-divider lg:w-1/2">
+              <div className="relative -mx-[3px] aspect-[4/3] w-full overflow-hidden bg-divider lg:w-1/2">
                 <Image
                   src={step.image}
                   alt=""
@@ -156,7 +156,7 @@ export default function ListASpacePage() {
       </div>
 
       <div className="border-y border-divider bg-white">
-        <div className="flex flex-col items-start gap-2 px-6 py-10 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col items-start gap-2 px-[27px] py-10 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
             What it costs
           </p>
@@ -166,7 +166,7 @@ export default function ListASpacePage() {
         </div>
       </div>
 
-      <div className="px-6 py-24">
+      <div className="px-[27px] py-24">
         <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
           Why list with Blanked
         </p>
@@ -186,7 +186,7 @@ export default function ListASpacePage() {
         </div>
       </div>
 
-      <div className="px-6 pb-24 pt-8">
+      <div className="px-[27px] pb-24 pt-8">
         <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
           Safety & trust
         </p>
@@ -218,7 +218,7 @@ export default function ListASpacePage() {
           className="object-cover"
         />
         <div className="absolute inset-0 bg-black/50" />
-        <div className="relative flex flex-col items-center gap-6 px-6 text-center">
+        <div className="relative flex flex-col items-center gap-6 px-[27px] text-center">
           <h2 className="text-4xl font-bold uppercase leading-[0.95] tracking-tight text-white sm:text-6xl">
             Ready to list your space?
           </h2>

@@ -99,7 +99,7 @@ function SignupForm() {
 
   if (submitted) {
     return (
-      <div className="mx-auto max-w-md px-6 pb-24 pt-32 text-center">
+      <div className="mx-auto max-w-md px-[27px] pb-24 pt-32 text-center">
         <span aria-hidden className="inline-block h-2.5 w-2.5 rounded-full bg-accent" />
         <h1 className="mt-6 text-4xl font-medium tracking-tight">
           Check your email
@@ -147,7 +147,7 @@ function SignupForm() {
   );
 
   return (
-    <div className="mx-auto max-w-2xl px-6 pb-24 pt-24">
+    <div className="mx-auto max-w-2xl px-[27px] pb-24 pt-24">
       <h1 className="text-6xl font-bold uppercase leading-[0.95] tracking-tight sm:text-7xl">
         Sign up
       </h1>

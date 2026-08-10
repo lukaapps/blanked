@@ -8,7 +8,7 @@ export const metadata = {
 
 export default function ByBlankedPage() {
   return (
-    <div className="mx-auto max-w-5xl px-6 pb-24 pt-20 text-center">
+    <div className="mx-auto max-w-5xl px-[27px] pb-24 pt-20 text-center">
       <h1 className="flex flex-wrap items-baseline justify-center gap-3 text-6xl font-bold normal-case leading-[0.95] tracking-tight sm:text-7xl lg:text-[100px]">
         <span className="font-black">by</span>
         <RedDot className="-ml-1.5 h-2.5 w-2.5 sm:h-3 sm:w-3 lg:h-[18px] lg:w-[18px]" />

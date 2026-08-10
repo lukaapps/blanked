@@ -54,7 +54,7 @@ export default async function SpaceDetailPage({
         </div>
       </div>
 
-      <div className="px-6 py-12 sm:px-10 lg:h-full lg:w-1/2 lg:overflow-y-auto lg:px-8 lg:py-16">
+      <div className="px-[27px] py-12 sm:px-[43px] lg:h-full lg:w-1/2 lg:overflow-y-auto lg:px-[35px] lg:py-16">
         <h1 className="text-4xl font-medium tracking-tight sm:text-4xl">
           {space.name}
         </h1>

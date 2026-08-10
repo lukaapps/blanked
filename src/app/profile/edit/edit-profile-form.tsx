@@ -179,7 +179,7 @@ export function EditProfileForm(props: Props) {
   }
 
   return (
-    <div className="px-6 pb-24 pt-24">
+    <div className="px-[27px] pb-24 pt-24">
       <div className="mx-auto max-w-3xl">
         <PageHeader
           title="Edit Profile"

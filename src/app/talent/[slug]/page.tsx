@@ -30,7 +30,7 @@ export default async function ChefDetailPage({
   const pastEvents = allEvents.filter((e) => e.chefSlug === chef.slug);
 
   return (
-    <div className="mx-auto max-w-6xl px-6 pb-24 pt-20">
+    <div className="mx-auto max-w-6xl px-[27px] pb-24 pt-20">
       <BackButton
         fallbackHref="/talent"
         ariaLabel="Back to all talent"
@@ -40,7 +40,7 @@ export default async function ChefDetailPage({
       </BackButton>
 
       <div className="mt-6 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
-        <div className="relative aspect-[4/5] w-full overflow-hidden bg-divider">
+        <div className="relative -mx-[3px] aspect-[4/5] w-full overflow-hidden bg-divider">
           <Image
             src={chef.portrait}
             alt={chef.name}
@@ -97,7 +97,7 @@ export default async function ChefDetailPage({
           <h2 className="text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
             Past events
           </h2>
-          <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="-mx-[3px] mt-6 grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
             {pastEvents.map((event) => (
               <Link
                 key={event.slug}
