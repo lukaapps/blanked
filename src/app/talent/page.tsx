@@ -35,19 +35,19 @@ export default async function ChefsPage() {
           </p>
 
           <div>
-            <p className="text-base leading-relaxed text-ink/60">
+            <p className="text-justify text-base leading-relaxed text-ink/60">
               Blanked works with an ever-growing community of hospitality
               talent, food brands, and supper club hosts who&rsquo;d rather
               cook than chase landlords. Some are testing a concept for the
               first time. Others are running residencies. And the rest are
               somewhere in between.
             </p>
-            <p className="mt-4 text-base leading-relaxed text-ink/60">
+            <p className="mt-4 text-justify text-base leading-relaxed text-ink/60">
               Pop-ups matter because they allow good food to move faster than a
               lease ever could. No five-year commitment, no fit-out debt —
               just a kitchen, a room, and a night to prove the idea works.
             </p>
-            <p className="mt-4 text-base leading-relaxed text-ink/60">
+            <p className="mt-4 text-justify text-base leading-relaxed text-ink/60">
               Everyone on Blanked is vetted before they can book. Landlords
               get to see exactly who they&rsquo;re letting into their space,
               and what they&rsquo;ve done before.
