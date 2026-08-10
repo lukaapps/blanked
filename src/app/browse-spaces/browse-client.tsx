@@ -126,9 +126,23 @@ export function BrowseSpacesClient({ spaces }: { spaces: Space[] }) {
             </div>
           </div>
 
-          <p className="mt-3 text-sm text-ink/50">
-            {spaces.length} spaces live across Melbourne right now
-          </p>
+          <div className="mt-3 flex items-center justify-between">
+            <p className="text-sm text-ink/50">
+              {spaces.length} spaces live across Melbourne right now
+            </p>
+            <button
+              type="button"
+              onClick={() => {
+                setSuburb("");
+                setType("");
+                setWhen("");
+                setMaxPrice(1000);
+              }}
+              className="text-sm text-ink/50 transition-colors hover:text-ink"
+            >
+              Clear all
+            </button>
+          </div>
         </div>
         </div>
       </div>

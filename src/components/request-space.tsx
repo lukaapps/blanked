@@ -106,7 +106,7 @@ export function RequestSpace({ space }: { space: Space }) {
           required
           value={dates}
           onChange={(e) => setDates(e.target.value)}
-          className="input mt-2"
+          className="input mt-2 bg-white"
           placeholder="e.g. 12–14 September, or every Sunday in October"
         />
       </div>
@@ -119,7 +119,7 @@ export function RequestSpace({ space }: { space: Space }) {
           rows={3}
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          className="input mt-2"
+          className="input mt-2 bg-white"
           placeholder="Brief description of your event or residency"
         />
       </div>
@@ -131,7 +131,7 @@ export function RequestSpace({ space }: { space: Space }) {
           rows={2}
           value={notes}
           onChange={(e) => setNotes(e.target.value)}
-          className="input mt-2"
+          className="input mt-2 bg-white"
           placeholder="Anything you need to know about the space?"
         />
       </div>
