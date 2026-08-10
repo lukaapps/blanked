@@ -95,7 +95,7 @@ export function SpaceDetailAccordion({ space }: { space: Space }) {
             </button>
 
             {isOpen && (
-              <div className="pb-6 text-sm leading-relaxed text-ink/60">
+              <div className="pb-6 text-justify text-sm leading-relaxed text-ink/60">
                 {section.key === "about" && (
                   <div className="flex flex-col gap-6">
                     <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
