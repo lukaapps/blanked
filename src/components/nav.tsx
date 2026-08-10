@@ -16,7 +16,6 @@ const centerLinks: { href: string; label: string; external?: boolean }[] = [
     external: true,
   },
   { href: "/talent", label: "Talent" },
-  { href: "/events", label: "Events" },
 ];
 
 export function Nav() {
@@ -114,14 +113,22 @@ export function Nav() {
               <span className="text-accent">.</span>
             </Link>
 
-            <Link
-              href={loggedIn ? "/profile" : "/login"}
-              className={`ml-auto shrink-0 ${linkClass(
-                isActive(loggedIn ? "/profile" : "/login")
-              )}`}
-            >
-              {loggedIn ? "My Profile" : "Log In"}
-            </Link>
+            <div className="ml-3 grid flex-1 grid-cols-[1fr_auto] items-center gap-x-4">
+              <Link
+                href="/events"
+                className={`justify-self-center ${linkClass(isActive("/events"))}`}
+              >
+                Events
+              </Link>
+              <Link
+                href={loggedIn ? "/profile" : "/login"}
+                className={`shrink-0 justify-self-end ${linkClass(
+                  isActive(loggedIn ? "/profile" : "/login")
+                )}`}
+              >
+                {loggedIn ? "My Profile" : "Log In"}
+              </Link>
+            </div>
           </nav>
 
           <button
@@ -208,6 +215,14 @@ export function Nav() {
                 </Link>
               )
             )}
+            <Link
+              href="/events"
+              className={`border-b border-divider py-4 text-sm font-semibold uppercase tracking-[0.15em] transition-colors hover:text-accent ${
+                isActive("/events") ? "text-accent" : "text-ink/70"
+              }`}
+            >
+              Events
+            </Link>
             <Link
               href="/by-blanked"
               className={`border-b border-divider py-4 text-sm font-semibold uppercase tracking-[0.15em] transition-colors hover:text-accent ${
