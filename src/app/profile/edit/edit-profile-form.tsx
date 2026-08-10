@@ -71,6 +71,7 @@ export function EditProfileForm(props: Props) {
     props.initialSpaceTypePreferences
   );
   const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     // Demo overrides live in localStorage and can only be read after mount.
@@ -118,6 +119,7 @@ export function EditProfileForm(props: Props) {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setSaving(true);
+    setError(null);
 
     const finalRole = role === "Other" ? roleOther.trim() || "Other" : role;
     const avatarPhoto = isBusiness ? photos[0] ?? null : photo || null;
@@ -137,7 +139,7 @@ export function EditProfileForm(props: Props) {
     const chefFields = isChef ? { bio, spaceTypePreferences } : {};
 
     if (props.mode === "live") {
-      await createClient()
+      const { data, error } = await createClient()
         .from("profiles")
         .update({
           name,
@@ -163,7 +165,22 @@ export function EditProfileForm(props: Props) {
               }
             : {}),
         })
-        .eq("id", props.profileId);
+        .eq("id", props.profileId)
+        .select();
+
+      if (error) {
+        setSaving(false);
+        setError(error.message);
+        return;
+      }
+      if (!data || data.length === 0) {
+        setSaving(false);
+        setError(
+          "Couldn't save your changes — your session may have expired. Try logging in again."
+        );
+        return;
+      }
+
       router.push("/profile");
       router.refresh();
     } else {
@@ -394,6 +411,10 @@ export function EditProfileForm(props: Props) {
                 />
               </div>
             </div>
+          )}
+
+          {error && (
+            <p className="text-sm text-accent sm:col-span-2">{error}</p>
           )}
 
           <div className="mt-2 flex gap-3 sm:col-span-2">
