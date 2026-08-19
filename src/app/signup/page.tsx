@@ -15,7 +15,7 @@ const hearAboutOptions = [
   "Instagram",
   "Word of mouth",
   "Google search",
-  "A landlord/talent I know",
+  "A landlord/chef I know",
   "Press/media",
   "Other",
 ];
@@ -112,7 +112,7 @@ function SignupForm() {
           <strong className="text-ink">{email}</strong>. Click it to activate
           your{" "}
           {accountType === "chef"
-            ? "Chef / Talent / Brand"
+            ? "Chef"
             : accountType === "landlord"
             ? "Landlord"
             : "Customer"}{" "}
@@ -160,7 +160,7 @@ function SignupForm() {
           I am a…
         </label>
         <div className="mt-2 grid grid-cols-1 gap-3 sm:grid-cols-3">
-          {typeTile("chef", "Chef / Talent / Brand", "I want to find and book spaces")}
+          {typeTile("chef", "Chef", "I want to find and book spaces")}
           {typeTile("landlord", "Landlord", "I have a space to list")}
           {typeTile("customer", "Customer", "I want to find events in the city")}
         </div>

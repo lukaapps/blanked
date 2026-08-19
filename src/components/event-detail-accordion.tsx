@@ -96,7 +96,7 @@ export function EventDetailAccordion({
                       </Link>
                     </div>
                   ) : (
-                    <p>Talent details coming soon.</p>
+                    <p>Chef details coming soon.</p>
                   ))}
 
                 {section.key === "previous" &&

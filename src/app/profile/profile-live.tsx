@@ -371,8 +371,8 @@ export function LandlordProfileLive({
         <p className={sectionLabel}>Booking requests</p>
         {requests.length === 0 ? (
           <p className="mt-4 text-sm text-ink/50">
-            No incoming requests yet. We&rsquo;ll email you when hospitality
-            talent wants your space.
+            No incoming requests yet. We&rsquo;ll email you when a hospitality
+            chef wants your space.
           </p>
         ) : (
           <div className="mt-4 flex flex-col gap-1">

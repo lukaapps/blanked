@@ -108,7 +108,7 @@ export function ProfileDemo() {
           onClick={() => setAccountType("chef")}
           className={accountType === "chef" ? "text-accent" : "hover:text-ink"}
         >
-          Talent
+          Chef
         </button>
         <span>/</span>
         <button

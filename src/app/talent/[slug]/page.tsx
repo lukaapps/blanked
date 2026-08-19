@@ -13,7 +13,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const chef = await getChef(slug);
   return {
-    title: chef ? `${chef.name} | Blanked` : "Talent Not Found | Blanked",
+    title: chef ? `${chef.name} | Blanked` : "Chef Not Found | Blanked",
   };
 }
 
@@ -33,10 +33,10 @@ export default async function ChefDetailPage({
     <div className="mx-auto max-w-6xl px-[27px] pb-24 pt-20">
       <BackButton
         fallbackHref="/talent"
-        ariaLabel="Back to all talent"
+        ariaLabel="Back to all chefs"
         className="text-sm text-ink/50 transition-colors hover:text-accent"
       >
-        ← Back to all talent
+        ← Back to all chefs
       </BackButton>
 
       <div className="mt-6 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
@@ -86,7 +86,7 @@ export default async function ChefDetailPage({
 
           <a href={chef.instagram} target="_blank" rel="noopener noreferrer">
             <Button variant="secondary" className="mt-10">
-              Follow This Talent
+              Follow This Chef
             </Button>
           </a>
         </div>

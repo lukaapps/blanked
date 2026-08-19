@@ -6,7 +6,7 @@ import { getChefs } from "@/lib/data";
 export const metadata = {
   title: "Talent | Blanked",
   description:
-    "The people behind Melbourne's pop-ups. Meet the hospitality talent behind Blanked.",
+    "The people behind Melbourne's pop-ups. Meet the hospitality chefs behind Blanked.",
 };
 
 export default async function ChefsPage() {
@@ -37,7 +37,7 @@ export default async function ChefsPage() {
           <div>
             <p className="text-justify text-base leading-relaxed text-ink/60">
               Blanked works with an ever-growing community of hospitality
-              talent, food brands, and supper club hosts who&rsquo;d rather
+              chefs, food brands, and supper club hosts who&rsquo;d rather
               cook than chase landlords. Some are testing a concept for the
               first time. Others are running residencies. And the rest are
               somewhere in between.
@@ -76,7 +76,7 @@ export default async function ChefsPage() {
         <div className="mt-16 flex flex-col items-center gap-6 border-t border-divider pt-16 text-center">
           <h2 className="text-2xl font-medium tracking-tight sm:text-4xl">
             Enquire about profiles and availability of Melbourne&rsquo;s
-            best food talents
+            best food chefs
           </h2>
           <Link
             href="/contact#contact-form"

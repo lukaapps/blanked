@@ -5,14 +5,14 @@ import { RedDot } from "@/components/page-header";
 export const metadata = {
   title: "List a Space | Blanked",
   description:
-    "List your venue on Blanked and start receiving booking requests from vetted hospitality talent.",
+    "List your venue on Blanked and start receiving booking requests from vetted hospitality chefs.",
 };
 
 const steps = [
   {
     n: "01",
     title: "Submit your space",
-    body: "Tell us the basics — name, address, and what makes it work for hospitality talent.",
+    body: "Tell us the basics — name, address, and what makes it work for hospitality chefs.",
     image: "/images/space-brick-loft.jpg?v=3",
   },
   {
@@ -23,8 +23,8 @@ const steps = [
   },
   {
     n: "03",
-    title: "Hospitality talent find and book",
-    body: "Vetted hospitality talent browse, filter, and send you booking requests. You approve every one. You get to meet everyone.",
+    title: "Hospitality chefs find and book",
+    body: "Vetted hospitality chefs browse, filter, and send you booking requests. You approve every one. You get to meet everyone.",
     image: "/images/space-dark-dining.jpg?v=3",
   },
   {
@@ -46,7 +46,7 @@ const advantages = [
   },
   {
     title: "Find new partners",
-    body: "Meet hospitality talent you’d never cross paths with on Instagram DMs.",
+    body: "Meet hospitality chefs you’d never cross paths with on Instagram DMs.",
   },
   {
     title: "Fast to list",
@@ -72,7 +72,7 @@ const trust = [
     body: "Set your own damage deposit — Blanked holds it and it’s there if something goes wrong.",
   },
   {
-    title: "Vetted hospitality talent",
+    title: "Vetted hospitality chefs",
     body: "Everyone requesting to book has been vetted before they can send a request.",
   },
   {
