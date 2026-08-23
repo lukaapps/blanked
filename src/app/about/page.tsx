@@ -39,7 +39,7 @@ export default function AboutPage() {
           and submit a booking request in minutes. Once confirmed,
           Blanked handles the agreement and payment. If you&rsquo;re a
           venue, list your space in under ten minutes and start receiving
-          booking requests from vetted hospitality chefs. If you&rsquo;re a
+          booking requests from vetted hospitality talent. If you&rsquo;re a
           customer, find what&rsquo;s on, pick your date, and follow the
           links to book your spot — all on Blanked.
         </p>
@@ -49,7 +49,7 @@ export default function AboutPage() {
         </p>
         <p className="text-justify text-[13.3px] leading-relaxed text-ink/60 sm:text-[15.3px]">
           Blanked is what comes next. A platform that gives hospitality
-          chefs the tools to trade independently, gives venues a simple way
+          talent the tools to trade independently, gives venues a simple way
           to activate their space, and gives Melbourne somewhere to find out
           what&rsquo;s on and get a seat at it.
         </p>

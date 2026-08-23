@@ -119,7 +119,7 @@ export default function ListASpacePage() {
           How it works
         </p>
         <h2 className="mt-3 text-3xl font-medium tracking-tight sm:text-5xl">
-          List your space in four steps
+          Listing and booking
         </h2>
 
         <div className="mt-16 flex flex-col gap-16">
