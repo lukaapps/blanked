@@ -8,7 +8,7 @@ export async function sendConfirmationEmail(
   confirmationLink: string
 ) {
   return resend.emails.send({
-    from: "onboarding@resend.dev", // Use Resend's test domain for now
+    from: "jamie@blanked.melbourne",
     to: email,
     subject: "Confirm your Blanked account",
     html: `
@@ -25,6 +25,31 @@ export async function sendConfirmationEmail(
   });
 }
 
+export async function sendPasswordResetEmail(
+  email: string,
+  name: string,
+  resetLink: string
+) {
+  return resend.emails.send({
+    from: "jamie@blanked.melbourne",
+    to: email,
+    subject: "Reset your Blanked password",
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 500px; margin: 0 auto;">
+        <h2 style="color: #442220;">Reset your password</h2>
+        <p>Hi ${name},</p>
+        <p>We received a request to reset your Blanked password. Click the button below to set a new password.</p>
+        <a href="${resetLink}" style="display: inline-block; background: #442220; color: white; padding: 12px 30px; text-decoration: none; border-radius: 4px; margin: 20px 0;">
+          Reset Password
+        </a>
+        <p style="color: #999; font-size: 12px;">Or copy this link: <code>${resetLink}</code></p>
+        <p style="color: #999; font-size: 12px; margin-top: 30px;">If you didn't request this, you can ignore this email.</p>
+        <p style="color: #999; font-size: 12px;">© 2026 Blanked. Melbourne's marketplace for short-term hospitality space.</p>
+      </div>
+    `,
+  });
+}
+
 export async function sendAdminNotification(
   name: string,
   email: string,
@@ -36,7 +61,7 @@ export async function sendAdminNotification(
   const typeLabel = accountType === "chef" ? "Talent/Brand" : accountType === "landlord" ? "Landlord" : "Customer";
 
   return resend.emails.send({
-    from: "onboarding@resend.dev", // Use Resend's test domain for now
+    from: "jamie@blanked.melbourne",
     to: process.env.ADMIN_EMAIL || "admin@blanked.com",
     subject: `🎉 New Signup: ${name} (${typeLabel})`,
     html: `

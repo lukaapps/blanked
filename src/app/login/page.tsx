@@ -50,12 +50,21 @@ function LoginForm() {
       setError("Password reset isn't connected yet in this environment.");
       return;
     }
-    const supabase = createClient();
-    const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `${window.location.origin}/auth/callback?next=/profile`,
-    });
-    if (error) setError(error.message);
-    else setResetSent(true);
+    try {
+      const res = await fetch("/api/email/password-reset", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setError(data.error || "Failed to send reset email");
+        return;
+      }
+      setResetSent(true);
+    } catch (err) {
+      setError("Failed to send reset email");
+    }
   }
 
   return (
