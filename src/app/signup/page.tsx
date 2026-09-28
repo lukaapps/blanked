@@ -81,8 +81,6 @@ function SignupForm() {
               }
             : {}),
         },
-        // Don't use Supabase's email auth; we'll send via Resend instead
-        skipEmailVerification: true,
       },
     });
     setLoading(false);
