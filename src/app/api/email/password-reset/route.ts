@@ -24,13 +24,9 @@ export async function POST(req: Request) {
       return Response.json({ ok: true, message: "If that email exists, you'll receive a reset link" });
     }
 
-    // Fetch user to get their name
-    const { data: { user } } = await supabase.auth.admin.getUserById(data?.user?.id || "");
-    const name = user?.user_metadata?.name || "User";
-
     // Send via Resend instead of Supabase
-    const resetLink = `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback?type=recovery&token=${data?.session?.access_token}`;
-    await sendPasswordResetEmail(email, name, resetLink);
+    const resetLink = `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback?type=recovery`;
+    await sendPasswordResetEmail(email, "User", resetLink);
 
     return Response.json({ ok: true, message: "If that email exists, you'll receive a reset link" });
   } catch (error) {
