@@ -4,15 +4,16 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Suspense, useState } from "react";
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
+import { australianStates } from "@/lib/mock-data";
 
 type AccountType = "chef" | "landlord" | "customer";
 
-const roleOptions = ["Owner", "Manager", "Head Chef", "Event Coordinator", "Other"];
+const roleOptions = ["Owner", "Manager", "Chef", "Event Coordinator", "Other"];
 const hearAboutOptions = [
   "Instagram",
   "Word of mouth",
   "Google search",
-  "A landlord/talent I know",
+  "A landlord/chef I know",
   "Press/media",
   "Other",
 ];
@@ -99,7 +100,7 @@ function SignupForm() {
 
   if (submitted) {
     return (
-      <div className="mx-auto max-w-md px-6 pb-24 pt-32 text-center">
+      <div className="mx-auto max-w-md px-[27px] pb-24 pt-32 text-center">
         <span aria-hidden className="inline-block h-2.5 w-2.5 rounded-full bg-accent" />
         <h1 className="mt-6 text-4xl font-medium tracking-tight">
           Check your email
@@ -112,7 +113,7 @@ function SignupForm() {
           <strong className="text-ink">{email}</strong>. Click it to activate
           your{" "}
           {accountType === "chef"
-            ? "Talent / Brand"
+            ? "Chef"
             : accountType === "landlord"
             ? "Landlord"
             : "Customer"}{" "}
@@ -127,7 +128,7 @@ function SignupForm() {
     <button
       type="button"
       onClick={() => setAccountType(value)}
-      className={`flex min-h-[200px] flex-1 flex-col items-start justify-end gap-2 border p-6 text-left transition-colors sm:p-8 ${
+      className={`flex min-h-[100px] flex-1 flex-col items-start justify-end gap-2 border p-6 text-left transition-colors sm:min-h-[200px] sm:p-8 ${
         accountType === value
           ? "border-[#442220] bg-[#442220] text-white"
           : "border-divider bg-white text-ink hover:border-ink"
@@ -147,7 +148,7 @@ function SignupForm() {
   );
 
   return (
-    <div className="mx-auto max-w-2xl px-6 pb-24 pt-24">
+    <div className="mx-auto max-w-2xl px-[27px] pb-24 pt-24">
       <h1 className="text-6xl font-bold uppercase leading-[0.95] tracking-tight sm:text-7xl">
         Sign up
       </h1>
@@ -160,7 +161,7 @@ function SignupForm() {
           I am a…
         </label>
         <div className="mt-2 grid grid-cols-1 gap-3 sm:grid-cols-3">
-          {typeTile("chef", "Talent / Brand", "I want to find and book spaces")}
+          {typeTile("chef", "Chef", "I want to find and book spaces")}
           {typeTile("landlord", "Landlord", "I have a space to list")}
           {typeTile("customer", "Customer", "I want to find events in the city")}
         </div>
@@ -308,12 +309,18 @@ function SignupForm() {
                   className="input"
                   placeholder="City / Suburb"
                 />
-                <input
+                <select
                   value={addressState}
                   onChange={(e) => setAddressState(e.target.value)}
                   className="input"
-                  placeholder="State"
-                />
+                >
+                  <option value="">State</option>
+                  {australianStates.map((s) => (
+                    <option key={s} value={s}>
+                      {s}
+                    </option>
+                  ))}
+                </select>
                 <input
                   value={addressPostcode}
                   onChange={(e) => setAddressPostcode(e.target.value)}

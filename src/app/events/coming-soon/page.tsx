@@ -6,7 +6,7 @@ export const metadata = {
 
 export default function EventComingSoonPage() {
   return (
-    <div className="mx-auto max-w-3xl px-6 pb-24 pt-20 text-center">
+    <div className="mx-auto max-w-3xl px-[27px] pb-24 pt-20 text-center">
       <PageHeader
         title="Event details"
         caption="Coming soon"

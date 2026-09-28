@@ -27,7 +27,7 @@ export function BrowseSpacesClient({ spaces }: { spaces: Space[] }) {
     "block text-[10px] font-semibold uppercase tracking-[0.2em] text-ink/40";
 
   return (
-    <div className="px-1.5 pb-24 pt-20">
+    <div className="px-[9px] pb-24 pt-20">
       <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-0">
         <div className="shrink-0">
           <h1 className="text-6xl font-bold uppercase leading-[0.95] tracking-tight sm:text-7xl lg:text-[100px]">
@@ -40,7 +40,7 @@ export function BrowseSpacesClient({ spaces }: { spaces: Space[] }) {
         <div className="flex w-full flex-1 lg:justify-center lg:mt-[1px]">
         <div className="w-full lg:max-w-[54rem]">
           <div className="border border-divider bg-white">
-            <div className="flex divide-x divide-divider">
+            <div className="flex flex-col divide-y divide-divider sm:flex-row sm:divide-x sm:divide-y-0">
               <label className="flex-1 px-6 py-4">
                 <span className={cellLabel}>Where</span>
                 <select
@@ -74,7 +74,7 @@ export function BrowseSpacesClient({ spaces }: { spaces: Space[] }) {
               <button
                 type="button"
                 aria-label="Search"
-                className="flex w-16 shrink-0 items-center justify-center bg-accent transition-opacity hover:opacity-90 sm:w-20"
+                className="hidden shrink-0 items-center justify-center bg-accent transition-opacity hover:opacity-90 sm:flex sm:w-20"
               >
                 <svg
                   width="18"
@@ -90,7 +90,7 @@ export function BrowseSpacesClient({ spaces }: { spaces: Space[] }) {
               </button>
             </div>
 
-            <div className="flex divide-x divide-divider border-t border-divider">
+            <div className="flex flex-col divide-y divide-divider border-t border-divider sm:flex-row sm:divide-x sm:divide-y-0">
               <label className="flex-1 px-6 py-4">
                 <span className={cellLabel}>What</span>
                 <select
@@ -124,11 +124,44 @@ export function BrowseSpacesClient({ spaces }: { spaces: Space[] }) {
                 />
               </label>
             </div>
+
+            <button
+              type="button"
+              aria-label="Search"
+              className="flex w-full items-center justify-center gap-2 border-t border-divider bg-accent py-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-white transition-opacity hover:opacity-90 sm:hidden"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#FFFFFF"
+                strokeWidth="2"
+              >
+                <circle cx="11" cy="11" r="7" />
+                <path d="M21 21l-4.35-4.35" />
+              </svg>
+              Search
+            </button>
           </div>
 
-          <p className="mt-3 text-sm text-ink/50">
-            {spaces.length} spaces live across Melbourne right now
-          </p>
+          <div className="mt-3 flex items-center justify-between">
+            <p className="text-sm text-ink/50">
+              {spaces.length} spaces live across Melbourne right now
+            </p>
+            <button
+              type="button"
+              onClick={() => {
+                setSuburb("");
+                setType("");
+                setWhen("");
+                setMaxPrice(1000);
+              }}
+              className="text-sm text-ink/50 transition-colors hover:text-ink"
+            >
+              Clear all
+            </button>
+          </div>
         </div>
         </div>
       </div>
@@ -138,7 +171,7 @@ export function BrowseSpacesClient({ spaces }: { spaces: Space[] }) {
           <h2 className="text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
             Featured
           </h2>
-          <div className="mt-6 grid grid-cols-1 gap-1 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="-mx-[3px] mt-6 grid grid-cols-1 gap-1 sm:grid-cols-2 lg:grid-cols-4">
             {featured.map((space) => (
               <SpaceCard key={space.slug} space={space} />
             ))}
@@ -155,7 +188,7 @@ export function BrowseSpacesClient({ spaces }: { spaces: Space[] }) {
             No spaces match those filters yet. Try widening your search.
           </p>
         ) : (
-          <div className="mt-6 grid grid-cols-1 gap-1 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="-mx-[3px] mt-6 grid grid-cols-1 gap-1 sm:grid-cols-2 lg:grid-cols-4">
             {filtered.map((space) => (
               <SpaceCard key={space.slug} space={space} />
             ))}

@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { PageHeader } from "@/components/page-header";
 import { PhotoUploader } from "@/components/photo-uploader";
-import { spaceTypes } from "@/lib/mock-data";
+import { australianStates, spaceTypes } from "@/lib/mock-data";
 import {
   fileToDataUrl,
   readDemoProfileOverride,
@@ -13,7 +13,7 @@ import {
   type DemoProfileType,
 } from "@/lib/demo-profile";
 
-const roleOptions = ["Owner", "Manager", "Head Chef", "Event Coordinator", "Other"];
+const roleOptions = ["Owner", "Manager", "Chef", "Event Coordinator", "Other"];
 const knownRoles = roleOptions.filter((r) => r !== "Other");
 
 function splitRole(role: string | null) {
@@ -71,6 +71,7 @@ export function EditProfileForm(props: Props) {
     props.initialSpaceTypePreferences
   );
   const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     // Demo overrides live in localStorage and can only be read after mount.
@@ -119,6 +120,7 @@ export function EditProfileForm(props: Props) {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setSaving(true);
+    setError(null);
 
     const finalRole = role === "Other" ? roleOther.trim() || "Other" : role;
     const avatarPhoto = isBusiness ? photos[0] ?? null : photo || null;
@@ -138,7 +140,7 @@ export function EditProfileForm(props: Props) {
     const chefFields = isChef ? { bio, spaceTypePreferences } : {};
 
     if (props.mode === "live") {
-      await createClient()
+      const { data, error } = await createClient()
         .from("profiles")
         .update({
           name,
@@ -164,7 +166,22 @@ export function EditProfileForm(props: Props) {
               }
             : {}),
         })
-        .eq("id", props.profileId);
+        .eq("id", props.profileId)
+        .select();
+
+      if (error) {
+        setSaving(false);
+        setError(error.message);
+        return;
+      }
+      if (!data || data.length === 0) {
+        setSaving(false);
+        setError(
+          "Couldn't save your changes — your session may have expired. Try logging in again."
+        );
+        return;
+      }
+
       router.push("/profile");
       router.refresh();
     } else {
@@ -180,7 +197,7 @@ export function EditProfileForm(props: Props) {
   }
 
   return (
-    <div className="px-6 pb-24 pt-24">
+    <div className="px-[27px] pb-24 pt-24">
       <div className="mx-auto max-w-3xl">
         <PageHeader
           title="Edit Profile"
@@ -375,12 +392,18 @@ export function EditProfileForm(props: Props) {
                   className="input"
                   placeholder="City / Suburb"
                 />
-                <input
+                <select
                   value={addressState}
                   onChange={(e) => setAddressState(e.target.value)}
                   className="input"
-                  placeholder="State"
-                />
+                >
+                  <option value="">State</option>
+                  {australianStates.map((s) => (
+                    <option key={s} value={s}>
+                      {s}
+                    </option>
+                  ))}
+                </select>
                 <input
                   value={addressPostcode}
                   onChange={(e) => setAddressPostcode(e.target.value)}
@@ -389,6 +412,10 @@ export function EditProfileForm(props: Props) {
                 />
               </div>
             </div>
+          )}
+
+          {error && (
+            <p className="text-sm text-accent sm:col-span-2">{error}</p>
           )}
 
           <div className="mt-2 flex gap-3 sm:col-span-2">

@@ -12,7 +12,7 @@ export function Footer() {
 
   return (
     <footer className="border-t border-divider">
-      <div className="mx-auto max-w-7xl px-6 py-16 flex flex-col gap-10 sm:flex-row sm:justify-between">
+      <div className="mx-auto max-w-7xl px-[27px] py-16 flex flex-col gap-10 sm:flex-row sm:justify-between">
         <div>
           <Image
             src="/images/logo-blanked.jpg?v=3"
@@ -75,7 +75,7 @@ export function Footer() {
           </div>
         </div>
       </div>
-      <div className="border-t border-divider px-6 py-6 text-center text-xs uppercase tracking-widest text-ink/40">
+      <div className="border-t border-divider px-[27px] py-6 text-center text-xs uppercase tracking-widest text-ink/40">
         © {new Date().getFullYear()} Blanked. All rights reserved.
       </div>
     </footer>

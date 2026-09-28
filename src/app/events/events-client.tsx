@@ -34,7 +34,7 @@ export function EventsClient({
   }, [events, filter]);
 
   return (
-    <div className="px-1.5 pb-24 pt-20">
+    <div className="px-[9px] pb-24 pt-20">
       <div>
         <h1 className="text-6xl font-bold uppercase leading-[0.95] tracking-tight sm:text-7xl lg:text-[100px]">
           Events
@@ -69,7 +69,7 @@ export function EventsClient({
             No events in this window yet — check back soon.
           </p>
         ) : (
-          <div className="mt-6 grid grid-cols-1 gap-1 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="-mx-[3px] mt-6 grid grid-cols-1 gap-1 sm:grid-cols-2 lg:grid-cols-4">
             {filtered.map((event) => (
               <EventCard
                 key={event.slug}

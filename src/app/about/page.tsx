@@ -21,7 +21,7 @@ export default function AboutPage() {
         />
       </div>
 
-      <div className="flex flex-col justify-center gap-6 px-1.5 py-16 lg:w-1/2 lg:py-0">
+      <div className="flex flex-col justify-center gap-6 px-[9px] py-16 lg:w-1/2 lg:py-0">
         <h1 className="text-6xl font-bold uppercase leading-[0.95] tracking-tight sm:text-7xl lg:text-[100px]">
           About
           <br />

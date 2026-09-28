@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { averageRating, Stars } from "@/components/rating";
+import { LocationMap } from "@/components/location-map";
 import type { Space } from "@/lib/types";
 
 type SectionKey = "about" | "amenities" | "rules" | "reviews" | "location";
@@ -33,8 +34,6 @@ export function SpaceDetailAccordion({ space }: { space: Space }) {
   ]
     .map((g) => ({ ...g, items: g.items.filter((i) => i !== "None") }))
     .filter((g) => g.items.length > 0);
-
-  const mapQuery = encodeURIComponent(`${space.suburb}, Melbourne`);
 
   const stats = [
     {
@@ -95,7 +94,7 @@ export function SpaceDetailAccordion({ space }: { space: Space }) {
             </button>
 
             {isOpen && (
-              <div className="pb-6 text-sm leading-relaxed text-ink/60">
+              <div className="pb-6 text-justify text-sm leading-relaxed text-ink/60">
                 {section.key === "about" && (
                   <div className="flex flex-col gap-6">
                     <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
@@ -134,6 +133,7 @@ export function SpaceDetailAccordion({ space }: { space: Space }) {
                     <p className="text-ink/50">
                       Minimum booking: {space.minBookingDuration}
                     </p>
+                    <p className="text-ink/50">Damage deposit: $500</p>
                   </div>
                 )}
 
@@ -215,17 +215,15 @@ export function SpaceDetailAccordion({ space }: { space: Space }) {
                 {section.key === "location" && (
                   <div className="flex flex-col gap-3">
                     <p>{space.suburb}, Melbourne</p>
-                    <div className="aspect-[4/3] w-full overflow-hidden bg-divider">
-                      <iframe
-                        title="Map"
-                        src={`https://www.google.com/maps?q=${mapQuery}&output=embed`}
-                        className="h-full w-full border-0"
-                        loading="lazy"
+                    <div className="aspect-[4/3] w-full overflow-hidden border border-divider bg-divider">
+                      <LocationMap
+                        suburb={space.suburb}
+                        seed={space.id ?? space.slug}
                       />
                     </div>
                     <p className="text-xs text-ink/40">
-                      Approximate location shown. Exact address shared upon
-                      booking.
+                      Shaded area shows the approximate location. Exact
+                      address shared upon booking.
                     </p>
                   </div>
                 )}

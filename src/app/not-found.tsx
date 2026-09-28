@@ -2,7 +2,7 @@ import { ButtonLink } from "@/components/ui/button";
 
 export default function NotFound() {
   return (
-    <div className="mx-auto flex max-w-xl flex-col items-center px-6 pb-24 pt-32 text-center">
+    <div className="mx-auto flex max-w-xl flex-col items-center px-[27px] pb-24 pt-32 text-center">
       <span aria-hidden className="h-2.5 w-2.5 rounded-full bg-accent" />
       <h1 className="mt-6 text-4xl font-medium tracking-tight sm:text-6xl">
         Nothing here.

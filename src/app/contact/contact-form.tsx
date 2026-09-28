@@ -39,7 +39,7 @@ export function ContactForm() {
           value={form.name}
           onChange={(e) => update("name", e.target.value)}
           placeholder="Your name"
-          className="input"
+          className="input bg-white"
           required
         />
       </Field>
@@ -49,7 +49,7 @@ export function ContactForm() {
           value={form.email}
           onChange={(e) => update("email", e.target.value)}
           placeholder="you@email.com"
-          className="input"
+          className="input bg-white"
           required
         />
       </Field>
@@ -59,7 +59,7 @@ export function ContactForm() {
           value={form.phone}
           onChange={(e) => update("phone", e.target.value)}
           placeholder="04XX XXX XXX"
-          className="input"
+          className="input bg-white"
         />
       </Field>
       <Field label="Message">
@@ -68,7 +68,7 @@ export function ContactForm() {
           onChange={(e) => update("message", e.target.value)}
           placeholder="How can we help?"
           rows={5}
-          className="input"
+          className="input bg-white"
           required
         />
       </Field>
