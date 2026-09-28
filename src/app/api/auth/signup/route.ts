@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase/server";
+import { createClient as createAdminClient } from "@supabase/supabase-js";
 import { sendConfirmationEmail, sendAdminNotification } from "@/lib/email";
 
 export async function POST(req: Request) {
@@ -26,7 +26,11 @@ export async function POST(req: Request) {
       );
     }
 
-    const supabase = createClient();
+    // Use Admin client with service role key for creating users without auto-email
+    const supabase = createAdminClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_ROLE_KEY!
+    );
 
     // Use Admin API to create user without auto-sending email
     const { data, error: signupError } = await supabase.auth.admin.createUser({
