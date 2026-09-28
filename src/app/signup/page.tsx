@@ -59,70 +59,42 @@ function SignupForm() {
     }
     setLoading(true);
     const finalRole = role === "Other" ? roleOther.trim() || "Other" : role;
-    const supabase = createClient();
-    const { error, data } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        data: {
+
+    try {
+      const res = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email,
+          password,
           name,
-          account_type: accountType,
-          how_heard: howHeard || null,
-          ...(isBusiness
-            ? {
-                business_name: businessName || null,
-                role: finalRole || null,
-                website: website || null,
-                instagram: instagram || null,
-                address_line: addressLine || null,
-                address_suburb: addressSuburb || null,
-                address_state: addressState || null,
-                address_postcode: addressPostcode || null,
-              }
-            : {}),
-        },
-      },
-    });
-    setLoading(false);
-    if (error) {
-      setError(error.message);
-      return;
-    }
+          accountType,
+          businessName: businessName || null,
+          role: finalRole || null,
+          website: website || null,
+          instagram: instagram || null,
+          addressLine: addressLine || null,
+          addressSuburb: addressSuburb || null,
+          addressState: addressState || null,
+          addressPostcode: addressPostcode || null,
+          howHeard: howHeard || null,
+        }),
+      });
 
-    // Send confirmation and admin notification emails via Resend
-    if (data.user?.email) {
-      try {
-        const confirmationLink = `${window.location.origin}/auth/callback?next=/profile`;
-        await Promise.all([
-          fetch("/api/email/confirmation", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              email: data.user.email,
-              name: name,
-              confirmationLink,
-            }),
-          }),
-          fetch("/api/email/admin-notification", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              name,
-              email: data.user.email,
-              accountType,
-              businessName: businessName || null,
-              addressLine: addressLine || null,
-              addressSuburb: addressSuburb || null,
-            }),
-          }),
-        ]);
-      } catch (emailError) {
-        console.error("Failed to send emails:", emailError);
-        // Don't fail the signup if emails fail
+      const data = await res.json();
+      setLoading(false);
+
+      if (!res.ok) {
+        setError(data.error || "Signup failed");
+        return;
       }
-    }
 
-    setSubmitted(true);
+      setSubmitted(true);
+    } catch (err) {
+      setLoading(false);
+      setError("An error occurred. Please try again.");
+      console.error("Signup error:", err);
+    }
   }
 
   if (submitted) {
