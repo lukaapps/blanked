@@ -12,6 +12,7 @@ export default function LocationMapInner({
   seed: string;
 }) {
   const center = approximateLocation(suburb, seed);
+  const cartoKey = process.env.NEXT_PUBLIC_CARTO_API_KEY;
 
   return (
     <MapContainer
@@ -22,7 +23,9 @@ export default function LocationMapInner({
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
-        url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+        url={`https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png${
+          cartoKey ? `?key=${cartoKey}` : ""
+        }`}
       />
       <Circle
         center={center}
