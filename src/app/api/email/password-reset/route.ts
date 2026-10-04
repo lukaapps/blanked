@@ -23,7 +23,8 @@ export async function POST(req: Request) {
       .eq("email", email)
       .single();
 
-    console.log("Profile lookup:", { found: !!profile, error: profileError });
+    console.log("Profile lookup for email:", email);
+    console.log("Profile lookup result:", { found: !!profile, error: profileError });
 
     // Always return success for security (don't reveal if email exists)
     if (!profile) {
