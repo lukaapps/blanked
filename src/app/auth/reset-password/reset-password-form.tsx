@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 
 export default function ResetPasswordForm() {
@@ -11,9 +11,33 @@ export default function ResetPasswordForm() {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [sessionReady, setSessionReady] = useState(false);
+
+  useEffect(() => {
+    // Exchange code for session when component mounts
+    const exchangeCode = async () => {
+      const code = new URLSearchParams(window.location.hash.slice(1)).get("code");
+      if (!code) {
+        setError("Invalid reset link");
+        return;
+      }
+
+      const supabase = createClient();
+      const { error: exchangeError } = await supabase.auth.exchangeCodeForSession(code);
+      if (exchangeError) {
+        setError("Reset link expired or invalid");
+        return;
+      }
+      setSessionReady(true);
+    };
+
+    exchangeCode();
+  }, []);
 
   async function handleResetPassword(e: React.FormEvent) {
     e.preventDefault();
+    if (!sessionReady) return;
+
     setError(null);
 
     if (password !== confirmPassword) {
@@ -74,6 +98,10 @@ export default function ResetPasswordForm() {
       </p>
 
       <form onSubmit={handleResetPassword} className="mt-10 flex flex-col gap-5 bg-white p-6 sm:p-8">
+        {!sessionReady && (
+          <p className="text-sm text-ink/50">Verifying reset link...</p>
+        )}
+
         <div>
           <label className="block text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
             New password
@@ -82,6 +110,7 @@ export default function ResetPasswordForm() {
             type="password"
             required
             minLength={8}
+            disabled={!sessionReady}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             className="input mt-2"
@@ -97,6 +126,7 @@ export default function ResetPasswordForm() {
             type="password"
             required
             minLength={8}
+            disabled={!sessionReady}
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             className="input mt-2"
@@ -108,7 +138,7 @@ export default function ResetPasswordForm() {
 
         <button
           type="submit"
-          disabled={loading}
+          disabled={loading || !sessionReady}
           className="bg-[#442220] py-4 text-[11px] font-semibold uppercase tracking-[0.25em] text-white transition-opacity hover:opacity-90 disabled:opacity-40"
         >
           {loading ? "Resetting…" : "Reset Password"}
