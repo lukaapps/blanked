@@ -14,6 +14,9 @@ export const metadata: Metadata = {
   title: "Blanked | Pop-up spaces, Melbourne",
   description:
     "Blanked connects Melbourne hospitality chefs with short-term hospitality space. Browse spaces, list your venue, discover pop-up events.",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
