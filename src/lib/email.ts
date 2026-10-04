@@ -30,6 +30,10 @@ export async function sendPasswordResetEmail(
   name: string,
   resetLink: string
 ) {
+  const url = new URL(resetLink);
+  const token = url.hash || "";
+  const resetPageUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/auth/reset-password${token}`;
+
   return resend.emails.send({
     from: "jamie@blanked.melbourne",
     to: email,
@@ -39,10 +43,10 @@ export async function sendPasswordResetEmail(
         <h2 style="color: #442220;">Reset your password</h2>
         <p>Hi ${name},</p>
         <p>We received a request to reset your Blanked password. Click the button below to set a new password.</p>
-        <a href="${resetLink}" style="display: inline-block; background: #442220; color: white; padding: 12px 30px; text-decoration: none; border-radius: 4px; margin: 20px 0;">
+        <a href="${resetPageUrl}" style="display: inline-block; background: #442220; color: white; padding: 12px 30px; text-decoration: none; border-radius: 4px; margin: 20px 0;">
           Reset Password
         </a>
-        <p style="color: #999; font-size: 12px;">Or copy this link: <code>${resetLink}</code></p>
+        <p style="color: #999; font-size: 12px;">Or copy this link: <code>${resetPageUrl}</code></p>
         <p style="color: #999; font-size: 12px; margin-top: 30px;">If you didn't request this, you can ignore this email.</p>
         <p style="color: #999; font-size: 12px;">© 2026 Blanked. Melbourne's marketplace for short-term hospitality space.</p>
       </div>
