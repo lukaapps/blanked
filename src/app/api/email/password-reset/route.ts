@@ -17,14 +17,15 @@ export async function POST(req: Request) {
     );
 
     // Check if user exists
-    const { data: profile, error: profileError } = await supabase
+    const { data: profiles, error: profileError } = await supabase
       .from("profiles")
       .select("full_name")
-      .eq("email", email)
-      .single();
+      .eq("email", email);
 
     console.log("Profile lookup for email:", email);
-    console.log("Profile lookup result:", { found: !!profile, error: profileError?.message || profileError });
+    console.log("Profile lookup result:", { count: profiles?.length, error: profileError });
+
+    const profile = profiles?.[0];
 
     // Always return success for security (don't reveal if email exists)
     if (!profile) {
