@@ -8,14 +8,18 @@ export async function GET(request: Request) {
   const type = searchParams.get("type");
   const next = searchParams.get("next") ?? "/profile";
 
+  console.log("Auth callback - type:", type, "code:", !!code);
+
   if (code) {
     const supabase = await createClient();
     const { error } = await supabase.auth.exchangeCodeForSession(code);
     if (!error) {
       // For password recovery, redirect to reset password page
       if (type === "recovery") {
+        console.log("Redirecting to reset-password");
         return NextResponse.redirect(`${origin}/auth/reset-password`);
       }
+      console.log("Redirecting to:", next);
       return NextResponse.redirect(`${origin}${next}`);
     }
   }

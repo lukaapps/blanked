@@ -40,7 +40,7 @@ export async function sendPasswordResetEmail(
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 500px; margin: 0 auto;">
         <h2 style="color: #442220;">Reset your password</h2>
-        <p>Hi ${name},</p>
+        <p>Hi ${name || "there"},</p>
         <p>We received a request to reset your Blanked password. Click the button below to set a new password.</p>
         <a href="${resetPageUrl}" style="display: inline-block; background: #442220; color: white; padding: 12px 30px; text-decoration: none; border-radius: 4px; margin: 20px 0;">
           Reset Password
