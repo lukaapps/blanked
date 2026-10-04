@@ -30,8 +30,8 @@ export async function sendPasswordResetEmail(
   name: string,
   resetLink: string
 ) {
-  // Use the reset link directly - Supabase will handle the session
-  const resetPageUrl = resetLink.replace(/\/auth\/callback/, "/auth/reset-password");
+  // Use the reset link directly - callback will redirect to reset-password
+  const resetPageUrl = resetLink;
 
   return resend.emails.send({
     from: "jamie@blanked.melbourne",
