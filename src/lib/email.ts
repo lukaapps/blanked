@@ -31,8 +31,11 @@ export async function sendPasswordResetEmail(
   resetLink: string
 ) {
   const url = new URL(resetLink);
-  const token = url.hash || "";
-  const resetPageUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/auth/reset-password${token}`;
+  // Supabase puts token in query string - convert to hash for our reset page
+  const searchParams = new URLSearchParams(url.search);
+  const accessToken = searchParams.get("access_token") || "";
+  const type = searchParams.get("type") || "";
+  const resetPageUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/auth/reset-password#access_token=${accessToken}&type=${type}`;
 
   return resend.emails.send({
     from: "jamie@blanked.melbourne",
