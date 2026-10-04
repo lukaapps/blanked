@@ -5,6 +5,7 @@ import crypto from "crypto";
 export async function POST(req: Request) {
   try {
     const { email } = await req.json();
+    console.log("Password reset request for:", email);
 
     if (!email) {
       return Response.json({ error: "Missing email" }, { status: 400 });
@@ -16,14 +17,17 @@ export async function POST(req: Request) {
     );
 
     // Check if user exists
-    const { data: profile } = await supabase
+    const { data: profile, error: profileError } = await supabase
       .from("profiles")
       .select("full_name")
       .eq("email", email)
       .single();
 
+    console.log("Profile lookup:", { found: !!profile, error: profileError });
+
     // Always return success for security (don't reveal if email exists)
     if (!profile) {
+      console.log("Profile not found, returning early");
       return Response.json({ ok: true, message: "If that email exists, you'll receive a reset link" });
     }
 
@@ -53,7 +57,9 @@ export async function POST(req: Request) {
     const userName = profile.full_name || email.split("@")[0];
 
     // Send via Resend from jamie@blanked.melbourne
-    await sendPasswordResetEmail(email, userName, resetLink);
+    console.log("Sending password reset email to:", email);
+    const emailResult = await sendPasswordResetEmail(email, userName, resetLink);
+    console.log("Email send result:", emailResult);
 
     return Response.json({ ok: true, message: "If that email exists, you'll receive a reset link" });
   } catch (error) {
