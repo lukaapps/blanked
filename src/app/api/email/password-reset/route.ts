@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase/client";
+import { createClient } from "@supabase/supabase-js";
 import { sendPasswordResetEmail } from "@/lib/email";
 
 export async function POST(req: Request) {
@@ -9,7 +9,10 @@ export async function POST(req: Request) {
       return Response.json({ error: "Missing email" }, { status: 400 });
     }
 
-    const supabase = createClient();
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_ROLE_KEY!
+    );
 
     // Use Supabase to generate reset link, but send via Resend
     const { error: resetError, data } = await supabase.auth.resetPasswordForEmail(
