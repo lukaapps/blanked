@@ -33,10 +33,18 @@ export async function POST(req: Request) {
 
     // Extract token from Supabase link and build our own callback URL
     const supabaseUrl = new URL(linkData.properties.action_link);
-    const token = supabaseUrl.searchParams.get("token") || "";
     console.log("Supabase action_link:", linkData.properties.action_link);
-    console.log("Extracted token:", token);
-    const customLink = `${siteUrl}/auth/callback?code=${token}&type=recovery`;
+    console.log("All query params:", Array.from(supabaseUrl.searchParams.entries()));
+
+    const token = supabaseUrl.searchParams.get("token") || "";
+    const code = supabaseUrl.searchParams.get("code") || "";
+    const codeParam = token || code;
+
+    console.log("Token param:", token);
+    console.log("Code param:", code);
+    console.log("Using as code:", codeParam);
+
+    const customLink = `${siteUrl}/auth/callback?code=${codeParam}&type=recovery`;
     console.log("Custom callback link:", customLink);
 
     // Fetch user's name from profile
