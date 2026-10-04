@@ -34,10 +34,22 @@ export async function POST(req: Request) {
     // Extract token from Supabase link and build our own callback URL
     const supabaseUrl = new URL(linkData.properties.action_link);
     const token = supabaseUrl.searchParams.get("token") || "";
+    console.log("Supabase action_link:", linkData.properties.action_link);
+    console.log("Extracted token:", token);
     const customLink = `${siteUrl}/auth/callback?code=${token}&type=recovery`;
+    console.log("Custom callback link:", customLink);
+
+    // Fetch user's name from profile
+    const { data: profile } = await supabase
+      .from("profiles")
+      .select("full_name")
+      .eq("email", email)
+      .single();
+
+    const userName = profile?.full_name || email.split("@")[0];
 
     // Send via Resend from jamie@blanked.melbourne
-    await sendPasswordResetEmail(email, "User", customLink);
+    await sendPasswordResetEmail(email, userName, customLink);
 
     return Response.json({ ok: true, message: "If that email exists, you'll receive a reset link" });
   } catch (error) {
