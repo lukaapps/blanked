@@ -35,20 +35,41 @@ export default function ResetPasswordForm() {
     }
 
     setLoading(true);
-    const supabase = createClient();
 
-    const { error: resetError } = await supabase.auth.updateUser({
-      password,
-    });
+    // Extract token from hash
+    const hashParams = new URLSearchParams(window.location.hash.slice(1));
+    const token = hashParams.get("access_token");
 
-    setLoading(false);
-
-    if (resetError) {
-      setError(resetError.message);
+    if (!token) {
+      setError("Reset link is invalid or expired");
+      setLoading(false);
       return;
     }
 
-    setSuccess(true);
+    try {
+      const res = await fetch("/api/auth/update-password", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+        },
+        body: JSON.stringify({ password }),
+      });
+
+      const data = await res.json();
+      setLoading(false);
+
+      if (!res.ok) {
+        setError(data.error || "Failed to reset password");
+        return;
+      }
+
+      setSuccess(true);
+    } catch (err) {
+      setLoading(false);
+      setError("An error occurred. Please try again.");
+      console.error("Reset error:", err);
+    }
   }
 
   if (success) {
