@@ -13,7 +13,11 @@ export async function GET(request: Request) {
   if (code) {
     const supabase = await createClient();
     const { error } = await supabase.auth.exchangeCodeForSession(code);
-    if (!error) {
+
+    if (error) {
+      console.log("Exchange code error:", error);
+    } else {
+      console.log("Exchange successful");
       // For password recovery, redirect to reset password page
       if (type === "recovery") {
         console.log("Redirecting to reset-password");
