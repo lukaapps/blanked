@@ -26,6 +26,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${dmSans.variable} h-full`}>
+      <head>
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+      </head>
       <body className="min-h-full flex flex-col font-sans antialiased">
         <Nav />
         <main className="flex-1">{children}</main>
