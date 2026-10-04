@@ -14,24 +14,22 @@ export default function ResetPasswordForm() {
   const [sessionReady, setSessionReady] = useState(false);
 
   useEffect(() => {
-    // Exchange code for session when component mounts
-    const exchangeCode = async () => {
-      const code = new URLSearchParams(window.location.hash.slice(1)).get("code");
-      if (!code) {
-        setError("Invalid reset link");
+    // Verify session from reset link hash
+    const verifySession = async () => {
+      const supabase = createClient();
+
+      // Check if user has a session (from the hash in reset link)
+      const { data: { session }, error } = await supabase.auth.getSession();
+
+      if (error || !session) {
+        setError("Invalid or expired reset link");
         return;
       }
 
-      const supabase = createClient();
-      const { error: exchangeError } = await supabase.auth.exchangeCodeForSession(code);
-      if (exchangeError) {
-        setError("Reset link expired or invalid");
-        return;
-      }
       setSessionReady(true);
     };
 
-    exchangeCode();
+    verifySession();
   }, []);
 
   async function handleResetPassword(e: React.FormEvent) {
