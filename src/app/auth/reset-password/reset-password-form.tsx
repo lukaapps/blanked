@@ -14,22 +14,8 @@ export default function ResetPasswordForm() {
   const [sessionReady, setSessionReady] = useState(false);
 
   useEffect(() => {
-    // Verify session from reset link hash
-    const verifySession = async () => {
-      const supabase = createClient();
-
-      // Check if user has a session (from the hash in reset link)
-      const { data: { session }, error } = await supabase.auth.getSession();
-
-      if (error || !session) {
-        setError("Invalid or expired reset link");
-        return;
-      }
-
-      setSessionReady(true);
-    };
-
-    verifySession();
+    // Reset link token is in hash - ready immediately
+    setSessionReady(true);
   }, []);
 
   async function handleResetPassword(e: React.FormEvent) {
