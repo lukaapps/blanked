@@ -14,22 +14,22 @@ export async function POST(req: Request) {
       process.env.SUPABASE_SERVICE_ROLE_KEY!
     );
 
-    // Use Supabase to generate reset link, but send via Resend
-    const { error: resetError, data } = await supabase.auth.resetPasswordForEmail(
+    // Use admin API to generate reset link without sending
+    const { data: linkData, error: linkError } = await supabase.auth.admin.generateLink({
+      type: "recovery",
       email,
-      {
+      options: {
         redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback?type=recovery`,
-      }
-    );
+      },
+    });
 
-    if (resetError) {
+    if (linkError || !linkData?.properties?.action_link) {
       // Don't expose whether email exists or not (security)
       return Response.json({ ok: true, message: "If that email exists, you'll receive a reset link" });
     }
 
-    // Send via Resend instead of Supabase
-    const resetLink = `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback?type=recovery`;
-    await sendPasswordResetEmail(email, "User", resetLink);
+    // Send via Resend from jamie@blanked.melbourne
+    await sendPasswordResetEmail(email, "User", linkData.properties.action_link);
 
     return Response.json({ ok: true, message: "If that email exists, you'll receive a reset link" });
   } catch (error) {
