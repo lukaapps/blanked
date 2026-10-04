@@ -15,11 +15,14 @@ export async function POST(req: Request) {
     );
 
     // Use admin API to generate reset link without sending
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://blanked.melbourne";
+    console.log("Password reset redirectTo:", siteUrl);
+
     const { data: linkData, error: linkError } = await supabase.auth.admin.generateLink({
       type: "recovery",
       email,
       options: {
-        redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback?type=recovery`,
+        redirectTo: `${siteUrl}/auth/callback?type=recovery`,
       },
     });
 
