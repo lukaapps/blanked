@@ -9,7 +9,7 @@ function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const nextParam = searchParams.get("next");
-  const next = nextParam && nextParam.startsWith("/") ? nextParam : "/profile";
+  const next = nextParam && nextParam.startsWith("/") ? nextParam : "/";
   const confirmError = searchParams.get("error") === "confirm";
 
   const [email, setEmail] = useState("");
