@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   description:
     "Blanked connects Melbourne hospitality chefs with short-term hospitality space. Browse spaces, list your venue, discover pop-up events.",
   icons: {
-    icon: "/favicon.svg",
+    icon: "/favicon.ico",
   },
 };
 
