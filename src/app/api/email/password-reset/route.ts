@@ -31,8 +31,13 @@ export async function POST(req: Request) {
       return Response.json({ ok: true, message: "If that email exists, you'll receive a reset link" });
     }
 
+    // Extract token from Supabase link and build our own callback URL
+    const supabaseUrl = new URL(linkData.properties.action_link);
+    const token = supabaseUrl.searchParams.get("token") || "";
+    const customLink = `${siteUrl}/auth/callback?code=${token}&type=recovery`;
+
     // Send via Resend from jamie@blanked.melbourne
-    await sendPasswordResetEmail(email, "User", linkData.properties.action_link);
+    await sendPasswordResetEmail(email, "User", customLink);
 
     return Response.json({ ok: true, message: "If that email exists, you'll receive a reset link" });
   } catch (error) {
