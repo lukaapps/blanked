@@ -1,4 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
+import crypto from "crypto";
 
 export async function POST(req: Request) {
   try {
@@ -20,11 +21,14 @@ export async function POST(req: Request) {
       process.env.SUPABASE_SERVICE_ROLE_KEY!
     );
 
+    // Hash the incoming token to compare with stored hash
+    const tokenHash = crypto.createHash("sha256").update(token).digest("hex");
+
     // Look up the reset token
     const { data: resetTokenRecord, error: lookupError } = await supabase
       .from("password_reset_tokens")
       .select("email, expires_at")
-      .eq("token", token)
+      .eq("token", tokenHash)
       .single();
 
     if (lookupError || !resetTokenRecord) {

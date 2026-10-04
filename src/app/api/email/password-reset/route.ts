@@ -29,14 +29,15 @@ export async function POST(req: Request) {
 
     // Generate reset token
     const token = crypto.randomBytes(32).toString("hex");
+    const tokenHash = crypto.createHash("sha256").update(token).digest("hex");
     const expiresAt = new Date(Date.now() + 1000 * 60 * 60); // 1 hour expiry
 
-    // Store reset token in database
+    // Store hashed token in database (token sent to user in plaintext)
     const { error: tokenError } = await supabase
       .from("password_reset_tokens")
       .insert({
         email,
-        token,
+        token: tokenHash,
         expires_at: expiresAt.toISOString(),
       });
 
