@@ -36,12 +36,16 @@ export default function ResetPasswordForm() {
 
     setLoading(true);
 
-    // Extract token from hash
+    // Extract token from hash - Supabase uses access_token or code parameter
     const hashParams = new URLSearchParams(window.location.hash.slice(1));
-    const token = hashParams.get("access_token");
+    const token = hashParams.get("access_token") || hashParams.get("token");
+
+    console.log("Hash:", window.location.hash);
+    console.log("Parsed params:", Object.fromEntries(hashParams));
+    console.log("Token found:", !!token);
 
     if (!token) {
-      setError("Reset link is invalid or expired");
+      setError("Reset link is invalid or expired. Please request a new password reset.");
       setLoading(false);
       return;
     }
