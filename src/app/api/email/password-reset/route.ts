@@ -1,5 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 import { sendPasswordResetEmail } from "@/lib/email";
+import crypto from "crypto";
 
 export async function POST(req: Request) {
   try {
@@ -14,36 +15,41 @@ export async function POST(req: Request) {
       process.env.SUPABASE_SERVICE_ROLE_KEY!
     );
 
-    // Use admin API to generate reset link without sending
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://blanked.melbourne";
-    console.log("Password reset redirectTo:", siteUrl);
-
-    const { data: linkData, error: linkError } = await supabase.auth.admin.generateLink({
-      type: "recovery",
-      email,
-      options: {
-        redirectTo: `${siteUrl}/auth/callback?type=recovery`,
-      },
-    });
-
-    if (linkError || !linkData?.properties?.action_link) {
-      // Don't expose whether email exists or not (security)
-      return Response.json({ ok: true, message: "If that email exists, you'll receive a reset link" });
-    }
-
-    // Use Supabase's action_link directly - Supabase will handle PKCE and session establishment,
-    // then redirect to our callback with the session already created
-    const resetLink = linkData.properties.action_link;
-    console.log("Reset link:", resetLink);
-
-    // Fetch user's name from profile
+    // Check if user exists
     const { data: profile } = await supabase
       .from("profiles")
       .select("full_name")
       .eq("email", email)
       .single();
 
-    const userName = profile?.full_name || email.split("@")[0];
+    // Always return success for security (don't reveal if email exists)
+    if (!profile) {
+      return Response.json({ ok: true, message: "If that email exists, you'll receive a reset link" });
+    }
+
+    // Generate reset token
+    const token = crypto.randomBytes(32).toString("hex");
+    const expiresAt = new Date(Date.now() + 1000 * 60 * 60); // 1 hour expiry
+
+    // Store reset token in database
+    const { error: tokenError } = await supabase
+      .from("password_reset_tokens")
+      .insert({
+        email,
+        token,
+        expires_at: expiresAt.toISOString(),
+      });
+
+    if (tokenError) {
+      console.error("Token storage error:", tokenError);
+      return Response.json({ ok: true, message: "If that email exists, you'll receive a reset link" });
+    }
+
+    // Create reset link
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://blanked.melbourne";
+    const resetLink = `${siteUrl}/auth/reset-password?token=${token}`;
+
+    const userName = profile.full_name || email.split("@")[0];
 
     // Send via Resend from jamie@blanked.melbourne
     await sendPasswordResetEmail(email, userName, resetLink);

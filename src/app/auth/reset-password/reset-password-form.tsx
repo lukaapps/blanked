@@ -1,26 +1,32 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 
 export default function ResetPasswordForm() {
+  const searchParams = useSearchParams();
+  const token = searchParams.get("token");
+
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [sessionReady, setSessionReady] = useState(false);
 
   useEffect(() => {
-    // Supabase handles the session from the reset link automatically
-    // Just need to wait a tick for it to be established
-    const timer = setTimeout(() => setSessionReady(true), 100);
-    return () => clearTimeout(timer);
-  }, []);
+    if (!token) {
+      setError("Invalid or missing reset token");
+    }
+  }, [token]);
 
   async function handleResetPassword(e: React.FormEvent) {
     e.preventDefault();
-    if (!sessionReady) return;
+
+    if (!token) {
+      setError("Invalid reset token");
+      return;
+    }
 
     setError(null);
 
@@ -35,21 +41,29 @@ export default function ResetPasswordForm() {
     }
 
     setLoading(true);
-    const supabase = createClient();
 
-    // Supabase session should be established from the recovery link
-    const { error: resetError } = await supabase.auth.updateUser({
-      password,
-    });
+    try {
+      // Call the update password endpoint with the token
+      const response = await fetch("/api/auth/reset-password-with-token", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token, password }),
+      });
 
-    setLoading(false);
+      const data = await response.json();
 
-    if (resetError) {
-      setError(resetError.message || "Failed to reset password. Link may be expired.");
-      return;
+      if (!response.ok) {
+        setError(data.error || "Failed to reset password");
+        return;
+      }
+
+      setSuccess(true);
+    } catch (err) {
+      setError("An error occurred while resetting your password");
+      console.error(err);
+    } finally {
+      setLoading(false);
     }
-
-    setSuccess(true);
   }
 
   if (success) {
@@ -73,6 +87,26 @@ export default function ResetPasswordForm() {
     );
   }
 
+  if (error && error.includes("Invalid or missing")) {
+    return (
+      <div className="mx-auto max-w-md px-6 pb-24 pt-32 text-center">
+        <span aria-hidden className="inline-block h-2.5 w-2.5 rounded-full bg-accent" />
+        <h1 className="mt-6 text-4xl font-medium tracking-tight">
+          Reset link expired
+        </h1>
+        <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+          Error
+        </p>
+        <p className="mt-6 text-sm leading-relaxed text-ink/60">
+          This password reset link is invalid or has expired.{" "}
+          <a href="/login?tab=forgot" className="text-accent hover:underline">
+            Request a new one
+          </a>
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div className="mx-auto max-w-md px-6 pb-24 pt-24">
       <h1 className="text-6xl font-bold uppercase leading-[0.95] tracking-tight sm:text-7xl">
@@ -83,10 +117,6 @@ export default function ResetPasswordForm() {
       </p>
 
       <form onSubmit={handleResetPassword} className="mt-10 flex flex-col gap-5 bg-white p-6 sm:p-8">
-        {!sessionReady && (
-          <p className="text-sm text-ink/50">Verifying reset link...</p>
-        )}
-
         <div>
           <label className="block text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
             New password
@@ -95,7 +125,6 @@ export default function ResetPasswordForm() {
             type="password"
             required
             minLength={8}
-            disabled={!sessionReady}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             className="input mt-2"
@@ -111,7 +140,6 @@ export default function ResetPasswordForm() {
             type="password"
             required
             minLength={8}
-            disabled={!sessionReady}
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             className="input mt-2"
@@ -123,7 +151,7 @@ export default function ResetPasswordForm() {
 
         <button
           type="submit"
-          disabled={loading || !sessionReady}
+          disabled={loading}
           className="bg-[#442220] py-4 text-[11px] font-semibold uppercase tracking-[0.25em] text-white transition-opacity hover:opacity-90 disabled:opacity-40"
         >
           {loading ? "Resetting…" : "Reset Password"}
