@@ -31,21 +31,10 @@ export async function POST(req: Request) {
       return Response.json({ ok: true, message: "If that email exists, you'll receive a reset link" });
     }
 
-    // Extract token from Supabase link and build our own callback URL
-    const supabaseUrl = new URL(linkData.properties.action_link);
-    console.log("Supabase action_link:", linkData.properties.action_link);
-    console.log("All query params:", Array.from(supabaseUrl.searchParams.entries()));
-
-    const token = supabaseUrl.searchParams.get("token") || "";
-    const code = supabaseUrl.searchParams.get("code") || "";
-    const codeParam = token || code;
-
-    console.log("Token param:", token);
-    console.log("Code param:", code);
-    console.log("Using as code:", codeParam);
-
-    const customLink = `${siteUrl}/auth/callback?code=${codeParam}&type=recovery`;
-    console.log("Custom callback link:", customLink);
+    // Use Supabase's action_link directly - Supabase will handle PKCE and session establishment,
+    // then redirect to our callback with the session already created
+    const resetLink = linkData.properties.action_link;
+    console.log("Reset link:", resetLink);
 
     // Fetch user's name from profile
     const { data: profile } = await supabase
@@ -57,7 +46,7 @@ export async function POST(req: Request) {
     const userName = profile?.full_name || email.split("@")[0];
 
     // Send via Resend from jamie@blanked.melbourne
-    await sendPasswordResetEmail(email, userName, customLink);
+    await sendPasswordResetEmail(email, userName, resetLink);
 
     return Response.json({ ok: true, message: "If that email exists, you'll receive a reset link" });
   } catch (error) {
