@@ -11,15 +11,6 @@ export async function POST(req: Request) {
       );
     }
 
-    // Create admin client to update user without session
-    const supabase = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!
-    );
-
-    // Get the user from the request context
-    // For now, we'll use the service role to update via email
-    // This is called after the user has verified the reset link
     const authHeader = req.headers.get("authorization");
     if (!authHeader?.startsWith("Bearer ")) {
       return Response.json(
@@ -30,21 +21,23 @@ export async function POST(req: Request) {
 
     const token = authHeader.slice(7);
 
-    // Use the token to get the user and update password
-    const { data: { user }, error: userError } = await supabase.auth.admin.getUserByToken(token);
-
-    if (userError || !user) {
-      return Response.json(
-        { error: "Invalid or expired token" },
-        { status: 401 }
-      );
-    }
-
-    // Update the user's password
-    const { error: updateError } = await supabase.auth.admin.updateUserById(
-      user.id,
-      { password }
+    // Create a client with the user's token to update their password
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+      {
+        global: {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      }
     );
+
+    // Update the user's password using their token
+    const { error: updateError } = await supabase.auth.updateUser({
+      password,
+    });
 
     if (updateError) {
       return Response.json(
