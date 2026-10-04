@@ -63,7 +63,7 @@ export default async function ChefsPage() {
       </div>
 
       <div className="pt-24">
-        <div className="no-scrollbar -mx-6 flex gap-1 overflow-x-auto px-6 sm:gap-1.5">
+        <div className="no-scrollbar flex gap-1 overflow-x-auto px-6 sm:gap-1.5 sm:px-10 lg:px-16">
           {featured.map((chef) => (
             <div key={chef.slug} className="shrink-0">
               <ChefCard chef={chef} />

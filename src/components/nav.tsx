@@ -113,18 +113,18 @@ export function Nav() {
               <span className="text-accent">.</span>
             </Link>
 
-            <div className="ml-3 grid flex-1 grid-cols-[1fr_auto] items-center gap-x-4">
+            <div className="ml-8 flex items-center gap-x-8">
               <Link
                 href="/events"
-                className={`justify-self-center ${linkClass(isActive("/events"))}`}
+                className={linkClass(isActive("/events"))}
               >
                 Events
               </Link>
               <Link
                 href={loggedIn ? "/profile" : "/login"}
-                className={`shrink-0 justify-self-end ${linkClass(
+                className={linkClass(
                   isActive(loggedIn ? "/profile" : "/login")
-                )}`}
+                )}
               >
                 {loggedIn ? "My Profile" : "Log In"}
               </Link>
