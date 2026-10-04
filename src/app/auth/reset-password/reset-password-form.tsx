@@ -1,11 +1,9 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { createClient } from "@/lib/supabase/client";
 
 export default function ResetPasswordForm() {
-  const searchParams = useSearchParams();
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -14,8 +12,10 @@ export default function ResetPasswordForm() {
   const [sessionReady, setSessionReady] = useState(false);
 
   useEffect(() => {
-    // Reset link token is in hash - ready immediately
-    setSessionReady(true);
+    // Supabase handles the session from the reset link automatically
+    // Just need to wait a tick for it to be established
+    const timer = setTimeout(() => setSessionReady(true), 100);
+    return () => clearTimeout(timer);
   }, []);
 
   async function handleResetPassword(e: React.FormEvent) {
@@ -35,45 +35,21 @@ export default function ResetPasswordForm() {
     }
 
     setLoading(true);
+    const supabase = createClient();
 
-    // Extract token from hash - Supabase uses access_token or code parameter
-    const hashParams = new URLSearchParams(window.location.hash.slice(1));
-    const token = hashParams.get("access_token") || hashParams.get("token");
+    // Supabase session should be established from the recovery link
+    const { error: resetError } = await supabase.auth.updateUser({
+      password,
+    });
 
-    console.log("Hash:", window.location.hash);
-    console.log("Parsed params:", Object.fromEntries(hashParams));
-    console.log("Token found:", !!token);
+    setLoading(false);
 
-    if (!token) {
-      setError("Reset link is invalid or expired. Please request a new password reset.");
-      setLoading(false);
+    if (resetError) {
+      setError(resetError.message || "Failed to reset password. Link may be expired.");
       return;
     }
 
-    try {
-      const res = await fetch("/api/auth/update-password", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`,
-        },
-        body: JSON.stringify({ password }),
-      });
-
-      const data = await res.json();
-      setLoading(false);
-
-      if (!res.ok) {
-        setError(data.error || "Failed to reset password");
-        return;
-      }
-
-      setSuccess(true);
-    } catch (err) {
-      setLoading(false);
-      setError("An error occurred. Please try again.");
-      console.error("Reset error:", err);
-    }
+    setSuccess(true);
   }
 
   if (success) {
