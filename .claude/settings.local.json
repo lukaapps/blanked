@@ -34,7 +34,14 @@
       "Bash(git push *)",
       "Bash(git remote *)",
       "Bash(gh pr *)",
-      "Bash(git commit *)"
+      "Bash(git commit *)",
+      "mcp__visualize__read_me",
+      "mcp__visualize__show_widget",
+      "Bash(git fetch *)",
+      "Bash(git reset *)",
+      "Bash(cp \"/Users/luka/Downloads/Screenshot-2026-10-04-at-5.16.29 pm-Photoroom.ico\" /Users/luka/Desktop/blankd/public/favicon.ico && ls -lh /Users/luka/Desktop/blankd/public/favicon.ico)",
+      "Bash(grep \".ico$\")",
+      "Bash(cp *.ico /Users/luka/Desktop/blankd/public/favicon.ico 2>/dev/null && echo \"Success\" || echo \"Failed\")"
     ]
   }
 }
