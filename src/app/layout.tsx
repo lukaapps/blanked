@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   description:
     "Blanked connects Melbourne hospitality chefs with short-term hospitality space. Browse spaces, list your venue, discover pop-up events.",
   icons: {
-    icon: "/favicon.svg?v=3",
+    icon: "/favicon.svg?v=4",
   },
 };
 
@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${dmSans.variable} h-full`}>
       <head>
-        <link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml" />
+        <link rel="icon" href="/favicon.svg?v=4" type="image/svg+xml" />
       </head>
       <body className="min-h-full flex flex-col font-sans antialiased">
         <Nav />

@@ -73,8 +73,8 @@ export function SaveSpaceButton({ spaceId }: { spaceId?: string }) {
         width="16"
         height="16"
         viewBox="0 0 24 24"
-        fill={saved ? "#CA0000" : "none"}
-        stroke={saved ? "#CA0000" : "currentColor"}
+        fill={saved ? "#FF350C" : "none"}
+        stroke={saved ? "#FF350C" : "currentColor"}
         strokeWidth="1.5"
       >
         <path d="M12 21s-7.5-4.6-10.1-9.1C.4 8.7 1.9 5 5.5 5c2.2 0 3.9 1.3 4.9 3 1-1.7 2.7-3 4.9-3 3.6 0 5.1 3.7 3.6 6.9C19.5 16.4 12 21 12 21z" />

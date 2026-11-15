@@ -31,10 +31,10 @@ export default function LocationMapInner({
         center={center}
         radius={500}
         pathOptions={{
-          color: "#CA0000",
+          color: "#FF350C",
           weight: 1.5,
           opacity: 0.55,
-          fillColor: "#CA0000",
+          fillColor: "#FF350C",
           fillOpacity: 0.16,
         }}
       />

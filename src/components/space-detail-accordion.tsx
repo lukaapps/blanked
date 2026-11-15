@@ -8,7 +8,7 @@ import type { Space } from "@/lib/types";
 type SectionKey = "about" | "amenities" | "rules" | "reviews" | "location";
 
 const statIcon = {
-  stroke: "#CA0000",
+  stroke: "#FF350C",
   strokeWidth: 1.5,
   fill: "none",
   width: 22,
