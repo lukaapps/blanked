@@ -5,6 +5,7 @@ import { getChef, getEvent, getEvents, getSpace } from "@/lib/data";
 import { BackButton } from "@/components/back-button";
 import { LocationMap } from "@/components/location-map";
 import { SaveEventButton } from "@/components/save-event-button";
+import { Stops } from "@/components/brand-stop";
 
 export async function generateMetadata({
   params,
@@ -121,7 +122,7 @@ export default async function EventDetailPage({
       <section className={section}>
         <p className={sectionLabel}>About This Event</p>
         <p className="mt-6 text-3xl font-medium leading-[1.15] tracking-tight sm:text-5xl lg:text-6xl">
-          {event.description}
+          <Stops>{event.description}</Stops>
         </p>
       </section>
 
@@ -200,7 +201,7 @@ export default async function EventDetailPage({
       {chef && (
         <section className={section}>
           <blockquote className="text-2xl font-medium leading-snug tracking-tight sm:text-4xl lg:text-5xl">
-            &ldquo;{chef.quote}&rdquo;
+            &ldquo;<Stops>{chef.quote}</Stops>&rdquo;
           </blockquote>
           <p className="mt-6 text-[11px] font-semibold uppercase tracking-[0.25em] text-accent">
             {chef.name}

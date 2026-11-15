@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { TalentIndex } from "@/components/talent-index";
+import { Stops } from "@/components/brand-stop";
 import { getChefs } from "@/lib/data";
 
 export const metadata = {
@@ -25,7 +26,7 @@ export default async function TalentPage() {
       <section className="px-[9px] pt-12 lg:pt-20">
         <p className={label}>Talent</p>
         <h1 className={`mt-6 max-w-6xl ${statement}`}>
-          The people behind Melbourne&rsquo;s pop-ups.
+          <Stops>The people behind Melbourne’s pop-ups.</Stops>
         </h1>
       </section>
 
@@ -76,8 +77,7 @@ export default async function TalentPage() {
       {/* Closing enquiry */}
       <section className="mt-40 flex flex-col items-start gap-8 border-t border-divider px-[9px] pt-10 lg:flex-row lg:items-end lg:justify-between">
         <p className={`max-w-4xl ${statement}`}>
-          Enquire about profiles and availability of Melbourne&rsquo;s best
-          chefs.
+          <Stops>Enquire about profiles and availability of Melbourne’s best chefs.</Stops>
         </p>
         <Link
           href="/contact#contact-form"

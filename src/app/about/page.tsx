@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { heroImages } from "@/lib/mock-data";
+import { Stops } from "@/components/brand-stop";
 
 export const metadata = {
   title: "About | Blanked",
@@ -20,7 +21,7 @@ export default function AboutPage() {
       <section className="px-[9px] pt-12 lg:pt-20">
         <p className={label}>About</p>
         <h1 className={`mt-6 max-w-6xl ${statement}`}>
-          Blanked is a marketplace for hospitality space.
+          <Stops>Blanked is a marketplace for hospitality space.</Stops>
         </h1>
       </section>
 
@@ -77,8 +78,7 @@ export default function AboutPage() {
       <section className="mt-40 px-[9px]">
         <p className={label}>Why now</p>
         <p className={`mt-6 max-w-6xl ${statement}`}>
-          Every pop-up in this city has been built on Instagram DMs and word
-          of mouth.
+          <Stops>Every pop-up in this city has been built on Instagram DMs and word of mouth.</Stops>
         </p>
       </section>
 
@@ -93,6 +93,13 @@ export default function AboutPage() {
             what&rsquo;s on and get a seat at it.
           </p>
         </div>
+      </section>
+
+      {/* Closing tagline */}
+      <section className="mt-40 px-[9px]">
+        <p className={`max-w-6xl ${statement}`}>
+          <Stops>The city has space. Let’s use it.</Stops>
+        </p>
       </section>
 
     </div>

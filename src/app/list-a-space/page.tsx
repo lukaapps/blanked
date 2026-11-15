@@ -1,18 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
 import { RedDot } from "@/components/page-header";
+import { Stops } from "@/components/brand-stop";
 
 export const metadata = {
   title: "List a Space | Blanked",
   description:
-    "List your venue on Blanked and start receiving booking requests from vetted hospitality chefs.",
+    "List your venue on Blanked and start receiving booking requests from vetted chefs.",
 };
 
 const steps = [
   {
     n: "01",
     title: "Submit your space",
-    body: "Tell us the basics — name, address, and what makes it work for hospitality chefs.",
+    body: "Tell us the basics — name, address, and what makes it work for chefs.",
     image: "/images/space-brick-loft.jpg?v=3",
   },
   {
@@ -24,7 +25,7 @@ const steps = [
   {
     n: "03",
     title: "Hospitality chefs find and book",
-    body: "Vetted hospitality chefs browse, filter, and send you booking requests. You approve every one. You get to meet everyone.",
+    body: "Vetted chefs browse, filter, and send you booking requests. You approve every one. You get to meet everyone.",
     image: "/images/space-dark-dining.jpg?v=3",
   },
   {
@@ -46,7 +47,7 @@ const advantages = [
   },
   {
     title: "Find new partners",
-    body: "Meet hospitality chefs you’d never cross paths with on Instagram DMs.",
+    body: "Meet chefs you’d never cross paths with on Instagram DMs.",
   },
   {
     title: "Fast to list",
@@ -72,7 +73,7 @@ const trust = [
     body: "Set your own damage deposit — Blanked holds it and it’s there if something goes wrong.",
   },
   {
-    title: "Vetted hospitality chefs",
+    title: "Vetted chefs",
     body: "Everyone requesting to book has been vetted before they can send a request.",
   },
   {
@@ -92,7 +93,7 @@ export default function ListASpacePage() {
             space
           </h1>
           <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
-            Share your space.
+            <Stops>The city has space. Let’s use it.</Stops>
           </p>
           <Link
             href="/list-a-space/apply"
@@ -114,11 +115,22 @@ export default function ListASpacePage() {
         </div>
       </div>
 
+      <div className="mt-8 border-y border-divider bg-white">
+        <div className="flex flex-col items-start gap-2 px-[27px] py-10 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+            What it costs
+          </p>
+          <p className="text-sm font-semibold uppercase tracking-wide text-accent">
+            Free to list until January 2027
+          </p>
+        </div>
+      </div>
+
       <div className="px-[27px] py-24">
         <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
           How it works
         </p>
-        <h2 className="mt-3 text-3xl font-medium tracking-tight sm:text-5xl">
+        <h2 className="mt-3 font-bold tracking-tight leading-[1.1] text-3xl sm:text-5xl lg:text-6xl">
           Listing and booking
         </h2>
 
@@ -130,7 +142,7 @@ export default function ListASpacePage() {
                 i % 2 === 1 ? "lg:flex-row-reverse" : "lg:flex-row"
               }`}
             >
-              <div className="relative -mx-[3px] aspect-[4/3] w-full overflow-hidden bg-divider lg:w-1/2">
+              <div className="relative aspect-[4/3] w-full overflow-hidden bg-divider lg:w-1/2">
                 <Image
                   src={step.image}
                   alt=""
@@ -140,7 +152,7 @@ export default function ListASpacePage() {
                 />
               </div>
               <div className="lg:w-1/2">
-                <span className="text-xs font-semibold text-accent">
+                <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
                   {step.n}
                 </span>
                 <h3 className="mt-2 text-2xl font-medium tracking-tight">
@@ -155,42 +167,43 @@ export default function ListASpacePage() {
         </div>
       </div>
 
-      <div className="border-y border-divider bg-white">
-        <div className="flex flex-col items-start gap-2 px-[27px] py-10 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
-            What it costs
-          </p>
-          <p className="text-sm font-semibold uppercase tracking-wide text-accent">
-            Free to list until January 2027
-          </p>
-        </div>
-      </div>
-
       <div className="px-[27px] py-24">
         <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
           Why list with Blanked
         </p>
-        <h2 className="mt-3 text-3xl font-medium tracking-tight sm:text-5xl">
+        <h2 className="mt-3 font-bold tracking-tight leading-[1.1] text-3xl sm:text-5xl lg:text-6xl">
           Built for landlords
         </h2>
 
-        <div className="mt-16 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {advantages.map((a) => (
-            <div key={a.title} className="bg-white p-6">
-              <h3 className="text-sm font-semibold">{a.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-ink/50">
-                {a.body}
-              </p>
+        <div className="mt-16 grid grid-cols-1 border-t border-divider sm:grid-cols-2 lg:grid-cols-4">
+          {advantages.map((a, i) => (
+            <div
+              key={a.title}
+              className="flex flex-col gap-4 border-b border-divider py-8 sm:odd:pr-8 lg:border-b-0 lg:border-r lg:px-8 lg:first:pl-0 lg:last:border-r-0 lg:last:pr-0"
+            >
+              <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <h3 className="text-2xl font-bold leading-tight tracking-tight">
+                {a.title}
+              </h3>
+              <p className="text-sm leading-relaxed text-ink/60">{a.body}</p>
             </div>
           ))}
         </div>
       </div>
 
-      <div className="px-[27px] pb-24 pt-8">
+      <div className="px-[27px] pb-24 text-right">
+        <p className="font-bold tracking-tight leading-[1.1] text-3xl sm:text-5xl lg:text-6xl">
+          <Stops>The city has space. Let’s use it.</Stops>
+        </p>
+      </div>
+
+      <div className="px-[27px] py-24">
         <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
           Safety & trust
         </p>
-        <h2 className="mt-3 text-3xl font-medium tracking-tight sm:text-5xl">
+        <h2 className="mt-3 font-bold tracking-tight leading-[1.1] text-3xl sm:text-5xl lg:text-6xl">
           You stay in control
         </h2>
 
@@ -200,7 +213,7 @@ export default function ListASpacePage() {
               <RedDot className="mt-2 shrink-0" />
               <div>
                 <h3 className="text-sm font-semibold">{t.title}</h3>
-                <p className="mt-1 text-sm leading-relaxed text-ink/50">
+                <p className="mt-1 text-sm leading-relaxed text-ink/60">
                   {t.body}
                 </p>
               </div>
@@ -209,26 +222,16 @@ export default function ListASpacePage() {
         </div>
       </div>
 
-      <div className="relative flex min-h-[60vh] items-center justify-center overflow-hidden">
-        <Image
-          src="/images/space-night-terrace.jpg?v=3"
-          alt=""
-          fill
-          sizes="100vw"
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-black/50" />
-        <div className="relative flex flex-col items-center gap-6 px-[27px] text-center">
-          <h2 className="text-4xl font-bold uppercase leading-[0.95] tracking-tight text-white sm:text-6xl">
-            Ready to list your space?
-          </h2>
-          <Link
-            href="/list-a-space/apply"
-            className="bg-[#442220] px-10 py-4 text-xs font-semibold uppercase tracking-widest text-white transition-opacity hover:opacity-90"
-          >
-            List Space
-          </Link>
-        </div>
+      <div className="flex flex-col items-start gap-8 border-t border-divider px-[27px] py-24 lg:flex-row lg:items-end lg:justify-between">
+        <h2 className="max-w-4xl font-bold tracking-tight leading-[1.1] text-3xl sm:text-5xl lg:text-6xl">
+          Ready to list your space?
+        </h2>
+        <Link
+          href="/list-a-space/apply"
+          className="inline-flex w-fit bg-[#442220] px-10 py-4 text-xs font-semibold uppercase tracking-widest text-white transition-opacity hover:opacity-90"
+        >
+          List Space
+        </Link>
       </div>
     </>
   );
