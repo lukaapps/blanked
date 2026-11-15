@@ -11,6 +11,10 @@ const nextConfig: NextConfig = {
         pathname: "/images/**",
         search: "?v=4",
       },
+      {
+        pathname: "/images/logo-blanked.png",
+        search: "?v=1",
+      },
     ],
     remotePatterns: [
       {

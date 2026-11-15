@@ -15,11 +15,11 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-[27px] py-16 flex flex-col gap-10 sm:flex-row sm:justify-between">
         <div className="lg:-ml-[calc(13.5px+max(0px,(100vw-80rem)/4))]">
           <Image
-            src="/images/logo-blanked.jpg?v=3"
+            src="/images/logo-blanked.png?v=1"
             alt="Blanked"
-            width={1107}
-            height={184}
-            className="h-5 w-auto mix-blend-multiply"
+            width={298}
+            height={52}
+            className="h-5 w-auto"
           />
           <p className="mt-3 max-w-xs text-sm text-ink/60">
             Melbourne&rsquo;s marketplace for short-term hospitality space.

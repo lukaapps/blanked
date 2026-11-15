@@ -72,10 +72,10 @@ export function Nav() {
         <div className="flex items-center justify-between py-4 pl-2 pr-4 sm:pr-6">
           <Link href="/" className="shrink-0">
             <Image
-              src="/images/logo-blanked.jpg?v=3"
+              src="/images/logo-blanked.png?v=1"
               alt="Blanked"
-              width={1107}
-              height={184}
+              width={298}
+              height={52}
               priority
               className="h-5 w-auto sm:h-6"
             />
@@ -109,8 +109,14 @@ export function Nav() {
                 isActive("/by-blanked") ? "text-accent" : "text-ink/70"
               }`}
             >
-              by<span className="text-accent">.</span>BLANKED
-              <span className="text-accent">.</span>
+              by<span className="text-accent">.</span>
+              <Image
+                src="/images/logo-blanked.png?v=1"
+                alt="BLANKED."
+                width={298}
+                height={52}
+                className="inline h-3 w-auto"
+              />
             </Link>
 
             <div className="ml-3 grid flex-1 grid-cols-[1fr_auto] items-center gap-x-4">
@@ -229,8 +235,15 @@ export function Nav() {
                 isActive("/by-blanked") ? "text-accent" : "text-ink/70"
               }`}
             >
-              by<span className="text-accent">.</span>BLANKED
+              <span className="normal-case">by</span>
               <span className="text-accent">.</span>
+              <Image
+                src="/images/logo-blanked.png?v=1"
+                alt="BLANKED."
+                width={298}
+                height={52}
+                className="inline h-3.5 w-auto"
+              />
             </Link>
 
             <Link
