@@ -13,13 +13,13 @@ export function Footer() {
   return (
     <footer className="border-t border-divider">
       <div className="mx-auto max-w-7xl px-[27px] py-16 flex flex-col gap-10 sm:flex-row sm:justify-between">
-        <div>
+        <div className="lg:-ml-[calc(13.5px+max(0px,(100vw-80rem)/4))]">
           <Image
             src="/images/logo-blanked.jpg?v=3"
             alt="Blanked"
             width={1107}
             height={184}
-            className="h-5 w-auto"
+            className="h-5 w-auto mix-blend-multiply"
           />
           <p className="mt-3 max-w-xs text-sm text-ink/60">
             Melbourne&rsquo;s marketplace for short-term hospitality space.
