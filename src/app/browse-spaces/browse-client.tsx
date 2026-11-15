@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { DateRangePicker, type DateRange } from "@/components/date-range-picker";
 import { SpaceCard } from "@/components/space-card";
 import { suburbs, spaceTypes } from "@/lib/mock-data";
 import type { Space } from "@/lib/types";
@@ -8,7 +9,7 @@ import type { Space } from "@/lib/types";
 export function BrowseSpacesClient({ spaces }: { spaces: Space[] }) {
   const [suburb, setSuburb] = useState("");
   const [type, setType] = useState("");
-  const [when, setWhen] = useState("");
+  const [when, setWhen] = useState<DateRange>({ start: null, end: null });
   const [maxPrice, setMaxPrice] = useState(1000);
 
   const filtered = useMemo(() => {
@@ -24,7 +25,7 @@ export function BrowseSpacesClient({ spaces }: { spaces: Space[] }) {
   const isFiltering = suburb || type || maxPrice < 1000;
 
   const cellLabel =
-    "block text-[10px] font-semibold uppercase tracking-[0.2em] text-ink/40";
+    "block text-[11px] font-semibold uppercase tracking-[0.2em] text-ink/40";
 
   return (
     <div className="px-[9px] pb-24 pt-20">
@@ -59,17 +60,9 @@ export function BrowseSpacesClient({ spaces }: { spaces: Space[] }) {
                 </select>
               </label>
 
-              <label className="flex-1 px-6 py-4">
-                <span className={cellLabel}>When</span>
-                <input
-                  type="date"
-                  value={when}
-                  onChange={(e) => setWhen(e.target.value)}
-                  className={`mt-1 w-full bg-transparent text-sm outline-none ${
-                    when ? "" : "text-ink/40"
-                  }`}
-                />
-              </label>
+              <div className="flex-1">
+                <DateRangePicker value={when} onChange={setWhen} />
+              </div>
 
               <button
                 type="button"
@@ -154,7 +147,7 @@ export function BrowseSpacesClient({ spaces }: { spaces: Space[] }) {
               onClick={() => {
                 setSuburb("");
                 setType("");
-                setWhen("");
+                setWhen({ start: null, end: null });
                 setMaxPrice(1000);
               }}
               className="text-sm text-ink/50 transition-colors hover:text-ink"
