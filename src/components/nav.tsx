@@ -16,7 +16,6 @@ const centerLinks: { href: string; label: string; external?: boolean }[] = [
     external: true,
   },
   { href: "/talent", label: "Talent" },
-  { href: "/events", label: "Events" },
 ];
 
 export function Nav() {
@@ -82,48 +81,54 @@ export function Nav() {
             />
           </Link>
 
-          <nav className="ml-12 hidden flex-1 items-center lg:flex">
-            <div className="flex items-center gap-x-8">
-              {centerLinks.map((link) =>
-                link.external ? (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={linkClass(false)}
-                  >
-                    {link.label}
-                  </a>
-                ) : (
-                  <Link
-                    key={link.label}
-                    href={link.href}
-                    className={linkClass(isActive(link.href))}
-                  >
-                    {link.label}
-                  </Link>
-                )
-              )}
+          <nav className="ml-12 hidden flex-1 items-center gap-x-8 lg:flex">
+            {centerLinks.map((link) =>
+              link.external ? (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={linkClass(false)}
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className={linkClass(isActive(link.href))}
+                >
+                  {link.label}
+                </Link>
+              )
+            )}
+            <Link
+              href="/by-blanked"
+              className={`whitespace-nowrap text-[11px] font-semibold tracking-[0.2em] transition-colors hover:text-accent ${
+                isActive("/by-blanked") ? "text-accent" : "text-ink/70"
+              }`}
+            >
+              by<span className="text-accent">.</span>BLANKED
+              <span className="text-accent">.</span>
+            </Link>
+
+            <div className="ml-3 grid flex-1 grid-cols-[1fr_auto] items-center gap-x-4">
               <Link
-                href="/by-blanked"
-                className={`whitespace-nowrap text-[11px] font-semibold tracking-[0.2em] transition-colors hover:text-accent ${
-                  isActive("/by-blanked") ? "text-accent" : "text-ink/70"
-                }`}
+                href="/events"
+                className={`justify-self-center ${linkClass(isActive("/events"))}`}
               >
-                by<span className="text-accent">.</span>BLANKED
-                <span className="text-accent">.</span>
+                Events
+              </Link>
+              <Link
+                href={loggedIn ? "/profile" : "/login"}
+                className={`shrink-0 justify-self-end ${linkClass(
+                  isActive(loggedIn ? "/profile" : "/login")
+                )}`}
+              >
+                {loggedIn ? "My Profile" : "Log In"}
               </Link>
             </div>
-
-            <Link
-              href={loggedIn ? "/profile" : "/login"}
-              className={`ml-auto whitespace-nowrap ${linkClass(
-                isActive(loggedIn ? "/profile" : "/login")
-              )}`}
-            >
-              {loggedIn ? "My Profile" : "Log In"}
-            </Link>
           </nav>
 
           <button
@@ -210,6 +215,14 @@ export function Nav() {
                 </Link>
               )
             )}
+            <Link
+              href="/events"
+              className={`border-b border-divider py-4 text-sm font-semibold uppercase tracking-[0.15em] transition-colors hover:text-accent ${
+                isActive("/events") ? "text-accent" : "text-ink/70"
+              }`}
+            >
+              Events
+            </Link>
             <Link
               href="/by-blanked"
               className={`border-b border-divider py-4 text-sm font-semibold uppercase tracking-[0.15em] transition-colors hover:text-accent ${
