@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useState } from "react";
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
+import { ClientDotSlot } from "@/components/brand-dot-client";
 
 function LoginForm() {
   const router = useRouter();
@@ -144,6 +145,7 @@ function LoginForm() {
           Create an account
         </Link>
       </p>
+      <ClientDotSlot />
     </div>
   );
 }

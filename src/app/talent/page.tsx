@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { TalentIndex } from "@/components/talent-index";
 import { Stops } from "@/components/brand-stop";
+import { DotSlot, pickDotSlot } from "@/components/brand-dot";
 import { getChefs } from "@/lib/data";
 
 export const metadata = {
@@ -19,6 +20,7 @@ const bodyText = "text-lg font-light leading-relaxed text-ink/70 lg:text-xl";
 export default async function TalentPage() {
   const chefs = await getChefs();
   const featured = chefs.filter((c) => c.featured).slice(0, 3);
+  const dot = pickDotSlot(2);
 
   return (
     <div className="pb-24">
@@ -66,6 +68,8 @@ export default async function TalentPage() {
         </div>
       </section>
 
+      <DotSlot at={0} chosen={dot} />
+
       {/* Editorial index with a sticky preview on desktop */}
       <section className="mt-40 px-[9px]">
         <p className={label}>The community</p>
@@ -73,6 +77,8 @@ export default async function TalentPage() {
           <TalentIndex chefs={chefs} />
         </div>
       </section>
+
+      <DotSlot at={1} chosen={dot} />
 
       {/* Closing enquiry */}
       <section className="mt-40 flex flex-col items-start gap-8 border-t border-divider px-[9px] pt-10 lg:flex-row lg:items-end lg:justify-between">

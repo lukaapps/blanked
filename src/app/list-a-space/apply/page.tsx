@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
+import { ClientDotSlot } from "@/components/brand-dot-client";
 import { PhotoUploader } from "@/components/photo-uploader";
 import { fileToDataUrl } from "@/lib/demo-profile";
 
@@ -364,6 +365,7 @@ export default function ListASpaceApplyPage() {
           </div>
         )}
       </div>
+      <ClientDotSlot />
     </div>
   );
 }

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Suspense, useState } from "react";
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
+import { ClientDotSlot } from "@/components/brand-dot-client";
 import { australianStates } from "@/lib/mock-data";
 
 type AccountType = "chef" | "landlord" | "customer";
@@ -368,6 +369,7 @@ function SignupForm() {
           Log in
         </Link>
       </p>
+      <ClientDotSlot />
     </div>
   );
 }

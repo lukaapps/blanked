@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ContactForm } from "./contact-form";
+import { DotSlot, pickDotSlot } from "@/components/brand-dot";
 
 export const metadata = {
   title: "Contact Us | Blanked",
@@ -8,6 +9,7 @@ export const metadata = {
 };
 
 export default function ContactPage() {
+  const dot = pickDotSlot(2);
   return (
     <>
       <div className="flex min-h-screen flex-col lg:flex-row">
@@ -40,6 +42,8 @@ export default function ContactPage() {
         </div>
       </div>
 
+      <DotSlot at={0} chosen={dot} />
+
       <div id="contact-form" className="mx-auto max-w-2xl px-[27px] py-24">
         <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
           Get in touch
@@ -49,6 +53,7 @@ export default function ContactPage() {
         </h2>
         <ContactForm />
       </div>
+      <DotSlot at={1} chosen={dot} />
     </>
   );
 }

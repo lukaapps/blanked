@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/client";
 import { ProfileDemo } from "./profile-demo";
+import { DotSlot, pickDotSlot } from "@/components/brand-dot";
 import {
   ChefProfileLive,
   CustomerProfileLive,
@@ -17,7 +18,7 @@ import {
 
 export const metadata = { title: "My Profile | Blanked" };
 
-export default async function MyProfilePage() {
+async function MyProfileContent() {
   if (!isSupabaseConfigured()) return <ProfileDemo />;
 
   const supabase = await createClient();
@@ -200,5 +201,15 @@ export default async function MyProfilePage() {
       spaces={spaces}
       requests={requests}
     />
+  );
+}
+
+export default async function MyProfilePage() {
+  const dot = pickDotSlot(1);
+  return (
+    <>
+      <MyProfileContent />
+      <DotSlot at={0} chosen={dot} />
+    </>
   );
 }

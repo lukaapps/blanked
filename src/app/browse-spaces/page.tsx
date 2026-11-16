@@ -1,5 +1,6 @@
 import { getSpaces } from "@/lib/data";
 import { BrowseSpacesClient } from "./browse-client";
+import { DotSlot } from "@/components/brand-dot";
 
 export const metadata = {
   title: "Browse Spaces | Blanked",
@@ -9,5 +10,11 @@ export const metadata = {
 
 export default async function BrowseSpacesPage() {
   const spaces = await getSpaces();
-  return <BrowseSpacesClient spaces={spaces} />;
+  return (
+    <>
+      {/* Top right, above the search box */}
+      <DotSlot at={0} chosen={0} position="right-[27px]" />
+      <BrowseSpacesClient spaces={spaces} />
+    </>
+  );
 }

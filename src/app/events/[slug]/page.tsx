@@ -6,6 +6,7 @@ import { BackButton } from "@/components/back-button";
 import { LocationMap } from "@/components/location-map";
 import { SaveEventButton } from "@/components/save-event-button";
 import { Stops } from "@/components/brand-stop";
+import { DotSlot, pickDotSlot } from "@/components/brand-dot";
 
 export async function generateMetadata({
   params,
@@ -41,6 +42,7 @@ export default async function EventDetailPage({
   const { slug } = await params;
   const event = await getEvent(slug);
   if (!event) notFound();
+  const dot = pickDotSlot(3);
 
   const [chef, allEvents, space] = await Promise.all([
     event.chefSlug ? getChef(event.chefSlug) : null,
@@ -119,6 +121,8 @@ export default async function EventDetailPage({
         </div>
       </div>
 
+      <DotSlot at={0} chosen={dot} />
+
       <section className={section}>
         <p className={sectionLabel}>About This Event</p>
         <p className="mt-6 text-3xl font-medium leading-[1.15] tracking-tight sm:text-5xl lg:text-6xl">
@@ -188,6 +192,8 @@ export default async function EventDetailPage({
         )}
       </section>
 
+      <DotSlot at={1} chosen={dot} />
+
       <div className="relative mx-[9px] mt-24 aspect-[16/9] overflow-hidden bg-divider">
         <Image
           src="/images/space-night-terrace.jpg?v=3"
@@ -250,6 +256,8 @@ export default async function EventDetailPage({
           </div>
         </section>
       )}
+
+      <DotSlot at={2} chosen={dot} />
 
       <section className={section}>
         <p className={sectionLabel}>Location</p>

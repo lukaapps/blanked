@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { getChef, getEvents } from "@/lib/data";
 import { BackButton } from "@/components/back-button";
 import { Button } from "@/components/ui/button";
+import { DotSlot, pickDotSlot } from "@/components/brand-dot";
 
 export async function generateMetadata({
   params,
@@ -25,6 +26,7 @@ export default async function ChefDetailPage({
   const { slug } = await params;
   const chef = await getChef(slug);
   if (!chef) notFound();
+  const dot = pickDotSlot(1);
 
   const allEvents = await getEvents();
   const pastEvents = allEvents.filter((e) => e.chefSlug === chef.slug);
@@ -92,6 +94,7 @@ export default async function ChefDetailPage({
         </div>
       </div>
 
+      <DotSlot at={0} chosen={dot} />
       {pastEvents.length > 0 && (
         <div className="mt-24 border-t border-divider pt-8">
           <h2 className="text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
