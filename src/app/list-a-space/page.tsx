@@ -9,6 +9,9 @@ export const metadata = {
     "List your venue on Blanked and start receiving booking requests from vetted chefs.",
 };
 
+const label =
+  "text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40";
+
 const steps = [
   {
     n: "01",
@@ -24,7 +27,7 @@ const steps = [
   },
   {
     n: "03",
-    title: "Hospitality chefs find and book",
+    title: "Chefs find and book",
     body: "Vetted chefs browse, filter, and send you booking requests. You approve every one. You get to meet everyone.",
     image: "/images/space-dark-dining.jpg?v=3",
   },
@@ -57,29 +60,40 @@ const advantages = [
 
 const trust = [
   {
+    group: "before",
     title: "You approve every request",
     body: "Nothing books automatically — you accept or decline each request before it’s confirmed.",
   },
   {
-    title: "Address kept private",
-    body: "Your full address is internal only, and isn’t shown publicly until a booking is confirmed.",
-  },
-  {
-    title: "Agreements & payment handled",
-    body: "Once confirmed, Blanked generates the agreement and processes payment — no invoices to chase.",
-  },
-  {
-    title: "Deposits held by Blanked",
-    body: "Set your own damage deposit — Blanked holds it and it’s there if something goes wrong.",
-  },
-  {
+    group: "before",
     title: "Vetted chefs",
     body: "Everyone requesting to book has been vetted before they can send a request.",
   },
   {
+    group: "before",
+    title: "Address kept private",
+    body: "Your full address is internal only, and isn’t shown publicly until a booking is confirmed.",
+  },
+  {
+    group: "after",
+    title: "Agreements & payment handled",
+    body: "Once confirmed, Blanked generates the agreement and processes payment — no invoices to chase.",
+  },
+  {
+    group: "after",
+    title: "Deposits held by Blanked",
+    body: "Set your own damage deposit — Blanked holds it and it’s there if something goes wrong.",
+  },
+  {
+    group: "after",
     title: "Service",
     body: "Blanked is always on hand to make sure you are fully supported and making the most out of the platform.",
   },
+];
+
+const trustGroups = [
+  { label: "Before you accept", items: trust.filter((t) => t.group === "before") },
+  { label: "Once it's booked", items: trust.filter((t) => t.group === "after") },
 ];
 
 export default function ListASpacePage() {
@@ -117,9 +131,7 @@ export default function ListASpacePage() {
 
       <div className="mt-8 border-y border-divider bg-white">
         <div className="flex flex-col items-start gap-2 px-[27px] py-10 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
-            What it costs
-          </p>
+          <p className={label}>What it costs</p>
           <p className="text-sm font-semibold uppercase tracking-wide text-accent">
             Free to list until January 2027
           </p>
@@ -127,9 +139,7 @@ export default function ListASpacePage() {
       </div>
 
       <div className="px-[27px] py-24">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
-          How it works
-        </p>
+        <p className={label}>How it works</p>
         <h2 className="mt-3 font-bold tracking-tight leading-[1.1] text-3xl sm:text-5xl lg:text-6xl">
           Listing and booking
         </h2>
@@ -152,9 +162,7 @@ export default function ListASpacePage() {
                 />
               </div>
               <div className="lg:w-1/2">
-                <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
-                  {step.n}
-                </span>
+                <span className={label}>{step.n}</span>
                 <h3 className="mt-2 text-2xl font-medium tracking-tight">
                   {step.title}
                 </h3>
@@ -168,9 +176,7 @@ export default function ListASpacePage() {
       </div>
 
       <div className="px-[27px] py-24">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
-          Why list with Blanked
-        </p>
+        <p className={label}>Why list with Blanked</p>
         <h2 className="mt-3 font-bold tracking-tight leading-[1.1] text-3xl sm:text-5xl lg:text-6xl">
           Built for landlords
         </h2>
@@ -181,9 +187,7 @@ export default function ListASpacePage() {
               key={a.title}
               className="flex flex-col gap-4 border-b border-divider py-8 sm:odd:pr-8 lg:border-b-0 lg:border-r lg:px-8 lg:first:pl-0 lg:last:border-r-0 lg:last:pr-0"
             >
-              <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
-                {String(i + 1).padStart(2, "0")}
-              </span>
+              <span className={label}>{String(i + 1).padStart(2, "0")}</span>
               <h3 className="text-2xl font-bold leading-tight tracking-tight">
                 {a.title}
               </h3>
@@ -193,45 +197,70 @@ export default function ListASpacePage() {
         </div>
       </div>
 
-      <div className="px-[27px] pb-24 text-right">
-        <p className="font-bold tracking-tight leading-[1.1] text-3xl sm:text-5xl lg:text-6xl">
+      {/* Full-width tagline: the type itself is the texture */}
+      <div className="px-[27px] pb-24">
+        <p className="text-center text-[12vw] font-bold leading-[1.05] tracking-tight lg:whitespace-nowrap lg:text-[5.6vw]">
           <Stops>The city has space. Let’s use it.</Stops>
         </p>
       </div>
 
       <div className="px-[27px] py-24">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
-          Safety & trust
-        </p>
+        <p className={label}>Safety & trust</p>
         <h2 className="mt-3 font-bold tracking-tight leading-[1.1] text-3xl sm:text-5xl lg:text-6xl">
           You stay in control
         </h2>
 
-        <div className="mt-16 grid grid-cols-1 gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
-          {trust.map((t) => (
-            <div key={t.title} className="flex gap-3">
-              <RedDot className="mt-2 shrink-0" />
-              <div>
-                <h3 className="text-sm font-semibold">{t.title}</h3>
-                <p className="mt-1 text-sm leading-relaxed text-ink/60">
-                  {t.body}
-                </p>
+        <div className="mt-16 grid grid-cols-1 gap-x-10 gap-y-16 lg:grid-cols-2">
+          {trustGroups.map((group) => (
+            <div key={group.label}>
+              <p className={label}>{group.label}</p>
+              <div className="mt-8 flex flex-col gap-8 border-t border-divider pt-8">
+                {group.items.map((t) => (
+                  <div key={t.title} className="flex gap-3">
+                    <RedDot className="mt-2 shrink-0" />
+                    <div>
+                      <h3 className="text-sm font-semibold">{t.title}</h3>
+                      <p className="mt-1 text-sm leading-relaxed text-ink/60">
+                        {t.body}
+                      </p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      <div className="flex flex-col items-start gap-8 border-t border-divider px-[27px] py-24 lg:flex-row lg:items-end lg:justify-between">
-        <h2 className="max-w-4xl font-bold tracking-tight leading-[1.1] text-3xl sm:text-5xl lg:text-6xl">
-          Ready to list your space?
-        </h2>
-        <Link
-          href="/list-a-space/apply"
-          className="inline-flex w-fit bg-[#442220] px-10 py-4 text-xs font-semibold uppercase tracking-widest text-white transition-opacity hover:opacity-90"
-        >
-          List Space
-        </Link>
+      {/* Closing: call to action beside the three steps */}
+      <div className="border-t border-divider px-[27px] py-24">
+        <div className="grid gap-12 lg:grid-cols-2 lg:items-end lg:gap-x-16">
+          <div className="flex flex-col items-start gap-8">
+            <h2 className="font-bold tracking-tight leading-[1.1] text-3xl sm:text-5xl lg:text-6xl">
+              Ready to list your space?
+            </h2>
+            <Link
+              href="/list-a-space/apply"
+              className="inline-flex w-fit bg-[#442220] px-10 py-4 text-xs font-semibold uppercase tracking-widest text-white transition-opacity hover:opacity-90"
+            >
+              List Space
+            </Link>
+          </div>
+
+          <ol className="border-t border-divider">
+            {steps.slice(0, 3).map((step) => (
+              <li
+                key={step.n}
+                className="flex items-baseline gap-6 border-b border-divider py-5"
+              >
+                <span className={label}>{step.n}</span>
+                <span className="text-lg font-bold tracking-tight">
+                  {step.title}
+                </span>
+              </li>
+            ))}
+          </ol>
+        </div>
       </div>
     </>
   );
