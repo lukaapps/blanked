@@ -25,6 +25,8 @@ export type Space = {
   capacity: number;
   sqft: number;
   dailyRate: number;
+  damageDeposit?: number; // refundable; defaults to $500
+  cleaningFee?: number; // per booking; defaults to $0
   weeklyRate?: number;
   monthlyRate?: number;
   minBookingDuration: string;

@@ -44,6 +44,8 @@ function mapSpace(row: SpaceRow, reviews: ReviewRow[]): Space {
     capacity: row.capacity ?? 0,
     sqft: row.sqft ?? 0,
     dailyRate: Number(row.daily_rate_listed ?? 0),
+    damageDeposit: row.damage_deposit != null ? Number(row.damage_deposit) : 500,
+    cleaningFee: row.cleaning_fee != null ? Number(row.cleaning_fee) : 0,
     weeklyRate: row.weekly_rate ? Number(row.weekly_rate) : undefined,
     monthlyRate: row.monthly_rate ? Number(row.monthly_rate) : undefined,
     minBookingDuration: row.min_booking_duration ?? "1 day",

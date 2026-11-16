@@ -156,7 +156,7 @@ export default async function MyProfilePage() {
     supabase
       .from("booking_requests")
       .select(
-        "id, requested_dates, event_description, status, spaces(name), chef:profiles!booking_requests_chef_id_fkey(name)"
+        "id, requested_dates, event_description, status, landlord_payout, spaces(name), chef:profiles!booking_requests_chef_id_fkey(name)"
       )
       .eq("landlord_id", user.id)
       .order("created_at", { ascending: false }),
@@ -189,6 +189,7 @@ export default async function MyProfilePage() {
       (r.chef as unknown as { name: string } | null)?.name ?? "A Blanked chef",
     spaceName: (r.spaces as unknown as { name: string } | null)?.name ?? "your space",
     dates: r.requested_dates,
+    payout: r.landlord_payout != null ? Number(r.landlord_payout) : null,
     message: r.event_description ?? "",
     status: r.status,
   }));

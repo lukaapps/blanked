@@ -32,6 +32,8 @@ export default function ListASpaceApplyPage() {
     description: "",
     minDuration: "",
     dailyRate: "",
+    damageDeposit: "",
+    cleaningFee: "",
     availableFrom: "",
     availabilityNote: "",
     photos: [] as string[],
@@ -108,6 +110,8 @@ export default function ListASpaceApplyPage() {
       description: form.description,
       min_booking_duration: form.minDuration || null,
       daily_rate_landlord: form.dailyRate ? Number(form.dailyRate) : null,
+      damage_deposit: form.damageDeposit ? Number(form.damageDeposit) : 500,
+      cleaning_fee: form.cleaningFee ? Number(form.cleaningFee) : 0,
       available_from: form.availableFrom || null,
       availability_note: form.availabilityNote || null,
       images: form.photos,
@@ -231,6 +235,24 @@ export default function ListASpaceApplyPage() {
                   value={form.dailyRate}
                   onChange={(e) => update("dailyRate", e.target.value)}
                   placeholder="500"
+                  className="input"
+                />
+              </Field>
+              <Field label="Damage Deposit" hint="Refundable. Held by Blanked. Leave blank for $500.">
+                <input
+                  type="number"
+                  value={form.damageDeposit}
+                  onChange={(e) => update("damageDeposit", e.target.value)}
+                  placeholder="500"
+                  className="input"
+                />
+              </Field>
+              <Field label="Cleaning Fee" hint="Charged once per booking. Leave blank for none.">
+                <input
+                  type="number"
+                  value={form.cleaningFee}
+                  onChange={(e) => update("cleaningFee", e.target.value)}
+                  placeholder="0"
                   className="input"
                 />
               </Field>

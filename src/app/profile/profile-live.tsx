@@ -75,6 +75,7 @@ export type LandlordRequest = {
   chefName: string;
   spaceName: string;
   dates: string;
+  payout: number | null; // what the landlord receives, after Blanked's fee
   message: string;
   status: BookingStatus;
 };
@@ -394,6 +395,14 @@ export function LandlordProfileLive({
                 <p className="mt-1 text-[11px] font-medium uppercase tracking-[0.15em] text-ink/45">
                   {r.dates}
                 </p>
+                {r.payout !== null && (
+                  <p className="mt-2 text-sm">
+                    You receive{" "}
+                    <span className="font-bold">
+                      ${r.payout.toLocaleString("en-AU", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                    </span>
+                  </p>
+                )}
                 {r.message && (
                   <p className="mt-2 text-sm text-ink/60">
                     &ldquo;{r.message}&rdquo;

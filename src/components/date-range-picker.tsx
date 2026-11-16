@@ -25,7 +25,7 @@ function formatShort(s: string) {
   });
 }
 
-function label({ start, end }: DateRange) {
+function rangeLabel({ start, end }: DateRange) {
   if (!start) return "Any date";
   if (!end) return `From ${formatShort(start)}`;
   if (start === end) return formatShort(start);
@@ -37,9 +37,11 @@ function label({ start, end }: DateRange) {
 export function DateRangePicker({
   value,
   onChange,
+  label = "When",
 }: {
   value: DateRange;
   onChange: (v: DateRange) => void;
+  label?: string;
 }) {
   const [open, setOpen] = useState(false);
   const [hover, setHover] = useState<string | null>(null);
@@ -101,12 +103,12 @@ export function DateRangePicker({
         className="block w-full px-6 py-4 text-left"
       >
         <span className="block text-[11px] font-semibold uppercase tracking-[0.2em] text-ink/40">
-          When
+          {label}
         </span>
         <span
           className={`mt-1 block text-sm ${value.start ? "" : "text-ink/40"}`}
         >
-          {label(value)}
+          {rangeLabel(value)}
         </span>
       </button>
 
@@ -205,4 +207,17 @@ export function DateRangePicker({
       )}
     </div>
   );
+}
+
+// Number of days in a range, counting both the start and end day.
+export function rangeDays({ start, end }: DateRange): number {
+  if (!start || !end) return 0;
+  const ms = fromISO(end).getTime() - fromISO(start).getTime();
+  return Math.round(ms / 86400000) + 1;
+}
+
+// Stored form of a range, e.g. "2026-11-23 to 2026-11-27".
+export function formatDateRange({ start, end }: DateRange): string {
+  if (!start) return "";
+  return end ? `${start} to ${end}` : start;
 }

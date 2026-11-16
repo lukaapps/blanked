@@ -4,6 +4,13 @@ import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
+import {
+  DateRangePicker,
+  formatDateRange,
+  rangeDays,
+  type DateRange,
+} from "@/components/date-range-picker";
+import { BookingBreakdown } from "@/components/booking-breakdown";
 import type { Space } from "@/lib/types";
 
 type Stage = "idle" | "form" | "sending" | "sent";
@@ -12,7 +19,7 @@ export function RequestSpace({ space }: { space: Space }) {
   const router = useRouter();
   const pathname = usePathname();
   const [stage, setStage] = useState<Stage>("idle");
-  const [dates, setDates] = useState("");
+  const [dates, setDates] = useState<DateRange>({ start: null, end: null });
   const [description, setDescription] = useState("");
   const [notes, setNotes] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -48,6 +55,11 @@ export function RequestSpace({ space }: { space: Space }) {
     e.preventDefault();
     setError(null);
 
+    if (!dates.start || !dates.end) {
+      setError("Choose your start and end dates.");
+      return;
+    }
+
     if (!isSupabaseConfigured() || !space.id) {
       setStage("sent"); // demo mode
       return;
@@ -73,7 +85,9 @@ export function RequestSpace({ space }: { space: Space }) {
       space_id: space.id,
       chef_id: user.id,
       landlord_id: space.landlordId ?? null,
-      requested_dates: dates,
+      requested_dates: formatDateRange(dates),
+      booking_start: dates.start,
+      booking_end: dates.end,
       event_description: description,
       notes: notes || null,
     });
@@ -116,18 +130,22 @@ export function RequestSpace({ space }: { space: Space }) {
 
   return (
     <form onSubmit={submit} className="flex flex-col gap-4">
-      <div>
-        <label className="block text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
-          Requested dates
-        </label>
-        <input
-          required
+      <div className="border border-divider bg-white">
+        <DateRangePicker
+          label="Requested dates"
           value={dates}
-          onChange={(e) => setDates(e.target.value)}
-          className="input mt-2 bg-white"
-          placeholder="e.g. 12–14 September, or every Sunday in October"
+          onChange={setDates}
         />
       </div>
+
+      {dates.start && dates.end && (
+        <BookingBreakdown
+          dailyRate={space.dailyRate}
+          days={rangeDays(dates)}
+          cleaningFee={space.cleaningFee ?? 0}
+          damageDeposit={space.damageDeposit ?? 500}
+        />
+      )}
       <div>
         <label className="block text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
           What are you planning?

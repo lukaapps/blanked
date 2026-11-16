@@ -85,6 +85,8 @@ export type SpaceRow = {
   provides: { item: string; price?: string }[];
   daily_rate_landlord: number | null;
   daily_rate_listed: number | null;
+  damage_deposit: number | null;
+  cleaning_fee: number | null;
   weekly_rate: number | null;
   monthly_rate: number | null;
   min_booking_duration: string | null;
@@ -107,6 +109,10 @@ export type BookingRequestRow = {
   chef_id: string;
   landlord_id: string | null;
   requested_dates: string;
+  booking_start: string | null;
+  booking_end: string | null;
+  chef_total: number | null;
+  landlord_payout: number | null;
   event_description: string | null;
   notes: string | null;
   status: BookingStatus;
