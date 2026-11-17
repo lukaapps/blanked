@@ -69,7 +69,7 @@ export default async function SpaceDetailPage({
             <p className="mt-1 text-sm text-ink/50">
               {space.weeklyRate &&
                 `$${space.weeklyRate.toLocaleString()} /week`}
-              {space.weeklyRate && space.monthlyRate && " · "}
+              {space.weeklyRate && space.monthlyRate && <br />}
               {space.monthlyRate &&
                 `$${space.monthlyRate.toLocaleString()} /month`}
             </p>

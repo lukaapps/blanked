@@ -282,7 +282,7 @@ export function ChefProfileLive({
                   </div>
                   <p className="mt-2 text-sm font-medium">{event.name}</p>
                   <p className="mt-0.5 text-[11px] font-medium text-ink/45">
-                    {event.suburb} · {event.date}
+                    <span className="flex flex-wrap gap-x-3"><span>{event.suburb}</span><span>{event.date}</span></span>
                   </p>
                 </Link>
               ))}
@@ -351,7 +351,7 @@ export function LandlordProfileLive({
                 <div>
                   <p className="font-medium">{s.name}</p>
                   <p className="mt-0.5 text-[11px] font-medium text-ink/45">
-                    {s.dailyRate ? `$${s.dailyRate.toLocaleString()}/day · ` : ""}
+                    {s.dailyRate ? <span className="block">{`$${s.dailyRate.toLocaleString()}/day`}</span> : null}
                     {s.requestCount} request{s.requestCount === 1 ? "" : "s"}
                   </p>
                 </div>
@@ -382,8 +382,8 @@ export function LandlordProfileLive({
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <p className="font-medium">
                     {r.chefName}{" "}
-                    <span className="font-normal text-ink/45">
-                      → {r.spaceName}
+                    <span className="block font-normal text-ink/45">
+                      {r.spaceName}
                     </span>
                   </p>
                   <span
@@ -476,7 +476,7 @@ export function CustomerProfileLive({
                 </div>
                 <p className="mt-2 text-sm font-medium">{event.name}</p>
                 <p className="mt-0.5 text-[11px] font-medium text-ink/45">
-                  {event.suburb} · {event.date}
+                  <span className="flex flex-wrap gap-x-3"><span>{event.suburb}</span><span>{event.date}</span></span>
                 </p>
               </Link>
             ))}

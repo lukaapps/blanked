@@ -186,7 +186,7 @@ export function SpaceDetailAccordion({ space }: { space: Space }) {
                     <div className="flex flex-col gap-4">
                       <p className="flex items-center gap-2 text-ink/70">
                         <Stars value={averageRating(space.reviews)} />
-                        {averageRating(space.reviews).toFixed(1)} ·{" "}
+                        {averageRating(space.reviews).toFixed(1)}<span className="inline-block w-3" />
                         {space.reviews.length} review
                         {space.reviews.length === 1 ? "" : "s"}
                       </p>

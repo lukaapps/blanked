@@ -276,7 +276,7 @@ function ChefView({
                   </div>
                   <p className="mt-2 text-sm font-medium">{event.name}</p>
                   <p className="mt-0.5 text-[11px] font-medium text-ink/45">
-                    {event.suburb} · {event.date}
+                    <span className="flex flex-wrap gap-x-3"><span>{event.suburb}</span><span>{event.date}</span></span>
                   </p>
                 </Link>
               ))}
@@ -322,7 +322,8 @@ function LandlordView({ profile }: { profile: typeof mockLandlord }) {
               <div>
                 <p className="font-medium">{s.name}</p>
                 <p className="mt-0.5 text-[11px] font-medium text-ink/45">
-                  ${s.dailyRate.toLocaleString()}/day · {s.requests} requests
+                  <span className="block">${s.dailyRate.toLocaleString()}/day</span>
+                  <span className="block">{s.requests} requests</span>
                 </p>
               </div>
               <span
@@ -344,7 +345,7 @@ function LandlordView({ profile }: { profile: typeof mockLandlord }) {
             <div key={r.chef + r.dates} className="bg-white px-6 py-5">
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <p className="font-medium">
-                  {r.chef} <span className="font-normal text-ink/45">→ {r.space}</span>
+                  {r.chef} <span className="block font-normal text-ink/45">{r.space}</span>
                 </p>
                 <span
                   className={`text-[10px] font-semibold uppercase tracking-[0.2em] ${
@@ -426,7 +427,7 @@ function CustomerView({
                 </div>
                 <p className="mt-2 text-sm font-medium">{event.name}</p>
                 <p className="mt-0.5 text-[11px] font-medium text-ink/45">
-                  {event.suburb} · {event.date}
+                  <span className="flex flex-wrap gap-x-3"><span>{event.suburb}</span><span>{event.date}</span></span>
                 </p>
               </Link>
             ))}

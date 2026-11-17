@@ -179,7 +179,7 @@ export default async function EventDetailPage({
                 href={`/talent/${chef.slug}`}
                 className="w-fit text-[11px] font-semibold text-accent hover:underline"
               >
-                View full profile →
+                View full profile
               </Link>
             </div>
           </div>
@@ -239,12 +239,12 @@ export default async function EventDetailPage({
               <p className="text-base leading-relaxed text-ink/60">
                 {space.description}
               </p>
-              <p className="text-sm text-ink/50">{space.amenities.join(" · ")}</p>
+              <p className="text-sm text-ink/50"><span className="flex flex-wrap gap-x-3">{space.amenities.map((a) => (<span key={a}>{a}</span>))}</span></p>
               <Link
                 href={`/browse-spaces/${space.slug}`}
                 className="w-fit text-[11px] font-semibold text-accent hover:underline"
               >
-                View venue →
+                View venue
               </Link>
             </div>
           </div>
