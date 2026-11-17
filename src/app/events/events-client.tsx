@@ -123,7 +123,7 @@ export function EventsClient({
         ))}
       </div>
 
-      <div className="mt-6 flex flex-wrap items-stretch justify-center border border-divider bg-white font-mono text-xs uppercase tracking-[0.1em] text-ink/60">
+      <div className="mt-6 flex flex-wrap items-stretch justify-center border border-divider bg-white font-mono text-sm uppercase tracking-[0.1em] text-ink/60">
         <label className="flex w-full items-center justify-between gap-2 px-4 py-3 sm:w-auto sm:justify-start">
           <span>Date</span>
           <input
