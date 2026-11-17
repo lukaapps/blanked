@@ -138,7 +138,7 @@ function SignupForm() {
         {label}
       </span>
       <span
-        className={`text-sm ${
+        className={`min-h-[2.5rem] text-sm ${
           accountType === value ? "text-white/70" : "text-ink/50"
         }`}
       >
