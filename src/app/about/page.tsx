@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { heroImages } from "@/lib/mock-data";
+import Link from "next/link";
 import { Stops } from "@/components/brand-stop";
 
 export const metadata = {
@@ -96,10 +97,16 @@ export default function AboutPage() {
       </section>
 
       {/* Closing tagline */}
-      <section className="mt-40 px-[9px]">
+      <section className="mt-40 flex flex-col items-start gap-8 px-[9px]">
         <p className={`max-w-6xl ${statement}`}>
           <Stops>The city has space. Let’s use it.</Stops>
         </p>
+        <Link
+          href="/browse-spaces"
+          className="inline-flex w-fit bg-[#442220] px-10 py-4 text-xs font-semibold uppercase tracking-widest text-white transition-opacity hover:opacity-90"
+        >
+          Browse spaces
+        </Link>
       </section>
 
     </div>
