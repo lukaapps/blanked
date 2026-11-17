@@ -3,6 +3,8 @@
 import { useMemo, useState } from "react";
 import { DateRangePicker, type DateRange } from "@/components/date-range-picker";
 import { SpaceCard } from "@/components/space-card";
+import Link from "next/link";
+import { Stops } from "@/components/brand-stop";
 import { suburbs, spaceTypes } from "@/lib/mock-data";
 import type { Space } from "@/lib/types";
 
@@ -187,6 +189,18 @@ export function BrowseSpacesClient({ spaces }: { spaces: Space[] }) {
             ))}
           </div>
         )}
+      </div>
+
+      <div className="mt-40 flex flex-col items-start gap-8 border-t border-divider pt-10">
+        <p className="font-bold tracking-tight leading-[1.1] text-3xl sm:text-5xl lg:text-6xl">
+          <Stops>The city has space. Let’s use it.</Stops>
+        </p>
+        <Link
+          href="/browse-spaces"
+          className="inline-flex w-fit bg-[#442220] px-10 py-4 text-xs font-semibold uppercase tracking-widest text-white transition-opacity hover:opacity-90"
+        >
+          Browse spaces
+        </Link>
       </div>
     </div>
   );
