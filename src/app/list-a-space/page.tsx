@@ -242,7 +242,7 @@ export default function ListASpacePage() {
 
       {/* Closing: call to action beside the three steps */}
       <div className="border-t border-divider px-[27px] py-24">
-        <div className="grid gap-12 lg:grid-cols-2 lg:items-end lg:gap-x-16">
+        <div className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-x-16">
           <div className="flex flex-col items-start gap-8">
             <h2 className="font-bold tracking-tight leading-[1.1] text-3xl sm:text-5xl lg:text-6xl">
               Ready to list your space?
