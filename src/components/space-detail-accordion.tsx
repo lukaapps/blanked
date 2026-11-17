@@ -85,7 +85,7 @@ export function SpaceDetailAccordion({ space }: { space: Space }) {
             <button
               onClick={() => setOpen(isOpen ? null : section.key)}
               aria-expanded={isOpen}
-              className="flex w-full items-center justify-between py-5 text-left text-xs font-semibold uppercase tracking-[0.2em]"
+              className="flex w-full items-center justify-between py-5 text-left text-xs font-semibold"
             >
               {section.label}
               <span className="text-lg font-normal text-ink/40">
@@ -107,7 +107,7 @@ export function SpaceDetailAccordion({ space }: { space: Space }) {
                           <span className="text-sm font-semibold leading-tight text-ink">
                             {stat.value}
                           </span>
-                          <span className="text-[10px] font-medium uppercase tracking-[0.15em] text-ink/40">
+                          <span className="text-[10px] font-medium text-ink/40">
                             {stat.label}
                           </span>
                         </div>
@@ -116,7 +116,7 @@ export function SpaceDetailAccordion({ space }: { space: Space }) {
                     <p>{space.description}</p>
                     {space.whatCanYouDo && (
                       <div>
-                        <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-ink/40">
+                        <p className="text-[10px] font-semibold text-ink/40">
                           What you can do here
                         </p>
                         <p className="mt-2">{space.whatCanYouDo}</p>
@@ -124,7 +124,7 @@ export function SpaceDetailAccordion({ space }: { space: Space }) {
                     )}
                     {space.availability && (
                       <div>
-                        <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-ink/40">
+                        <p className="text-[10px] font-semibold text-ink/40">
                           Availability
                         </p>
                         <p className="mt-2">{space.availability}</p>
@@ -147,7 +147,7 @@ export function SpaceDetailAccordion({ space }: { space: Space }) {
                     <div className="flex flex-col gap-5">
                       {amenityGroups.map((group) => (
                         <div key={group.label}>
-                          <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-ink/40">
+                          <p className="text-[10px] font-semibold text-ink/40">
                             {group.label}
                           </p>
                           <div className="mt-2 flex flex-wrap gap-2">
@@ -198,14 +198,14 @@ export function SpaceDetailAccordion({ space }: { space: Space }) {
                           >
                             <div className="flex flex-wrap items-center justify-between gap-2">
                               <Stars value={review.rating} />
-                              <span className="text-[10px] font-medium uppercase tracking-[0.15em] text-ink/35">
+                              <span className="text-[10px] font-medium text-ink/35">
                                 {review.date}
                               </span>
                             </div>
                             <p className="mt-3">&ldquo;{review.text}&rdquo;</p>
                             <p className="mt-3 text-sm font-medium text-ink">
                               {review.author}
-                              <span className="ml-2 text-[10px] font-medium uppercase tracking-[0.15em] text-ink/40">
+                              <span className="ml-2 text-[10px] font-medium text-ink/40">
                                 {review.authorRole}
                               </span>
                             </p>

@@ -22,7 +22,7 @@ export function PageHeader({
         <h1 className="text-4xl font-bold uppercase tracking-tight sm:text-6xl">
           {title}
         </h1>
-        <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+        <p className="mt-3 text-[11px] font-semibold text-ink/40">
           {caption}
         </p>
       </div>

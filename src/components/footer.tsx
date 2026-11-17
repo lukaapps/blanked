@@ -28,7 +28,7 @@ export function Footer() {
 
         <div className="grid grid-cols-2 gap-10 sm:grid-cols-3">
           <div className="flex flex-col gap-3">
-            <span className="text-xs font-semibold uppercase tracking-widest text-ink/50">
+            <span className="text-xs font-semibold text-ink/50">
               Explore
             </span>
             <Link href="/browse-spaces" className="text-sm hover:text-accent">
@@ -43,7 +43,7 @@ export function Footer() {
           </div>
 
           <div className="flex flex-col gap-3">
-            <span className="text-xs font-semibold uppercase tracking-widest text-ink/50">
+            <span className="text-xs font-semibold text-ink/50">
               Blanked
             </span>
             <Link href="/about" className="text-sm hover:text-accent">
@@ -58,7 +58,7 @@ export function Footer() {
           </div>
 
           <div className="flex flex-col gap-3">
-            <span className="text-xs font-semibold uppercase tracking-widest text-ink/50">
+            <span className="text-xs font-semibold text-ink/50">
               Connect
             </span>
             <a
@@ -75,7 +75,7 @@ export function Footer() {
           </div>
         </div>
       </div>
-      <div className="border-t border-divider px-[27px] py-6 text-center text-xs uppercase tracking-widest text-ink/40">
+      <div className="border-t border-divider px-[27px] py-6 text-center text-xs text-ink/40">
         © {new Date().getFullYear()} Blanked. All rights reserved.
       </div>
     </footer>

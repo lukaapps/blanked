@@ -8,7 +8,6 @@ import {
 } from "@/lib/mock-data";
 import type { DemoProfileType } from "@/lib/demo-profile";
 import { EditProfileForm } from "./edit-profile-form";
-import { DotSlot, pickDotSlot } from "@/components/brand-dot";
 
 export const metadata = { title: "Edit Profile | Blanked" };
 
@@ -80,7 +79,7 @@ const demoDefaults: Record<DemoProfileType, DemoDefaults> = {
   },
 };
 
-async function EditProfileContent({
+export default async function EditProfilePage({
   searchParams,
 }: {
   searchParams: Promise<{ demo?: string }>;
@@ -146,17 +145,5 @@ async function EditProfileContent({
       initialAddressPostcode={profileRow.address_postcode}
       initialSpaceTypePreferences={profileRow.space_type_preferences ?? []}
     />
-  );
-}
-
-export default async function EditProfilePage(props: {
-  searchParams: Promise<{ demo?: string }>;
-}) {
-  const dot = pickDotSlot(1);
-  return (
-    <>
-      <EditProfileContent {...props} />
-      <DotSlot at={0} chosen={dot} />
-    </>
   );
 }

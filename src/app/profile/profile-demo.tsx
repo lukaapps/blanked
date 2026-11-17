@@ -45,7 +45,7 @@ const mockCustomer = {
 };
 
 const sectionLabel =
-  "text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40";
+ "text-[11px] font-semibold text-ink/40";
 
 export function ProfileDemo() {
   const [accountType, setAccountType] = useState<AccountType>("chef");
@@ -102,7 +102,7 @@ export function ProfileDemo() {
         }
       />
 
-      <div className="mt-6 flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-ink/35">
+      <div className="mt-6 flex items-center gap-2 text-[10px] font-semibold text-ink/35">
         <span>Demo view:</span>
         <button
           onClick={() => setAccountType("chef")}
@@ -204,7 +204,7 @@ function ChefView({
             >
               <div>
                 <p className="font-medium">{b.space}</p>
-                <p className="mt-0.5 text-[11px] font-medium uppercase tracking-[0.15em] text-ink/45">
+                <p className="mt-0.5 text-[11px] font-medium text-ink/45">
                   {b.dates}
                 </p>
               </div>
@@ -222,7 +222,7 @@ function ChefView({
                 </span>
                 <Link
                   href={`/browse-spaces/${b.spaceSlug}`}
-                  className="text-[11px] font-semibold uppercase tracking-[0.15em] text-accent hover:underline"
+                  className="text-[11px] font-semibold text-accent hover:underline"
                 >
                   View Details
                 </Link>
@@ -246,7 +246,7 @@ function ChefView({
                 />
               </div>
               <p className="mt-2 text-sm font-medium">{space.name}</p>
-              <p className="mt-0.5 text-[11px] font-medium uppercase tracking-[0.15em] text-ink/45">
+              <p className="mt-0.5 text-[11px] font-medium text-ink/45">
                 {space.suburb}
               </p>
             </Link>
@@ -275,7 +275,7 @@ function ChefView({
                     />
                   </div>
                   <p className="mt-2 text-sm font-medium">{event.name}</p>
-                  <p className="mt-0.5 text-[11px] font-medium uppercase tracking-[0.15em] text-ink/45">
+                  <p className="mt-0.5 text-[11px] font-medium text-ink/45">
                     {event.suburb} · {event.date}
                   </p>
                 </Link>
@@ -321,7 +321,7 @@ function LandlordView({ profile }: { profile: typeof mockLandlord }) {
             >
               <div>
                 <p className="font-medium">{s.name}</p>
-                <p className="mt-0.5 text-[11px] font-medium uppercase tracking-[0.15em] text-ink/45">
+                <p className="mt-0.5 text-[11px] font-medium text-ink/45">
                   ${s.dailyRate.toLocaleString()}/day · {s.requests} requests
                 </p>
               </div>
@@ -354,7 +354,7 @@ function LandlordView({ profile }: { profile: typeof mockLandlord }) {
                   {r.status}
                 </span>
               </div>
-              <p className="mt-1 text-[11px] font-medium uppercase tracking-[0.15em] text-ink/45">
+              <p className="mt-1 text-[11px] font-medium text-ink/45">
                 {r.dates}
               </p>
               <p className="mt-2 text-sm text-ink/60">&ldquo;{r.message}&rdquo;</p>
@@ -425,7 +425,7 @@ function CustomerView({
                   />
                 </div>
                 <p className="mt-2 text-sm font-medium">{event.name}</p>
-                <p className="mt-0.5 text-[11px] font-medium uppercase tracking-[0.15em] text-ink/45">
+                <p className="mt-0.5 text-[11px] font-medium text-ink/45">
                   {event.suburb} · {event.date}
                 </p>
               </Link>

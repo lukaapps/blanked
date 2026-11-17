@@ -67,7 +67,7 @@ export function SaveEventButton({ eventId }: { eventId?: string }) {
       onClick={toggle}
       disabled={busy}
       aria-pressed={saved}
-      className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-ink/50 transition-colors hover:text-accent disabled:opacity-50"
+      className="flex items-center gap-2 text-[11px] font-semibold text-ink/50 transition-colors hover:text-accent disabled:opacity-50"
     >
       <svg
         width="16"

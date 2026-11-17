@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { RedDot } from "@/components/page-header";
 import { Stops } from "@/components/brand-stop";
-import { DotSlot, pickDotSlot } from "@/components/brand-dot";
 
 export const metadata = {
   title: "List a Space | Blanked",
@@ -11,7 +10,7 @@ export const metadata = {
 };
 
 const label =
-  "text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40";
+ "text-[11px] font-semibold text-ink/40";
 
 const steps = [
   {
@@ -98,7 +97,6 @@ const trustGroups = [
 ];
 
 export default function ListASpacePage() {
-  const dot = pickDotSlot(3);
   return (
     <>
       <div className="flex min-h-screen flex-col lg:flex-row">
@@ -108,7 +106,7 @@ export default function ListASpacePage() {
             <br />
             space
           </h1>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+          <p className="text-[11px] font-semibold text-ink/40">
             <Stops>The city has space. Let’s use it.</Stops>
           </p>
           <Link
@@ -177,8 +175,6 @@ export default function ListASpacePage() {
         </div>
       </div>
 
-      <DotSlot at={0} chosen={dot} />
-
       <div className="px-[27px] py-24">
         <p className={label}>Why list with Blanked</p>
         <h2 className="mt-3 font-bold tracking-tight leading-[1.1] text-3xl sm:text-5xl lg:text-6xl">
@@ -201,10 +197,8 @@ export default function ListASpacePage() {
         </div>
       </div>
 
-      <DotSlot at={1} chosen={dot} />
-
       {/* Full-width tagline: the type itself is the texture */}
-      <div className="px-[27px] pb-24 pt-16">
+      <div className="px-[27px] pb-24">
         <p className="text-center text-[12vw] font-bold leading-[1.05] tracking-tight lg:whitespace-nowrap lg:text-[5.6vw]">
           <Stops>The city has space. Let’s use it.</Stops>
         </p>
@@ -237,8 +231,6 @@ export default function ListASpacePage() {
           ))}
         </div>
       </div>
-
-      <DotSlot at={2} chosen={dot} />
 
       {/* Closing: call to action beside the three steps */}
       <div className="border-t border-divider px-[27px] py-24">

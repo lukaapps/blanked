@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { heroImages } from "@/lib/mock-data";
-import { DotSlot, pickDotSlot } from "@/components/brand-dot";
 import { Stops } from "@/components/brand-stop";
 
 export const metadata = {
@@ -10,13 +9,12 @@ export const metadata = {
 };
 
 const label =
-  "text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40";
+ "text-[11px] font-semibold text-ink/40";
 const statement =
   "font-bold tracking-tight leading-[1.1] text-3xl sm:text-5xl lg:text-6xl";
 const bodyText = "text-lg font-light leading-relaxed text-ink/70 lg:text-xl";
 
 export default function AboutPage() {
-  const dot = pickDotSlot(3);
   return (
     <div className="pb-24">
       {/* Opening statement, full width */}
@@ -76,8 +74,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <DotSlot at={0} chosen={dot} />
-
       {/* Statement after the pinned block */}
       <section className="mt-40 px-[9px]">
         <p className={label}>Why now</p>
@@ -85,8 +81,6 @@ export default function AboutPage() {
           <Stops>Every pop-up in this city has been built on Instagram DMs and word of mouth.</Stops>
         </p>
       </section>
-
-      <DotSlot at={1} chosen={dot} />
 
       {/* Closing paragraph, offset to the right on desktop */}
       <section className="mt-40 px-[9px] lg:flex lg:justify-end">
@@ -100,8 +94,6 @@ export default function AboutPage() {
           </p>
         </div>
       </section>
-
-      <DotSlot at={2} chosen={dot} />
 
       {/* Closing tagline */}
       <section className="mt-40 px-[9px]">

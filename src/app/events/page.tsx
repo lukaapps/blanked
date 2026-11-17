@@ -1,6 +1,5 @@
 import { getChefs, getEvents } from "@/lib/data";
 import { EventsClient } from "./events-client";
-import { DotSlot, pickDotSlot } from "@/components/brand-dot";
 
 export const metadata = {
   title: "Events | Blanked",
@@ -11,11 +10,5 @@ export const metadata = {
 export default async function EventsPage() {
   const [events, chefs] = await Promise.all([getEvents(), getChefs()]);
   const chefNames = Object.fromEntries(chefs.map((c) => [c.slug, c.name]));
-  const dot = pickDotSlot(1);
-  return (
-    <>
-      <EventsClient events={events} chefNames={chefNames} />
-      <DotSlot at={0} chosen={dot} />
-    </>
-  );
+  return <EventsClient events={events} chefNames={chefNames} />;
 }

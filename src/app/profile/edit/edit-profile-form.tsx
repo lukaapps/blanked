@@ -215,7 +215,7 @@ export function EditProfileForm(props: Props) {
           className="mt-10 grid grid-cols-1 gap-5 bg-white p-6 sm:grid-cols-2 sm:p-8"
         >
           <div>
-            <label className="block text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+            <label className="block text-[10px] font-semibold text-ink/40">
               {isBusiness ? "Full Name" : "Name"}
             </label>
             <input
@@ -228,7 +228,7 @@ export function EditProfileForm(props: Props) {
           </div>
 
           <div>
-            <label className="block text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+            <label className="block text-[10px] font-semibold text-ink/40">
               Email
             </label>
             <input
@@ -243,7 +243,7 @@ export function EditProfileForm(props: Props) {
 
           {isBusiness && (
             <div className="sm:col-span-2">
-              <label className="block text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+              <label className="block text-[10px] font-semibold text-ink/40">
                 {isLandlord ? "Business Name" : "Display / Brand Name"}
               </label>
               <input
@@ -258,7 +258,7 @@ export function EditProfileForm(props: Props) {
 
           {isBusiness ? (
             <div className="sm:col-span-2">
-              <label className="block text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+              <label className="block text-[10px] font-semibold text-ink/40">
                 Photos
               </label>
               <div className="mt-2">
@@ -267,7 +267,7 @@ export function EditProfileForm(props: Props) {
             </div>
           ) : (
             <div className="sm:col-span-2">
-              <label className="block text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+              <label className="block text-[10px] font-semibold text-ink/40">
                 Display Picture
               </label>
               <div className="mt-2">
@@ -284,7 +284,7 @@ export function EditProfileForm(props: Props) {
           {isBusiness && (
             <>
               <div>
-                <label className="block text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+                <label className="block text-[10px] font-semibold text-ink/40">
                   Role
                 </label>
                 <select
@@ -310,7 +310,7 @@ export function EditProfileForm(props: Props) {
               </div>
 
               <div>
-                <label className="block text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+                <label className="block text-[10px] font-semibold text-ink/40">
                   Website
                 </label>
                 <input
@@ -322,7 +322,7 @@ export function EditProfileForm(props: Props) {
               </div>
 
               <div className="sm:col-span-2">
-                <label className="block text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+                <label className="block text-[10px] font-semibold text-ink/40">
                   Instagram URL{isLandlord ? " (if applicable)" : ""}
                 </label>
                 <input
@@ -338,7 +338,7 @@ export function EditProfileForm(props: Props) {
           {isChef && (
             <>
               <div className="sm:col-span-2">
-                <label className="block text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+                <label className="block text-[10px] font-semibold text-ink/40">
                   Bio
                 </label>
                 <textarea
@@ -351,7 +351,7 @@ export function EditProfileForm(props: Props) {
               </div>
 
               <div className="sm:col-span-2">
-                <label className="block text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+                <label className="block text-[10px] font-semibold text-ink/40">
                   What I&rsquo;m looking for
                 </label>
                 <div className="mt-2 flex flex-wrap gap-2">
@@ -376,7 +376,7 @@ export function EditProfileForm(props: Props) {
 
           {isBusiness && (
             <div className="sm:col-span-2">
-              <label className="block text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+              <label className="block text-[10px] font-semibold text-ink/40">
                 Company address
               </label>
               <div className="mt-2 grid grid-cols-1 gap-3 sm:grid-cols-2">

@@ -32,7 +32,7 @@ export function BookingBreakdown({
 
   return (
     <div className="border border-divider bg-white p-5">
-      <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-ink/40">
+      <p className="text-[11px] font-semibold text-ink/40">
         Price breakdown
       </p>
 

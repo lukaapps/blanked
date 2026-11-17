@@ -12,13 +12,13 @@ export function StatusTag({
   status: "Available" | "Selling Fast" | "Sold Out";
 }) {
   const colors: Record<string, string> = {
-    Available: "bg-green-700",
-    "Selling Fast": "bg-amber-600",
-    "Sold Out": "bg-zinc-500",
+    Available: "bg-white text-ink",
+    "Selling Fast": "bg-accent text-white",
+    "Sold Out": "bg-divider text-ink/60",
   };
   return (
     <span
-      className={`inline-block px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-white ${colors[status]}`}
+      className={`inline-block px-3 py-1 text-[11px] font-semibold uppercase tracking-wider ${colors[status]}`}
     >
       {status}
     </span>

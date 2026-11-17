@@ -73,7 +73,7 @@ export default function ResetPasswordForm() {
         <h1 className="mt-6 text-4xl font-medium tracking-tight">
           Password reset
         </h1>
-        <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+        <p className="mt-3 text-[11px] font-semibold text-ink/40">
           Success
         </p>
         <p className="mt-6 text-sm leading-relaxed text-ink/60">
@@ -94,7 +94,7 @@ export default function ResetPasswordForm() {
         <h1 className="mt-6 text-4xl font-medium tracking-tight">
           Reset link expired
         </h1>
-        <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+        <p className="mt-3 text-[11px] font-semibold text-ink/40">
           Error
         </p>
         <p className="mt-6 text-sm leading-relaxed text-ink/60">
@@ -112,13 +112,13 @@ export default function ResetPasswordForm() {
       <h1 className="text-6xl font-bold uppercase leading-[0.95] tracking-tight sm:text-7xl">
         Reset password
       </h1>
-      <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+      <p className="mt-3 text-[11px] font-semibold text-ink/40">
         Create a new password
       </p>
 
       <form onSubmit={handleResetPassword} className="mt-10 flex flex-col gap-5 bg-white p-6 sm:p-8">
         <div>
-          <label className="block text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+          <label className="block text-[10px] font-semibold text-ink/40">
             New password
           </label>
           <input
@@ -133,7 +133,7 @@ export default function ResetPasswordForm() {
         </div>
 
         <div>
-          <label className="block text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+          <label className="block text-[10px] font-semibold text-ink/40">
             Confirm password
           </label>
           <input

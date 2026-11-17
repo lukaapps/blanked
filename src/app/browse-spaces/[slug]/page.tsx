@@ -5,7 +5,6 @@ import { BackButton } from "@/components/back-button";
 import { RequestSpace } from "@/components/request-space";
 import { SaveSpaceButton } from "@/components/save-space-button";
 import { SpaceDetailAccordion } from "@/components/space-detail-accordion";
-import { DotSlot, pickDotSlot } from "@/components/brand-dot";
 
 export async function generateMetadata({
   params,
@@ -28,7 +27,6 @@ export default async function SpaceDetailPage({
   const space = await getSpace(slug);
   if (!space) notFound();
 
-  const dot = pickDotSlot(1);
   return (
     <div className="lg:flex lg:h-screen">
       <div className="relative lg:h-full lg:w-1/2 lg:overflow-y-auto">
@@ -87,7 +85,6 @@ export default async function SpaceDetailPage({
         </div>
 
         <SpaceDetailAccordion space={space} />
-        <DotSlot at={0} chosen={dot} />
       </div>
     </div>
   );

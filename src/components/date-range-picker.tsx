@@ -102,7 +102,7 @@ export function DateRangePicker({
         onClick={() => setOpen((o) => !o)}
         className="block w-full px-6 py-4 text-left"
       >
-        <span className="block text-[11px] font-semibold uppercase tracking-[0.2em] text-ink/40">
+        <span className="block text-[11px] font-semibold text-ink/40">
           {label}
         </span>
         <span
@@ -144,7 +144,7 @@ export function DateRangePicker({
             {WEEKDAYS.map((d) => (
               <span
                 key={d}
-                className="text-[11px] font-semibold uppercase tracking-[0.1em] text-ink/40"
+                className="text-[11px] font-semibold tracking-[0.1em] text-ink/40"
               >
                 {d}
               </span>

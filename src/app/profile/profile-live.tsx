@@ -10,7 +10,7 @@ import { PageHeader } from "@/components/page-header";
 import type { BookingStatus } from "@/lib/database.types";
 
 const sectionLabel =
-  "text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40";
+ "text-[11px] font-semibold text-ink/40";
 
 const statusColor = (status: string) =>
   ["confirmed", "accepted", "Live"].includes(status)
@@ -89,7 +89,7 @@ function SignOutButton() {
         router.push("/");
         router.refresh();
       }}
-      className="text-[10px] font-semibold uppercase tracking-[0.2em] text-ink/35 transition-colors hover:text-accent"
+      className="text-[10px] font-semibold text-ink/35 transition-colors hover:text-accent"
     >
       Log out
     </button>
@@ -194,7 +194,7 @@ export function ChefProfileLive({
                 >
                   <div>
                     <p className="font-medium">{b.spaceName}</p>
-                    <p className="mt-0.5 text-[11px] font-medium uppercase tracking-[0.15em] text-ink/45">
+                    <p className="mt-0.5 text-[11px] font-medium text-ink/45">
                       {b.dates}
                     </p>
                   </div>
@@ -206,7 +206,7 @@ export function ChefProfileLive({
                     </span>
                     <Link
                       href={`/browse-spaces/${b.spaceSlug}`}
-                      className="text-[11px] font-semibold uppercase tracking-[0.15em] text-accent hover:underline"
+                      className="text-[11px] font-semibold text-accent hover:underline"
                     >
                       View Details
                     </Link>
@@ -244,7 +244,7 @@ export function ChefProfileLive({
                     )}
                   </div>
                   <p className="mt-2 text-sm font-medium">{space.name}</p>
-                  <p className="mt-0.5 text-[11px] font-medium uppercase tracking-[0.15em] text-ink/45">
+                  <p className="mt-0.5 text-[11px] font-medium text-ink/45">
                     {space.suburb}
                   </p>
                 </Link>
@@ -281,7 +281,7 @@ export function ChefProfileLive({
                     )}
                   </div>
                   <p className="mt-2 text-sm font-medium">{event.name}</p>
-                  <p className="mt-0.5 text-[11px] font-medium uppercase tracking-[0.15em] text-ink/45">
+                  <p className="mt-0.5 text-[11px] font-medium text-ink/45">
                     {event.suburb} · {event.date}
                   </p>
                 </Link>
@@ -350,7 +350,7 @@ export function LandlordProfileLive({
               >
                 <div>
                   <p className="font-medium">{s.name}</p>
-                  <p className="mt-0.5 text-[11px] font-medium uppercase tracking-[0.15em] text-ink/45">
+                  <p className="mt-0.5 text-[11px] font-medium text-ink/45">
                     {s.dailyRate ? `$${s.dailyRate.toLocaleString()}/day · ` : ""}
                     {s.requestCount} request{s.requestCount === 1 ? "" : "s"}
                   </p>
@@ -392,7 +392,7 @@ export function LandlordProfileLive({
                     {r.status}
                   </span>
                 </div>
-                <p className="mt-1 text-[11px] font-medium uppercase tracking-[0.15em] text-ink/45">
+                <p className="mt-1 text-[11px] font-medium text-ink/45">
                   {r.dates}
                 </p>
                 {r.payout !== null && (
@@ -475,7 +475,7 @@ export function CustomerProfileLive({
                   )}
                 </div>
                 <p className="mt-2 text-sm font-medium">{event.name}</p>
-                <p className="mt-0.5 text-[11px] font-medium uppercase tracking-[0.15em] text-ink/45">
+                <p className="mt-0.5 text-[11px] font-medium text-ink/45">
                   {event.suburb} · {event.date}
                 </p>
               </Link>

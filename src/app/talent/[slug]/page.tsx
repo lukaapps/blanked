@@ -4,7 +4,6 @@ import { notFound } from "next/navigation";
 import { getChef, getEvents } from "@/lib/data";
 import { BackButton } from "@/components/back-button";
 import { Button } from "@/components/ui/button";
-import { DotSlot, pickDotSlot } from "@/components/brand-dot";
 
 export async function generateMetadata({
   params,
@@ -26,7 +25,6 @@ export default async function ChefDetailPage({
   const { slug } = await params;
   const chef = await getChef(slug);
   if (!chef) notFound();
-  const dot = pickDotSlot(1);
 
   const allEvents = await getEvents();
   const pastEvents = allEvents.filter((e) => e.chefSlug === chef.slug);
@@ -56,7 +54,7 @@ export default async function ChefDetailPage({
           <h1 className="text-4xl font-medium tracking-tight sm:text-6xl">
             {chef.name}
           </h1>
-          <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.25em] text-accent">
+          <p className="mt-3 text-[11px] font-semibold text-accent">
             {chef.role}
           </p>
 
@@ -69,7 +67,7 @@ export default async function ChefDetailPage({
           </p>
 
           <div className="mt-10">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+            <p className="text-[10px] font-semibold text-ink/40">
               What they&rsquo;re looking for
             </p>
             <div className="mt-3 flex flex-wrap gap-2">
@@ -94,10 +92,9 @@ export default async function ChefDetailPage({
         </div>
       </div>
 
-      <DotSlot at={0} chosen={dot} />
       {pastEvents.length > 0 && (
         <div className="mt-24 border-t border-divider pt-8">
-          <h2 className="text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+          <h2 className="text-[11px] font-semibold text-ink/40">
             Past events
           </h2>
           <div className="-mx-[3px] mt-6 grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
@@ -117,7 +114,7 @@ export default async function ChefDetailPage({
                   />
                 </div>
                 <p className="mt-3 font-medium">{event.name}</p>
-                <p className="mt-0.5 text-[11px] font-medium uppercase tracking-[0.15em] text-ink/45">
+                <p className="mt-0.5 text-[11px] font-medium text-ink/45">
                   {event.suburb}, Melbourne
                 </p>
               </Link>

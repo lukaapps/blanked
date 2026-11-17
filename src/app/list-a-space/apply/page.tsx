@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
-import { ClientDotSlot } from "@/components/brand-dot-client";
 import { PhotoUploader } from "@/components/photo-uploader";
 import { fileToDataUrl } from "@/lib/demo-profile";
 
@@ -135,7 +134,7 @@ export default function ListASpaceApplyPage() {
         <h1 className="text-4xl font-medium tracking-tight sm:text-5xl">
           Thanks — we&rsquo;ve got your space.
         </h1>
-        <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+        <p className="mt-4 text-[11px] font-semibold text-ink/40">
           Pending review
         </p>
         <p className="mx-auto mt-6 max-w-md text-sm leading-relaxed text-ink/60">
@@ -155,10 +154,10 @@ export default function ListASpaceApplyPage() {
 
       <div className="mt-12">
         <div className="flex items-center justify-between">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+          <p className="text-[10px] font-semibold text-ink/40">
             Step {step + 1} of {steps.length}
           </p>
-          <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+          <p className="text-[10px] font-semibold text-ink/40">
             {steps[step]}
           </p>
         </div>
@@ -365,7 +364,6 @@ export default function ListASpaceApplyPage() {
           </div>
         )}
       </div>
-      <ClientDotSlot />
     </div>
   );
 }
@@ -381,7 +379,7 @@ function Field({
 }) {
   return (
     <div>
-      <label className="block text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+      <label className="block text-[10px] font-semibold text-ink/40">
         {label}
       </label>
       {hint && <p className="mt-1 text-xs text-ink/35">{hint}</p>}

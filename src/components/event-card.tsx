@@ -35,7 +35,7 @@ export function EventCard({
       <div className="mt-3">
         <h3 className="text-base font-medium">{event.name}</h3>
         {chefName && <p className="mt-0.5 text-sm text-accent">{chefName}</p>}
-        <p className="mt-1 text-[11px] font-medium uppercase tracking-[0.15em] text-ink/45">
+        <p className="mt-1 text-[11px] font-medium text-ink/45">
           {formatDate(event.date)} · {event.time} · {event.suburb}
         </p>
       </div>

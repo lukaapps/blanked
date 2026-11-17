@@ -67,7 +67,7 @@ export function PhotoUploader({
             type="button"
             onClick={() => inputRef.current?.click()}
             disabled={busy}
-            className="flex aspect-square flex-col items-center justify-center gap-1 border border-dashed border-divider text-[10px] font-semibold uppercase tracking-[0.15em] text-ink/40 transition-colors hover:border-ink hover:text-ink disabled:opacity-40"
+            className="flex aspect-square flex-col items-center justify-center gap-1 border border-dashed border-divider text-[10px] font-semibold text-ink/40 transition-colors hover:border-ink hover:text-ink disabled:opacity-40"
           >
             {busy ? "…" : "+ Add"}
           </button>

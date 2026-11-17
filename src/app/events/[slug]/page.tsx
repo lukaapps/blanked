@@ -6,7 +6,6 @@ import { BackButton } from "@/components/back-button";
 import { LocationMap } from "@/components/location-map";
 import { SaveEventButton } from "@/components/save-event-button";
 import { Stops } from "@/components/brand-stop";
-import { DotSlot, pickDotSlot } from "@/components/brand-dot";
 
 export async function generateMetadata({
   params,
@@ -31,7 +30,7 @@ function formatDate(date: string) {
 }
 
 const sectionLabel =
-  "text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40";
+ "text-[11px] font-semibold text-ink/40";
 const section = "mt-24 px-[9px]";
 
 export default async function EventDetailPage({
@@ -42,7 +41,6 @@ export default async function EventDetailPage({
   const { slug } = await params;
   const event = await getEvent(slug);
   if (!event) notFound();
-  const dot = pickDotSlot(3);
 
   const [chef, allEvents, space] = await Promise.all([
     event.chefSlug ? getChef(event.chefSlug) : null,
@@ -121,8 +119,6 @@ export default async function EventDetailPage({
         </div>
       </div>
 
-      <DotSlot at={0} chosen={dot} />
-
       <section className={section}>
         <p className={sectionLabel}>About This Event</p>
         <p className="mt-6 text-3xl font-medium leading-[1.15] tracking-tight sm:text-5xl lg:text-6xl">
@@ -174,14 +170,14 @@ export default async function EventDetailPage({
                 >
                   {chef.name}
                 </Link>
-                <p className="mt-3 text-[11px] font-medium uppercase tracking-[0.15em] text-ink/45">
+                <p className="mt-3 text-[11px] font-medium text-ink/45">
                   {chef.role}
                 </p>
               </div>
               <p className="text-base leading-relaxed text-ink/60">{chef.bio}</p>
               <Link
                 href={`/talent/${chef.slug}`}
-                className="w-fit text-[11px] font-semibold uppercase tracking-[0.2em] text-accent hover:underline"
+                className="w-fit text-[11px] font-semibold text-accent hover:underline"
               >
                 View full profile →
               </Link>
@@ -191,8 +187,6 @@ export default async function EventDetailPage({
           <p className="mt-8 text-sm text-ink/50">Chef details coming soon.</p>
         )}
       </section>
-
-      <DotSlot at={1} chosen={dot} />
 
       <div className="relative mx-[9px] mt-24 aspect-[16/9] overflow-hidden bg-divider">
         <Image
@@ -209,7 +203,7 @@ export default async function EventDetailPage({
           <blockquote className="text-2xl font-medium leading-snug tracking-tight sm:text-4xl lg:text-5xl">
             &ldquo;<Stops>{chef.quote}</Stops>&rdquo;
           </blockquote>
-          <p className="mt-6 text-[11px] font-semibold uppercase tracking-[0.25em] text-accent">
+          <p className="mt-6 text-[11px] font-semibold text-accent">
             {chef.name}
           </p>
         </section>
@@ -238,7 +232,7 @@ export default async function EventDetailPage({
                 >
                   {space.name}
                 </Link>
-                <p className="mt-3 text-[11px] font-medium uppercase tracking-[0.15em] text-ink/45">
+                <p className="mt-3 text-[11px] font-medium text-ink/45">
                   {space.suburb}, Melbourne
                 </p>
               </div>
@@ -248,7 +242,7 @@ export default async function EventDetailPage({
               <p className="text-sm text-ink/50">{space.amenities.join(" · ")}</p>
               <Link
                 href={`/browse-spaces/${space.slug}`}
-                className="w-fit text-[11px] font-semibold uppercase tracking-[0.2em] text-accent hover:underline"
+                className="w-fit text-[11px] font-semibold text-accent hover:underline"
               >
                 View venue →
               </Link>
@@ -256,8 +250,6 @@ export default async function EventDetailPage({
           </div>
         </section>
       )}
-
-      <DotSlot at={2} chosen={dot} />
 
       <section className={section}>
         <p className={sectionLabel}>Location</p>
@@ -300,7 +292,7 @@ export default async function EventDetailPage({
                   />
                 </div>
                 <p className="mt-3 text-lg font-medium text-ink">{e.name}</p>
-                <p className="mt-1 text-[11px] font-medium uppercase tracking-[0.15em] text-ink/45">
+                <p className="mt-1 text-[11px] font-medium text-ink/45">
                   {e.suburb}, Melbourne
                 </p>
               </Link>

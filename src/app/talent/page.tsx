@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { TalentIndex } from "@/components/talent-index";
 import { Stops } from "@/components/brand-stop";
-import { DotSlot, pickDotSlot } from "@/components/brand-dot";
 import { getChefs } from "@/lib/data";
 
 export const metadata = {
@@ -12,7 +11,7 @@ export const metadata = {
 };
 
 const label =
-  "text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40";
+ "text-[11px] font-semibold text-ink/40";
 const statement =
   "font-bold tracking-tight leading-[1.1] text-3xl sm:text-5xl lg:text-6xl";
 const bodyText = "text-lg font-light leading-relaxed text-ink/70 lg:text-xl";
@@ -20,7 +19,6 @@ const bodyText = "text-lg font-light leading-relaxed text-ink/70 lg:text-xl";
 export default async function TalentPage() {
   const chefs = await getChefs();
   const featured = chefs.filter((c) => c.featured).slice(0, 3);
-  const dot = pickDotSlot(2);
 
   return (
     <div className="pb-24">
@@ -68,8 +66,6 @@ export default async function TalentPage() {
         </div>
       </section>
 
-      <DotSlot at={0} chosen={dot} />
-
       {/* Editorial index with a sticky preview on desktop */}
       <section className="mt-40 px-[9px]">
         <p className={label}>The community</p>
@@ -78,10 +74,8 @@ export default async function TalentPage() {
         </div>
       </section>
 
-      <DotSlot at={1} chosen={dot} />
-
       {/* Closing enquiry */}
-      <section className="mt-40 flex flex-col items-start gap-8 border-t border-divider px-[9px] pt-10 lg:flex-row lg:items-end lg:justify-between">
+      <section className="mt-40 flex flex-col items-start gap-8 border-t border-divider px-[9px] pt-10">
         <p className={`max-w-4xl ${statement}`}>
           <Stops>Enquire about profiles and availability of Melbourne’s best chefs.</Stops>
         </p>

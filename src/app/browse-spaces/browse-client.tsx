@@ -25,7 +25,7 @@ export function BrowseSpacesClient({ spaces }: { spaces: Space[] }) {
   const isFiltering = suburb || type || maxPrice < 1000;
 
   const cellLabel =
-    "block text-[11px] font-semibold uppercase tracking-[0.2em] text-ink/40";
+ "block text-[11px] font-semibold text-ink/40";
 
   return (
     <div className="px-[9px] pb-24 pt-20">
@@ -161,7 +161,7 @@ export function BrowseSpacesClient({ spaces }: { spaces: Space[] }) {
 
       {!isFiltering && featured.length > 0 && (
         <div className="mt-20 border-t border-divider pt-8 lg:mt-8">
-          <h2 className="text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+          <h2 className="text-[11px] font-semibold text-ink/40">
             Featured
           </h2>
           <div className="-mx-[3px] mt-6 grid grid-cols-1 gap-1 sm:grid-cols-2 lg:grid-cols-4">
@@ -173,7 +173,7 @@ export function BrowseSpacesClient({ spaces }: { spaces: Space[] }) {
       )}
 
       <div className="mt-8 border-t border-divider pt-8">
-        <h2 className="text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+        <h2 className="text-[11px] font-semibold text-ink/40">
           {isFiltering ? `${filtered.length} spaces` : "All spaces"}
         </h2>
         {filtered.length === 0 ? (

@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useState } from "react";
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
-import { ClientDotSlot } from "@/components/brand-dot-client";
 
 function LoginForm() {
   const router = useRouter();
@@ -73,7 +72,7 @@ function LoginForm() {
       <h1 className="text-6xl font-bold uppercase leading-[0.95] tracking-tight sm:text-7xl">
         Log in
       </h1>
-      <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+      <p className="mt-3 text-[11px] font-semibold text-ink/40">
         Welcome back to Blanked
       </p>
 
@@ -91,7 +90,7 @@ function LoginForm() {
 
       <form onSubmit={handleLogin} className="mt-10 flex flex-col gap-5 bg-white p-6 sm:p-8">
         <div>
-          <label className="block text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+          <label className="block text-[10px] font-semibold text-ink/40">
             Email
           </label>
           <input
@@ -107,7 +106,7 @@ function LoginForm() {
           />
         </div>
         <div>
-          <label className="block text-[10px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+          <label className="block text-[10px] font-semibold text-ink/40">
             Password
           </label>
           <input
@@ -145,7 +144,6 @@ function LoginForm() {
           Create an account
         </Link>
       </p>
-      <ClientDotSlot />
     </div>
   );
 }

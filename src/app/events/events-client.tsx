@@ -102,7 +102,7 @@ export function EventsClient({
         <h1 className="text-6xl font-bold uppercase leading-[0.95] tracking-tight sm:text-7xl lg:text-[100px]">
           Events
         </h1>
-        <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+        <p className="mt-4 text-[11px] font-semibold text-ink/40">
           Melbourne&rsquo;s best pop-up dining, presented by Blanked
         </p>
       </div>
@@ -114,7 +114,7 @@ export function EventsClient({
             onClick={() => chooseFilter(f)}
             className={`px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.2em] transition-colors ${
               filter === f && !date
-                ? "bg-[#442220] text-white"
+                ? "bg-accent text-white"
                 : "bg-white text-ink/50 hover:text-ink"
             }`}
           >
@@ -159,7 +159,7 @@ export function EventsClient({
       </div>
 
       <div className="mt-12 border-t border-divider pt-8">
-        <h2 className="text-[11px] font-semibold uppercase tracking-[0.25em] text-ink/40">
+        <h2 className="text-[11px] font-semibold text-ink/40">
           {heading}
         </h2>
         {filtered.length === 0 ? (
