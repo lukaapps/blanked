@@ -30,7 +30,7 @@ export default function ContactPage() {
 
         <div className="relative w-full flex-1 lg:w-1/2">
           <Image
-            src="/images/space-timber-lounge.jpg?v=3"
+            src="/images/web/IMG_7442.jpg?v=5"
             alt=""
             fill
             priority

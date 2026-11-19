@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { heroImages } from "@/lib/mock-data";
+import { aboutImage } from "@/lib/mock-data";
 import Link from "next/link";
 import { Stops } from "@/components/brand-stop";
 
@@ -30,7 +30,7 @@ export default function AboutPage() {
       <section className="mt-16 grid gap-y-10 px-[9px] lg:mt-24 lg:grid-cols-2 lg:gap-x-[9px]">
         <div className="relative aspect-[4/5] w-full overflow-hidden bg-divider lg:aspect-[7/10]">
           <Image
-            src={heroImages[1]}
+            src={aboutImage}
             alt=""
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"

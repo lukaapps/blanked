@@ -4,14 +4,19 @@ function unsplash(id: string) {
   return `https://images.unsplash.com/${id}?auto=format&fit=crop&w=1400&q=80`;
 }
 
-// Real Blanked photography (public/images) — low-exposure interiors.
+// Home hero rotation: high-resolution Blanked photography (public/images/web),
+// plus the brick restaurant kept from the original set.
 export const heroImages = [
+  "/images/web/IMG_7743.jpg?v=5",
+  "/images/web/IMG_4235.jpg?v=5",
   "/images/space-brick-loft.jpg?v=3",
-  "/images/space-dark-dining.jpg?v=3",
-  "/images/space-timber-lounge.jpg?v=3",
-  "/images/space-night-terrace.jpg?v=3",
-  "/images/space-bar-shelves.jpg?v=3",
+  "/images/web/IMG_8749.jpg?v=5",
+  "/images/web/IMG_4505.jpg?v=5",
+  "/images/web/IMG_4492.jpg?v=5",
 ];
+
+// About page photo (portrait).
+export const aboutImage = "/images/web/IMG_6677.jpg?v=5";
 
 export const spaces: Space[] = [
   {
