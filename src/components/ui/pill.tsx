@@ -1,6 +1,6 @@
 export function Pill({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-block bg-accent px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-white">
+    <span className="inline-block bg-accent px-3 py-1 text-sm font-semibold uppercase tracking-wider text-white">
       {children}
     </span>
   );
@@ -18,7 +18,7 @@ export function StatusTag({
   };
   return (
     <span
-      className={`inline-block px-3 py-1 text-[11px] font-semibold uppercase tracking-wider ${colors[status]}`}
+      className={`inline-block px-3 py-1 text-sm font-semibold uppercase tracking-wider ${colors[status]}`}
     >
       {status}
     </span>

@@ -17,7 +17,7 @@ export function ChefCard({ chef, large = false }: { chef: Chef; large?: boolean 
         </div>
         <div className="mt-3">
           <h3 className="text-sm font-normal text-ink">{chef.name}</h3>
-          <p className="text-xs font-normal text-ink/60">{chef.role}</p>
+          <p className="text-sm font-normal text-ink/60">{chef.role}</p>
           <p className="mt-3 border-l-2 border-accent pl-3 text-sm italic text-ink/70">
             &ldquo;{chef.quote}&rdquo;
           </p>
@@ -38,7 +38,7 @@ export function ChefCard({ chef, large = false }: { chef: Chef; large?: boolean 
       </div>
       <div className="mt-3">
         <h3 className="text-sm font-normal text-ink">{chef.name}</h3>
-        <p className="text-xs font-normal text-ink/60">{chef.role}</p>
+        <p className="text-sm font-normal text-ink/60">{chef.role}</p>
       </div>
     </Link>
   );

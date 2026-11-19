@@ -19,10 +19,10 @@ export function PageHeader({
   return (
     <div className="flex flex-wrap items-end justify-between gap-6">
       <div>
-        <h1 className="text-4xl font-bold uppercase tracking-tight sm:text-6xl">
+        <h1 className="text-5xl font-bold uppercase tracking-tight sm:text-6xl lg:text-7xl">
           {title}
         </h1>
-        <p className="mt-3 text-[11px] font-semibold text-ink/40">
+        <p className="mt-3 text-sm font-semibold text-ink/40">
           {caption}
         </p>
       </div>

@@ -22,7 +22,7 @@ export function ContactForm() {
   if (submitted) {
     return (
       <div className="mt-10 bg-white p-8 text-center">
-        <p className="text-lg font-medium">
+        <p className="text-xl font-medium">
           Thanks — we&rsquo;ve got your message.
         </p>
         <p className="mt-2 text-sm text-ink/50">
@@ -74,7 +74,7 @@ export function ContactForm() {
       </Field>
       <button
         type="submit"
-        className="bg-[#442220] py-5 text-[11px] font-semibold uppercase tracking-[0.25em] text-white transition-opacity hover:opacity-90"
+        className="bg-[#442220] py-5 text-sm font-semibold uppercase tracking-[0.25em] text-white transition-opacity hover:opacity-90"
       >
         Send
       </button>
@@ -91,7 +91,7 @@ function Field({
 }) {
   return (
     <div>
-      <label className="block text-[10px] font-semibold text-ink/40">
+      <label className="block text-sm font-semibold text-ink/40">
         {label}
       </label>
       <div className="mt-2">{children}</div>

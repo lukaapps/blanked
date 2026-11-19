@@ -69,10 +69,10 @@ function LoginForm() {
 
   return (
     <div className="mx-auto max-w-md px-[27px] pb-24 pt-24">
-      <h1 className="text-6xl font-bold uppercase leading-[0.95] tracking-tight sm:text-7xl">
+      <h1 className="text-5xl font-bold uppercase leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl">
         Log in
       </h1>
-      <p className="mt-3 text-[11px] font-semibold text-ink/40">
+      <p className="mt-3 text-sm font-semibold text-ink/40">
         Welcome back to Blanked
       </p>
 
@@ -90,7 +90,7 @@ function LoginForm() {
 
       <form onSubmit={handleLogin} className="mt-10 flex flex-col gap-5 bg-white p-6 sm:p-8">
         <div>
-          <label className="block text-[10px] font-semibold text-ink/40">
+          <label className="block text-sm font-semibold text-ink/40">
             Email
           </label>
           <input
@@ -106,7 +106,7 @@ function LoginForm() {
           />
         </div>
         <div>
-          <label className="block text-[10px] font-semibold text-ink/40">
+          <label className="block text-sm font-semibold text-ink/40">
             Password
           </label>
           <input
@@ -124,7 +124,7 @@ function LoginForm() {
         <button
           type="submit"
           disabled={loading}
-          className="bg-[#442220] py-4 text-[11px] font-semibold uppercase tracking-[0.25em] text-white transition-opacity hover:opacity-90 disabled:opacity-40"
+          className="bg-[#442220] py-4 text-sm font-semibold uppercase tracking-[0.25em] text-white transition-opacity hover:opacity-90 disabled:opacity-40"
         >
           {loading ? "Logging in…" : "Log In"}
         </button>
@@ -132,7 +132,7 @@ function LoginForm() {
         <button
           type="button"
           onClick={handleForgotPassword}
-          className="text-left text-xs text-ink/50 transition-colors hover:text-accent"
+          className="text-left text-sm text-ink/50 transition-colors hover:text-accent"
         >
           Forgot password?
         </button>

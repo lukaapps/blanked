@@ -73,10 +73,10 @@ export default function ResetPasswordForm() {
         <h1 className="mt-6 text-4xl font-medium tracking-tight">
           Password reset
         </h1>
-        <p className="mt-3 text-[11px] font-semibold text-ink/40">
+        <p className="mt-3 text-sm font-semibold text-ink/40">
           Success
         </p>
-        <p className="mt-6 text-sm leading-relaxed text-ink/60">
+        <p className="mt-6 text-base leading-relaxed text-ink/60">
           Your password has been reset. You can now{" "}
           <a href="/login" className="text-accent hover:underline">
             log in
@@ -94,10 +94,10 @@ export default function ResetPasswordForm() {
         <h1 className="mt-6 text-4xl font-medium tracking-tight">
           Reset link expired
         </h1>
-        <p className="mt-3 text-[11px] font-semibold text-ink/40">
+        <p className="mt-3 text-sm font-semibold text-ink/40">
           Error
         </p>
-        <p className="mt-6 text-sm leading-relaxed text-ink/60">
+        <p className="mt-6 text-base leading-relaxed text-ink/60">
           This password reset link is invalid or has expired.{" "}
           <a href="/login?tab=forgot" className="text-accent hover:underline">
             Request a new one
@@ -109,16 +109,16 @@ export default function ResetPasswordForm() {
 
   return (
     <div className="mx-auto max-w-md px-6 pb-24 pt-24">
-      <h1 className="text-6xl font-bold uppercase leading-[0.95] tracking-tight sm:text-7xl">
+      <h1 className="text-5xl font-bold uppercase leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl">
         Reset password
       </h1>
-      <p className="mt-3 text-[11px] font-semibold text-ink/40">
+      <p className="mt-3 text-sm font-semibold text-ink/40">
         Create a new password
       </p>
 
       <form onSubmit={handleResetPassword} className="mt-10 flex flex-col gap-5 bg-white p-6 sm:p-8">
         <div>
-          <label className="block text-[10px] font-semibold text-ink/40">
+          <label className="block text-sm font-semibold text-ink/40">
             New password
           </label>
           <input
@@ -133,7 +133,7 @@ export default function ResetPasswordForm() {
         </div>
 
         <div>
-          <label className="block text-[10px] font-semibold text-ink/40">
+          <label className="block text-sm font-semibold text-ink/40">
             Confirm password
           </label>
           <input
@@ -152,7 +152,7 @@ export default function ResetPasswordForm() {
         <button
           type="submit"
           disabled={loading}
-          className="bg-[#442220] py-4 text-[11px] font-semibold uppercase tracking-[0.25em] text-white transition-opacity hover:opacity-90 disabled:opacity-40"
+          className="bg-[#442220] py-4 text-sm font-semibold uppercase tracking-[0.25em] text-white transition-opacity hover:opacity-90 disabled:opacity-40"
         >
           {loading ? "Resetting…" : "Reset Password"}
         </button>

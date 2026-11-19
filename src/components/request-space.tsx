@@ -104,7 +104,7 @@ export function RequestSpace({ space }: { space: Space }) {
       <div className="text-center">
         <span aria-hidden className="inline-block h-2.5 w-2.5 rounded-full bg-accent" />
         <p className="mt-3 text-sm font-medium">Your request has been sent.</p>
-        <p className="mt-1 text-xs text-ink/50">
+        <p className="mt-1 text-sm text-ink/50">
           You&rsquo;ll hear back within 48 hours.
         </p>
       </div>
@@ -121,7 +121,7 @@ export function RequestSpace({ space }: { space: Space }) {
         >
           Request This Space
         </Button>
-        <p className="mt-3 text-center text-xs text-ink/40">
+        <p className="mt-3 text-center text-sm text-ink/40">
           You&rsquo;ll hear back within 48 hours.
         </p>
       </>
@@ -147,7 +147,7 @@ export function RequestSpace({ space }: { space: Space }) {
         />
       )}
       <div>
-        <label className="block text-[10px] font-semibold text-ink/40">
+        <label className="block text-sm font-semibold text-ink/40">
           What are you planning?
         </label>
         <textarea
@@ -160,7 +160,7 @@ export function RequestSpace({ space }: { space: Space }) {
         />
       </div>
       <div>
-        <label className="block text-[10px] font-semibold text-ink/40">
+        <label className="block text-sm font-semibold text-ink/40">
           Questions (optional)
         </label>
         <textarea

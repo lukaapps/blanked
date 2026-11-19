@@ -4,7 +4,7 @@ import type { ButtonHTMLAttributes } from "react";
 type Variant = "primary" | "secondary";
 
 const base =
-  "inline-flex items-center justify-center gap-2 px-6 py-3 text-xs font-semibold uppercase tracking-widest transition-colors disabled:opacity-40 disabled:pointer-events-none";
+  "inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold uppercase tracking-widest transition-colors disabled:opacity-40 disabled:pointer-events-none";
 
 const variants: Record<Variant, string> = {
   primary:

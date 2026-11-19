@@ -134,10 +134,10 @@ export default function ListASpaceApplyPage() {
         <h1 className="text-4xl font-medium tracking-tight sm:text-5xl">
           Thanks — we&rsquo;ve got your space.
         </h1>
-        <p className="mt-4 text-[11px] font-semibold text-ink/40">
+        <p className="mt-4 text-sm font-semibold text-ink/40">
           Pending review
         </p>
-        <p className="mx-auto mt-6 max-w-md text-sm leading-relaxed text-ink/60">
+        <p className="mx-auto mt-6 max-w-md text-base leading-relaxed text-ink/60">
           We&rsquo;ll review {form.name || "your space"} and follow up within 3
           business days. Check your email for confirmation — we&rsquo;ll be in
           touch to gather a few more details before it goes live.
@@ -148,16 +148,16 @@ export default function ListASpaceApplyPage() {
 
   return (
     <div className="mx-auto max-w-3xl px-[27px] pb-24 pt-20">
-      <h1 className="text-3xl font-bold uppercase tracking-tight sm:text-4xl">
+      <h1 className="text-5xl font-bold uppercase tracking-tight sm:text-6xl lg:text-7xl">
         List your space
       </h1>
 
       <div className="mt-12">
         <div className="flex items-center justify-between">
-          <p className="text-[10px] font-semibold text-ink/40">
+          <p className="text-sm font-semibold text-ink/40">
             Step {step + 1} of {steps.length}
           </p>
-          <p className="text-[10px] font-semibold text-ink/40">
+          <p className="text-sm font-semibold text-ink/40">
             {steps[step]}
           </p>
         </div>
@@ -286,7 +286,7 @@ export default function ListASpaceApplyPage() {
                   max={10}
                 />
                 {form.photos.length < 3 && (
-                  <p className="mt-2 text-xs text-ink/40">
+                  <p className="mt-2 text-sm text-ink/40">
                     Add at least {3 - form.photos.length} more photo
                     {3 - form.photos.length === 1 ? "" : "s"} to continue.
                   </p>
@@ -310,7 +310,7 @@ export default function ListASpaceApplyPage() {
           {step > 0 && (
             <button
               onClick={back}
-              className="bg-white px-8 text-[11px] font-semibold uppercase tracking-[0.2em] text-ink/50 transition-colors hover:text-ink"
+              className="bg-white px-8 text-sm font-semibold uppercase tracking-[0.2em] text-ink/50 transition-colors hover:text-ink"
             >
               ← Back
             </button>
@@ -318,7 +318,7 @@ export default function ListASpaceApplyPage() {
           {step < steps.length - 1 ? (
             <button
               onClick={next}
-              className="flex-1 bg-[#442220] py-5 text-[11px] font-semibold uppercase tracking-[0.25em] text-white transition-opacity hover:opacity-90"
+              className="flex-1 bg-[#442220] py-5 text-sm font-semibold uppercase tracking-[0.25em] text-white transition-opacity hover:opacity-90"
             >
               Continue
             </button>
@@ -326,7 +326,7 @@ export default function ListASpaceApplyPage() {
             <button
               onClick={handleSubmit}
               disabled={!canSubmit}
-              className="flex-1 bg-ink py-5 text-[11px] font-semibold uppercase tracking-[0.25em] text-background transition-opacity hover:opacity-90 disabled:opacity-30"
+              className="flex-1 bg-ink py-5 text-sm font-semibold uppercase tracking-[0.25em] text-background transition-opacity hover:opacity-90 disabled:opacity-30"
             >
               {submitting ? "Submitting…" : "✓ Submit My Space"}
             </button>
@@ -350,13 +350,13 @@ export default function ListASpaceApplyPage() {
             <div className="mt-4 flex gap-2">
               <Link
                 href="/signup?type=landlord"
-                className="bg-accent px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-white transition-opacity hover:opacity-90"
+                className="bg-accent px-6 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-white transition-opacity hover:opacity-90"
               >
                 Create Landlord Account
               </Link>
               <Link
                 href="/login?next=/list-a-space/apply"
-                className="border border-ink px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-ink transition-colors hover:bg-ink hover:text-background"
+                className="border border-ink px-6 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-ink transition-colors hover:bg-ink hover:text-background"
               >
                 Log In
               </Link>
@@ -379,10 +379,10 @@ function Field({
 }) {
   return (
     <div>
-      <label className="block text-[10px] font-semibold text-ink/40">
+      <label className="block text-sm font-semibold text-ink/40">
         {label}
       </label>
-      {hint && <p className="mt-1 text-xs text-ink/35">{hint}</p>}
+      {hint && <p className="mt-1 text-sm text-ink/35">{hint}</p>}
       <div className="mt-2">{children}</div>
     </div>
   );

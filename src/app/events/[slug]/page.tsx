@@ -30,7 +30,7 @@ function formatDate(date: string) {
 }
 
 const sectionLabel =
- "text-[11px] font-semibold text-ink/40";
+ "text-sm font-semibold text-ink/40";
 const section = "mt-24 px-[9px]";
 
 export default async function EventDetailPage({
@@ -74,7 +74,7 @@ export default async function EventDetailPage({
               href={event.ticketUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex bg-ink/25 px-8 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-white backdrop-blur-[2px] transition-colors hover:bg-ink/35"
+              className="inline-flex bg-ink/25 px-8 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-white backdrop-blur-[2px] transition-colors hover:bg-ink/35"
             >
               Get Tickets
             </a>
@@ -111,7 +111,7 @@ export default async function EventDetailPage({
       </dl>
 
       <div className="px-[9px] pt-12 lg:pt-16">
-        <h1 className="text-5xl font-bold tracking-tight sm:text-7xl">
+        <h1 className="text-5xl font-bold tracking-tight sm:text-6xl lg:text-7xl">
           {event.name}
         </h1>
         <div className="mt-4">
@@ -121,7 +121,7 @@ export default async function EventDetailPage({
 
       <section className={section}>
         <p className={sectionLabel}>About This Event</p>
-        <p className="mt-6 text-3xl font-medium leading-[1.15] tracking-tight sm:text-5xl lg:text-6xl">
+        <p className="mt-6 text-3xl font-medium leading-[1.15] tracking-tight sm:text-4xl lg:text-5xl">
           <Stops>{event.description}</Stops>
         </p>
       </section>
@@ -170,14 +170,14 @@ export default async function EventDetailPage({
                 >
                   {chef.name}
                 </Link>
-                <p className="mt-3 text-[11px] font-medium text-ink/45">
+                <p className="mt-3 text-sm font-medium text-ink/45">
                   {chef.role}
                 </p>
               </div>
               <p className="text-base leading-relaxed text-ink/60">{chef.bio}</p>
               <Link
                 href={`/talent/${chef.slug}`}
-                className="w-fit text-[11px] font-semibold text-accent hover:underline"
+                className="w-fit text-sm font-semibold text-accent hover:underline"
               >
                 View full profile
               </Link>
@@ -200,10 +200,10 @@ export default async function EventDetailPage({
 
       {chef && (
         <section className={section}>
-          <blockquote className="text-2xl font-medium leading-snug tracking-tight sm:text-4xl lg:text-5xl">
+          <blockquote className="text-3xl font-medium leading-snug tracking-tight sm:text-4xl lg:text-5xl">
             &ldquo;<Stops>{chef.quote}</Stops>&rdquo;
           </blockquote>
-          <p className="mt-6 text-[11px] font-semibold text-accent">
+          <p className="mt-6 text-sm font-semibold text-accent">
             {chef.name}
           </p>
         </section>
@@ -232,7 +232,7 @@ export default async function EventDetailPage({
                 >
                   {space.name}
                 </Link>
-                <p className="mt-3 text-[11px] font-medium text-ink/45">
+                <p className="mt-3 text-sm font-medium text-ink/45">
                   {space.suburb}, Melbourne
                 </p>
               </div>
@@ -242,7 +242,7 @@ export default async function EventDetailPage({
               <p className="text-sm text-ink/50"><span className="flex flex-wrap gap-x-3">{space.amenities.map((a) => (<span key={a}>{a}</span>))}</span></p>
               <Link
                 href={`/browse-spaces/${space.slug}`}
-                className="w-fit text-[11px] font-semibold text-accent hover:underline"
+                className="w-fit text-sm font-semibold text-accent hover:underline"
               >
                 View venue
               </Link>
@@ -255,10 +255,10 @@ export default async function EventDetailPage({
         <p className={sectionLabel}>Location</p>
         <div className="mt-8 grid gap-8 lg:grid-cols-2 lg:gap-12">
           <div className="flex flex-col justify-end gap-4">
-            <p className="text-3xl font-medium tracking-tight sm:text-5xl">
+            <p className="text-3xl font-medium tracking-tight sm:text-4xl">
               {event.suburb}, Melbourne
             </p>
-            <p className="text-xs text-ink/40">
+            <p className="text-sm text-ink/40">
               Shaded area shows the approximate location. Exact address shared
               upon booking.
             </p>
@@ -291,8 +291,8 @@ export default async function EventDetailPage({
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
-                <p className="mt-3 text-lg font-medium text-ink">{e.name}</p>
-                <p className="mt-1 text-[11px] font-medium text-ink/45">
+                <p className="mt-3 text-xl font-medium text-ink">{e.name}</p>
+                <p className="mt-1 text-sm font-medium text-ink/45">
                   {e.suburb}, Melbourne
                 </p>
               </Link>

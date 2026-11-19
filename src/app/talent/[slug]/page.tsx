@@ -51,10 +51,10 @@ export default async function ChefDetailPage({
           />
         </div>
         <div>
-          <h1 className="text-4xl font-medium tracking-tight sm:text-6xl">
+          <h1 className="text-5xl font-medium tracking-tight sm:text-6xl lg:text-7xl">
             {chef.name}
           </h1>
-          <p className="mt-3 text-[11px] font-semibold text-accent">
+          <p className="mt-3 text-sm font-semibold text-accent">
             {chef.role}
           </p>
 
@@ -67,7 +67,7 @@ export default async function ChefDetailPage({
           </p>
 
           <div className="mt-10">
-            <p className="text-[10px] font-semibold text-ink/40">
+            <p className="text-sm font-semibold text-ink/40">
               What they&rsquo;re looking for
             </p>
             <div className="mt-3 flex flex-wrap gap-2">
@@ -94,7 +94,7 @@ export default async function ChefDetailPage({
 
       {pastEvents.length > 0 && (
         <div className="mt-24 border-t border-divider pt-8">
-          <h2 className="text-[11px] font-semibold text-ink/40">
+          <h2 className="text-sm font-semibold text-ink/40">
             Past events
           </h2>
           <div className="-mx-[3px] mt-6 grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
@@ -114,7 +114,7 @@ export default async function ChefDetailPage({
                   />
                 </div>
                 <p className="mt-3 font-medium">{event.name}</p>
-                <p className="mt-0.5 text-[11px] font-medium text-ink/45">
+                <p className="mt-0.5 text-sm font-medium text-ink/45">
                   {event.suburb}, Melbourne
                 </p>
               </Link>

@@ -25,13 +25,13 @@ export function BrowseSpacesClient({ spaces }: { spaces: Space[] }) {
   const isFiltering = suburb || type || maxPrice < 1000;
 
   const cellLabel =
- "block text-[11px] font-semibold text-ink/40";
+ "block text-sm font-semibold text-ink/40";
 
   return (
     <div className="px-[9px] pb-24 pt-20">
       <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-0">
         <div className="shrink-0">
-          <h1 className="text-6xl font-bold uppercase leading-[0.95] tracking-tight sm:text-7xl lg:text-[100px]">
+          <h1 className="text-5xl font-bold uppercase leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl">
             Browse
             <br />
             Spaces
@@ -121,7 +121,7 @@ export function BrowseSpacesClient({ spaces }: { spaces: Space[] }) {
             <button
               type="button"
               aria-label="Search"
-              className="flex w-full items-center justify-center gap-2 border-t border-divider bg-accent py-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-white transition-opacity hover:opacity-90 sm:hidden"
+              className="flex w-full items-center justify-center gap-2 border-t border-divider bg-accent py-4 text-sm font-semibold uppercase tracking-[0.2em] text-white transition-opacity hover:opacity-90 sm:hidden"
             >
               <svg
                 width="16"
@@ -161,7 +161,7 @@ export function BrowseSpacesClient({ spaces }: { spaces: Space[] }) {
 
       {!isFiltering && featured.length > 0 && (
         <div className="mt-20 border-t border-divider pt-8 lg:mt-8">
-          <h2 className="text-[11px] font-semibold text-ink/40">
+          <h2 className="text-sm font-semibold text-ink/40">
             Featured
           </h2>
           <div className="-mx-[3px] mt-6 grid grid-cols-1 gap-1 sm:grid-cols-2 lg:grid-cols-4">
@@ -173,7 +173,7 @@ export function BrowseSpacesClient({ spaces }: { spaces: Space[] }) {
       )}
 
       <div className="mt-8 border-t border-divider pt-8">
-        <h2 className="text-[11px] font-semibold text-ink/40">
+        <h2 className="text-sm font-semibold text-ink/40">
           {isFiltering ? `${filtered.length} spaces` : "All spaces"}
         </h2>
         {filtered.length === 0 ? (

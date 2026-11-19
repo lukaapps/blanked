@@ -21,7 +21,7 @@ export function SpaceCard({ space }: { space: Space }) {
       <div className="mt-3 flex items-start justify-between gap-3">
         <div>
           <h3 className="text-base font-medium">{space.name}</h3>
-          <p className="mt-1 flex items-center gap-2 text-[11px] font-medium text-ink/45">
+          <p className="mt-1 flex items-center gap-2 text-sm font-medium text-ink/45">
             {space.suburb}
             <span className="text-ink/20">|</span>
             <svg
@@ -38,7 +38,7 @@ export function SpaceCard({ space }: { space: Space }) {
             {space.capacity}
           </p>
           {space.reviews.length > 0 && (
-            <p className="mt-1.5 text-xs">
+            <p className="mt-1.5 text-sm">
               <RatingBadge reviews={space.reviews} />
             </p>
           )}

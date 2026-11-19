@@ -22,7 +22,7 @@ export function TalentIndex({ chefs }: { chefs: Chef[] }) {
               onFocus={() => setActive(chef)}
               className="group flex items-baseline gap-4 py-5 sm:gap-8 sm:py-7"
             >
-              <span className="w-20 shrink-0 text-[11px] font-semibold tabular-nums tracking-[0.2em] text-ink/40">
+              <span className="w-20 shrink-0 text-sm font-semibold tabular-nums tracking-[0.2em] text-ink/40">
                 BLK{String(i + 1).padStart(3, "0")}
               </span>
               <span className="flex-1 text-3xl font-bold tracking-tight transition-colors group-hover:text-accent sm:text-5xl">

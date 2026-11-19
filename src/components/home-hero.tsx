@@ -34,7 +34,7 @@ export function HomeHero({ images }: { images: string[] }) {
         <div className="w-full max-w-3xl">
           <NavGrid variant="dark" />
         </div>
-        <p className="mt-6 text-[10px] font-semibold tracking-[0.3em] text-[#F0F0EE]/80">
+        <p className="mt-6 text-sm font-semibold tracking-[0.3em] text-[#F0F0EE]/80">
           Find your pop-up space in Melbourne
         </p>
       </div>

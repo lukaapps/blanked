@@ -10,7 +10,7 @@ import { PageHeader } from "@/components/page-header";
 import type { BookingStatus } from "@/lib/database.types";
 
 const sectionLabel =
- "text-[11px] font-semibold text-ink/40";
+ "text-sm font-semibold text-ink/40";
 
 const statusColor = (status: string) =>
   ["confirmed", "accepted", "Live"].includes(status)
@@ -89,7 +89,7 @@ function SignOutButton() {
         router.push("/");
         router.refresh();
       }}
-      className="text-[10px] font-semibold text-ink/35 transition-colors hover:text-accent"
+      className="text-sm font-semibold text-ink/35 transition-colors hover:text-accent"
     >
       Log out
     </button>
@@ -164,7 +164,7 @@ export function ChefProfileLive({
           <button
             key={t.key}
             onClick={() => setTab(t.key)}
-            className={`px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.2em] transition-colors ${
+            className={`px-6 py-3 text-sm font-semibold uppercase tracking-[0.2em] transition-colors ${
               tab === t.key
                 ? "bg-[#442220] text-white"
                 : "bg-white text-ink/50 hover:text-ink"
@@ -194,19 +194,19 @@ export function ChefProfileLive({
                 >
                   <div>
                     <p className="font-medium">{b.spaceName}</p>
-                    <p className="mt-0.5 text-[11px] font-medium text-ink/45">
+                    <p className="mt-0.5 text-sm font-medium text-ink/45">
                       {b.dates}
                     </p>
                   </div>
                   <div className="flex items-center gap-4">
                     <span
-                      className={`text-[10px] font-semibold uppercase tracking-[0.2em] ${statusColor(b.status)}`}
+                      className={`text-sm font-semibold uppercase tracking-[0.2em] ${statusColor(b.status)}`}
                     >
                       {b.status}
                     </span>
                     <Link
                       href={`/browse-spaces/${b.spaceSlug}`}
-                      className="text-[11px] font-semibold text-accent hover:underline"
+                      className="text-sm font-semibold text-accent hover:underline"
                     >
                       View Details
                     </Link>
@@ -244,7 +244,7 @@ export function ChefProfileLive({
                     )}
                   </div>
                   <p className="mt-2 text-sm font-medium">{space.name}</p>
-                  <p className="mt-0.5 text-[11px] font-medium text-ink/45">
+                  <p className="mt-0.5 text-sm font-medium text-ink/45">
                     {space.suburb}
                   </p>
                 </Link>
@@ -281,7 +281,7 @@ export function ChefProfileLive({
                     )}
                   </div>
                   <p className="mt-2 text-sm font-medium">{event.name}</p>
-                  <p className="mt-0.5 text-[11px] font-medium text-ink/45">
+                  <p className="mt-0.5 text-sm font-medium text-ink/45">
                     <span className="flex flex-wrap gap-x-3"><span>{event.suburb}</span><span>{event.date}</span></span>
                   </p>
                 </Link>
@@ -350,13 +350,13 @@ export function LandlordProfileLive({
               >
                 <div>
                   <p className="font-medium">{s.name}</p>
-                  <p className="mt-0.5 text-[11px] font-medium text-ink/45">
+                  <p className="mt-0.5 text-sm font-medium text-ink/45">
                     {s.dailyRate ? <span className="block">{`$${s.dailyRate.toLocaleString()}/day`}</span> : null}
                     {s.requestCount} request{s.requestCount === 1 ? "" : "s"}
                   </p>
                 </div>
                 <span
-                  className={`text-[10px] font-semibold uppercase tracking-[0.2em] ${statusColor(
+                  className={`text-sm font-semibold uppercase tracking-[0.2em] ${statusColor(
                     s.status === "pending" ? "Pending Review" : s.status
                   )}`}
                 >
@@ -387,12 +387,12 @@ export function LandlordProfileLive({
                     </span>
                   </p>
                   <span
-                    className={`text-[10px] font-semibold uppercase tracking-[0.2em] ${statusColor(r.status)}`}
+                    className={`text-sm font-semibold uppercase tracking-[0.2em] ${statusColor(r.status)}`}
                   >
                     {r.status}
                   </span>
                 </div>
-                <p className="mt-1 text-[11px] font-medium text-ink/45">
+                <p className="mt-1 text-sm font-medium text-ink/45">
                   {r.dates}
                 </p>
                 {r.payout !== null && (
@@ -475,7 +475,7 @@ export function CustomerProfileLive({
                   )}
                 </div>
                 <p className="mt-2 text-sm font-medium">{event.name}</p>
-                <p className="mt-0.5 text-[11px] font-medium text-ink/45">
+                <p className="mt-0.5 text-sm font-medium text-ink/45">
                   <span className="flex flex-wrap gap-x-3"><span>{event.suburb}</span><span>{event.date}</span></span>
                 </p>
               </Link>

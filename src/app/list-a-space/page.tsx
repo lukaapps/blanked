@@ -10,7 +10,7 @@ export const metadata = {
 };
 
 const label =
- "text-[11px] font-semibold text-ink/40";
+ "text-sm font-semibold text-ink/40";
 
 const steps = [
   {
@@ -101,17 +101,17 @@ export default function ListASpacePage() {
     <>
       <div className="flex min-h-screen flex-col lg:flex-row">
         <div className="flex flex-col justify-center gap-6 px-[9px] py-16 lg:w-1/2 lg:py-0">
-          <h1 className="text-6xl font-bold uppercase leading-[0.95] tracking-tight sm:text-7xl lg:text-[100px]">
+          <h1 className="text-5xl font-bold uppercase leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl">
             List your
             <br />
             space
           </h1>
-          <p className="text-[11px] font-semibold text-ink/40">
+          <p className="text-sm font-semibold text-ink/40">
             <Stops>The city has space. Let’s use it.</Stops>
           </p>
           <Link
             href="/list-a-space/apply"
-            className="w-fit bg-[#442220] px-10 py-4 text-xs font-semibold uppercase tracking-widest text-white transition-opacity hover:opacity-90"
+            className="w-fit bg-[#442220] px-10 py-4 text-sm font-semibold uppercase tracking-widest text-white transition-opacity hover:opacity-90"
           >
             List Space
           </Link>
@@ -140,7 +140,7 @@ export default function ListASpacePage() {
 
       <div className="px-[27px] py-24">
         <p className={label}>How it works</p>
-        <h2 className="mt-3 font-bold tracking-tight leading-[1.1] text-3xl sm:text-5xl lg:text-6xl">
+        <h2 className="mt-3 font-bold tracking-tight leading-[1.1] text-3xl sm:text-4xl lg:text-5xl">
           Listing and booking
         </h2>
 
@@ -177,7 +177,7 @@ export default function ListASpacePage() {
 
       <div className="px-[27px] py-24">
         <p className={label}>Why list with Blanked</p>
-        <h2 className="mt-3 font-bold tracking-tight leading-[1.1] text-3xl sm:text-5xl lg:text-6xl">
+        <h2 className="mt-3 font-bold tracking-tight leading-[1.1] text-3xl sm:text-4xl lg:text-5xl">
           Built for landlords
         </h2>
 
@@ -191,7 +191,7 @@ export default function ListASpacePage() {
               <h3 className="text-2xl font-bold leading-tight tracking-tight">
                 {a.title}
               </h3>
-              <p className="text-sm leading-relaxed text-ink/60">{a.body}</p>
+              <p className="text-base leading-relaxed text-ink/60">{a.body}</p>
             </div>
           ))}
         </div>
@@ -206,7 +206,7 @@ export default function ListASpacePage() {
 
       <div className="px-[27px] py-24">
         <p className={label}>Safety & trust</p>
-        <h2 className="mt-3 font-bold tracking-tight leading-[1.1] text-3xl sm:text-5xl lg:text-6xl">
+        <h2 className="mt-3 font-bold tracking-tight leading-[1.1] text-3xl sm:text-4xl lg:text-5xl">
           You stay in control
         </h2>
 
@@ -220,7 +220,7 @@ export default function ListASpacePage() {
                     <RedDot className="mt-2 shrink-0" />
                     <div>
                       <h3 className="text-sm font-semibold">{t.title}</h3>
-                      <p className="mt-1 text-sm leading-relaxed text-ink/60">
+                      <p className="mt-1 text-base leading-relaxed text-ink/60">
                         {t.body}
                       </p>
                     </div>
@@ -236,12 +236,12 @@ export default function ListASpacePage() {
       <div className="border-t border-divider px-[27px] py-24">
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-x-16">
           <div className="flex flex-col items-start gap-8">
-            <h2 className="font-bold tracking-tight leading-[1.1] text-3xl sm:text-5xl lg:text-6xl">
+            <h2 className="font-bold tracking-tight leading-[1.1] text-3xl sm:text-4xl lg:text-5xl">
               Ready to list your space?
             </h2>
             <Link
               href="/list-a-space/apply"
-              className="inline-flex w-fit bg-[#442220] px-10 py-4 text-xs font-semibold uppercase tracking-widest text-white transition-opacity hover:opacity-90"
+              className="inline-flex w-fit bg-[#442220] px-10 py-4 text-sm font-semibold uppercase tracking-widest text-white transition-opacity hover:opacity-90"
             >
               List Space
             </Link>
@@ -254,7 +254,7 @@ export default function ListASpacePage() {
                 className="flex items-baseline gap-6 border-b border-divider py-5"
               >
                 <span className={label}>{step.n}</span>
-                <span className="text-lg font-bold tracking-tight">
+                <span className="text-xl font-bold tracking-tight">
                   {step.title}
                 </span>
               </li>

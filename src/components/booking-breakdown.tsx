@@ -32,7 +32,7 @@ export function BookingBreakdown({
 
   return (
     <div className="border border-divider bg-white p-5">
-      <p className="text-[11px] font-semibold text-ink/40">
+      <p className="text-sm font-semibold text-ink/40">
         Price breakdown
       </p>
 
@@ -58,7 +58,7 @@ export function BookingBreakdown({
 
         <div className="mt-1 flex items-baseline justify-between gap-4 border-t border-divider pt-3">
           <span className="text-sm font-bold">Total</span>
-          <span className="text-lg font-bold tracking-tight">
+          <span className="text-xl font-bold tracking-tight">
             {money(total)}
           </span>
         </div>
@@ -69,7 +69,7 @@ export function BookingBreakdown({
           <span className={muted}>Damage deposit (refundable)</span>
           <span>{money(damageDeposit)}</span>
         </div>
-        <p className="mt-1 text-xs text-ink/40">
+        <p className="mt-1 text-sm text-ink/40">
           Not included in the total. Held by Blanked and returned after the
           booking.
         </p>

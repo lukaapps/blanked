@@ -4,10 +4,10 @@ export default function NotFound() {
   return (
     <div className="mx-auto flex max-w-xl flex-col items-center px-[27px] pb-24 pt-32 text-center">
       <span aria-hidden className="h-2.5 w-2.5 rounded-full bg-accent" />
-      <h1 className="mt-6 text-4xl font-medium tracking-tight sm:text-6xl">
+      <h1 className="mt-6 text-5xl font-medium tracking-tight sm:text-6xl lg:text-7xl">
         Nothing here.
       </h1>
-      <p className="mt-3 text-[11px] font-semibold text-ink/40">
+      <p className="mt-3 text-sm font-semibold text-ink/40">
         404 — page not found
       </p>
       <p className="mt-6 text-sm text-ink/60">

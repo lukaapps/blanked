@@ -102,7 +102,7 @@ export function DateRangePicker({
         onClick={() => setOpen((o) => !o)}
         className="block w-full px-6 py-4 text-left"
       >
-        <span className="block text-[11px] font-semibold text-ink/40">
+        <span className="block text-sm font-semibold text-ink/40">
           {label}
         </span>
         <span
@@ -144,7 +144,7 @@ export function DateRangePicker({
             {WEEKDAYS.map((d) => (
               <span
                 key={d}
-                className="text-[11px] font-semibold tracking-[0.1em] text-ink/40"
+                className="text-sm font-semibold tracking-[0.1em] text-ink/40"
               >
                 {d}
               </span>
@@ -188,7 +188,7 @@ export function DateRangePicker({
           </div>
 
           <div className="mt-4 flex items-center justify-between border-t border-divider pt-3">
-            <p className="text-xs text-ink/50">
+            <p className="text-sm text-ink/50">
               {!value.start
                 ? "Choose a start date"
                 : !value.end
@@ -198,7 +198,7 @@ export function DateRangePicker({
             <button
               type="button"
               onClick={() => onChange({ start: null, end: null })}
-              className="text-xs text-ink/50 transition-colors hover:text-ink"
+              className="text-sm text-ink/50 transition-colors hover:text-ink"
             >
               Clear dates
             </button>

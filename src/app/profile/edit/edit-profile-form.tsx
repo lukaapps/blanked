@@ -215,7 +215,7 @@ export function EditProfileForm(props: Props) {
           className="mt-10 grid grid-cols-1 gap-5 bg-white p-6 sm:grid-cols-2 sm:p-8"
         >
           <div>
-            <label className="block text-[10px] font-semibold text-ink/40">
+            <label className="block text-sm font-semibold text-ink/40">
               {isBusiness ? "Full Name" : "Name"}
             </label>
             <input
@@ -228,7 +228,7 @@ export function EditProfileForm(props: Props) {
           </div>
 
           <div>
-            <label className="block text-[10px] font-semibold text-ink/40">
+            <label className="block text-sm font-semibold text-ink/40">
               Email
             </label>
             <input
@@ -243,7 +243,7 @@ export function EditProfileForm(props: Props) {
 
           {isBusiness && (
             <div className="sm:col-span-2">
-              <label className="block text-[10px] font-semibold text-ink/40">
+              <label className="block text-sm font-semibold text-ink/40">
                 {isLandlord ? "Business Name" : "Display / Brand Name"}
               </label>
               <input
@@ -258,7 +258,7 @@ export function EditProfileForm(props: Props) {
 
           {isBusiness ? (
             <div className="sm:col-span-2">
-              <label className="block text-[10px] font-semibold text-ink/40">
+              <label className="block text-sm font-semibold text-ink/40">
                 Photos
               </label>
               <div className="mt-2">
@@ -267,7 +267,7 @@ export function EditProfileForm(props: Props) {
             </div>
           ) : (
             <div className="sm:col-span-2">
-              <label className="block text-[10px] font-semibold text-ink/40">
+              <label className="block text-sm font-semibold text-ink/40">
                 Display Picture
               </label>
               <div className="mt-2">
@@ -284,7 +284,7 @@ export function EditProfileForm(props: Props) {
           {isBusiness && (
             <>
               <div>
-                <label className="block text-[10px] font-semibold text-ink/40">
+                <label className="block text-sm font-semibold text-ink/40">
                   Role
                 </label>
                 <select
@@ -310,7 +310,7 @@ export function EditProfileForm(props: Props) {
               </div>
 
               <div>
-                <label className="block text-[10px] font-semibold text-ink/40">
+                <label className="block text-sm font-semibold text-ink/40">
                   Website
                 </label>
                 <input
@@ -322,7 +322,7 @@ export function EditProfileForm(props: Props) {
               </div>
 
               <div className="sm:col-span-2">
-                <label className="block text-[10px] font-semibold text-ink/40">
+                <label className="block text-sm font-semibold text-ink/40">
                   Instagram URL{isLandlord ? " (if applicable)" : ""}
                 </label>
                 <input
@@ -338,7 +338,7 @@ export function EditProfileForm(props: Props) {
           {isChef && (
             <>
               <div className="sm:col-span-2">
-                <label className="block text-[10px] font-semibold text-ink/40">
+                <label className="block text-sm font-semibold text-ink/40">
                   Bio
                 </label>
                 <textarea
@@ -351,7 +351,7 @@ export function EditProfileForm(props: Props) {
               </div>
 
               <div className="sm:col-span-2">
-                <label className="block text-[10px] font-semibold text-ink/40">
+                <label className="block text-sm font-semibold text-ink/40">
                   What I&rsquo;m looking for
                 </label>
                 <div className="mt-2 flex flex-wrap gap-2">
@@ -360,7 +360,7 @@ export function EditProfileForm(props: Props) {
                       key={type}
                       type="button"
                       onClick={() => toggleSpaceType(type)}
-                      className={`px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.15em] transition-colors ${
+                      className={`px-4 py-2 text-sm font-semibold uppercase tracking-[0.15em] transition-colors ${
                         spaceTypePreferences.includes(type)
                           ? "bg-[#442220] text-white"
                           : "border border-divider text-ink/50 hover:border-ink hover:text-ink"
@@ -376,7 +376,7 @@ export function EditProfileForm(props: Props) {
 
           {isBusiness && (
             <div className="sm:col-span-2">
-              <label className="block text-[10px] font-semibold text-ink/40">
+              <label className="block text-sm font-semibold text-ink/40">
                 Company address
               </label>
               <div className="mt-2 grid grid-cols-1 gap-3 sm:grid-cols-2">
@@ -422,14 +422,14 @@ export function EditProfileForm(props: Props) {
             <button
               type="submit"
               disabled={saving}
-              className="flex-1 bg-[#442220] py-4 text-[11px] font-semibold uppercase tracking-[0.25em] text-white transition-opacity hover:opacity-90 disabled:opacity-40 sm:flex-none sm:px-10"
+              className="flex-1 bg-[#442220] py-4 text-sm font-semibold uppercase tracking-[0.25em] text-white transition-opacity hover:opacity-90 disabled:opacity-40 sm:flex-none sm:px-10"
             >
               {saving ? "Saving…" : "Save Changes"}
             </button>
             <button
               type="button"
               onClick={() => router.push("/profile")}
-              className="flex-1 border border-ink py-4 text-[11px] font-semibold uppercase tracking-[0.25em] text-ink transition-colors hover:bg-ink hover:text-background sm:flex-none sm:px-10"
+              className="flex-1 border border-ink py-4 text-sm font-semibold uppercase tracking-[0.25em] text-ink transition-colors hover:bg-ink hover:text-background sm:flex-none sm:px-10"
             >
               Cancel
             </button>

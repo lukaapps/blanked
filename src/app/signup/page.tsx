@@ -105,10 +105,10 @@ function SignupForm() {
         <h1 className="mt-6 text-4xl font-medium tracking-tight">
           Check your email
         </h1>
-        <p className="mt-3 text-[11px] font-semibold text-ink/40">
+        <p className="mt-3 text-sm font-semibold text-ink/40">
           One more step
         </p>
-        <p className="mt-6 text-sm leading-relaxed text-ink/60">
+        <p className="mt-6 text-base leading-relaxed text-ink/60">
           We&rsquo;ve sent a confirmation link to{" "}
           <strong className="text-ink">{email}</strong>. Click it to activate
           your{" "}
@@ -149,15 +149,15 @@ function SignupForm() {
 
   return (
     <div className="mx-auto max-w-2xl px-[27px] pb-24 pt-24">
-      <h1 className="text-6xl font-bold uppercase leading-[0.95] tracking-tight sm:text-7xl">
+      <h1 className="text-5xl font-bold uppercase leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl">
         Sign up
       </h1>
-      <p className="mt-3 text-[11px] font-semibold text-ink/40">
+      <p className="mt-3 text-sm font-semibold text-ink/40">
         Join Blanked
       </p>
 
       <div className="mt-10">
-        <label className="block text-[10px] font-semibold text-ink/40">
+        <label className="block text-sm font-semibold text-ink/40">
           I am a…
         </label>
         <div className="mt-2 grid grid-cols-1 gap-3 sm:grid-cols-3">
@@ -173,7 +173,7 @@ function SignupForm() {
         className="mt-6 grid grid-cols-1 gap-5 bg-white p-6 sm:grid-cols-2 sm:p-8"
       >
         <div className="sm:col-span-2">
-          <label className="block text-[10px] font-semibold text-ink/40">
+          <label className="block text-sm font-semibold text-ink/40">
             {isBusiness ? "Full Name" : "Name"}
           </label>
           <input
@@ -186,7 +186,7 @@ function SignupForm() {
         </div>
 
         <div>
-          <label className="block text-[10px] font-semibold text-ink/40">
+          <label className="block text-sm font-semibold text-ink/40">
             Email
           </label>
           <input
@@ -200,7 +200,7 @@ function SignupForm() {
         </div>
 
         <div>
-          <label className="block text-[10px] font-semibold text-ink/40">
+          <label className="block text-sm font-semibold text-ink/40">
             Password
           </label>
           <input
@@ -217,7 +217,7 @@ function SignupForm() {
         {isBusiness && (
           <>
             <div className="sm:col-span-2">
-              <label className="block text-[10px] font-semibold text-ink/40">
+              <label className="block text-sm font-semibold text-ink/40">
                 {accountType === "landlord" ? "Business Name" : "Display / Brand Name"}
               </label>
               <input
@@ -234,16 +234,16 @@ function SignupForm() {
             </div>
 
             <div className="sm:col-span-2">
-              <label className="block text-[10px] font-semibold text-ink/40">
+              <label className="block text-sm font-semibold text-ink/40">
                 Photos
               </label>
-              <p className="mt-2 text-xs text-ink/50">
+              <p className="mt-2 text-sm text-ink/50">
                 You can upload photos after creating your account in your profile settings.
               </p>
             </div>
 
             <div>
-              <label className="block text-[10px] font-semibold text-ink/40">
+              <label className="block text-sm font-semibold text-ink/40">
                 Role
               </label>
               <select
@@ -269,7 +269,7 @@ function SignupForm() {
             </div>
 
             <div>
-              <label className="block text-[10px] font-semibold text-ink/40">
+              <label className="block text-sm font-semibold text-ink/40">
                 Website
               </label>
               <input
@@ -281,7 +281,7 @@ function SignupForm() {
             </div>
 
             <div className="sm:col-span-2">
-              <label className="block text-[10px] font-semibold text-ink/40">
+              <label className="block text-sm font-semibold text-ink/40">
                 Instagram URL{accountType === "landlord" ? " (if applicable)" : ""}
               </label>
               <input
@@ -293,7 +293,7 @@ function SignupForm() {
             </div>
 
             <div className="sm:col-span-2">
-              <label className="block text-[10px] font-semibold text-ink/40">
+              <label className="block text-sm font-semibold text-ink/40">
                 Company address
               </label>
               <div className="mt-2 grid grid-cols-1 gap-3 sm:grid-cols-2">
@@ -333,7 +333,7 @@ function SignupForm() {
         )}
 
         <div className="sm:col-span-2">
-          <label className="block text-[10px] font-semibold text-ink/40">
+          <label className="block text-sm font-semibold text-ink/40">
             How did you hear about us?
           </label>
           <select
@@ -355,7 +355,7 @@ function SignupForm() {
         <button
           type="submit"
           disabled={loading}
-          className="bg-[#442220] py-4 text-[11px] font-semibold uppercase tracking-[0.25em] text-white transition-opacity hover:opacity-90 disabled:opacity-40 sm:col-span-2"
+          className="bg-[#442220] py-4 text-sm font-semibold uppercase tracking-[0.25em] text-white transition-opacity hover:opacity-90 disabled:opacity-40 sm:col-span-2"
         >
           {loading ? "Creating account…" : "Create Account"}
         </button>

@@ -11,7 +11,7 @@ export default function EventComingSoonPage() {
         title="Event details"
         caption="Coming soon"
       />
-      <p className="mx-auto mt-8 max-w-md text-sm leading-relaxed text-ink/60">
+      <p className="mx-auto mt-8 max-w-md text-base leading-relaxed text-ink/60">
         This event page is on its way. Check back soon.
       </p>
     </div>

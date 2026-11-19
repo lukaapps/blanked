@@ -56,7 +56,7 @@ export function PhotoUploader({
               type="button"
               onClick={() => onChange(photos.filter((_, idx) => idx !== i))}
               aria-label="Remove photo"
-              className="absolute right-1 top-1 flex h-6 w-6 items-center justify-center bg-ink/70 text-sm text-white transition-opacity sm:h-5 sm:w-5 sm:text-xs sm:opacity-0 sm:group-hover:opacity-100"
+              className="absolute right-1 top-1 flex h-6 w-6 items-center justify-center bg-ink/70 text-sm text-white transition-opacity sm:h-5 sm:w-5 sm:text-sm sm:opacity-0 sm:group-hover:opacity-100"
             >
               ×
             </button>
@@ -67,7 +67,7 @@ export function PhotoUploader({
             type="button"
             onClick={() => inputRef.current?.click()}
             disabled={busy}
-            className="flex aspect-square flex-col items-center justify-center gap-1 border border-dashed border-divider text-[10px] font-semibold text-ink/40 transition-colors hover:border-ink hover:text-ink disabled:opacity-40"
+            className="flex aspect-square flex-col items-center justify-center gap-1 border border-dashed border-divider text-sm font-semibold text-ink/40 transition-colors hover:border-ink hover:text-ink disabled:opacity-40"
           >
             {busy ? "…" : "+ Add"}
           </button>
@@ -82,11 +82,11 @@ export function PhotoUploader({
         onChange={(e) => e.target.files && handleFiles(e.target.files)}
       />
       {max > 1 && (
-        <p className="mt-2 text-[11px] text-ink/40">
+        <p className="mt-2 text-sm text-ink/40">
           {photos.length}/{max} photos
         </p>
       )}
-      {error && <p className="mt-1 text-[11px] text-accent">{error}</p>}
+      {error && <p className="mt-1 text-sm text-accent">{error}</p>}
     </div>
   );
 }

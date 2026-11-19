@@ -10,10 +10,10 @@ export const metadata = {
 };
 
 const label =
- "text-[11px] font-semibold text-ink/40";
+ "text-sm font-semibold text-ink/40";
 const statement =
-  "font-bold tracking-tight leading-[1.1] text-3xl sm:text-5xl lg:text-6xl";
-const bodyText = "text-lg font-light leading-relaxed text-ink/70 lg:text-xl";
+  "font-bold tracking-tight leading-[1.1] text-3xl sm:text-4xl lg:text-5xl";
+const bodyText = "text-base font-light leading-relaxed text-ink/70";
 
 export default function AboutPage() {
   return (
@@ -103,7 +103,7 @@ export default function AboutPage() {
         </p>
         <Link
           href="/browse-spaces"
-          className="inline-flex w-fit bg-[#442220] px-10 py-4 text-xs font-semibold uppercase tracking-widest text-white transition-opacity hover:opacity-90"
+          className="inline-flex w-fit bg-[#442220] px-10 py-4 text-sm font-semibold uppercase tracking-widest text-white transition-opacity hover:opacity-90"
         >
           Browse spaces
         </Link>

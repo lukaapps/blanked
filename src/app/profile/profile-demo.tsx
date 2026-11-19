@@ -45,7 +45,7 @@ const mockCustomer = {
 };
 
 const sectionLabel =
- "text-[11px] font-semibold text-ink/40";
+ "text-sm font-semibold text-ink/40";
 
 export function ProfileDemo() {
   const [accountType, setAccountType] = useState<AccountType>("chef");
@@ -102,7 +102,7 @@ export function ProfileDemo() {
         }
       />
 
-      <div className="mt-6 flex items-center gap-2 text-[10px] font-semibold text-ink/35">
+      <div className="mt-6 flex items-center gap-2 text-sm font-semibold text-ink/35">
         <span>Demo view:</span>
         <button
           onClick={() => setAccountType("chef")}
@@ -184,7 +184,7 @@ function ChefView({
           <button
             key={t.key}
             onClick={() => setTab(t.key)}
-            className={`px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.2em] transition-colors ${
+            className={`px-6 py-3 text-sm font-semibold uppercase tracking-[0.2em] transition-colors ${
               tab === t.key
                 ? "bg-[#442220] text-white"
                 : "bg-white text-ink/50 hover:text-ink"
@@ -204,13 +204,13 @@ function ChefView({
             >
               <div>
                 <p className="font-medium">{b.space}</p>
-                <p className="mt-0.5 text-[11px] font-medium text-ink/45">
+                <p className="mt-0.5 text-sm font-medium text-ink/45">
                   {b.dates}
                 </p>
               </div>
               <div className="flex items-center gap-4">
                 <span
-                  className={`text-[10px] font-semibold uppercase tracking-[0.2em] ${
+                  className={`text-sm font-semibold uppercase tracking-[0.2em] ${
                     b.status === "Confirmed"
                       ? "text-green-700"
                       : b.status === "Pending"
@@ -222,7 +222,7 @@ function ChefView({
                 </span>
                 <Link
                   href={`/browse-spaces/${b.spaceSlug}`}
-                  className="text-[11px] font-semibold text-accent hover:underline"
+                  className="text-sm font-semibold text-accent hover:underline"
                 >
                   View Details
                 </Link>
@@ -246,7 +246,7 @@ function ChefView({
                 />
               </div>
               <p className="mt-2 text-sm font-medium">{space.name}</p>
-              <p className="mt-0.5 text-[11px] font-medium text-ink/45">
+              <p className="mt-0.5 text-sm font-medium text-ink/45">
                 {space.suburb}
               </p>
             </Link>
@@ -275,7 +275,7 @@ function ChefView({
                     />
                   </div>
                   <p className="mt-2 text-sm font-medium">{event.name}</p>
-                  <p className="mt-0.5 text-[11px] font-medium text-ink/45">
+                  <p className="mt-0.5 text-sm font-medium text-ink/45">
                     <span className="flex flex-wrap gap-x-3"><span>{event.suburb}</span><span>{event.date}</span></span>
                   </p>
                 </Link>
@@ -321,13 +321,13 @@ function LandlordView({ profile }: { profile: typeof mockLandlord }) {
             >
               <div>
                 <p className="font-medium">{s.name}</p>
-                <p className="mt-0.5 text-[11px] font-medium text-ink/45">
+                <p className="mt-0.5 text-sm font-medium text-ink/45">
                   <span className="block">${s.dailyRate.toLocaleString()}/day</span>
                   <span className="block">{s.requests} requests</span>
                 </p>
               </div>
               <span
-                className={`text-[10px] font-semibold uppercase tracking-[0.2em] ${
+                className={`text-sm font-semibold uppercase tracking-[0.2em] ${
                   s.status === "Live" ? "text-green-700" : "text-amber-600"
                 }`}
               >
@@ -348,14 +348,14 @@ function LandlordView({ profile }: { profile: typeof mockLandlord }) {
                   {r.chef} <span className="block font-normal text-ink/45">{r.space}</span>
                 </p>
                 <span
-                  className={`text-[10px] font-semibold uppercase tracking-[0.2em] ${
+                  className={`text-sm font-semibold uppercase tracking-[0.2em] ${
                     r.status === "Accepted" ? "text-green-700" : "text-amber-600"
                   }`}
                 >
                   {r.status}
                 </span>
               </div>
-              <p className="mt-1 text-[11px] font-medium text-ink/45">
+              <p className="mt-1 text-sm font-medium text-ink/45">
                 {r.dates}
               </p>
               <p className="mt-2 text-sm text-ink/60">&ldquo;{r.message}&rdquo;</p>
@@ -426,7 +426,7 @@ function CustomerView({
                   />
                 </div>
                 <p className="mt-2 text-sm font-medium">{event.name}</p>
-                <p className="mt-0.5 text-[11px] font-medium text-ink/45">
+                <p className="mt-0.5 text-sm font-medium text-ink/45">
                   <span className="flex flex-wrap gap-x-3"><span>{event.suburb}</span><span>{event.date}</span></span>
                 </p>
               </Link>
