@@ -5,14 +5,18 @@ function unsplash(id: string) {
 }
 
 // Home hero rotation: high-resolution Blanked photography (public/images/web),
-// plus the brick restaurant kept from the original set.
-export const heroImages = [
-  "/images/web/IMG_7743.jpg?v=5",
-  "/images/web/IMG_4235.jpg?v=5",
-  "/images/space-brick-loft.jpg?v=3",
-  "/images/web/IMG_8749.jpg?v=5",
-  "/images/web/IMG_4505.jpg?v=5",
-  "/images/web/IMG_4492.jpg?v=5",
+// plus the brick restaurant kept from the original set. `crop` is an optional
+// Tailwind object-position class; the brick room uses the bottom of the frame
+// so the tables sit in view.
+export const heroImages: { src: string; crop?: string }[] = [
+  { src: "/images/web/IMG_7743.jpg?v=5" },
+  { src: "/images/web/IMG_5675.jpg?v=5" },
+  { src: "/images/space-brick-loft.jpg?v=3", crop: "object-[50%_100%]" },
+  { src: "/images/web/IMG_8749.jpg?v=5" },
+  { src: "/images/web/IMG_5217.jpg?v=5" },
+  { src: "/images/web/IMG_4505.jpg?v=5" },
+  { src: "/images/web/IMG_5494.jpg?v=5" },
+  { src: "/images/web/IMG_4492.jpg?v=5" },
 ];
 
 // About page photo (portrait).

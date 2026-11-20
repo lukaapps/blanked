@@ -4,7 +4,9 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { NavGrid } from "@/components/nav-grid";
 
-export function HomeHero({ images }: { images: string[] }) {
+type HeroImage = { src: string; crop?: string };
+
+export function HomeHero({ images }: { images: HeroImage[] }) {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -16,7 +18,7 @@ export function HomeHero({ images }: { images: string[] }) {
 
   return (
     <div className="relative h-[100dvh] w-full overflow-hidden bg-ink">
-      {images.map((src, i) => (
+      {images.map(({ src, crop }, i) => (
         <Image
           key={src}
           src={src}
@@ -24,7 +26,7 @@ export function HomeHero({ images }: { images: string[] }) {
           fill
           priority={i === 0}
           sizes="100vw"
-          className={`object-cover transition-opacity duration-1000 ${
+          className={`object-cover ${crop ?? "object-center"} transition-opacity duration-1000 ${
             i === index ? "opacity-60" : "opacity-0"
           }`}
         />
